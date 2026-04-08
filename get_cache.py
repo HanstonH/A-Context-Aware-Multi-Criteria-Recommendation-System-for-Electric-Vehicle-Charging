@@ -3,25 +3,48 @@ import os
 
 
 CACHE_FILE = 'data/poi_cache.json'
+
 class CacheManager:
     def __init__(self, cache_file=CACHE_FILE):
         self.cache_file = cache_file
-        
-    def load_cache(self):
+        # Load into memory once so we don't hit the disk constantly
+        self.cache_data = self._load_all_from_disk()
+
+    def _load_all_from_disk(self):
         if os.path.exists(self.cache_file):
             with open(self.cache_file, 'r') as f:
-                return json.load(f)
+                try:
+                    return json.load(f)
+                except json.JSONDecodeError:
+                    return {}
         return {}
 
-    def save_to_cache(self, cache):
+    def _get_key(self, lat, lon):
+        """Helper to create a unique string key for the dictionary."""
+        return f"{round(lat, 5)},{round(lon, 5)}"
+
+    def check_cache(self, latitude, longitude):
+        return self._get_key(latitude, longitude) in self.cache_data
+
+    def get_data(self, latitude, longitude):
+        key = self._get_key(latitude, longitude)
+        return self.cache_data.get(key)
+
+    def save_to_cache(self, latitude, longitude, data):
+        key = self._get_key(latitude, longitude)
+        self.cache_data[key] = data
+        
+        # Write the updated dictionary back to the file
         with open(self.cache_file, 'w') as f:
-            json.dump(cache, f, indent=4)
+            json.dump(self.cache_data, f, indent=4)
+         
 
 # --- How you use it in your code ---
 def main():
     cache_manager = CacheManager()
     cache = cache_manager.load_cache()
     print(cache)
+    # Change station id to longitude and latitude
     station_id = "station_001"
 
     if station_id in cache:
