@@ -10,7 +10,7 @@ BASE_URL = "https://places.googleapis.com/v1/places:searchNearby?key=" + API_KEY
 
 cache = CacheManager()
 
-class Get_API:
+class Get_POI:
     def __init__(self):
         pass
 
@@ -54,8 +54,8 @@ def main():
 
     lat, lng = EV_station_dataset.loc[1, ['latitude', 'longitude']]
 
-    get_api = Get_API()
-    data = get_api.call_API(latitude=lat, longitude=lng)
+    get_poi = Get_POI()
+    data = get_poi.call_API(latitude=lat, longitude=lng)
 
     print(data)
 
