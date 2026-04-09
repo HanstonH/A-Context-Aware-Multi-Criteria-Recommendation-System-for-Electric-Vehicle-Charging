@@ -21,7 +21,7 @@ class Get_POI:
         
         else:
             headers = {
-            "X-Goog-FieldMask": "places.id,places.displayName,places.formattedAddress,places.location,places.evChargeOptions,places.rating,places.userRatingCount,places.priceLevel,places.currentOpeningHours,places.googleMapsUri,places.websiteUri"
+            "X-Goog-FieldMask": "places.id,places.displayName,places.formattedAddress,places.location,routingSummaries,places.evChargeOptions,places.rating,places.userRatingCount,places.priceLevel,places.currentOpeningHours,places.googleMapsUri,places.websiteUri"
             }
 
             payload = {
@@ -31,6 +31,12 @@ class Get_POI:
                         "center": {"latitude": latitude, "longitude": longitude},
                         "radius": 500.0
                     }
+                },
+                
+                "routingParameters": {
+                    "origin": {"latitude": latitude, "longitude": longitude},
+                    "travelMode": "WALK", 
+                    "routingPreference": "TRAFFIC_UNAWARE" 
                 }
             }
 
@@ -52,7 +58,7 @@ def main():
     MOCK_DATASET = r"data\taiwan_ev_station_mock.csv"
     EV_station_dataset = pd.read_csv(MOCK_DATASET)
 
-    lat, lng = EV_station_dataset.loc[1, ['latitude', 'longitude']]
+    lat, lng = EV_station_dataset.loc[0, ['latitude', 'longitude']]
 
     get_poi = Get_POI()
     data = get_poi.call_API(latitude=lat, longitude=lng)
