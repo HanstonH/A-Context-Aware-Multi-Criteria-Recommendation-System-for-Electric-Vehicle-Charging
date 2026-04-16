@@ -51,7 +51,6 @@ class Get_POI:
                 return None
         
 
-# Example usage for a station in Taoyuan
 # Use pandas to get coordinate of the EV station
 
 def main():

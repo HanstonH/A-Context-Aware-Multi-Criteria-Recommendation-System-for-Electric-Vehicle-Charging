@@ -15,32 +15,17 @@ Get from maxChargeRateKw in evChargeOptions PlacesAPI(new)
 import pandas as pd
 import numpy as np
 import json
+from get_Distance_EV import get_distance_ev
 
 class Calculation_Model:
 
     def POI_score(self, data, coordinate_key):
         '''
         data received is on JSON
-
-
-        Ways to implement
-        1. Average the rating of each POI, using weighted average. The weight is the amount of people times rating.
-        Problem: Good rating but small amount of people review will get disregarded?
-        2. Average the amount of rating
-        Problem: there might be 5 star with only 1 rating
-        3. Use log for the amount of rating (normal average)
-        4. Rating * log(Reviews) / 1 + (d/100)
-
-        d = distance (eucledian)
-
-        We'll be implementing number 4 for now
-
-
+        Rating * log(Reviews) / 1 + (d/100)
         Note: Counting the number of POI doesn't work since google place (new) only limits 20 per request
         Ways to fix -> perhaps make smaller circles around the diameter, to find other POI (Not good)
-
         '''
-        
         place_list = pd.json_normalize(data[coordinate_key], record_path=["places"])
         place_distance = pd.json_normalize(data[coordinate_key]['routingSummaries'], record_path=['legs'])
         place = pd.concat([place_list, place_distance], axis=1)
@@ -61,6 +46,8 @@ class Calculation_Model:
         # We add 1 to reviews to avoid log(0)
         score = (rating * np.log10(reviews + 1))/ (1 + distance/100)
         return score
+
+
 
 
 def main():
