@@ -21,7 +21,7 @@ class Get_POI:
         
         else:
             headers = {
-            "X-Goog-FieldMask": "places.id,places.displayName,places.formattedAddress,places.location,routingSummaries,places.evChargeOptions,places.rating,places.userRatingCount,places.priceLevel,places.currentOpeningHours,places.googleMapsUri,places.websiteUri"
+            "X-Goog-FieldMask": "places.id,places.displayName,places.formattedAddress,places.location,routingSummaries,places.evChargeOptions,places.rati ng,places.userRatingCount,places.priceLevel,places.currentOpeningHours,places.googleMapsUri,places.websiteUri"
             }
 
             payload = {

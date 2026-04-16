@@ -186,6 +186,7 @@ def get_distance_ev(destination_location, user_location):
         # The distance is returned in meters
         distance_meters = results['routes'][0]['distanceMeters']
         print(f"Distance: {distance_meters} meters")
+        # print(results)
         return results
     else:
         print(f"Error: {response.status_code}")
