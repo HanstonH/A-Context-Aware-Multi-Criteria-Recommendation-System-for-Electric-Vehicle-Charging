@@ -16,9 +16,20 @@ import pandas as pd
 import numpy as np
 import json
 from get_Distance_EV import get_distance_ev
+from get_POI import Get_POI
 
 class Calculation_Model:
 
+    def __init__(self):
+        pass
+    
+    def get_POI(self,  latitude, longitude):
+        POI = Get_POI()
+        return POI.call_API(latitude, longitude)
+
+    def get_distance_score(self, destination_location, user_location):
+        return get_distance_ev(destination_location, user_location)
+    
     def POI_score(self, data, coordinate_key):
         '''
         data received is on JSON
