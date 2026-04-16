@@ -187,10 +187,10 @@ def main():
     # TODO: Make the dataframe for it then put it in the function to test
 
     MOCK_DATASET = r"data\ev_stations_2025.csv"
-    EV_station_dataset = pd.read_csv(MOCK_DATASET, nrows=5)
+    EV_station_dataset = pd.read_csv(MOCK_DATASET, nrows=4)
 
     header_names = pd.read_csv(MOCK_DATASET, nrows=0).columns.tolist()
-    user_location = pd.read_csv(MOCK_DATASET, skiprows=51, nrows=1, names=header_names)
+    user_location = pd.read_csv(MOCK_DATASET, skiprows=5, nrows=1, names=header_names)
 
     current_user_pos = (user_location.loc[0, 'lat'], user_location.loc[0, 'lon'])
     print(current_user_pos)
@@ -203,7 +203,7 @@ def main():
     EV_station_dataset['waiting_time'] = np.random.randint(0, 21, size=len(EV_station_dataset))
 
     final_ranked_df = model.total_score(EV_station_dataset)
-    final_ranked_df.to_csv("final_ranked_df.csv")
+    final_ranked_df.to_csv("final_recommendations_summary.csv")
     print(final_ranked_df)
 
 
