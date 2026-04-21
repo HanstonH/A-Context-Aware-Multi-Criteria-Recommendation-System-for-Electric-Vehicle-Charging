@@ -1,13 +1,12 @@
 ''' 
 Make a model that chooses based on 
 1. Distance, done
-Distance logic that needs to follow the road (not just a straight line from A to B) will not be implemented here
-It is assumed that it is already implemented
+Distance logic that needs to follow the road (not just a straight line from A to B) 
 
-2. Waiting time (How many people are using)
+2. Waiting time (How many people are using), for now using randomize
 For waiting time, perhaps use a machine learning model to predict whether it will be vacant when you get there. Then use that value to the algorithm
 
-3. Efficiency (how fast the cable electricity is)
+3. Efficiency (how fast the cable electricity is). for now use data availabe in dataset
 Get from maxChargeRateKw in evChargeOptions PlacesAPI(new)
 
 4. POI score (make own logic), done
@@ -26,24 +25,7 @@ class Calculation_Model:
         self.w_dist = 0.25
         self.w_wait = 0.25
         self.user_location = user_location
-    
-    def process_distances(self, df):
-        """
-        Applies the external distance function to every row in the dataframe.
-        """
-        def get_row_dist(row):
-            dest = (row['lat'], row['lon'])
-            # Call the imported function
-            result = get_distance_ev(dest, self.user_location)
-            
-            # Extract just the meters from the JSON result
-            if result and 'routes' in result:
-                return result['routes'][0]['distanceMeters']
-            return 999999 # Penalty for failed API call
-            
-        df['distance'] = df.apply(get_row_dist, axis=1)
-        return df
-    
+        
     def total_score(self, stations_df):
         """
         Calculates the final recommendation score using weighted sum normalization.
@@ -54,7 +36,7 @@ class Calculation_Model:
         stations_df['n_poi'] = stations_df['poi_sum'] / max_poi if max_poi > 0 else 0
 
         # 2. Normalize Efficiency (Benefit: Higher is better)
-        # Assuming mapped score 1-3 from your efficiency_score function
+        # Assuming mapped score 1-3 
         stations_df['n_eff'] = stations_df['efficiency'] / 3.0
 
         # 3. Normalize Distance (Cost: Lower is better)
@@ -115,10 +97,8 @@ class Calculation_Model:
         if not data or 'places' not in data:
             return 0
         
-        # Use data directly instead of data[coordinate_key]
         place_list = pd.json_normalize(data, record_path=["places"])
         
-        # Safely handle routingSummaries (sometimes missing if no routes found)
         if 'routingSummaries' in data:
             place_distance = pd.json_normalize(data['routingSummaries'], record_path=['legs'])
             place = pd.concat([place_list, place_distance], axis=1)
@@ -153,7 +133,6 @@ class Calculation_Model:
         # This matches the 'coordinate_key' used in your JSON data
         df['coord_key'] = df.apply(lambda row: f"{row['lat']},{row['lon']}", axis=1)
         
-
         def row_pipeline(row):
             # A. Fetch the raw JSON data (API Call)
             # Pro-tip: In a real scenario, you'd check a CACHE here first!
@@ -168,6 +147,23 @@ class Calculation_Model:
         print("Fetching POI data and calculating scores... this may take a moment.")
         df['poi_sum'] = df.apply(row_pipeline, axis=1)
         
+        return df
+        
+    def process_distances(self, df):
+        """
+        Applies the external distance function to every row in the dataframe.
+        """
+        def get_row_dist(row):
+            dest = (row['lat'], row['lon'])
+            # Call the imported function
+            result = get_distance_ev(dest, self.user_location)
+            
+            # Extract just the meters from the JSON result
+            if result and 'routes' in result:
+                return result['routes'][0]['distanceMeters']
+            return 999999 # Penalty for failed API call
+            
+        df['distance'] = df.apply(get_row_dist, axis=1)
         return df
 
 
