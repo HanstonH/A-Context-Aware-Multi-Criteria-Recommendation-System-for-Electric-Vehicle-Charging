@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import json
+from datetime import datetime
 from pathlib import Path
 
 from flask import Flask, jsonify, render_template, request
@@ -48,6 +48,7 @@ def api_predict():
     user_lon = data.get("user_lon")
     mode = data.get("mode", "single")          # "single" or "find_best"
     station_mac = data.get("station_mac", "")
+    selected_time_str = data.get("selected_time")  # ISO-8601 string or None
 
     if user_lat is None or user_lon is None:
         return jsonify({"success": False, "message": "user_lat and user_lon are required."}), 400
@@ -58,14 +59,21 @@ def api_predict():
     except (TypeError, ValueError):
         return jsonify({"success": False, "message": "Invalid coordinate values."}), 400
 
+    selected_time = None
+    if selected_time_str:
+        try:
+            selected_time = datetime.fromisoformat(selected_time_str)
+        except (ValueError, TypeError):
+            return jsonify({"success": False, "message": "Invalid selected_time format. Use ISO-8601."}), 400
+
     orch = _get_orchestrator()
 
     if mode == "find_best":
-        result = orch.find_best_station(user_lat, user_lon)
+        result = orch.find_best_station(user_lat, user_lon, selected_time)
     else:
         if not station_mac:
             return jsonify({"success": False, "message": "station_mac is required in single mode."}), 400
-        result = orch.evaluate_single(user_lat, user_lon, station_mac)
+        result = orch.evaluate_single(user_lat, user_lon, station_mac, selected_time)
 
     return jsonify({
         "success": result.success,

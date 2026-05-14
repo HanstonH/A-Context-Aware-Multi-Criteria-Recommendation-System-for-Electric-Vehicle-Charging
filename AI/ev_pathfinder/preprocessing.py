@@ -21,6 +21,7 @@ from .config import (
     CLEANED_DATA_PATH,
     FEATURE_COLUMNS,
     NUMERIC_FEATURES,
+    PREPROCESSOR_PATH,
 )
 from .stations import Station
 from .weather import WeatherSnapshot
@@ -108,8 +109,22 @@ class InferencePreprocessor:
             return self._pipeline_a
         else:
             if self._pipeline_b is None:
-                self._pipeline_b = self._fit_from_data("Total_Duration_Secs")
+                self._pipeline_b = self._load_binary_encoder_pipeline()
             return self._pipeline_b
+
+    def _load_binary_encoder_pipeline(self) -> Pipeline:
+        """Load the saved BinaryEncoder + StandardScaler pipeline for Model B.
+
+        Model B was trained with ``category_encoders.BinaryEncoder`` (not
+        ``TargetEncoder``), producing 21 features.  The fitted pipeline is
+        stored at ``preprocessor_pipeline.joblib``.
+        """
+        if PREPROCESSOR_PATH.exists():
+            return joblib.load(str(PREPROCESSOR_PATH))
+        raise FileNotFoundError(
+            f"Model B preprocessor not found at {PREPROCESSOR_PATH}. "
+            "Ensure preprocessor_pipeline.joblib exists."
+        )
 
     def transform(
         self,
@@ -119,5 +134,13 @@ class InferencePreprocessor:
         pipe = self._get_pipeline(model_type)
         transformed = pipe.transform(raw_df)
         arr = np.asarray(transformed)
-        cols = self._original_columns if self._original_columns else [f"f{i}" for i in range(arr.shape[1])]
+
+        if model_type == "availability" and self._original_columns:
+            cols = self._original_columns
+        else:
+            try:
+                ct = pipe.named_steps.get("preprocessor", pipe)
+                cols = list(ct.get_feature_names_out())
+            except Exception:
+                cols = [f"f{i}" for i in range(arr.shape[1])]
         return pd.DataFrame(arr, columns=cols)

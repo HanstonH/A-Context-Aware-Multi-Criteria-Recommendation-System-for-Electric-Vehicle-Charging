@@ -1,7 +1,12 @@
-"""Core decision engine — coordinates Models A & B, routing, and weather.
+"""Core decision engine -- coordinates Models A & B, routing, and weather.
 
 Implements the full decision flow:
     T_total  =  T_travel  +  T_wait
+
+When a user-selected timestamp is provided, the Data Context Engine
+(``SequenceBuilder``) retrieves the 12 most recent historical sessions
+for the station and feeds them to the LSTM models alongside the
+traditional single-point classifiers / regressors.
 """
 
 from __future__ import annotations
@@ -10,10 +15,12 @@ from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from typing import Dict, List, Optional
 
+from .config import AVAILABILITY_THRESHOLD
 from .model_a import AvailabilityPrediction, ModelAService
 from .model_b import DurationPrediction, ModelBService
 from .preprocessing import InferencePreprocessor, build_raw_feature_row
 from .routing import RouteResult, RoutingService
+from .sequence_builder import SequenceBuilder
 from .stations import Station, StationRegistry, is_within_palo_alto
 from .weather import WeatherService
 
@@ -30,6 +37,7 @@ class StationResult:
     duration_detail: List[Dict]                    # per-model breakdown (empty if available)
     consensus: Optional[Dict] = None
     low_confidence_warning: bool = False
+    sequence_context: Optional[Dict] = None       # LSTM confidence context
 
 
 @dataclass
@@ -54,6 +62,8 @@ class EVPathfinderOrchestrator:
         self.model_a = ModelAService()
         self.model_b = ModelBService()
         self.routing = RoutingService()
+        self.seq_builder = SequenceBuilder()
+        self.seq_builder.set_preprocessor(self.preprocessor)
 
     # ── Public API ───────────────────────────────────────────────────────────
 
@@ -62,17 +72,19 @@ class EVPathfinderOrchestrator:
         user_lat: float,
         user_lon: float,
         station_mac: str,
+        selected_time: Optional[datetime] = None,
     ) -> StationResult:
         """Run the full pipeline for **one** station."""
         station = self.registry.get(station_mac)
         if station is None:
             raise ValueError(f"Unknown station MAC: {station_mac}")
-        return self._run_pipeline(user_lat, user_lon, station)
+        return self._run_pipeline(user_lat, user_lon, station, selected_time)
 
     def find_best_station(
         self,
         user_lat: float,
         user_lon: float,
+        selected_time: Optional[datetime] = None,
     ) -> OrchestratorResponse:
         """Evaluate all stations within 5 mi and return the optimal one."""
         if not is_within_palo_alto(user_lat, user_lon):
@@ -92,7 +104,7 @@ class EVPathfinderOrchestrator:
         results: List[StationResult] = []
         for station in nearby:
             try:
-                results.append(self._run_pipeline(user_lat, user_lon, station))
+                results.append(self._run_pipeline(user_lat, user_lon, station, selected_time))
             except Exception as exc:
                 print(f"[Orchestrator] Skipping {station.mac}: {exc}")
 
@@ -113,6 +125,7 @@ class EVPathfinderOrchestrator:
         user_lat: float,
         user_lon: float,
         station_mac: str,
+        selected_time: Optional[datetime] = None,
     ) -> OrchestratorResponse:
         """Evaluate a specific station."""
         if not is_within_palo_alto(user_lat, user_lon):
@@ -122,7 +135,7 @@ class EVPathfinderOrchestrator:
             )
 
         try:
-            result = self.evaluate_station(user_lat, user_lon, station_mac)
+            result = self.evaluate_station(user_lat, user_lon, station_mac, selected_time)
         except ValueError as exc:
             return OrchestratorResponse(success=False, message=str(exc))
 
@@ -141,14 +154,15 @@ class EVPathfinderOrchestrator:
         user_lat: float,
         user_lon: float,
         station: Station,
+        selected_time: Optional[datetime] = None,
     ) -> StationResult:
-        now = datetime.now()
+        now = selected_time or datetime.now()
         weather = self.weather.get_current()
 
-        # 1. Build feature row
+        # 1. Build single-row feature vector for traditional models
         raw_df = build_raw_feature_row(station, weather, now)
 
-        # 2. Model A — availability
+        # 2. Model A -- availability (traditional classifiers)
         availability_preds = []
         consensus = None
         status = "Available"
@@ -162,17 +176,46 @@ class EVPathfinderOrchestrator:
                 status = "Available" if consensus.available else "Occupied"
                 low_confidence = consensus.confidence == "low"
 
-        # 3. Model B — duration (only when occupied)
+        # 2b. Model A -- LSTM availability (sequence-based)
+        seq_context = None
+        if self.model_a.lstm_loaded:
+            try:
+                seq_a, ctx_a = self.seq_builder.get_sequence(
+                    station.mac, target_time=now, model_type="availability",
+                )
+                lstm_avail = self.model_a.predict_lstm(seq_a)
+                if lstm_avail:
+                    availability_preds.append(lstm_avail)
+                    seq_context = ctx_a
+            except Exception as exc:
+                print(f"[Orchestrator] Model A LSTM skipped: {exc}")
+
+        # 3. Model B -- duration (only when occupied)
         wait_secs = 0.0
         duration_preds = []
-        if status == "Occupied" and self.model_b.loaded:
-            features_b = self.preprocessor.transform(raw_df, model_type="duration")
-            duration_preds_raw = self.model_b.predict(features_b)
-            duration_preds = duration_preds_raw
+        if status == "Occupied":
+            # 3a. Traditional regressors
+            if self.model_b.loaded:
+                features_b = self.preprocessor.transform(raw_df, model_type="duration")
+                duration_preds = self.model_b.predict(features_b)
 
-            ensemble = self.model_b.predict_ensemble(features_b)
-            if ensemble:
-                wait_secs = ensemble.duration_secs
+                ensemble = self.model_b.predict_ensemble(features_b)
+                if ensemble:
+                    wait_secs = ensemble.duration_secs
+
+            # 3b. LSTM duration prediction (sequence-based)
+            if self.model_b.lstm_model is not None:
+                try:
+                    seq_b, ctx_b = self.seq_builder.get_sequence(
+                        station.mac, target_time=now, model_type="duration",
+                    )
+                    lstm_dur = self.model_b.predict_lstm(seq_b)
+                    if lstm_dur:
+                        duration_preds.append(lstm_dur)
+                        if seq_context is None:
+                            seq_context = ctx_b
+                except Exception as exc:
+                    print(f"[Orchestrator] Model B LSTM skipped: {exc}")
 
         # 4. Routing
         route = self.routing.get_route(
@@ -197,6 +240,7 @@ class EVPathfinderOrchestrator:
             duration_detail=[asdict(p) for p in duration_preds],
             consensus=asdict(consensus) if consensus else None,
             low_confidence_warning=low_confidence,
+            sequence_context=seq_context,
         )
 
     @staticmethod
@@ -228,4 +272,5 @@ class EVPathfinderOrchestrator:
             "duration_detail": result.duration_detail,
             "consensus": result.consensus,
             "low_confidence_warning": result.low_confidence_warning,
+            "sequence_context": result.sequence_context,
         }

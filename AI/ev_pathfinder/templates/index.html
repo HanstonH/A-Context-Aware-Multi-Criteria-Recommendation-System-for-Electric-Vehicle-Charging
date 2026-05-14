@@ -262,7 +262,15 @@
     <div class="card">
       <h3>Target Station</h3>
       <label for="stationSelect">Select a station</label>
-      <select id="stationSelect"><option value="">Loading stations…</option></select>
+      <select id="stationSelect"><option value="">Loading stations...</option></select>
+      <div style="margin-top:10px;">
+        <label for="selectedTime">Simulation Time (optional)</label>
+        <input id="selectedTime" type="datetime-local" step="60" placeholder="Leave blank for now">
+        <p style="font-size:11px;color:var(--text-dim);margin-top:4px;">
+          Pick a historical timestamp (2011-2020) to query the LSTM
+          with that moment's context window.  Leave blank to use current time.
+        </p>
+      </div>
       <div class="btn-group">
         <button class="btn btn-primary" id="btnEvaluate" disabled>Evaluate Station</button>
         <button class="btn btn-secondary" id="btnFindBest" disabled>Find Best</button>
@@ -284,6 +292,12 @@
       <div class="warning-box" id="warningBox">
         &#9888; Low confidence: the model is uncertain about this prediction. Treat this estimate with caution.
       </div>
+    </div>
+
+    <!-- LSTM Sequence Context -->
+    <div class="card" id="seqContextCard" style="display:none;">
+      <h3>LSTM Sequence Context</h3>
+      <div id="seqContextBody" style="font-size:13px;line-height:1.6;"></div>
     </div>
 
     <!-- Model Comparison -->
@@ -389,6 +403,7 @@ function clearResults() {
   document.getElementById('resultCard').style.display = 'none';
   document.getElementById('comparisonCard').style.display = 'none';
   document.getElementById('allStationsCard').style.display = 'none';
+  document.getElementById('seqContextCard').style.display = 'none';
   document.getElementById('resultBanner').className = 'result-banner';
   if (routeLayer) { map.removeLayer(routeLayer); routeLayer = null; }
   Object.values(stationMarkers).forEach(s => s.marker.setIcon(defaultIcon));
@@ -403,12 +418,16 @@ async function runPredict(mode) {
   if (isNaN(userLat) || isNaN(userLon)) { showBanner('Enter valid coordinates.', false); return; }
   if (mode === 'single' && !mac) { showBanner('Select a station first.', false); return; }
 
+  const timeInput = document.getElementById('selectedTime').value;
+  const payload = { user_lat: userLat, user_lon: userLon, mode, station_mac: mac };
+  if (timeInput) payload.selected_time = timeInput;
+
   showLoading(true);
   try {
     const resp = await fetch('/api/predict', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ user_lat: userLat, user_lon: userLon, mode, station_mac: mac }),
+      body: JSON.stringify(payload),
     });
     const data = await resp.json();
     showLoading(false);
@@ -452,6 +471,25 @@ function renderBestResult(r) {
   // warning
   const warn = document.getElementById('warningBox');
   warn.classList.toggle('show', r.low_confidence_warning);
+
+  // LSTM sequence context
+  const seqCard = document.getElementById('seqContextCard');
+  const seqBody = document.getElementById('seqContextBody');
+  if (r.sequence_context) {
+    seqCard.style.display = 'block';
+    let html = `<div class="result-row"><span class="label">Records on file</span><span class="value">${r.sequence_context.records_available}</span></div>`;
+    html += `<div class="result-row"><span class="label">Window used</span><span class="value">${r.sequence_context.records_used} steps</span></div>`;
+    if (r.sequence_context.padded) {
+      html += `<div class="result-row"><span class="label">Padded steps</span><span class="value" style="color:var(--orange)">${r.sequence_context.pad_count}</span></div>`;
+    }
+    if (r.sequence_context.window_start) {
+      html += `<div class="result-row"><span class="label">Window range</span><span class="value" style="font-size:11px">${r.sequence_context.window_start}<br>${r.sequence_context.window_end}</span></div>`;
+    }
+    html += `<p style="margin-top:10px;color:var(--text-dim);font-size:12px;">${r.sequence_context.confidence_note}</p>`;
+    seqBody.innerHTML = html;
+  } else {
+    seqCard.style.display = 'none';
+  }
 
   // route on map
   if (r.route && r.route.decoded_points && r.route.decoded_points.length > 1) {

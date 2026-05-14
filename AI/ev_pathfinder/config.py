@@ -46,7 +46,32 @@ NUMERIC_FEATURES = [c for c in FEATURE_COLUMNS if c != "MAC Address"]
 
 PLUG_TYPE_MAP = {"J1772": 0, "NEMA 5-20R": 1}
 
-# ── Radius for "Find Closest" mode (miles → metres) ─────────────────────────
+# ── Availability Threshold ────────────────────────────────────────────────────
+# Label convention in the ChargePoint training set:
+#     0 = Available   (station is idle / no active session)
+#     1 = Occupied    (station has an active charging session)
+#
+# For **classifiers** (XGBoost, RF, DT, LR):
+#     model.predict()  returns 0 or 1 directly.
+#     model.predict_proba() returns [P(class 0), P(class 1)].
+#     Station is Available when P(class 0) > AVAILABILITY_THRESHOLD.
+#
+# For the **LSTM** (sigmoid output in [0, 1]):
+#     output < AVAILABILITY_THRESHOLD  =>  Available
+#     output >= AVAILABILITY_THRESHOLD =>  Occupied
+#
+# A threshold of 0.5 gives equal weight to false positives and false
+# negatives.  Raise it (e.g. 0.6) to be more conservative — the system
+# will report "Occupied" more often, reducing the chance of sending a
+# user to a station that turns out to be busy.
+AVAILABILITY_THRESHOLD = 0.5
+
+# ── LSTM Sequence Parameters ─────────────────────────────────────────────────
+LSTM_TIME_STEPS = 12
+LSTM_A_FEATURES = 15       # TargetEncoder pipeline -> Model A LSTM
+LSTM_B_FEATURES = 21       # BinaryEncoder pipeline -> Model B LSTM
+
+# ── Radius for "Find Closest" mode (miles -> metres) ─────────────────────────
 SEARCH_RADIUS_MILES = 5
 SEARCH_RADIUS_METRES = SEARCH_RADIUS_MILES * 1609.34
 
