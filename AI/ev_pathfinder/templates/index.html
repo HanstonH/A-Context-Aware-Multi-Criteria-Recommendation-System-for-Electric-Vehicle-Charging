@@ -190,8 +190,20 @@
       font-weight: 500;
     }
     .comparison-table td { padding: 6px 8px; border-bottom: 1px solid var(--border); }
+    .comparison-table tr.lstm-row { background: rgba(139,92,246,0.08); }
+    .comparison-table tr.lstm-row td:first-child { border-left: 3px solid #8b5cf6; }
+    .lstm-tag {
+      display: inline-block; font-size: 9px; font-weight: 600;
+      background: #8b5cf6; color: #fff; padding: 1px 5px;
+      border-radius: 4px; margin-left: 4px; vertical-align: middle;
+    }
+    .section-label {
+      font-size: 11px; font-weight: 600; color: var(--accent-light);
+      padding: 8px 8px 4px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
 
-    #chartContainer { margin-top: 12px; max-height: 200px; }
+    .chart-container { margin-top: 12px; max-height: 200px; }
+    .chart-section-title { font-size: 11px; color: var(--text-dim); margin: 12px 0 4px; font-weight: 600; }
 
     /* ── Map ───────────────────────────────────────────────────── */
     #map { width: 100%; height: 100%; }
@@ -307,7 +319,14 @@
         <thead><tr><th>Model</th><th>Output</th><th>Confidence</th></tr></thead>
         <tbody></tbody>
       </table>
-      <div id="chartContainer"><canvas id="compChart"></canvas></div>
+      <div id="availChartWrap" style="display:none;">
+        <p class="chart-section-title">Availability - P(Available) %</p>
+        <div class="chart-container"><canvas id="availChart"></canvas></div>
+      </div>
+      <div id="durChartWrap" style="display:none;">
+        <p class="chart-section-title">Duration - Predicted Wait (min)</p>
+        <div class="chart-container"><canvas id="durChart"></canvas></div>
+      </div>
     </div>
 
     <!-- All Ranked Stations (find_best mode) -->
@@ -334,7 +353,8 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
 let userMarker = null;
 let stationMarkers = {};
 let routeLayer = null;
-let compChartInstance = null;
+let availChartInstance = null;
+let durChartInstance = null;
 
 const greenIcon = L.divIcon({ className: '', html: '<div style="width:12px;height:12px;background:#22c55e;border-radius:50%;border:2px solid #166534;"></div>' });
 const redIcon   = L.divIcon({ className: '', html: '<div style="width:12px;height:12px;background:#ef4444;border-radius:50%;border:2px solid #991b1b;"></div>' });
@@ -404,7 +424,11 @@ function clearResults() {
   document.getElementById('comparisonCard').style.display = 'none';
   document.getElementById('allStationsCard').style.display = 'none';
   document.getElementById('seqContextCard').style.display = 'none';
+  document.getElementById('availChartWrap').style.display = 'none';
+  document.getElementById('durChartWrap').style.display = 'none';
   document.getElementById('resultBanner').className = 'result-banner';
+  if (availChartInstance) { availChartInstance.destroy(); availChartInstance = null; }
+  if (durChartInstance) { durChartInstance.destroy(); durChartInstance = null; }
   if (routeLayer) { map.removeLayer(routeLayer); routeLayer = null; }
   Object.values(stationMarkers).forEach(s => s.marker.setIcon(defaultIcon));
 }
@@ -507,52 +531,114 @@ function renderBestResult(r) {
   renderComparison(r);
 }
 
+function isLstm(name) { return /lstm/i.test(name); }
+
+function modelBarColor(name, fallback) {
+  return isLstm(name) ? '#8b5cf6' : fallback;
+}
+
 function renderComparison(r) {
   const card = document.getElementById('comparisonCard');
   const tbody = document.querySelector('#comparisonTable tbody');
   tbody.innerHTML = '';
 
-  const rows = [];
+  let hasRows = false;
 
+  // Availability section
   if (r.availability_detail && r.availability_detail.length) {
+    tbody.innerHTML += `<tr><td colspan="3" class="section-label">Availability</td></tr>`;
     r.availability_detail.forEach(m => {
-      rows.push({ model: m.model_name, output: m.available ? 'Available' : 'Occupied', conf: m.confidence, prob: m.probability });
-      tbody.innerHTML += `<tr>
-        <td>${m.model_name}</td>
+      const cls = isLstm(m.model_name) ? ' class="lstm-row"' : '';
+      const tag = isLstm(m.model_name) ? '<span class="lstm-tag">SEQ</span>' : '';
+      tbody.innerHTML += `<tr${cls}>
+        <td>${m.model_name}${tag}</td>
         <td>${m.available ? 'Available' : 'Occupied'} (${(m.probability * 100).toFixed(1)}%)</td>
         <td>${m.confidence}</td>
       </tr>`;
     });
+    hasRows = true;
   }
 
+  // Duration section
   if (r.duration_detail && r.duration_detail.length) {
+    tbody.innerHTML += `<tr><td colspan="3" class="section-label">Duration</td></tr>`;
     r.duration_detail.forEach(m => {
-      rows.push({ model: m.model_name, output: `${m.duration_mins} min`, conf: '—', prob: null });
-      tbody.innerHTML += `<tr>
-        <td>${m.model_name} <small>(wait)</small></td>
+      const cls = isLstm(m.model_name) ? ' class="lstm-row"' : '';
+      const tag = isLstm(m.model_name) ? '<span class="lstm-tag">SEQ</span>' : '';
+      tbody.innerHTML += `<tr${cls}>
+        <td>${m.model_name}${tag} <small>(wait)</small></td>
         <td>${m.duration_mins} min</td>
-        <td>—</td>
+        <td>-</td>
       </tr>`;
     });
+    hasRows = true;
   }
 
-  if (rows.length === 0) { card.style.display = 'none'; return; }
+  if (!hasRows) { card.style.display = 'none'; return; }
   card.style.display = 'block';
 
-  // Chart
-  if (compChartInstance) compChartInstance.destroy();
-  const ctx = document.getElementById('compChart').getContext('2d');
+  const defaultColors = ['#6366f1', '#22c55e', '#f59e0b', '#ef4444'];
 
+  // Availability chart
+  const availWrap = document.getElementById('availChartWrap');
+  if (availChartInstance) availChartInstance.destroy();
+  if (r.availability_detail && r.availability_detail.length > 0) {
+    availWrap.style.display = 'block';
+    const ctx = document.getElementById('availChart').getContext('2d');
+    availChartInstance = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: r.availability_detail.map(m => m.model_name),
+        datasets: [{
+          label: 'P(Available) %',
+          data: r.availability_detail.map(m => (m.probability * 100).toFixed(1)),
+          backgroundColor: r.availability_detail.map((m, i) =>
+            isLstm(m.model_name) ? '#8b5cf6' : (m.available ? '#22c55e' : '#ef4444')
+          ),
+          borderRadius: 6,
+          borderWidth: r.availability_detail.map(m => isLstm(m.model_name) ? 2 : 0),
+          borderColor: r.availability_detail.map(m => isLstm(m.model_name) ? '#a78bfa' : 'transparent'),
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          annotation: { annotations: { threshold: {
+            type: 'line', yMin: 50, yMax: 50,
+            borderColor: '#f59e0b', borderWidth: 1, borderDash: [4,4],
+            label: { display: true, content: 'Threshold', position: 'end', font: { size: 9 }, color: '#f59e0b' }
+          }}}
+        },
+        scales: {
+          y: { beginAtZero: true, max: 100, ticks: { color: '#8b8fa3' }, grid: { color: '#2e3142' } },
+          x: { ticks: { color: '#8b8fa3', font: { size: 10 } }, grid: { display: false } }
+        }
+      }
+    });
+  } else {
+    availWrap.style.display = 'none';
+  }
+
+  // Duration chart
+  const durWrap = document.getElementById('durChartWrap');
+  if (durChartInstance) durChartInstance.destroy();
   if (r.duration_detail && r.duration_detail.length > 0) {
-    compChartInstance = new Chart(ctx, {
+    durWrap.style.display = 'block';
+    const ctx = document.getElementById('durChart').getContext('2d');
+    durChartInstance = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: r.duration_detail.map(m => m.model_name),
         datasets: [{
           label: 'Predicted Wait (min)',
           data: r.duration_detail.map(m => m.duration_mins),
-          backgroundColor: ['#6366f1', '#22c55e', '#f59e0b', '#ef4444', '#8b5cf6'],
+          backgroundColor: r.duration_detail.map((m, i) =>
+            modelBarColor(m.model_name, defaultColors[i % defaultColors.length])
+          ),
           borderRadius: 6,
+          borderWidth: r.duration_detail.map(m => isLstm(m.model_name) ? 2 : 0),
+          borderColor: r.duration_detail.map(m => isLstm(m.model_name) ? '#a78bfa' : 'transparent'),
         }]
       },
       options: {
@@ -564,27 +650,8 @@ function renderComparison(r) {
         }
       }
     });
-  } else if (r.availability_detail && r.availability_detail.length > 0) {
-    compChartInstance = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: r.availability_detail.map(m => m.model_name),
-        datasets: [{
-          label: 'P(Available) %',
-          data: r.availability_detail.map(m => (m.probability * 100).toFixed(1)),
-          backgroundColor: r.availability_detail.map(m => m.available ? '#22c55e' : '#ef4444'),
-          borderRadius: 6,
-        }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
-        scales: {
-          y: { beginAtZero: true, max: 100, ticks: { color: '#8b8fa3' }, grid: { color: '#2e3142' } },
-          x: { ticks: { color: '#8b8fa3', font: { size: 10 } }, grid: { display: false } }
-        }
-      }
-    });
+  } else {
+    durWrap.style.display = 'none';
   }
 }
 
