@@ -21,7 +21,7 @@ class Calculation_Model:
 
     def __init__(self, user_location):
         self.w_poi = 0.25
-        self.w_eff = 0.25
+        # self.w_eff = 0.25
         self.w_dist = 0.25
         self.w_wait = 0.25
         self.user_location = user_location
@@ -37,7 +37,7 @@ class Calculation_Model:
 
         # 2. Normalize Efficiency (Benefit: Higher is better)
         # Assuming mapped score 1-3 
-        stations_df['n_eff'] = stations_df['efficiency'] / 3.0
+        # stations_df['n_eff'] = stations_df['efficiency'] / 3.0
 
         # 3. Normalize Distance (Cost: Lower is better)
         d_min = stations_df['distance'].min()
@@ -55,7 +55,6 @@ class Calculation_Model:
         # 5. Final Weighted Sum
         stations_df['total_score'] = (
             (self.w_poi * stations_df['n_poi']) +
-            (self.w_eff * stations_df['n_eff']) +
             (self.w_dist * stations_df['n_dist']) +
             (self.w_wait * stations_df['n_wait'])
         )
