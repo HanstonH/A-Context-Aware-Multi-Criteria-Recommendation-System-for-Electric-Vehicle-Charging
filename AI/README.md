@@ -7,14 +7,20 @@ A final-project system for ranking EV charging stations using **distance**, **ne
 The target recommendation formula is a weighted sum (for now will change later):
 
 ```
-total_score = distance × w1 + POI × w2 + waiting_time × w3
+total_score = distance × w1 + POI × w2 + waiting_time × w3 + cost x w4
 ```
+
+Check with battery condition what station is possible to go to before calculating
+Waiting time = Time predicted to wait for the EV station + time to go to the station + time took to charge
+
+Havent been implemented
 
 | Criterion | Meaning | Higher is better? |
 |-----------|---------|-------------------|
 | **Distance** | Road-network travel distance (meters) from the user to the station | No — shorter is better |
 | **POI** | Aggregate score of nearby places (rating, reviews, proximity) | Yes |
 | **Waiting time** | Predicted queue / session wait (seconds) | No — shorter is better |
+| **Cost** | How expensive the price is | No — shorter is better |
 
 Weights `w1`, `w2`, and `w3` are configurable. In `Algorithm/logic.py`, `Calculation_Model` currently uses four equal weights (`w_dist`, `w_poi`, `w_wait`, `w_eff`) with min–max normalization before summing; efficiency is an extra factor planned alongside the three above.
 
@@ -43,6 +49,8 @@ AI/
 |--------|------|
 | `get_distance_score()` / `process_distances()` | Driving distance via Google Routes API (not straight-line) |
 | `get_POI()` / `POI_score()` / `process_all_stations()` | Nearby POI from Google Places API; per-place score from rating, review count, and distance |
+| `predict_waiting_time()` | Model A → Model B pipeline for one station’s wait time |
+| `process_waiting_times()` | Adds a `waiting_time` column to a DataFrame (calls `predict_waiting_time` per row) |
 | `total_score()` | Normalizes distance, POI, waiting time (and efficiency), applies weights, sorts stations |
 
 **POI score** (per place, then summed):
@@ -53,7 +61,75 @@ poi_score = (rating × log10(reviews + 1)) / (1 + distance_meters / 100)
 
 **Distance** uses `get_Distance_EV.get_distance_ev(destination, user_location)` and reads `routes[0].distanceMeters`.
 
-**Waiting time** in `logic.py` is still a placeholder (`numpy.random` minutes in `main()`). The intended production path is the two-stage ML pipeline below.
+**Waiting time** is predicted on `Calculation_Model` via `predict_waiting_time()` (see below). The sample `main()` still uses random minutes when station rows lack the full model feature set (e.g. `ev_stations_2025.csv`).
+
+### Predicting waiting time (`Calculation_Model.predict_waiting_time`)
+
+Use an instance of `Calculation_Model` and pass one station’s features as a **dict**, **pandas Series**, or **single-row DataFrame**.
+
+**Pipeline**
+
+1. **Model A** (`model/`) — Is the station available? If yes → waiting time = **0**.
+2. **Model B** (`model_B/`) — If occupied → predicted session duration in **seconds** (returned as minutes by default).
+
+**Required fields** (same schema as `data/Final_Cleaned_Dataset.csv`, without labels):
+
+`MAC Address`, `temp`, `precip`, `clouds`, `Plug Type Encoded` (or `Plug Type`: `J1772` / `NEMA 5-20R`), plus time columns — or omit time fields and pass `at_time=datetime(...)`.
+
+**Single station**
+
+```python
+from datetime import datetime
+import pandas as pd
+from logic import Calculation_Model
+
+user_location = (37.4419, -122.1430)  # (lat, lon)
+model = Calculation_Model(user_location)
+
+# From a cleaned training row
+row = pd.read_csv("../data/Final_Cleaned_Dataset.csv", nrows=1).iloc[0]
+row = row.drop(labels=["Availability", "Total_Duration_Secs"], errors="ignore")
+
+wait_mins = model.predict_waiting_time(row, at_time=datetime.now())
+print(f"Predicted wait: {wait_mins} minutes")
+
+# Or pass a dict
+wait_mins = model.predict_waiting_time({
+    "MAC Address": "000D:6F00:015A:9D76",
+    "temp": 16.2,
+    "precip": 0.0,
+    "clouds": 56,
+    "Plug Type": "J1772",
+}, at_time=datetime.now())
+
+# Full breakdown (availability + per-model durations)
+details = model.predict_waiting_time(row, return_details=True)
+print(details["status"], details["waiting_time_mins"])
+```
+
+**Options**
+
+| Argument | Default | Description |
+|----------|---------|-------------|
+| `at_time` | `now()` | Fills `Hour`, `Minute`, `DayOfWeek`, etc. when missing |
+| `return_minutes` | `True` | `False` returns seconds instead |
+| `return_details` | `False` | `True` returns a dict with `status`, consensus, and Model B outputs |
+
+**Many stations (DataFrame)**
+
+```python
+stations = pd.read_csv("../data/Final_Cleaned_Dataset.csv", nrows=10)
+stations = stations.drop(columns=["Availability", "Total_Duration_Secs"], errors="ignore")
+stations = model.process_waiting_times(stations, at_time=datetime.now())
+# stations["waiting_time"] is in minutes — use in total_score()
+ranked = model.total_score(stations_with_poi_and_distance)
+```
+
+**Prerequisites**
+
+- Trained artifacts in `model/` (Model A) and `model_B/` (Model B)
+- `preprocessor_pipeline.joblib` at project root (for Model B features)
+- Run scripts from `Algorithm/` or ensure the project root is on `PYTHONPATH`
 
 Run the batch pipeline and write results:
 
@@ -68,9 +144,10 @@ Output: `final_recommendations_summary.csv` (used by `Algorithm/app.py`).
 
 Waiting time is one scoring criterion. Prediction is split into two models:
 
-1. **Model A** (`model_A/`) — Will the station be **available** when the user arrives?  
+1. **Model A** (`model/`) — Will the station be **available** when the user arrives?  
    - Binary classification: available vs occupied  
    - Artifacts: XGBoost, Random Forest, Decision Tree, Logistic Regression, LSTM (`lstm.pkl` / Keras)
+   - Note: If available then waiting time is == 0
 
 2. **Model B** (`model_B/`) — If occupied, **how long** until it is free?  
    - Regression on session duration  
@@ -113,7 +190,8 @@ Python dependencies are expected in a local virtual environment (`.venv/`). Inst
 
 - [x] Road-following distance (Google Routes)
 - [x] POI scoring
-- [ ] Plug **Model A + Model B** into `Calculation_Model` instead of random wait times
+- [x] `Calculation_Model.predict_waiting_time()` (Model A + Model B)
+- [ ] Use ML wait times in `main()` for all production station datasets (needs full feature columns per row)
 - [ ] Align `total_score()` with `distance × w1 + POI × w2 + waiting_time × w3` only (optional: keep efficiency as `w4`)
 - [ ] Change efficiency to battery usage by SUMO simulation dataset
 

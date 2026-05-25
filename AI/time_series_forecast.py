@@ -10,6 +10,7 @@ import argparse
 import os
 import time
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Dict, Iterable, Optional, Tuple
 
 import joblib
@@ -103,6 +104,111 @@ def engineer_time_features(df):
     
     return df
 
+
+# Open-Meteo cloudcover is 0–100; spec thresholds use 0.0–1.0
+_CLOUD_FRACTION_SCALE = 100.0
+# Hourly precipitation (mm) at or below this counts as "light" for Parasitic_Load tier 1
+_LIGHT_PRECIP_MM = 2.5
+_COMFORT_TEMP_C = 22.5
+
+
+def get_major_public_holidays(
+    start: pd.Timestamp,
+    end: pd.Timestamp,
+    calendar: Optional[USFederalHolidayCalendar] = None,
+) -> np.ndarray:
+    """US federal holidays with padding so proximity is defined at dataset edges."""
+    cal = calendar or USFederalHolidayCalendar()
+    pad = pd.Timedelta(days=400)
+    holidays = cal.holidays(start=start - pad, end=end + pad)
+    return pd.DatetimeIndex(holidays).normalize().unique().values.astype("datetime64[D]")
+
+
+def add_holiday_proximity_features(
+    df: pd.DataFrame,
+    holidays: Optional[np.ndarray] = None,
+) -> pd.DataFrame:
+    """
+    Days until the next holiday (strictly after session date) and days since the last
+    holiday (on or before session date). On a holiday: since=0, until=days to the next one.
+    """
+    session_days = pd.to_datetime(df["Start Date"]).dt.normalize().values.astype("datetime64[D]")
+    if holidays is None:
+        holidays = get_major_public_holidays(
+            pd.Timestamp(session_days.min()).tz_localize(None),
+            pd.Timestamp(session_days.max()).tz_localize(None),
+        )
+
+    next_idx = np.searchsorted(holidays, session_days, side="right")
+    prev_idx = next_idx - 1
+
+    days_until = np.empty(len(session_days), dtype=np.int64)
+    has_next = next_idx < len(holidays)
+    days_until[has_next] = (holidays[next_idx[has_next]] - session_days[has_next]).astype(int)
+    days_until[~has_next] = (holidays[-1] - session_days[~has_next]).astype(int)
+
+    days_since = np.empty(len(session_days), dtype=np.int64)
+    has_prev = prev_idx >= 0
+    days_since[has_prev] = (session_days[has_prev] - holidays[prev_idx[has_prev]]).astype(int)
+    days_since[~has_prev] = (session_days[~has_prev] - holidays[0]).astype(int)
+
+    df["Days_Until_Next_Holiday"] = days_until
+    df["Days_Since_Last_Holiday"] = days_since
+    return df
+
+
+def _cloud_cover_fraction(clouds: pd.Series) -> pd.Series:
+    clouds = clouds.astype(float)
+    if clouds.max() > 1.0:
+        return clouds / _CLOUD_FRACTION_SCALE
+    return clouds
+
+
+def _parasitic_load_probability_index(
+    temp: pd.Series,
+    precip: pd.Series,
+    light_precip_mm: float = _LIGHT_PRECIP_MM,
+) -> np.ndarray:
+    """
+    Categorical 0–3; tier 3 (Extreme) is evaluated first to avoid overlap with tier 2 (High).
+    """
+    no_precip = precip <= 0
+    light_precip = (precip > 0) & (precip <= light_precip_mm)
+    active_precip = precip > 0
+
+    extreme = (temp <= 0) & active_precip
+    high = (~extreme) & ((temp < 5) | (temp > 30))
+    moderate = (~extreme) & (~high) & (((temp >= 5) & (temp < 15)) | light_precip)
+    low = (~extreme) & (~high) & (~moderate) & ((temp >= 15) & (temp <= 25) & no_precip)
+    default = ~(extreme | high | moderate | low)
+
+    return np.select(
+        [extreme, high, moderate, low, default],
+        [3, 2, 1, 0, 1],
+        default=1,
+    ).astype(int)
+
+
+def engineer_advanced_features(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Holiday proximity, thermal/weather binaries, and Parasitic_Load_Probability_Index.
+    Requires ``Start Date``, ``temp``, ``precip``, and ``clouds`` (from weather merge).
+    """
+    df = add_holiday_proximity_features(df)
+
+    temp = df["temp"].astype(float)
+    precip = df["precip"].fillna(0).astype(float)
+    clouds_frac = _cloud_cover_fraction(df["clouds"].fillna(0))
+
+    df["Thermal_Deviation_Index"] = (temp - _COMFORT_TEMP_C).abs()
+    df["Is_Freezing_Penalty"] = (temp <= 0).astype(int)
+    df["Extreme_Heat_Throttle_Risk"] = (temp >= 35).astype(int)
+    df["Solar_Irradiance_Proxy"] = ((temp > 30) & (clouds_frac < 0.2)).astype(int)
+    df["Parasitic_Load_Probability_Index"] = _parasitic_load_probability_index(temp, precip)
+
+    return df
+
+
 def add_real_time_metadata(df, raw_data):
     # 1. Station Density (How many chargers at this physical location?)
     # This is a static "Right Now" input.
@@ -120,7 +226,21 @@ def add_real_time_metadata(df, raw_data):
     # df = df.merge(hist_stats, on=['MAC Address', 'DayOfWeek', 'Hour'], how='left')
     
     return df
-    
+
+
+UNIT_PRICE_BY_STATION_PATH = (
+    Path(__file__).resolve().parent / "data" / "unit_price_by_station_palo_alto.csv"
+)
+
+
+def add_fee_from_price_tier(df, raw_data, price_path=UNIT_PRICE_BY_STATION_PATH):
+    """Add ``fee`` from ``price_tier`` in unit_price_by_station_palo_alto.csv (via Station Name)."""
+    price_df = pd.read_csv(price_path)
+    tier_by_station = price_df.set_index("Station Name")["price_tier"]
+    mac_to_station = raw_data.groupby("MAC Address")["Station Name"].first()
+    df["fee"] = df["MAC Address"].map(mac_to_station).map(tier_by_station)
+    return df
+
 # --- 3. MAIN PIPELINE ---
 def build_final_dataset(data, available=True):
     """Processes raw sessions, adds availability gaps, merges weather, and balances classes."""
@@ -181,6 +301,7 @@ def build_final_dataset(data, available=True):
     
     # E. Feature Engineering
     full_df = engineer_time_features(full_df)
+    full_df = engineer_advanced_features(full_df)
     
     # F. Encode Categoricals
     full_df['Plug Type Encoded'] = full_df['Plug Type'].map({'J1772': 0, 'NEMA 5-20R': 1}).fillna(0).astype(int)
@@ -188,6 +309,7 @@ def build_final_dataset(data, available=True):
     # G. Add static metadata before dropping address/session columns
     # This reduces the accuracy so remove for now
     # full_df = add_real_time_metadata(full_df, data)
+    full_df = add_fee_from_price_tier(full_df, data)
     
     # H. Final Cleanup
     cols_to_drop = ['Start Date', 'End Date', 'Plug Type', 'Address 1']
