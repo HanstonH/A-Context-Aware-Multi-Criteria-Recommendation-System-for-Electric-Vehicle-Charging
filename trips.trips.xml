@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-05-15 02:55:01.213316 by Eclipse SUMO randomTrips.py v1_26_0+0000-fa7df22d7f1
+<configuration>
+    <net-file value="test.net.xml"/>
+    <route-file value="test.rou.xml"/>
+    <end value="10.0"/>
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <trip id="0" depart="0.00" from="A1A0" to="A0B0"/>
+    <trip id="1" depart="1.00" from="B0B1" to="B0B1"/>
+    <trip id="2" depart="2.00" from="B1B0" to="A0A1"/>
+    <trip id="3" depart="3.00" from="A1B1" to="A0A1"/>
+    <trip id="4" depart="4.00" from="B1A1" to="B0B1"/>
+    <trip id="5" depart="5.00" from="A1A0" to="A0B0"/>
+    <trip id="6" depart="6.00" from="A0A1" to="A0A1"/>
+    <trip id="7" depart="7.00" from="B1A1" to="B0B1"/>
+    <trip id="8" depart="8.00" from="B0A0" to="B1B0"/>
+    <trip id="9" depart="9.00" from="A1B1" to="B0A0"/>
+</routes>
