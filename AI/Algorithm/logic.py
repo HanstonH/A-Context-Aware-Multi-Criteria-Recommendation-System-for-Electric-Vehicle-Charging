@@ -25,6 +25,7 @@ from pandas.tseries.holiday import USFederalHolidayCalendar
 
 from get_Distance_EV import get_distance_ev
 from get_POI import Get_POI
+from llm import generate_ev_explanation
 
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(_PROJECT_ROOT) not in sys.path:
@@ -510,7 +511,7 @@ def build_chargepoint_test_dataset(
 
 
 def main():
-    current_user_pos, EV_station_dataset = build_chargepoint_test_dataset(sample_size=4)
+    current_user_pos, EV_station_dataset = build_chargepoint_test_dataset(sample_size=8)
     print(f"User test location: {current_user_pos}")
 
     model = Calculation_Model(current_user_pos)
@@ -533,6 +534,10 @@ def main():
             ]
         ]
     )
+    
+    
+    print()
+    print(generate_ev_explanation(final_ranked_df.to_dict()))
 
 
 
