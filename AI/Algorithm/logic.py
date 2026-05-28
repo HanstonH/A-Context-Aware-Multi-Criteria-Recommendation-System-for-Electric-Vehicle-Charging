@@ -35,6 +35,7 @@ from config import (  # noqa: E402
     MODEL_A_DIR,
     PLUG_TYPE_MAP,
     RAW_DATA_PATH,
+    UNIT_PRICE_PATH,
 )
 from model_a import ModelAService  # noqa: E402
 from model_b import ModelBService  # noqa: E402
@@ -189,9 +190,13 @@ class Calculation_Model:
     @staticmethod
     def _normalize_higher_is_better(series: pd.Series) -> pd.Series:
         values = pd.to_numeric(series, errors="coerce")
+        min_value = values.min()
         max_value = values.max()
         if pd.isna(max_value) or max_value <= 0:
             return pd.Series(0.0, index=series.index)
+        if max_value == min_value:
+            # No spread across candidates — neutral score, not "best for everyone".
+            return pd.Series(0.5, index=series.index)
         return values.fillna(0.0) / max_value
 
     @staticmethod
@@ -202,7 +207,8 @@ class Calculation_Model:
         if pd.isna(min_value) or pd.isna(max_value):
             return pd.Series(0.0, index=series.index)
         if max_value == min_value:
-            return pd.Series(1.0, index=series.index)
+            # Identical values (e.g. all free, all zero wait) must not score as "best".
+            return pd.Series(0.5, index=series.index)
         return ((max_value - values) / (max_value - min_value)).fillna(0.0)
 
     @staticmethod
@@ -241,14 +247,98 @@ class Calculation_Model:
         stations_df['n_wait'] = self._normalize_lower_is_better(stations_df['waiting_time'])
         stations_df['n_cost'] = self._normalize_lower_is_better(stations_df['cost'])
 
+        stations_df['contrib_poi'] = self.w_poi * stations_df['n_poi']
+        stations_df['contrib_dist'] = self.w_dist * stations_df['n_dist']
+        stations_df['contrib_wait'] = self.w_wait * stations_df['n_wait']
+        stations_df['contrib_cost'] = self.w_cost * stations_df['n_cost']
+
         stations_df['total_score'] = (
-            (self.w_poi * stations_df['n_poi']) +
-            (self.w_dist * stations_df['n_dist']) +
-            (self.w_wait * stations_df['n_wait']) +
-            (self.w_cost * stations_df['n_cost'])
+            stations_df['contrib_poi']
+            + stations_df['contrib_dist']
+            + stations_df['contrib_wait']
+            + stations_df['contrib_cost']
         )
 
         return stations_df.sort_values(by='total_score', ascending=False)
+
+    def total_score_with_breakdown(self, stations_df: pd.DataFrame) -> pd.DataFrame:
+        """Like ``total_score`` but adds per-factor weighted contributions."""
+        return self.total_score(stations_df)
+
+    @staticmethod
+    def explain_score_row(row: pd.Series) -> Dict[str, Any]:
+        """Human-readable reasons and chart data for one ranked station."""
+        factors = [
+            {
+                "key": "poi",
+                "label": "POI",
+                "weight": 0.25,
+                "normalized": float(row.get("n_poi", 0)),
+                "contribution": float(row.get("contrib_poi", 0)),
+                "raw": float(row.get("poi_sum", 0)),
+                "raw_label": "POI sum",
+                "better": "higher",
+            },
+            {
+                "key": "distance",
+                "label": "Distance",
+                "weight": 0.25,
+                "normalized": float(row.get("n_dist", 0)),
+                "contribution": float(row.get("contrib_dist", 0)),
+                "raw": float(row.get("distance", 0)),
+                "raw_label": "metres",
+                "better": "lower",
+            },
+            {
+                "key": "waiting_time",
+                "label": "Waiting time",
+                "weight": 0.25,
+                "normalized": float(row.get("n_wait", 0)),
+                "contribution": float(row.get("contrib_wait", 0)),
+                "raw": float(row.get("waiting_time", 0)),
+                "raw_label": "seconds",
+                "better": "lower",
+            },
+            {
+                "key": "cost",
+                "label": "Cost",
+                "weight": 0.25,
+                "normalized": float(row.get("n_cost", 0)),
+                "contribution": float(row.get("contrib_cost", 0)),
+                "raw": float(row.get("cost", 0)),
+                "raw_label": "$/kWh",
+                "better": "lower",
+            },
+        ]
+        ranked = sorted(factors, key=lambda f: f["contribution"], reverse=True)
+        reasons = []
+        for factor in ranked[:3]:
+            if factor["contribution"] <= 0:
+                continue
+            if factor["key"] == "poi":
+                detail = "strong nearby points of interest"
+            elif factor["key"] == "distance":
+                detail = f"relatively short drive ({factor['raw']:.0f} m)"
+            elif factor["key"] == "waiting_time":
+                wait_mins = factor["raw"] / 60
+                detail = f"lower total time to reach and use the station ({wait_mins:.1f} min)"
+            else:
+                detail = f"lower charging cost ({factor['raw']:.3f} $/kWh)"
+            reasons.append(
+                f"{factor['label']}: {detail} "
+                f"(adds {factor['contribution']:.3f} to total score)"
+            )
+
+        return {
+            "total_score": float(row.get("total_score", 0)),
+            "factors": factors,
+            "reasons": reasons,
+            "summary": (
+                "Chosen because it balances " + ", ".join(r.split(":")[0] for r in reasons[:2])
+                if len(reasons) >= 2
+                else (reasons[0] if reasons else "Highest overall weighted score among candidates.")
+            ),
+        }
 
     def get_POI(self, latitude, longitude):
     # Returns JSON file of POI around as well as data of it (max 20 top POI)
@@ -438,6 +528,7 @@ class Calculation_Model:
 def build_chargepoint_test_dataset(
     raw_path: Union[str, Path] = RAW_DATA_PATH,
     *,
+    price_path: Union[str, Path] = UNIT_PRICE_PATH,
     sample_size: int = 4,
     at_time: Optional[datetime] = None,
 ) -> tuple[tuple[float, float], pd.DataFrame]:
@@ -445,46 +536,40 @@ def build_chargepoint_test_dataset(
     Build a small station-level test set from the raw ChargePoint sessions.
 
     The raw dataset has session rows, so this function collapses it to unique
-    stations, derives cost from historical fees, and adds the feature columns
-    needed by the wait-time models.
+    stations, joins station pricing, and adds the feature columns needed by the
+    wait-time models.
     """
     columns = [
         "Station Name",
         "MAC Address",
         "Start Date",
-        "Energy (kWh)",
         "Plug Type",
         "Latitude",
         "Longitude",
-        "Fee",
     ]
     raw = pd.read_csv(raw_path, usecols=columns)
     raw = raw.dropna(subset=["Station Name", "MAC Address", "Latitude", "Longitude", "Plug Type"])
     raw = raw[raw["Plug Type"].isin(PLUG_TYPE_MAP)]
 
     raw["Start Date"] = pd.to_datetime(raw["Start Date"], errors="coerce")
-    raw["Fee"] = pd.to_numeric(raw["Fee"], errors="coerce").fillna(0.0)
-    raw["Energy (kWh)"] = pd.to_numeric(raw["Energy (kWh)"], errors="coerce")
+    raw["Station Name"] = raw["Station Name"].astype(str).str.strip()
 
-    raw["unit_cost"] = np.where(
-        raw["Energy (kWh)"] > 0,
-        raw["Fee"] / raw["Energy (kWh)"],
-        raw["Fee"],
+    price_df = pd.read_csv(price_path)
+    price_df["Station Name"] = price_df["Station Name"].astype(str).str.strip()
+    price_df["median_unit_price_per_kwh"] = pd.to_numeric(
+        price_df["median_unit_price_per_kwh"],
+        errors="coerce",
     )
-    raw["unit_cost"] = (
-        raw["unit_cost"]
-        .replace([np.inf, -np.inf], np.nan)
-        .fillna(raw["Fee"])
-        .fillna(0.0)
-    )
+    cost_by_station = price_df.set_index("Station Name")["median_unit_price_per_kwh"]
+    default_cost = cost_by_station.median()
 
-    cost_by_station = raw.groupby("Station Name")["unit_cost"].median()
     stations = (
         raw.sort_values("Start Date")
         .drop_duplicates("Station Name", keep="last")
         .rename(columns={"Latitude": "lat", "Longitude": "lon"})
     )
-    stations["cost"] = stations["Station Name"].map(cost_by_station).fillna(0.0)
+    stations["cost"] = stations["Station Name"].map(cost_by_station).fillna(default_cost)
+    stations["fee"] = stations["cost"]
     stations["Plug Type Encoded"] = stations["Plug Type"].apply(Calculation_Model._encode_plug_type)
 
     stations = stations.head(sample_size + 1).copy()
@@ -510,7 +595,14 @@ def build_chargepoint_test_dataset(
 
 
 def main():
-    current_user_pos, EV_station_dataset = build_chargepoint_test_dataset(sample_size=4)
+
+    prediction_time = datetime(2020, 2, 7, 12, 0)
+
+    current_user_pos, EV_station_dataset = build_chargepoint_test_dataset(
+        sample_size=8,
+        at_time=prediction_time
+        )
+        
     print(f"User test location: {current_user_pos}")
 
     model = Calculation_Model(current_user_pos)

@@ -20,6 +20,7 @@ from .model_a import AvailabilityPrediction, ModelAService
 from .model_b import DurationPrediction, ModelBService
 from .preprocessing import InferencePreprocessor, build_raw_feature_row
 from .routing import RouteResult, RoutingService
+from .scoring import RecommendationScoringService
 from .sequence_builder import SequenceBuilder
 from .stations import Station, StationRegistry, is_within_palo_alto
 from .weather import WeatherService
@@ -38,6 +39,8 @@ class StationResult:
     consensus: Optional[Dict] = None
     low_confidence_warning: bool = False
     sequence_context: Optional[Dict] = None       # LSTM confidence context
+    total_score: Optional[float] = None
+    score_breakdown: Optional[Dict] = None
 
 
 @dataclass
@@ -62,6 +65,7 @@ class EVPathfinderOrchestrator:
         self.model_a = ModelAService()
         self.model_b = ModelBService()
         self.routing = RoutingService()
+        self.scoring = RecommendationScoringService()
         self.seq_builder = SequenceBuilder()
         self.seq_builder.set_preprocessor(self.preprocessor)
 
@@ -111,10 +115,23 @@ class EVPathfinderOrchestrator:
         if not results:
             return OrchestratorResponse(success=False, message="All station evaluations failed.")
 
-        results.sort(key=lambda r: r.total_mins)
+        try:
+            self._apply_recommendation_scores(user_lat, user_lon, results, selected_time)
+        except Exception as exc:
+            print(f"[Orchestrator] Recommendation scoring failed:\n{RecommendationScoringService.format_error(exc)}")
+            return OrchestratorResponse(
+                success=False,
+                message=f"Station evaluation succeeded but scoring failed: {exc}",
+            )
+
+        results.sort(key=lambda r: r.total_score or 0.0, reverse=True)
+
         return OrchestratorResponse(
             success=True,
-            message=f"Evaluated {len(results)} station(s). Best option shown first.",
+            message=(
+                f"Evaluated {len(results)} station(s) using distance, POI, waiting time, "
+                f"and cost. Best recommendation shown first."
+            ),
             best=self._serialise(results[0]),
             all_results=[self._serialise(r) for r in results],
             user_location={"lat": user_lat, "lon": user_lon},
@@ -138,6 +155,15 @@ class EVPathfinderOrchestrator:
             result = self.evaluate_station(user_lat, user_lon, station_mac, selected_time)
         except ValueError as exc:
             return OrchestratorResponse(success=False, message=str(exc))
+
+        try:
+            self._apply_recommendation_scores(user_lat, user_lon, [result], selected_time)
+        except Exception as exc:
+            print(f"[Orchestrator] Recommendation scoring failed:\n{RecommendationScoringService.format_error(exc)}")
+            return OrchestratorResponse(
+                success=False,
+                message=f"Station evaluation succeeded but scoring failed: {exc}",
+            )
 
         return OrchestratorResponse(
             success=True,
@@ -243,6 +269,48 @@ class EVPathfinderOrchestrator:
             sequence_context=seq_context,
         )
 
+    def _apply_recommendation_scores(
+        self,
+        user_lat: float,
+        user_lon: float,
+        results: List[StationResult],
+        selected_time: Optional[datetime] = None,
+    ) -> None:
+        """Attach full recommendation score using the same pipeline as ``logic.py``."""
+        weather = self.weather.get_current()
+        at_time = selected_time or datetime.now()
+
+        payload = []
+        for result in results:
+            distance_m = result.route.distance_metres if result.route else 999999
+            payload.append({
+                "mac": result.station.mac,
+                "station_name": result.station.name,
+                "lat": result.station.latitude,
+                "lon": result.station.longitude,
+                "plug_encoded": result.station.plug_encoded,
+                "distance_metres": distance_m,
+            })
+
+        score_map = self.scoring.rank_stations(
+            user_lat,
+            user_lon,
+            payload,
+            weather=weather,
+            at_time=at_time,
+        )
+        if not score_map:
+            raise RuntimeError("Scoring returned no results.")
+
+        for result in results:
+            breakdown = score_map.get(result.station.mac)
+            if not breakdown:
+                raise RuntimeError(f"No score computed for station {result.station.mac}.")
+            result.total_score = breakdown["total_score"]
+            result.score_breakdown = breakdown
+            result.score_breakdown["travel_time_secs"] = round(result.travel_mins * 60, 1)
+            result.score_breakdown["travel_time_mins"] = result.travel_mins
+
     @staticmethod
     def _serialise(result: StationResult) -> Dict:
         route_data = None
@@ -273,4 +341,6 @@ class EVPathfinderOrchestrator:
             "consensus": result.consensus,
             "low_confidence_warning": result.low_confidence_warning,
             "sequence_context": result.sequence_context,
+            "total_score": result.total_score,
+            "score_breakdown": result.score_breakdown,
         }

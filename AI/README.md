@@ -1,19 +1,20 @@
 # EV Charging Station Recommendation
 
-A final-project system for ranking EV charging stations using **distance**, **nearby points of interest (POI)**, and **predicted waiting time**. Scoring logic lives in `Algorithm/`; wait-time models are trained in the notebooks and served from `model/` and `model_B/`.
+A final-project system for ranking EV charging stations using context aware environtment, **distance**, **nearby points of interest (POI)**,  **predicted waiting time**, and **cost**. Scoring logic lives in `Algorithm/`; wait-time models are trained in the notebooks and served from `model/` and `model_B/`.
 
 ## Scoring goal
 
 The target recommendation formula is a weighted sum (for now will change later):
-
+BEfore calculating, the value will be normalized.
 ```
 total_score = distance × w1 + POI × w2 + waiting_time × w3 + cost x w4
 ```
 
+Havent been implemented:
 Check with battery condition what station is possible to go to before calculating
 Waiting time = Time predicted to wait for the EV station + time to go to the station + time took to charge
-
-Havent been implemented
+Agentic AI to explain why this decision was chosen
+Agentic AI to search the internet what is happening? To tell the news?
 
 | Criterion | Meaning | Higher is better? |
 |-----------|---------|-------------------|
@@ -191,8 +192,8 @@ Python dependencies are expected in a local virtual environment (`.venv/`). Inst
 - [x] Road-following distance (Google Routes)
 - [x] POI scoring
 - [x] `Calculation_Model.predict_waiting_time()` (Model A + Model B)
-- [ ] Use ML wait times in `main()` for all production station datasets (needs full feature columns per row)
-- [ ] Align `total_score()` with `distance × w1 + POI × w2 + waiting_time × w3` only (optional: keep efficiency as `w4`)
+- [x] Use ML wait times in `main()` for all production station datasets (needs full feature columns per row)
+- [ ] Align `total_score()` with `algorithm` only 
 - [ ] Change efficiency to battery usage by SUMO simulation dataset
 
 ## License & context
