@@ -714,14 +714,16 @@ def main():
             ]
         ]
     )
-    
-    
+
     print()
-    from llm import generate_ev_explanation
+    from llm import print_reflection_report, run_reflection_pipeline
 
     top_context = final_ranked_df.iloc[0]["llm_context"]
     alternatives = final_ranked_df.iloc[1:4]["llm_context"].tolist()
-    print(generate_ev_explanation({"recommended": top_context, "alternatives": alternatives}))
+    reflection = run_reflection_pipeline(
+        {"recommended": top_context, "alternatives": alternatives}
+    )
+    print_reflection_report(reflection)
 
 
 
