@@ -4,4 +4,9 @@
         <route-files value="test.rou.xml"/>
         <additional-files value="my_config.additional.xml"/>
     </input>
+
+    <output>
+        <battery-output value="user_data_log.xml"/>
+        <battery-output.precision value="2"/>
+    </output>
 </configuration>
