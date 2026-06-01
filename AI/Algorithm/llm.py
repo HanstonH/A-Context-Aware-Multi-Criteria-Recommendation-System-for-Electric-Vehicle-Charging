@@ -2,9 +2,12 @@
 Reflection-based text justification engine for EV charging recommendations.
 
 Pipeline:
-  1. Draft V1   — initial 2-sentence justification (Gemini 3.5 Flash)
+  1. Draft V1   — initial 2-sentence justification
   2. Critique   — self-evaluation for hallucinations, tone, trade-off accuracy
   3. Final V2   — revised 2-sentence justification incorporating the critique
+
+Gemini calls use ``MODEL_FALLBACK_CHAIN`` (3.5 Flash → 2.5 Flash → 2.5 Pro →
+2 Flash → 2 Flash Lite) when a model cannot be reached.
 
 Compatible with ``logic.total_score(..., include_llm_context=True)`` payloads.
 """
@@ -12,9 +15,10 @@ Compatible with ``logic.total_score(..., include_llm_context=True)`` payloads.
 from __future__ import annotations
 
 import json
+import logging
 import os
 from dataclasses import dataclass
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 import pandas as pd
 from google import genai
@@ -25,7 +29,19 @@ from google.genai import types
 # ---------------------------------------------------------------------------
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
-MODEL_ID = "gemini-3.5-flash"
+
+# Tried in order when a model is unavailable, rate-limited, or returns empty text.
+MODEL_FALLBACK_CHAIN: List[str] = [
+    "gemini-3.5-flash",       # Gemini 3.5 Flash
+    "gemini-2.5-flash",       # Gemini 2.5 Flash
+    "gemini-2.5-pro",         # Gemini 2.5 Pro
+    "gemini-2.0-flash",       # Gemini 2 Flash
+    "gemini-2.0-flash-lite",  # Gemini 2 Flash Lite
+]
+
+MODEL_ID = MODEL_FALLBACK_CHAIN[0]
+
+_logger = logging.getLogger(__name__)
 
 StationInput = Union[Dict[str, Any], list, pd.DataFrame]
 
@@ -103,21 +119,41 @@ def _call_gemini(
     user_prompt: str,
     temperature: float = 0.3,
 ) -> str:
-    """Single generate_content call; returns trimmed text or raises on empty response."""
+    """
+    Single generate_content call with model fallback.
+
+    Tries each model in ``MODEL_FALLBACK_CHAIN`` until one returns non-empty text.
+  """
     client = _get_client()
     config = types.GenerateContentConfig(
         system_instruction=system_instruction,
         temperature=temperature,
     )
-    response = client.models.generate_content(
-        model=MODEL_ID,
-        contents=user_prompt,
-        config=config,
+
+    failures: List[str] = []
+    for model_id in MODEL_FALLBACK_CHAIN:
+        try:
+            response = client.models.generate_content(
+                model=model_id,
+                contents=user_prompt,
+                config=config,
+            )
+            text = (response.text or "").strip()
+            if not text:
+                raise RuntimeError("empty response")
+            if model_id != MODEL_FALLBACK_CHAIN[0]:
+                _logger.warning(
+                    "Gemini fallback: using %s after earlier models failed.",
+                    model_id,
+                )
+            return text
+        except Exception as exc:
+            failures.append(f"{model_id}: {exc}")
+            _logger.warning("Gemini model %s unavailable: %s", model_id, exc)
+
+    raise RuntimeError(
+        "All Gemini models failed. Attempts:\n  - " + "\n  - ".join(failures)
     )
-    text = (response.text or "").strip()
-    if not text:
-        raise RuntimeError("Gemini returned an empty response.")
-    return text
 
 
 # ---------------------------------------------------------------------------
@@ -266,7 +302,7 @@ def print_reflection_report(result: ReflectionResult) -> None:
     print(separator)
     print("ORIGINAL STATION DATA")
     print(separator)
-    print(_payload_to_json(result.station_data))
+    # print(_payload_to_json(result.station_data))
     print()
     print(separator)
     print("DRAFT V1 EXPLANATION")

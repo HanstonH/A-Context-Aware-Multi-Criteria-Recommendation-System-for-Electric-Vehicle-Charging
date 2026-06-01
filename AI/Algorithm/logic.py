@@ -35,6 +35,7 @@ from config import (  # noqa: E402
     MODEL_A_DIR,
     PLUG_TYPE_MAP,
     RAW_DATA_PATH,
+    UNIT_PRICE_PATH,
 )
 from model_a import ModelAService  # noqa: E402
 from model_b import ModelBService  # noqa: E402
@@ -611,6 +612,67 @@ class Calculation_Model:
         return df
 
 
+def load_unit_prices_by_station(
+    price_path: Union[str, Path] = UNIT_PRICE_PATH,
+) -> pd.DataFrame:
+    """
+    Load per-station unit prices from ``unit_price_by_station_palo_alto.csv``.
+
+    Returns a DataFrame indexed by ``Station Name`` with
+    ``median_unit_price_per_kwh`` and ``price_tier``.
+    """
+    path = Path(price_path)
+    if not path.is_file():
+        raise FileNotFoundError(f"Unit price file not found: {path}")
+
+    prices = pd.read_csv(path)
+    if "Station Name" not in prices.columns or "median_unit_price_per_kwh" not in prices.columns:
+        raise ValueError(
+            "Unit price CSV must include 'Station Name' and 'median_unit_price_per_kwh'."
+        )
+
+    prices["Station Name"] = prices["Station Name"].astype(str).str.strip()
+    prices["median_unit_price_per_kwh"] = pd.to_numeric(
+        prices["median_unit_price_per_kwh"], errors="coerce"
+    ).fillna(0.0)
+
+    keep = ["Station Name", "median_unit_price_per_kwh"]
+    if "price_tier" in prices.columns:
+        keep.append("price_tier")
+
+    return prices[keep].drop_duplicates("Station Name", keep="first").set_index("Station Name")
+
+
+def attach_station_costs(
+    stations_df: pd.DataFrame,
+    *,
+    price_path: Union[str, Path] = UNIT_PRICE_PATH,
+    station_name_col: str = "Station Name",
+) -> pd.DataFrame:
+    """Merge ``cost`` (and optional ``price_tier``) from the unit-price CSV by station name."""
+    if station_name_col not in stations_df.columns:
+        raise ValueError(f"stations_df missing column: {station_name_col}")
+
+    out = stations_df.copy()
+    price_table = load_unit_prices_by_station(price_path)
+
+    out["cost"] = out[station_name_col].astype(str).str.strip().map(
+        price_table["median_unit_price_per_kwh"]
+    )
+    out["median_unit_price_per_kwh"] = out["cost"]
+
+    if "price_tier" in price_table.columns:
+        out["price_tier"] = out[station_name_col].astype(str).str.strip().map(price_table["price_tier"])
+
+    # Stations missing from the price file: keep existing cost or default to 0
+    if "cost" in stations_df.columns:
+        out["cost"] = out["cost"].fillna(stations_df["cost"])
+    out["cost"] = out["cost"].fillna(0.0)
+    out["median_unit_price_per_kwh"] = out["cost"]
+
+    return out
+
+
 def build_chargepoint_test_dataset(
     raw_path: Union[str, Path] = RAW_DATA_PATH,
     *,
@@ -621,8 +683,8 @@ def build_chargepoint_test_dataset(
     Build a small station-level test set from the raw ChargePoint sessions.
 
     The raw dataset has session rows, so this function collapses it to unique
-    stations, derives cost from historical fees, and adds the feature columns
-    needed by the wait-time models.
+    stations, attaches cost from ``unit_price_by_station_palo_alto.csv``, and adds
+    the feature columns needed by the wait-time models.
     """
     columns = [
         "Station Name",
@@ -639,28 +701,14 @@ def build_chargepoint_test_dataset(
     raw = raw[raw["Plug Type"].isin(PLUG_TYPE_MAP)]
 
     raw["Start Date"] = pd.to_datetime(raw["Start Date"], errors="coerce")
-    raw["Fee"] = pd.to_numeric(raw["Fee"], errors="coerce").fillna(0.0)
-    raw["Energy (kWh)"] = pd.to_numeric(raw["Energy (kWh)"], errors="coerce")
 
-    raw["unit_cost"] = np.where(
-        raw["Energy (kWh)"] > 0,
-        raw["Fee"] / raw["Energy (kWh)"],
-        raw["Fee"],
-    )
-    raw["unit_cost"] = (
-        raw["unit_cost"]
-        .replace([np.inf, -np.inf], np.nan)
-        .fillna(raw["Fee"])
-        .fillna(0.0)
-    )
-
-    cost_by_station = raw.groupby("Station Name")["unit_cost"].median()
     stations = (
         raw.sort_values("Start Date")
         .drop_duplicates("Station Name", keep="last")
         .rename(columns={"Latitude": "lat", "Longitude": "lon"})
     )
-    stations["cost"] = stations["Station Name"].map(cost_by_station).fillna(0.0)
+    stations = attach_station_costs(stations)
+    stations["fee"] = stations["cost"]
     stations["Plug Type Encoded"] = stations["Plug Type"].apply(Calculation_Model._encode_plug_type)
 
     stations = stations.head(sample_size + 1).copy()
