@@ -12,22 +12,14 @@ from typing import Optional
 import joblib
 import numpy as np
 import pandas as pd
-from pandas.tseries.holiday import USFederalHolidayCalendar
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler, TargetEncoder
 
-from .config import (
-    CLEANED_DATA_PATH,
-    FEATURE_COLUMNS,
-    NUMERIC_FEATURES,
-    PREPROCESSOR_PATH,
-)
+from .config import CLEANED_DATA_PATH, FEATURE_COLUMNS, PREPROCESSOR_PATH
+from .feature_engineering import complete_model_row
 from .stations import Station
 from .weather import WeatherSnapshot
-
-
-_HOLIDAY_CAL = USFederalHolidayCalendar()
 
 
 def build_raw_feature_row(
@@ -39,32 +31,14 @@ def build_raw_feature_row(
     if dt is None:
         dt = datetime.now()
 
-    hour = dt.hour
-    minute = dt.minute
-    dow = dt.weekday()
-    month = dt.month
-    is_weekend = int(dow >= 5)
-    holidays = _HOLIDAY_CAL.holidays(start=str(dt.year), end=str(dt.year))
-    is_holiday = int(pd.Timestamp(dt.date()) in holidays)
-
-    row = {
+    base_row = {
         "MAC Address": station.mac,
         "temp": weather.temperature,
         "precip": weather.precipitation,
         "clouds": weather.cloud_cover,
-        "Minute": minute,
-        "Hour": hour,
-        "DayOfWeek": dow,
-        "Month": month,
-        "IsWeekend": is_weekend,
-        "IsHoliday": is_holiday,
-        "Hour_Sin": np.sin(2 * np.pi * hour / 24),
-        "Hour_Cos": np.cos(2 * np.pi * hour / 24),
-        "Month_Sin": np.sin(2 * np.pi * month / 12),
-        "Month_Cos": np.cos(2 * np.pi * month / 12),
         "Plug Type Encoded": station.plug_encoded,
     }
-    return pd.DataFrame([row], columns=FEATURE_COLUMNS)
+    return complete_model_row(base_row, dt=dt, station_name=station.name)
 
 
 class InferencePreprocessor:
@@ -107,18 +81,13 @@ class InferencePreprocessor:
             if self._pipeline_a is None:
                 self._pipeline_a = self._fit_from_data("Availability")
             return self._pipeline_a
-        else:
-            if self._pipeline_b is None:
-                self._pipeline_b = self._load_binary_encoder_pipeline()
-            return self._pipeline_b
+
+        if self._pipeline_b is None:
+            self._pipeline_b = self._load_binary_encoder_pipeline()
+        return self._pipeline_b
 
     def _load_binary_encoder_pipeline(self) -> Pipeline:
-        """Load the saved BinaryEncoder + StandardScaler pipeline for Model B.
-
-        Model B was trained with ``category_encoders.BinaryEncoder`` (not
-        ``TargetEncoder``), producing 21 features.  The fitted pipeline is
-        stored at ``preprocessor_pipeline.joblib``.
-        """
+        """Load the saved BinaryEncoder + StandardScaler pipeline for Model B."""
         if PREPROCESSOR_PATH.exists():
             return joblib.load(str(PREPROCESSOR_PATH))
         raise FileNotFoundError(

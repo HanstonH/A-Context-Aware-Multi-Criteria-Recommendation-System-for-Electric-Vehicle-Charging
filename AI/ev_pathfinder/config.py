@@ -17,6 +17,7 @@ MODEL_B_DIR = BASE_DIR / "model_B"                         # duration regressors
 PREPROCESSOR_PATH = BASE_DIR / "preprocessor_pipeline.joblib"
 RAW_DATA_PATH = DATA_DIR / "ChargePointData2011-2020-ManullyPreCleaned3.csv"
 CLEANED_DATA_PATH = DATA_DIR / "Final_Cleaned_Dataset.csv"
+UNIT_PRICE_PATH = DATA_DIR / "unit_price_by_station_palo_alto.csv"
 
 # ── API Keys ─────────────────────────────────────────────────────────────────
 GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY", "")
@@ -39,7 +40,14 @@ FEATURE_COLUMNS = [
     "IsWeekend", "IsHoliday",
     "Hour_Sin", "Hour_Cos",
     "Month_Sin", "Month_Cos",
+    "Days_Until_Next_Holiday", "Days_Since_Last_Holiday",
+    "Thermal_Deviation_Index",
+    "Is_Freezing_Penalty",
+    "Extreme_Heat_Throttle_Risk",
+    "Solar_Irradiance_Proxy",
+    "Parasitic_Load_Probability_Index",
     "Plug Type Encoded",
+    "fee",
 ]
 
 NUMERIC_FEATURES = [c for c in FEATURE_COLUMNS if c != "MAC Address"]

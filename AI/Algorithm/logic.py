@@ -196,9 +196,13 @@ class Calculation_Model:
     @staticmethod
     def _normalize_higher_is_better(series: pd.Series) -> pd.Series:
         values = pd.to_numeric(series, errors="coerce")
+        min_value = values.min()
         max_value = values.max()
         if pd.isna(max_value) or max_value <= 0:
             return pd.Series(0.0, index=series.index)
+        if max_value == min_value:
+            # No spread across candidates — neutral score, not "best for everyone".
+            return pd.Series(0.5, index=series.index)
         return values.fillna(0.0) / max_value
 
     @staticmethod
@@ -209,7 +213,8 @@ class Calculation_Model:
         if pd.isna(min_value) or pd.isna(max_value):
             return pd.Series(0.0, index=series.index)
         if max_value == min_value:
-            return pd.Series(1.0, index=series.index)
+            # Identical values (e.g. all free, all zero wait) must not score as "best".
+            return pd.Series(0.5, index=series.index)
         return ((max_value - values) / (max_value - min_value)).fillna(0.0)
 
     @staticmethod
@@ -389,6 +394,85 @@ class Calculation_Model:
             axis=1,
         )
         return out
+
+    def total_score_with_breakdown(self, stations_df: pd.DataFrame) -> pd.DataFrame:
+        """Like ``total_score`` but adds per-factor weighted contributions."""
+        return self.total_score(stations_df)
+
+    @staticmethod
+    def explain_score_row(row: pd.Series) -> Dict[str, Any]:
+        """Human-readable reasons and chart data for one ranked station."""
+        factors = [
+            {
+                "key": "poi",
+                "label": "POI",
+                "weight": 0.25,
+                "normalized": float(row.get("n_poi", 0)),
+                "contribution": float(row.get("contrib_poi", 0)),
+                "raw": float(row.get("poi_sum", 0)),
+                "raw_label": "POI sum",
+                "better": "higher",
+            },
+            {
+                "key": "distance",
+                "label": "Distance",
+                "weight": 0.25,
+                "normalized": float(row.get("n_dist", 0)),
+                "contribution": float(row.get("contrib_dist", 0)),
+                "raw": float(row.get("distance", 0)),
+                "raw_label": "metres",
+                "better": "lower",
+            },
+            {
+                "key": "waiting_time",
+                "label": "Waiting time",
+                "weight": 0.25,
+                "normalized": float(row.get("n_wait", 0)),
+                "contribution": float(row.get("contrib_wait", 0)),
+                "raw": float(row.get("waiting_time", 0)),
+                "raw_label": "seconds",
+                "better": "lower",
+            },
+            {
+                "key": "cost",
+                "label": "Cost",
+                "weight": 0.25,
+                "normalized": float(row.get("n_cost", 0)),
+                "contribution": float(row.get("contrib_cost", 0)),
+                "raw": float(row.get("cost", 0)),
+                "raw_label": "$/kWh",
+                "better": "lower",
+            },
+        ]
+        ranked = sorted(factors, key=lambda f: f["contribution"], reverse=True)
+        reasons = []
+        for factor in ranked[:3]:
+            if factor["contribution"] <= 0:
+                continue
+            if factor["key"] == "poi":
+                detail = "strong nearby points of interest"
+            elif factor["key"] == "distance":
+                detail = f"relatively short drive ({factor['raw']:.0f} m)"
+            elif factor["key"] == "waiting_time":
+                wait_mins = factor["raw"] / 60
+                detail = f"lower total time to reach and use the station ({wait_mins:.1f} min)"
+            else:
+                detail = f"lower charging cost ({factor['raw']:.3f} $/kWh)"
+            reasons.append(
+                f"{factor['label']}: {detail} "
+                f"(adds {factor['contribution']:.3f} to total score)"
+            )
+
+        return {
+            "total_score": float(row.get("total_score", 0)),
+            "factors": factors,
+            "reasons": reasons,
+            "summary": (
+                "Chosen because it balances " + ", ".join(r.split(":")[0] for r in reasons[:2])
+                if len(reasons) >= 2
+                else (reasons[0] if reasons else "Highest overall weighted score among candidates.")
+            ),
+        }
 
     def get_POI(self, latitude, longitude):
     # Returns JSON file of POI around as well as data of it (max 20 top POI)
@@ -994,6 +1078,7 @@ def build_palo_alto_station_dataset(
 def build_chargepoint_test_dataset(
     raw_path: Union[str, Path] = RAW_DATA_PATH,
     *,
+    price_path: Union[str, Path] = UNIT_PRICE_PATH,
     sample_size: int = 4,
     at_time: Optional[datetime] = None,
 ) -> tuple[tuple[float, float], pd.DataFrame]:
@@ -1008,11 +1093,9 @@ def build_chargepoint_test_dataset(
         "Station Name",
         "MAC Address",
         "Start Date",
-        "Energy (kWh)",
         "Plug Type",
         "Latitude",
         "Longitude",
-        "Fee",
     ]
     raw = pd.read_csv(raw_path, usecols=columns)
     raw = raw.dropna(subset=["Station Name", "MAC Address", "Latitude", "Longitude", "Plug Type"])

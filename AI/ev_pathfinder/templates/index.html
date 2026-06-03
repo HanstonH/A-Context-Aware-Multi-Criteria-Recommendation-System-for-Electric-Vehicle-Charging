@@ -205,6 +205,25 @@
     .chart-container { margin-top: 12px; max-height: 200px; }
     .chart-section-title { font-size: 11px; color: var(--text-dim); margin: 12px 0 4px; font-weight: 600; }
 
+    .score-banner {
+      text-align: center;
+      padding: 16px;
+      background: linear-gradient(135deg, rgba(34,197,94,0.12), rgba(99,102,241,0.08));
+      border: 1px solid rgba(34,197,94,0.25);
+      border-radius: var(--radius);
+      margin-bottom: 10px;
+    }
+    .score-banner .score-number { font-size: 34px; font-weight: 700; color: var(--green); }
+    .score-banner .score-caption { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+
+    .reason-list { margin-top: 10px; padding-left: 18px; font-size: 12px; line-height: 1.55; color: var(--text); }
+    .reason-list li { margin-bottom: 6px; }
+    .reason-summary {
+      margin-top: 8px; padding: 10px 12px; border-radius: 8px;
+      background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.2);
+      font-size: 12px; line-height: 1.5;
+    }
+
     /* ── Map ───────────────────────────────────────────────────── */
     #map { width: 100%; height: 100%; }
 
@@ -255,7 +274,7 @@
   <header>
     <span class="logo">&#9889;</span>
     <h1>EV-Pathfinder Orchestrator</h1>
-    <span class="tag">Palo Alto, CA</span>
+    <span class="tag">Distance · POI · Wait · Cost</span>
   </header>
 
   <!-- Sidebar -->
@@ -327,6 +346,23 @@
       </div>
     </div>
 
+    <!-- Recommendation Score -->
+    <div class="card" id="scoreCard" style="display:none;">
+      <h3>Recommendation Score</h3>
+      <div class="score-banner">
+        <div class="score-caption">Total weighted score (0–1)</div>
+        <div class="score-number" id="totalScoreValue">—</div>
+      </div>
+      <div class="reason-summary" id="scoreSummary"></div>
+      <ul class="reason-list" id="scoreReasons"></ul>
+      <p class="chart-section-title">Impact of each factor on total score</p>
+      <div class="chart-container" style="max-height:220px;"><canvas id="scoreChart"></canvas></div>
+      <table class="comparison-table" id="scoreTable" style="margin-top:10px;">
+        <thead><tr><th>Factor</th><th>Raw value</th><th>Normalized</th><th>Weighted</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
     <!-- LSTM Sequence Context -->
     <div class="card" id="seqContextCard" style="display:none;">
       <h3>LSTM Sequence Context</h3>
@@ -376,6 +412,7 @@ let stationMarkers = {};
 let routeLayer = null;
 let availChartInstance = null;
 let durChartInstance = null;
+let scoreChartInstance = null;
 
 const greenIcon = L.divIcon({ className: '', html: '<div style="width:12px;height:12px;background:#22c55e;border-radius:50%;border:2px solid #166534;"></div>' });
 const redIcon   = L.divIcon({ className: '', html: '<div style="width:12px;height:12px;background:#ef4444;border-radius:50%;border:2px solid #991b1b;"></div>' });
@@ -442,6 +479,7 @@ function showBanner(msg, success) {
 
 function clearResults() {
   document.getElementById('resultCard').style.display = 'none';
+  document.getElementById('scoreCard').style.display = 'none';
   document.getElementById('comparisonCard').style.display = 'none';
   document.getElementById('allStationsCard').style.display = 'none';
   document.getElementById('seqContextCard').style.display = 'none';
@@ -450,6 +488,7 @@ function clearResults() {
   document.getElementById('resultBanner').className = 'result-banner';
   if (availChartInstance) { availChartInstance.destroy(); availChartInstance = null; }
   if (durChartInstance) { durChartInstance.destroy(); durChartInstance = null; }
+  if (scoreChartInstance) { scoreChartInstance.destroy(); scoreChartInstance = null; }
   if (routeLayer) { map.removeLayer(routeLayer); routeLayer = null; }
   Object.values(stationMarkers).forEach(s => s.marker.setIcon(defaultIcon));
 }
@@ -525,7 +564,13 @@ function renderBestResult(r) {
     <div class="result-row"><span class="label">Address</span><span class="value">${r.station.address}</span></div>
     <div class="result-row"><span class="label">Status</span><span class="value"><span class="status-badge ${statusClass}">${r.status}</span></span></div>
     <div class="result-row"><span class="label">Travel Time</span><span class="value">${r.travel_mins} min</span></div>
-    <div class="result-row"><span class="label">Predicted Wait</span><span class="value">${r.wait_mins} min</span></div>
+    <div class="result-row"><span class="label">Predicted Queue Wait</span><span class="value">${r.wait_mins} min</span></div>
+    ${r.score_breakdown ? `
+    <div class="result-row"><span class="label">Scoring wait input</span><span class="value">${r.score_breakdown.queue_wait_mins} min (queue only, same as logic.py)</span></div>
+    <div class="result-row"><span class="label">Distance</span><span class="value">${Math.round(r.score_breakdown.distance_metres)} m</span></div>
+    <div class="result-row"><span class="label">POI score</span><span class="value">${r.score_breakdown.poi_sum.toFixed(2)}</span></div>
+    <div class="result-row"><span class="label">Cost</span><span class="value">${r.score_breakdown.cost.toFixed(3)} $/kWh</span></div>
+    ` : ''}
   `;
 
   // total ETA
@@ -568,8 +613,83 @@ function renderBestResult(r) {
     stationMarkers[r.station.mac].marker.setIcon(r.status === 'Available' ? greenIcon : redIcon);
   }
 
+  // recommendation score breakdown
+  renderScoreBreakdown(r);
+
   // model comparison
   renderComparison(r);
+}
+
+function formatRawValue(factor) {
+  if (factor.key === 'distance') return `${Math.round(factor.raw)} m`;
+  if (factor.key === 'waiting_time') return `${(factor.raw / 60).toFixed(1)} min (queue wait)`;
+  if (factor.key === 'cost') return `${factor.raw.toFixed(3)} $/kWh`;
+  return factor.raw.toFixed(2);
+}
+
+function renderScoreBreakdown(r) {
+  const card = document.getElementById('scoreCard');
+  if (!r.score_breakdown) { card.style.display = 'none'; return; }
+  card.style.display = 'block';
+
+  const sb = r.score_breakdown;
+  document.getElementById('totalScoreValue').textContent = (r.total_score ?? sb.total_score).toFixed(3);
+  document.getElementById('scoreSummary').textContent = sb.summary || 'Highest overall weighted score.';
+  document.getElementById('scoreReasons').innerHTML = (sb.reasons || [])
+    .map(reason => `<li>${reason}</li>`).join('');
+
+  const tbody = document.querySelector('#scoreTable tbody');
+  tbody.innerHTML = (sb.factors || []).map(f => `
+    <tr>
+      <td>${f.label}</td>
+      <td>${formatRawValue(f)}</td>
+      <td>${f.normalized.toFixed(3)}</td>
+      <td>${f.contribution.toFixed(3)}</td>
+    </tr>`).join('');
+
+  if (scoreChartInstance) scoreChartInstance.destroy();
+  const ctx = document.getElementById('scoreChart').getContext('2d');
+  const factors = sb.factors || [];
+  scoreChartInstance = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Score contributions'],
+      datasets: factors.map(f => ({
+        label: `${f.label} (${f.contribution.toFixed(3)})`,
+        data: [f.contribution],
+        backgroundColor: {
+          poi: '#22c55e',
+          distance: '#6366f1',
+          waiting_time: '#f59e0b',
+          cost: '#ef4444',
+        }[f.key] || '#64748b',
+        borderRadius: 6,
+      })),
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { color: '#8b8fa3', boxWidth: 12, font: { size: 11 } } },
+        tooltip: {
+          callbacks: {
+            label: ctx => `${ctx.dataset.label}: ${ctx.raw.toFixed(3)} of 1.00 total score`
+          }
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          max: 1,
+          ticks: { color: '#8b8fa3' },
+          grid: { color: '#2e3142' },
+          title: { display: true, text: 'Weighted contribution', color: '#8b8fa3', font: { size: 11 } }
+        },
+        y: { stacked: true, display: false }
+      }
+    }
+  });
 }
 
 function isLstm(name) { return /lstm/i.test(name); }
@@ -704,14 +824,16 @@ function renderAllStations(results) {
 
   results.forEach((r, i) => {
     const statusClass = r.status === 'Available' ? 'status-available' : 'status-occupied';
+    const scoreText = r.total_score != null ? r.total_score.toFixed(3) : '—';
     const div = document.createElement('div');
     div.className = 'station-item';
     div.innerHTML = `
-      <span class="si-eta">${r.total_mins} min</span>
+      <span class="si-eta">${scoreText}</span>
       <div class="si-name">${i+1}. ${r.station.name}</div>
       <div class="si-meta">
         <span class="status-badge ${statusClass}">${r.status}</span>
-        &nbsp; Travel: ${r.travel_mins}m &middot; Wait: ${r.wait_mins}m
+        &nbsp; Score: ${scoreText}
+        &middot; Travel: ${r.travel_mins}m &middot; Wait: ${r.wait_mins}m
       </div>`;
     div.addEventListener('click', () => {
       document.getElementById('stationSelect').value = r.station.mac;
