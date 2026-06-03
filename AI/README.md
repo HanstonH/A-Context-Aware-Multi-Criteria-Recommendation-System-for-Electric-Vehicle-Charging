@@ -304,7 +304,7 @@ pip install tensorflow xgboost google-genai scikit-learn joblib pandas numpy req
 - [x] LLM reflection pipeline (`llm.py`)
 - [x] Flask pathfinder with `find_best` mode
 - [ ] Full production wait times for arbitrary station lists without manual weather/feature rows
-- [ ] Battery / SUMO range filter before scoring (commented in `logic.py` header)
+- [x] Battery range filter + rolling Wh/km + SUMO-GUI labels (`logic.py`, `sumo_ev_display.py`)
 - [ ] Unify duplicate `model*` folders and `Algorithm` vs `ev_pathfinder` code paths
 - [ ] Align target formula docs with any future weight changes
 

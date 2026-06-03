@@ -1,22 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2026-05-15 02:55:01.213316 by Eclipse SUMO randomTrips.py v1_26_0+0000-fa7df22d7f1
+<!-- generated on 2026-06-01 17:48:29.370309 by Eclipse SUMO randomTrips.py v1_26_0+0000-fa7df22d7f1
 <configuration>
-    <net-file value="test.net.xml"/>
-    <route-file value="test.rou.xml"/>
-    <end value="10.0"/>
+    <net-file value="paloalto.net.xml"/>
+    <route-file value="paloalto_more.rou.xml"/>
+    <prefix value="EV"/>
+    <vehicle-class value="passenger"/>
+    <fringe-factor value="5"/>
+    <end value="600.0"/>
+    <period value="10.0"/>
 </configuration>
 -->
 
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
-    <trip id="0" depart="0.00" from="A1A0" to="A0B0"/>
-    <trip id="1" depart="1.00" from="B0B1" to="B0B1"/>
-    <trip id="2" depart="2.00" from="B1B0" to="A0A1"/>
-    <trip id="3" depart="3.00" from="A1B1" to="A0A1"/>
-    <trip id="4" depart="4.00" from="B1A1" to="B0B1"/>
-    <trip id="5" depart="5.00" from="A1A0" to="A0B0"/>
-    <trip id="6" depart="6.00" from="A0A1" to="A0A1"/>
-    <trip id="7" depart="7.00" from="B1A1" to="B0B1"/>
-    <trip id="8" depart="8.00" from="B0A0" to="B1B0"/>
-    <trip id="9" depart="9.00" from="A1B1" to="B0A0"/>
+    <vType id="EV_passenger" vClass="passenger"/>
+    <trip id="EV0" depart="0.00" from="526837583" to="-194340137#0" type="EV_passenger"/>
+    <trip id="EV1" depart="10.00" from="650329758#0" to="602739923#2" type="EV_passenger"/>
+    <trip id="EV2" depart="20.00" from="27833029#1" to="-25292839#2" type="EV_passenger"/>
+    <trip id="EV3" depart="30.00" from="-715649715" to="396881169#2" type="EV_passenger"/>
+    <trip id="EV4" depart="40.00" from="-25292839#1" to="-682969059#1" type="EV_passenger"/>
+    <trip id="EV5" depart="50.00" from="526857051#0" to="417322393" type="EV_passenger"/>
+    <trip id="EV6" depart="60.00" from="-73220473#2" to="515967108#2" type="EV_passenger"/>
+    <trip id="EV7" depart="70.00" from="681996514#2" to="-1240237938#0" type="EV_passenger"/>
+    <trip id="EV8" depart="80.00" from="678467591#0" to="619117702" type="EV_passenger"/>
+    <trip id="EV9" depart="90.00" from="-8964937#11" to="-673427099#0" type="EV_passenger"/>
+    <trip id="EV10" depart="100.00" from="8963275#2" to="1028211907#1" type="EV_passenger"/>
+    <trip id="EV11" depart="110.00" from="-52016262#0" to="-526851065#4" type="EV_passenger"/>
+    <trip id="EV12" depart="120.00" from="776357262#0" to="52016260#1" type="EV_passenger"/>
+    <trip id="EV13" depart="130.00" from="681489374#0" to="673427099#1" type="EV_passenger"/>
+    <trip id="EV14" depart="140.00" from="396881731#0" to="903621725#1" type="EV_passenger"/>
+    <trip id="EV15" depart="150.00" from="1496325536" to="417710754" type="EV_passenger"/>
+    <trip id="EV16" depart="160.00" from="71183106" to="526851067#3" type="EV_passenger"/>
+    <trip id="EV17" depart="170.00" from="814800301#6" to="506448451#0" type="EV_passenger"/>
+    <trip id="EV18" depart="180.00" from="602739923#1" to="-396696019" type="EV_passenger"/>
+    <trip id="EV19" depart="190.00" from="-73222037#2" to="-8956240#2" type="EV_passenger"/>
+    <trip id="EV20" depart="200.00" from="-497135197#2" to="-8923331#1" type="EV_passenger"/>
+    <trip id="EV21" depart="210.00" from="-526851067#4" to="-8946862#3" type="EV_passenger"/>
+    <trip id="EV22" depart="220.00" from="52016496#0" to="164126511#2" type="EV_passenger"/>
+    <trip id="EV23" depart="230.00" from="1206088480" to="-715649715" type="EV_passenger"/>
+    <trip id="EV24" depart="240.00" from="-8931575#1" to="8959807#4" type="EV_passenger"/>
+    <trip id="EV25" depart="250.00" from="526851067#6" to="521493070" type="EV_passenger"/>
+    <trip id="EV26" depart="260.00" from="-673491956" to="25292839#1" type="EV_passenger"/>
+    <trip id="EV27" depart="270.00" from="94840728#1" to="559912915#1" type="EV_passenger"/>
+    <trip id="EV28" depart="280.00" from="413705610#3" to="607467232#0" type="EV_passenger"/>
+    <trip id="EV29" depart="290.00" from="756391909" to="678459749#1" type="EV_passenger"/>
+    <trip id="EV30" depart="300.00" from="-73222037#5" to="-277133715#2" type="EV_passenger"/>
+    <trip id="EV31" depart="310.00" from="-8958901#9" to="-8941356#0" type="EV_passenger"/>
+    <trip id="EV32" depart="320.00" from="-699466068#2" to="8960829#3" type="EV_passenger"/>
+    <trip id="EV33" depart="330.00" from="526860529#0" to="27833314#0" type="EV_passenger"/>
+    <trip id="EV34" depart="340.00" from="8942480#5" to="396854527#1" type="EV_passenger"/>
+    <trip id="EV35" depart="350.00" from="435715044" to="8942480#2" type="EV_passenger"/>
+    <trip id="EV36" depart="360.00" from="214525512#1" to="-73222037#9" type="EV_passenger"/>
+    <trip id="EV37" depart="370.00" from="-52015218" to="-396696030#0" type="EV_passenger"/>
+    <trip id="EV38" depart="380.00" from="-526860529#1" to="526860529#1" type="EV_passenger"/>
+    <trip id="EV39" depart="390.00" from="-413705610#2" to="256750256" type="EV_passenger"/>
+    <trip id="EV40" depart="400.00" from="95971223#0" to="413706247#1" type="EV_passenger"/>
+    <trip id="EV41" depart="410.00" from="8970148#2" to="8926710#1" type="EV_passenger"/>
+    <trip id="EV42" depart="420.00" from="-158923704#0" to="672183916#0" type="EV_passenger"/>
+    <trip id="EV43" depart="430.00" from="596052099#2" to="417319914#1" type="EV_passenger"/>
+    <trip id="EV44" depart="440.00" from="-8931575#1" to="559912915#3" type="EV_passenger"/>
+    <trip id="EV45" depart="450.00" from="-526860529#5" to="396699743#2" type="EV_passenger"/>
+    <trip id="EV46" depart="460.00" from="396696019" to="8963275#8" type="EV_passenger"/>
+    <trip id="EV47" depart="470.00" from="8925743#0" to="-8936879#4" type="EV_passenger"/>
+    <trip id="EV48" depart="480.00" from="-8954261#2" to="54756076#1" type="EV_passenger"/>
+    <trip id="EV49" depart="490.00" from="506448454" to="-672183916#6" type="EV_passenger"/>
+    <trip id="EV50" depart="500.00" from="673654075#0" to="417319921#0" type="EV_passenger"/>
+    <trip id="EV51" depart="510.00" from="676326898#0" to="413706247#3" type="EV_passenger"/>
+    <trip id="EV52" depart="520.00" from="-1028211907#1" to="-8970148#2" type="EV_passenger"/>
+    <trip id="EV53" depart="530.00" from="-164126513#1" to="8958901#3" type="EV_passenger"/>
+    <trip id="EV54" depart="540.00" from="-8956240#5" to="-413705608#0" type="EV_passenger"/>
+    <trip id="EV55" depart="550.00" from="-515967109#0" to="396856558" type="EV_passenger"/>
+    <trip id="EV56" depart="560.00" from="673654079#1" to="-597152751#2" type="EV_passenger"/>
+    <trip id="EV57" depart="570.00" from="396851642#0" to="417332619" type="EV_passenger"/>
+    <trip id="EV58" depart="580.00" from="-8930193#8" to="8930193#19" type="EV_passenger"/>
+    <trip id="EV59" depart="590.00" from="27833060" to="-73220486#1" type="EV_passenger"/>
 </routes>
