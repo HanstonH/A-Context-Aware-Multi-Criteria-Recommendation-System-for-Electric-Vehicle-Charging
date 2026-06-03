@@ -1,15 +1,21 @@
+// app/api/stations/route.ts
+import { createClient } from '@/utils/supabase/server';
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
 
 export async function GET() {
-  // Update 'ev_stations' to 'stations'
+  const supabase = await createClient();
+
+  // Fetch all stations from your table
   const { data, error } = await supabase
-    .from('stations') 
-    .select('*');
+    .from('stations')
+    .select('*'); // You can replace '*' with specific columns like 'id, station_name, city, latitude, longitude' for better performance
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    // Log the error for your own debugging, send a generic message to the frontend
+    console.error('Supabase Error:', error);
+    return NextResponse.json({ error: 'Failed to fetch stations' }, { status: 500 });
   }
 
-  return NextResponse.json({ stations: data });
+  // Return the data as JSON
+  return NextResponse.json(data);
 }
