@@ -66,6 +66,12 @@ PLUG_TYPE_MAP = {"J1772": 0, "NEMA 5-20R": 1}
 # user to a station that turns out to be busy.
 AVAILABILITY_THRESHOLD = 0.5
 
+# ── User battery search defaults (match Algorithm/config.py) ─────────────────
+DEFAULT_MAX_BATTERY_WH = 60_000.0
+DEFAULT_STOPPING_THRESHOLD_WH = 0.1
+DEFAULT_WH_PER_KM = 180.0
+RANGE_SAFETY_FACTOR = 0.85
+
 # ── LSTM Sequence Parameters ─────────────────────────────────────────────────
 LSTM_TIME_STEPS = 12
 LSTM_A_FEATURES = 15       # TargetEncoder pipeline -> Model A LSTM

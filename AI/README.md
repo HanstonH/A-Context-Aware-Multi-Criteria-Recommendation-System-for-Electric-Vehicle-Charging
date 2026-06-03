@@ -11,6 +11,8 @@ University final-project code for **ranking and explaining EV charging stations*
 | **Domain** | EV charging station recommendation |
 | **Geography** | Palo Alto, CA (bounding box in `ev_pathfinder/config.py`) |
 | **Primary goal** | Score stations by distance, POI, predicted wait, and cost; pick the best option |
+| **User search inputs** | **Location** (lat/lon) + **battery %** (required); optional Wh/km and capacity kWh |
+| **Simulation inputs** | SUMO TraCI / battery XML (auto); see `Simulation/` |
 | **Wait-time formula (orchestrator)** | `T_total = T_travel + T_wait` |
 | **Ranking formula (`Algorithm/logic.py`)** | Weighted sum of min–max normalized POI, distance, wait, cost (default weights 0.25 each) |
 | **Python package to run web UI** | `ev_pathfinder` (`python -m ev_pathfinder`) |
@@ -40,13 +42,55 @@ Both expect `preprocessor_pipeline.joblib` next to their config root (`Algorithm
 
 ---
 
+## User search vs SUMO simulation
+
+| Mode | Who provides data | Battery | Location |
+|------|-------------------|---------|----------|
+| **User search** (Flask UI, `logic.py`) | The driver | `battery_pct` (+ optional `wh_per_km`, `capacity_kwh`) | User lat/lon |
+| **SUMO simulation** (`Simulation/`) | TraCI / battery XML | Live SoC + rolling Wh/km from driving | Vehicle position in network |
+
+Both paths converge on the same idea: **filter by estimated range first**, then rank survivors.
+
+### Battery range filter (user search)
+
+1. `EVBatteryState.from_user_input(battery_pct, ...)` — defaults: **60 kWh**, **180 Wh/km**, **0.85** safety factor (`Algorithm/config.py`).
+2. `max_range_m ≈ 0.85 × usable_wh / wh_per_m`
+3. Drop stations farther than `max_range_m` (haversine straight-line pre-filter).
+4. Run distance / POI / wait / cost scoring on reachable stations only.
+
+**CLI (Algorithm):**
+
+```bash
+cd Algorithm
+python logic.py --battery-pct 45 --lat 37.4419 --lon -122.1430
+# optional: --wh-per-km 200 --capacity-kwh 75
+```
+
+**REST (`POST /api/predict`):**
+
+```json
+{
+  "user_lat": 37.4419,
+  "user_lon": -122.1430,
+  "battery_pct": 45,
+  "wh_per_km": 180,
+  "capacity_kwh": 60,
+  "mode": "find_best"
+}
+```
+
+Response includes `range_estimate` (SoC, Wh/km, max km) and `stations_excluded_by_range`.
+
+---
+
 ## Architecture
 
 ```mermaid
 flowchart TB
     subgraph inputs [Inputs]
-        U[User lat/lon]
+        U[User lat/lon + battery pct]
         T[Optional arrival time]
+        S[SUMO TraCI optional]
     end
 
     subgraph external [External APIs]
@@ -118,6 +162,7 @@ AI/
 │
 ├── ev_pathfinder/            ← Flask orchestrator + web UI
 │   ├── orchestrator.py       ← T_travel + T_wait, find_best_station
+│   ├── battery.py            ← user battery_pct → range filter (uses Algorithm/logic)
 │   ├── app.py                ← routes: /, /api/stations, /api/predict, /api/health
 │   ├── routing.py, weather.py, stations.py, sequence_builder.py
 │   ├── model_a.py, model_b.py, preprocessing.py  ← mirror of Algorithm
@@ -303,8 +348,9 @@ pip install tensorflow xgboost google-genai scikit-learn joblib pandas numpy req
 - [x] Cost from unit-price CSV
 - [x] LLM reflection pipeline (`llm.py`)
 - [x] Flask pathfinder with `find_best` mode
-- [ ] Full production wait times for arbitrary station lists without manual weather/feature rows
+- [x] User battery search (`battery_pct` + optional drainage/capacity) in Flask + `logic.py`
 - [x] Battery range filter + rolling Wh/km + SUMO-GUI labels (`logic.py`, `sumo_ev_display.py`)
+- [ ] Full production wait times for arbitrary station lists without manual weather/feature rows
 - [ ] Unify duplicate `model*` folders and `Algorithm` vs `ev_pathfinder` code paths
 - [ ] Align target formula docs with any future weight changes
 

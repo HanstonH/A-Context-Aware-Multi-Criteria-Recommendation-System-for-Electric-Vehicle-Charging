@@ -736,6 +736,73 @@ class EVBatteryState:
             **kwargs,
         )
 
+    @classmethod
+    def from_user_input(
+        cls,
+        battery_pct: float,
+        *,
+        capacity_kwh: float | None = None,
+        wh_per_km: float | None = None,
+        maximum_wh: float | None = None,
+        stopping_threshold_wh: float | None = None,
+    ) -> "EVBatteryState":
+        """
+        Build battery state from user search inputs (location search, not SUMO).
+
+        ``battery_pct`` is required (0–100). Capacity and drainage use config
+        defaults when omitted (60 kWh pack, 180 Wh/km).
+        """
+        pct = float(battery_pct)
+        if not 0.0 <= pct <= 100.0:
+            raise ValueError("battery_pct must be between 0 and 100")
+
+        max_wh = (
+            float(maximum_wh)
+            if maximum_wh is not None
+            else (float(capacity_kwh) * 1000.0 if capacity_kwh is not None else DEFAULT_MAX_BATTERY_WH)
+        )
+        if max_wh <= 0:
+            raise ValueError("battery capacity must be positive")
+
+        remaining_wh = max_wh * (pct / 100.0)
+        state = cls(
+            remaining_wh=remaining_wh,
+            maximum_wh=max_wh,
+            stopping_threshold_wh=(
+                float(stopping_threshold_wh)
+                if stopping_threshold_wh is not None
+                else DEFAULT_STOPPING_THRESHOLD_WH
+            ),
+        )
+        if wh_per_km is not None:
+            drainage = float(wh_per_km)
+            if drainage <= 0:
+                raise ValueError("wh_per_km must be positive when provided")
+            state.wh_per_metre = drainage / 1000.0
+        return state
+
+
+def parse_user_battery(
+    data: Dict[str, Any],
+    *,
+    required: bool = True,
+) -> Optional[EVBatteryState]:
+    """
+    Parse ``battery_pct`` (+ optional ``wh_per_km``, ``capacity_kwh``) from a request dict.
+
+    Returns ``None`` when ``required`` is False and ``battery_pct`` is absent.
+    """
+    if "battery_pct" not in data or data.get("battery_pct") is None or data.get("battery_pct") == "":
+        if required:
+            raise ValueError("battery_pct is required (0–100).")
+        return None
+    kwargs: Dict[str, Any] = {"battery_pct": data["battery_pct"]}
+    if data.get("wh_per_km") is not None and data.get("wh_per_km") != "":
+        kwargs["wh_per_km"] = data["wh_per_km"]
+    if data.get("capacity_kwh") is not None and data.get("capacity_kwh") != "":
+        kwargs["capacity_kwh"] = data["capacity_kwh"]
+    return EVBatteryState.from_user_input(**kwargs)
+
 
 def estimate_wh_per_metre(state: EVBatteryState) -> float:
     """
@@ -985,8 +1052,48 @@ def build_chargepoint_test_dataset(
 
 
 def main():
-    current_user_pos, EV_station_dataset = build_chargepoint_test_dataset(sample_size=8)
-    print(f"User test location: {current_user_pos}")
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="Rank Palo Alto EV stations (distance, POI, wait, cost) with optional battery range filter.",
+    )
+    parser.add_argument("--lat", type=float, default=PALO_ALTO_CENTER[0], help="User latitude")
+    parser.add_argument("--lon", type=float, default=PALO_ALTO_CENTER[1], help="User longitude")
+    parser.add_argument(
+        "--battery-pct",
+        type=float,
+        required=True,
+        help="State of charge 0–100 (required for user search)",
+    )
+    parser.add_argument(
+        "--wh-per-km",
+        type=float,
+        default=None,
+        help=f"Energy use Wh/km (default {DEFAULT_WH_PER_KM})",
+    )
+    parser.add_argument(
+        "--capacity-kwh",
+        type=float,
+        default=None,
+        help=f"Pack size kWh (default {DEFAULT_MAX_BATTERY_WH / 1000:.0f})",
+    )
+    parser.add_argument("--max-stations", type=int, default=12, help="Max candidates after range filter")
+    args = parser.parse_args()
+
+    current_user_pos = (args.lat, args.lon)
+    ev_battery = EVBatteryState.from_user_input(
+        args.battery_pct,
+        wh_per_km=args.wh_per_km,
+        capacity_kwh=args.capacity_kwh,
+    )
+    print(f"User location: {current_user_pos}")
+    print("EV range estimate:", describe_ev_range(ev_battery))
+
+    EV_station_dataset = build_palo_alto_station_dataset(
+        current_user_pos,
+        max_stations=args.max_stations,
+        ev_battery=ev_battery,
+    )
 
     model = Calculation_Model(current_user_pos)
 
