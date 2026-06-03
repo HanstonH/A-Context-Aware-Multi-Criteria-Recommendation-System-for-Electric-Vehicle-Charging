@@ -7,6 +7,7 @@ from pathlib import Path
 
 from flask import Flask, jsonify, render_template, request
 
+from .battery import parse_user_battery
 from .orchestrator import EVPathfinderOrchestrator
 
 app = Flask(
@@ -54,6 +55,11 @@ def api_predict():
         return jsonify({"success": False, "message": "user_lat and user_lon are required."}), 400
 
     try:
+        ev_battery = parse_user_battery(data, required=True)
+    except ValueError as exc:
+        return jsonify({"success": False, "message": str(exc)}), 400
+
+    try:
         user_lat = float(user_lat)
         user_lon = float(user_lon)
     except (TypeError, ValueError):
@@ -69,11 +75,13 @@ def api_predict():
     orch = _get_orchestrator()
 
     if mode == "find_best":
-        result = orch.find_best_station(user_lat, user_lon, selected_time)
+        result = orch.find_best_station(user_lat, user_lon, selected_time, ev_battery=ev_battery)
     else:
         if not station_mac:
             return jsonify({"success": False, "message": "station_mac is required in single mode."}), 400
-        result = orch.evaluate_single(user_lat, user_lon, station_mac, selected_time)
+        result = orch.evaluate_single(
+            user_lat, user_lon, station_mac, selected_time, ev_battery=ev_battery,
+        )
 
     return jsonify({
         "success": result.success,
@@ -81,6 +89,8 @@ def api_predict():
         "best": result.best,
         "all_results": result.all_results,
         "user_location": result.user_location,
+        "range_estimate": result.range_estimate,
+        "stations_excluded_by_range": result.stations_excluded_by_range,
     })
 
 

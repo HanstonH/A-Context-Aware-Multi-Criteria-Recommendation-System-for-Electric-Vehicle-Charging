@@ -14,7 +14,7 @@ Then use that value to the algorithm
 from __future__ import annotations
 
 import sys
-from dataclasses import asdict
+from dataclasses import asdict, dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
@@ -26,14 +26,20 @@ from pandas.tseries.holiday import USFederalHolidayCalendar
 from get_Distance_EV import get_distance_ev
 from get_POI import Get_POI
 
-_PROJECT_ROOT = Path(__file__).resolve().parent.parent
-if str(_PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(_PROJECT_ROOT))
+_ALGORITHM_DIR = Path(__file__).resolve().parent
+if str(_ALGORITHM_DIR) not in sys.path:
+    sys.path.insert(0, str(_ALGORITHM_DIR))
 
 from config import (  # noqa: E402
+    DEFAULT_MAX_BATTERY_WH,
+    DEFAULT_STOPPING_THRESHOLD_WH,
+    DEFAULT_WH_PER_KM,
     FEATURE_COLUMNS,
     MODEL_A_DIR,
+    PALO_ALTO_BOUNDS,
+    PALO_ALTO_CENTER,
     PLUG_TYPE_MAP,
+    RANGE_SAFETY_FACTOR,
     RAW_DATA_PATH,
     UNIT_PRICE_PATH,
 )
@@ -673,6 +679,318 @@ def attach_station_costs(
     return out
 
 
+@dataclass
+class EVBatteryState:
+    """
+    Inputs for estimating how far the simulated EV can drive before SUMO shuts it down.
+
+    Populate from SUMO ``battery-output`` XML and/or TraCI (see ``from_sumo_export``).
+    """
+
+    remaining_wh: float
+    maximum_wh: float = DEFAULT_MAX_BATTERY_WH
+    stopping_threshold_wh: float = DEFAULT_STOPPING_THRESHOLD_WH
+    # Optional telemetry for live Wh/m calibration (recent trip segment)
+    total_energy_consumed_wh: float | None = None
+    total_energy_regenerated_wh: float | None = None
+    distance_travelled_m: float | None = None
+    avg_speed_mps: float | None = None
+    wh_per_metre: float | None = None  # manual override
+
+    @property
+    def soc_percent(self) -> float:
+        if self.maximum_wh <= 0:
+            return 0.0
+        return 100.0 * self.remaining_wh / self.maximum_wh
+
+    @property
+    def usable_wh(self) -> float:
+        """Energy available above SUMO ``stoppingThreshold`` (Wh)."""
+        return max(0.0, self.remaining_wh - self.stopping_threshold_wh)
+
+    @classmethod
+    def from_sumo_export(cls, attrs: Dict[str, Any], **kwargs: Any) -> "EVBatteryState":
+        """Build from one ``<vehicle>`` row in ``user_data_log.xml`` or TraCI-derived dict."""
+
+        def _f(key: str, default: float | None = None) -> float | None:
+            raw = attrs.get(key)
+            if raw is None or raw == "NULL":
+                return default
+            return float(raw)
+
+        remaining = _f("actualBatteryCapacity") or _f("device.battery.chargeLevel")
+        if remaining is None:
+            raise ValueError("SUMO export missing actualBatteryCapacity / chargeLevel")
+
+        return cls(
+            remaining_wh=remaining,
+            maximum_wh=_f("maximumBatteryCapacity", DEFAULT_MAX_BATTERY_WH) or DEFAULT_MAX_BATTERY_WH,
+            stopping_threshold_wh=kwargs.pop(
+                "stopping_threshold_wh",
+                _f("stoppingThreshold", DEFAULT_STOPPING_THRESHOLD_WH) or DEFAULT_STOPPING_THRESHOLD_WH,
+            ),
+            total_energy_consumed_wh=_f("totalEnergyConsumed"),
+            total_energy_regenerated_wh=_f("totalEnergyRegenerated"),
+            distance_travelled_m=kwargs.pop("distance_travelled_m", None),
+            avg_speed_mps=_f("speed"),
+            **kwargs,
+        )
+
+    @classmethod
+    def from_user_input(
+        cls,
+        battery_pct: float,
+        *,
+        capacity_kwh: float | None = None,
+        wh_per_km: float | None = None,
+        maximum_wh: float | None = None,
+        stopping_threshold_wh: float | None = None,
+    ) -> "EVBatteryState":
+        """
+        Build battery state from user search inputs (location search, not SUMO).
+
+        ``battery_pct`` is required (0–100). Capacity and drainage use config
+        defaults when omitted (60 kWh pack, 180 Wh/km).
+        """
+        pct = float(battery_pct)
+        if not 0.0 <= pct <= 100.0:
+            raise ValueError("battery_pct must be between 0 and 100")
+
+        max_wh = (
+            float(maximum_wh)
+            if maximum_wh is not None
+            else (float(capacity_kwh) * 1000.0 if capacity_kwh is not None else DEFAULT_MAX_BATTERY_WH)
+        )
+        if max_wh <= 0:
+            raise ValueError("battery capacity must be positive")
+
+        remaining_wh = max_wh * (pct / 100.0)
+        state = cls(
+            remaining_wh=remaining_wh,
+            maximum_wh=max_wh,
+            stopping_threshold_wh=(
+                float(stopping_threshold_wh)
+                if stopping_threshold_wh is not None
+                else DEFAULT_STOPPING_THRESHOLD_WH
+            ),
+        )
+        if wh_per_km is not None:
+            drainage = float(wh_per_km)
+            if drainage <= 0:
+                raise ValueError("wh_per_km must be positive when provided")
+            state.wh_per_metre = drainage / 1000.0
+        return state
+
+
+def parse_user_battery(
+    data: Dict[str, Any],
+    *,
+    required: bool = True,
+) -> Optional[EVBatteryState]:
+    """
+    Parse ``battery_pct`` (+ optional ``wh_per_km``, ``capacity_kwh``) from a request dict.
+
+    Returns ``None`` when ``required`` is False and ``battery_pct`` is absent.
+    """
+    if "battery_pct" not in data or data.get("battery_pct") is None or data.get("battery_pct") == "":
+        if required:
+            raise ValueError("battery_pct is required (0–100).")
+        return None
+    kwargs: Dict[str, Any] = {"battery_pct": data["battery_pct"]}
+    if data.get("wh_per_km") is not None and data.get("wh_per_km") != "":
+        kwargs["wh_per_km"] = data["wh_per_km"]
+    if data.get("capacity_kwh") is not None and data.get("capacity_kwh") != "":
+        kwargs["capacity_kwh"] = data["capacity_kwh"]
+    return EVBatteryState.from_user_input(**kwargs)
+
+
+def estimate_wh_per_metre(state: EVBatteryState) -> float:
+    """
+    Effective energy per metre.
+
+    Uses recent SUMO telemetry when enough distance was driven; otherwise
+    ``DEFAULT_WH_PER_KM`` from config.
+    """
+    if state.wh_per_metre is not None and state.wh_per_metre > 0:
+        return state.wh_per_metre
+
+    if (
+        state.distance_travelled_m
+        and state.distance_travelled_m >= 100.0
+        and state.total_energy_consumed_wh is not None
+        and state.total_energy_regenerated_wh is not None
+    ):
+        net_wh = state.total_energy_consumed_wh - state.total_energy_regenerated_wh
+        if net_wh > 0:
+            return net_wh / state.distance_travelled_m
+
+    return DEFAULT_WH_PER_KM / 1000.0
+
+
+def estimate_max_drivable_distance_m(
+    state: EVBatteryState,
+    *,
+    safety_factor: float = RANGE_SAFETY_FACTOR,
+) -> float:
+    """
+    Maximum road distance (m) before battery hits SUMO shutdown threshold.
+
+    ``max_range_m ≈ safety_factor × usable_wh / wh_per_m``
+    """
+    wh_per_m = estimate_wh_per_metre(state)
+    if wh_per_m <= 0 or state.usable_wh <= 0:
+        return 0.0
+    return safety_factor * state.usable_wh / wh_per_m
+
+
+def describe_ev_range(state: EVBatteryState) -> Dict[str, float]:
+    """Human-readable range summary for logging / UI."""
+    wh_per_m = estimate_wh_per_metre(state)
+    max_m = estimate_max_drivable_distance_m(state)
+    return {
+        "soc_percent": round(state.soc_percent, 2),
+        "remaining_wh": state.remaining_wh,
+        "usable_wh": state.usable_wh,
+        "wh_per_km": round(wh_per_m * 1000.0, 2),
+        "max_drivable_km": round(max_m / 1000.0, 3),
+        "max_drivable_m": round(max_m, 1),
+        "stopping_threshold_wh": state.stopping_threshold_wh,
+    }
+
+
+def filter_stations_within_range(
+    stations_df: pd.DataFrame,
+    user_location: tuple[float, float],
+    max_range_m: float,
+    *,
+    lat_col: str = "lat",
+    lon_col: str = "lon",
+) -> pd.DataFrame:
+    """Drop stations farther than ``max_range_m`` (straight-line haversine)."""
+    if max_range_m <= 0 or stations_df.empty:
+        return stations_df.iloc[0:0].copy()
+
+    user_lat, user_lon = user_location
+    out = stations_df.copy()
+    out["_range_m"] = out.apply(
+        lambda r: _haversine_metres(user_lat, user_lon, float(r[lat_col]), float(r[lon_col])),
+        axis=1,
+    )
+    return (
+        out[out["_range_m"] <= max_range_m]
+        .drop(columns="_range_m")
+        .reset_index(drop=True)
+    )
+
+
+def _haversine_metres(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    r = 6_371_000
+    phi1, phi2 = np.radians(lat1), np.radians(lat2)
+    dphi = np.radians(lat2 - lat1)
+    dlam = np.radians(lon2 - lon1)
+    a = np.sin(dphi / 2) ** 2 + np.cos(phi1) * np.cos(phi2) * np.sin(dlam / 2) ** 2
+    return float(2 * r * np.arctan2(np.sqrt(a), np.sqrt(1 - a)))
+
+
+def _within_palo_alto(lat: float, lon: float) -> bool:
+    b = PALO_ALTO_BOUNDS
+    return b["lat_min"] <= lat <= b["lat_max"] and b["lon_min"] <= lon <= b["lon_max"]
+
+
+def build_palo_alto_station_dataset(
+    user_location: tuple[float, float],
+    *,
+    raw_path: Union[str, Path] = RAW_DATA_PATH,
+    max_stations: int = 12,
+    at_time: Optional[datetime] = None,
+    ev_battery: Optional[EVBatteryState] = None,
+    apply_range_filter: bool = True,
+) -> pd.DataFrame:
+    """
+    Build a ranked candidate set of Palo Alto chargers for ``Calculation_Model``.
+
+    Stations are filtered to the Palo Alto bounding box, sorted by straight-line
+    distance from ``user_location``, and limited to ``max_stations`` rows to
+    keep Google API usage reasonable.
+
+    If ``ev_battery`` is set and ``apply_range_filter`` is True, only stations
+    within ``estimate_max_drivable_distance_m(ev_battery)`` are kept.
+    """
+    columns = [
+        "Station Name",
+        "MAC Address",
+        "Address 1",
+        "Latitude",
+        "Longitude",
+        "Plug Type",
+    ]
+    raw = pd.read_csv(raw_path, usecols=columns, low_memory=False)
+    raw = raw.dropna(subset=["Station Name", "MAC Address", "Latitude", "Longitude", "Plug Type"])
+    raw = raw[raw["Plug Type"].isin(PLUG_TYPE_MAP)]
+
+    stations = (
+        raw.groupby("MAC Address", as_index=False)
+        .agg(
+            {
+                "Station Name": "first",
+                "Address 1": "first",
+                "Latitude": "first",
+                "Longitude": "first",
+                "Plug Type": "first",
+            }
+        )
+        .rename(columns={"Latitude": "lat", "Longitude": "lon"})
+    )
+    stations = stations[
+        stations.apply(lambda r: _within_palo_alto(float(r["lat"]), float(r["lon"])), axis=1)
+    ].copy()
+    if stations.empty:
+        raise ValueError("No Palo Alto stations found in ChargePoint data.")
+
+    user_lat, user_lon = user_location
+    stations["_straight_m"] = stations.apply(
+        lambda r: _haversine_metres(user_lat, user_lon, float(r["lat"]), float(r["lon"])),
+        axis=1,
+    )
+
+    if ev_battery is not None and apply_range_filter:
+        max_range_m = estimate_max_drivable_distance_m(ev_battery)
+        before = len(stations)
+        stations = stations[stations["_straight_m"] <= max_range_m].copy()
+        if stations.empty:
+            raise ValueError(
+                f"No stations within drivable range ({max_range_m / 1000:.2f} km from "
+                f"{describe_ev_range(ev_battery)['soc_percent']:.1f}% SoC)."
+            )
+        if before > len(stations):
+            print(
+                f"(Range filter: {before - len(stations)} station(s) removed — "
+                f"max ~{max_range_m / 1000:.2f} km at {describe_ev_range(ev_battery)['wh_per_km']:.0f} Wh/km)"
+            )
+
+    stations = (
+        stations.sort_values("_straight_m")
+        .drop(columns="_straight_m")
+        .head(max_stations)
+        .reset_index(drop=True)
+    )
+
+    stations = attach_station_costs(stations)
+    stations["fee"] = stations["cost"]
+    stations["Plug Type Encoded"] = stations["Plug Type"].apply(Calculation_Model._encode_plug_type)
+
+    stations["temp"] = 16.2
+    stations["precip"] = 0.0
+    stations["clouds"] = 56.0
+
+    feature_time: Dict[str, Any] = {}
+    Calculation_Model._add_time_features(feature_time, at_time or datetime.now())
+    for column, value in feature_time.items():
+        stations[column] = value
+
+    return stations
+
+
 def build_chargepoint_test_dataset(
     raw_path: Union[str, Path] = RAW_DATA_PATH,
     *,
@@ -734,8 +1052,48 @@ def build_chargepoint_test_dataset(
 
 
 def main():
-    current_user_pos, EV_station_dataset = build_chargepoint_test_dataset(sample_size=8)
-    print(f"User test location: {current_user_pos}")
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="Rank Palo Alto EV stations (distance, POI, wait, cost) with optional battery range filter.",
+    )
+    parser.add_argument("--lat", type=float, default=PALO_ALTO_CENTER[0], help="User latitude")
+    parser.add_argument("--lon", type=float, default=PALO_ALTO_CENTER[1], help="User longitude")
+    parser.add_argument(
+        "--battery-pct",
+        type=float,
+        required=True,
+        help="State of charge 0–100 (required for user search)",
+    )
+    parser.add_argument(
+        "--wh-per-km",
+        type=float,
+        default=None,
+        help=f"Energy use Wh/km (default {DEFAULT_WH_PER_KM})",
+    )
+    parser.add_argument(
+        "--capacity-kwh",
+        type=float,
+        default=None,
+        help=f"Pack size kWh (default {DEFAULT_MAX_BATTERY_WH / 1000:.0f})",
+    )
+    parser.add_argument("--max-stations", type=int, default=12, help="Max candidates after range filter")
+    args = parser.parse_args()
+
+    current_user_pos = (args.lat, args.lon)
+    ev_battery = EVBatteryState.from_user_input(
+        args.battery_pct,
+        wh_per_km=args.wh_per_km,
+        capacity_kwh=args.capacity_kwh,
+    )
+    print(f"User location: {current_user_pos}")
+    print("EV range estimate:", describe_ev_range(ev_battery))
+
+    EV_station_dataset = build_palo_alto_station_dataset(
+        current_user_pos,
+        max_stations=args.max_stations,
+        ev_battery=ev_battery,
+    )
 
     model = Calculation_Model(current_user_pos)
 

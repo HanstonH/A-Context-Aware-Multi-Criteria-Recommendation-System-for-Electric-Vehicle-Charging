@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+    <vType id="EV_Car" accel="2.6" decel="4.5" sigma="0.5" length="5" minGap="2.5" maxSpeed="33.33" carFollowModel="IDM">
+        <param key="has.battery.device" value="true"/>
+        <param key="maximumBatteryCapacity" value="60000"/>
+        <param key="device.battery.chargeLevel" value="45000"/>
+        <param key="stoppingPowerConsumption" value="500"/>
+    </vType>
+
+    <vehicle id="0" type="EV_Car" depart="0.00">
+        <route edges="A1A0 A0B0"/>
+    </vehicle>
+    <vehicle id="1" type="EV_Car" depart="1.00">
+        <route edges="B0B1"/>
+    </vehicle>
+    <vehicle id="2" type="EV_Car" depart="2.00">
+        <route edges="B1B0 B0A0 A0A1"/>
+    </vehicle>
+    <vehicle id="3" type="EV_Car" depart="3.00">
+        <route edges="A1B1 B1B0 B0A0 A0A1"/>
+    </vehicle>
+    <vehicle id="4" type="EV_Car" depart="4.00">
+        <route edges="B1A1 A1A0 A0B0 B0B1"/>
+    </vehicle>
+    <vehicle id="5" type="EV_Car" depart="5.00">
+        <route edges="A1A0 A0B0"/>
+    </vehicle>
+    <vehicle id="6" type="EV_Car" depart="6.00">
+        <route edges="A0A1"/>
+    </vehicle>
+    <vehicle id="7" type="EV_Car" depart="7.00">
+        <route edges="B1A1 A1A0 A0B0 B0B1"/>
+    </vehicle>
+    <vehicle id="8" type="EV_Car" depart="8.00">
+        <route edges="B0A0 A0A1 A1B1 B1B0"/>
+    </vehicle>
+    <vehicle id="9" type="EV_Car" depart="9.00">
+        <route edges="A1B1 B1B0 B0A0"/>
+    </vehicle>
+</routes>

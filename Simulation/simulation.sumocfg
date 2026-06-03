@@ -1,0 +1,21 @@
+<configuration>
+    <input>
+        <net-file value="paloalto.net.xml"/>
+        <route-files value="paloalto.rou.xml"/>
+        <additional-files value="my_config.additional.xml,charging_stations.add.xml"/>
+    </input>
+
+    <output>
+        <battery-output value="user_data_log.xml"/>
+        <battery-output.precision value="2"/>
+    </output>
+
+    <time>
+        <begin value="0"/>
+        <end value="1000"/>
+    </time>
+
+    <processing>
+        <ignore-route-errors value="true"/>
+    </processing>
+</configuration>
