@@ -1,201 +1,361 @@
-# EV Charging Station Recommendation
+# AI — EV Charging Station Recommendation
 
-A final-project system for ranking EV charging stations using context aware environtment, **distance**, **nearby points of interest (POI)**,  **predicted waiting time**, and **cost**. Scoring logic lives in `Algorithm/`; wait-time models are trained in the notebooks and served from `model/` and `model_B/`.
+University final-project code for **ranking and explaining EV charging stations** in the Palo Alto area. The system combines **Google Maps APIs** (road distance, nearby POI), **machine-learning wait-time prediction** (two-stage models), **unit-price cost data**, and optional **Gemini LLM** explanations.
 
-## Scoring goal
+---
 
-The target recommendation formula is a weighted sum (for now will change later):
-BEfore calculating, the value will be normalized.
+## Quick reference (for humans and AI agents)
+
+| Item | Value |
+|------|--------|
+| **Domain** | EV charging station recommendation |
+| **Geography** | Palo Alto, CA (bounding box in `ev_pathfinder/config.py`) |
+| **Primary goal** | Score stations by distance, POI, predicted wait, and cost; pick the best option |
+| **User search inputs** | **Location** (lat/lon) + **battery %** (required); optional Wh/km and capacity kWh |
+| **Simulation inputs** | SUMO TraCI / battery XML (auto); see `Simulation/` |
+| **Wait-time formula (orchestrator)** | `T_total = T_travel + T_wait` |
+| **Ranking formula (`Algorithm/logic.py`)** | Weighted sum of min–max normalized POI, distance, wait, cost (default weights 0.25 each) |
+| **Python package to run web UI** | `ev_pathfinder` (`python -m ev_pathfinder`) |
+| **Batch ranking + LLM demo** | `python logic.py` from `Algorithm/` |
+| **Training** | `Time Series Forecast.ipynb` and/or `time_series_forecast.py` |
+| **Secrets** | `.env` at repo root or `AI/` (see [Environment](#environment)) |
+
+### Entry points
+
+| Command | CWD | What it does |
+|---------|-----|----------------|
+| `python -m ev_pathfinder` | `AI/` | Flask app on port 5000 — map UI + `/api/predict` |
+| `python logic.py` | `AI/Algorithm/` | Batch pipeline: distance → POI → wait → `total_score` → CSV + LLM reflection |
+| `python llm.py` | `AI/Algorithm/` | Standalone Gemini reflection demo (needs `GEMINI_API_KEY`) |
+| `python time_series_forecast.py` | `AI/` | Train/export Model A artifacts (notebook migration) |
+
+### Two inference stacks (important)
+
+The repo maintains **two parallel implementations** of Model A/B inference. They are similar but use **different model directories**:
+
+| Stack | Config | Models live in | Use when |
+|-------|--------|----------------|----------|
+| **Recommendation / ranking** | `Algorithm/config.py` | `AI/Algorithm/model/`, `AI/Algorithm/model_B/` | `Calculation_Model` in `logic.py`, batch CSV export |
+| **Pathfinder orchestrator** | `ev_pathfinder/config.py` | `AI/model/`, `AI/model_B/` | Web app, `find_best_station`, LSTM sequence context |
+
+Both expect `preprocessor_pipeline.joblib` next to their config root (`Algorithm/` vs `AI/`). After retraining, copy artifacts to **both** locations or align `config.py` paths.
+
+---
+
+## User search vs SUMO simulation
+
+| Mode | Who provides data | Battery | Location |
+|------|-------------------|---------|----------|
+| **User search** (Flask UI, `logic.py`) | The driver | `battery_pct` (+ optional `wh_per_km`, `capacity_kwh`) | User lat/lon |
+| **SUMO simulation** (`Simulation/`) | TraCI / battery XML | Live SoC + rolling Wh/km from driving | Vehicle position in network |
+
+Both paths converge on the same idea: **filter by estimated range first**, then rank survivors.
+
+### Battery range filter (user search)
+
+1. `EVBatteryState.from_user_input(battery_pct, ...)` — defaults: **60 kWh**, **180 Wh/km**, **0.85** safety factor (`Algorithm/config.py`).
+2. `max_range_m ≈ 0.85 × usable_wh / wh_per_m`
+3. Drop stations farther than `max_range_m` (haversine straight-line pre-filter).
+4. Run distance / POI / wait / cost scoring on reachable stations only.
+
+**CLI (Algorithm):**
+
+```bash
+cd Algorithm
+python logic.py --battery-pct 45 --lat 37.4419 --lon -122.1430
+# optional: --wh-per-km 200 --capacity-kwh 75
 ```
-total_score = distance × w1 + POI × w2 + waiting_time × w3 + cost x w4
+
+**REST (`POST /api/predict`):**
+
+```json
+{
+  "user_lat": 37.4419,
+  "user_lon": -122.1430,
+  "battery_pct": 45,
+  "wh_per_km": 180,
+  "capacity_kwh": 60,
+  "mode": "find_best"
+}
 ```
 
-Havent been implemented:
-Check with battery condition what station is possible to go to before calculating
-Waiting time = Time predicted to wait for the EV station + time to go to the station + time took to charge
-Agentic AI to explain why this decision was chosen
-Agentic AI to search the internet what is happening? To tell the news?
+Response includes `range_estimate` (SoC, Wh/km, max km) and `stations_excluded_by_range`.
 
-| Criterion | Meaning | Higher is better? |
-|-----------|---------|-------------------|
-| **Distance** | Road-network travel distance (meters) from the user to the station | No — shorter is better |
-| **POI** | Aggregate score of nearby places (rating, reviews, proximity) | Yes |
-| **Waiting time** | Predicted queue / session wait (seconds) | No — shorter is better |
-| **Cost** | How expensive the price is | No — shorter is better |
+---
 
-Weights `w1`, `w2`, and `w3` are configurable. In `Algorithm/logic.py`, `Calculation_Model` currently uses four equal weights (`w_dist`, `w_poi`, `w_wait`, `w_eff`) with min–max normalization before summing; efficiency is an extra factor planned alongside the three above.
+## Architecture
 
-## Where things live
+```mermaid
+flowchart TB
+    subgraph inputs [Inputs]
+        U[User lat/lon + battery pct]
+        T[Optional arrival time]
+        S[SUMO TraCI optional]
+    end
+
+    subgraph external [External APIs]
+        GMaps[Google Maps: Routes + Places]
+        Weather[Open-Meteo weather]
+        Gemini[Gemini API optional]
+    end
+
+    subgraph ml [ML pipeline]
+        MA[Model A: available?]
+        MB[Model B: session duration if occupied]
+        PP[preprocessor_pipeline.joblib]
+    end
+
+    subgraph rank [Ranking Algorithm]
+        CM[Calculation_Model]
+        TS[total_score weighted sum]
+        LLM[llm.py reflection]
+    end
+
+    subgraph web [Web pathfinder]
+        ORCH[EVPathfinderOrchestrator]
+        FLASK[Flask app]
+    end
+
+    U --> ORCH
+    T --> ORCH
+    ORCH --> GMaps
+    ORCH --> Weather
+    ORCH --> PP --> MA
+    MA -->|occupied| MB
+
+    U --> CM
+    CM --> GMaps
+    CM --> MA
+    MA --> MB
+    CM --> TS
+    TS --> LLM
+    Gemini --> LLM
+
+    ORCH --> FLASK
+    CM --> TS
+```
+
+**Model A** — binary availability (0 = available, 1 = occupied). If predicted available → wait = 0.  
+**Model B** — regression on session length in **seconds** when occupied.  
+**LSTM** — optional sequence of last 12 sessions (`ev_pathfinder/sequence_builder.py`); uses `data/sequence_history_cache.pkl` when a timestamp is selected.
+
+---
+
+## Directory map
 
 ```
 AI/
-├── Algorithm/              # Scoring & Google APIs
-│   ├── logic.py            # POI score, distance, total_score()
-│   ├── get_Distance_EV.py  # Routes API (road distance)
-│   ├── get_POI.py          # Places API (nearby POI)
-│   └── app.py              # Streamlit dashboard (reads ranked CSV)
-├── model/                  # Model A — station availability (classifiers + LSTM)
-├── model_B/                # Model B — wait duration in seconds (regressors + LSTM)
-├── ev_pathfinder/          # Inference orchestrator (Model A → Model B → routing)
-├── data/                   # Station & training datasets
-├── Time Series Forecast.ipynb           # Train availability models → `model/`
-└── Time Series Forecast model B.ipynb   # Train duration models → `model_B/`
+├── README.md                 ← you are here
+├── .env                      ← GOOGLE_MAPS_API_KEY, GEMINI_API_KEY (gitignored)
+├── preprocessor_pipeline.joblib   ← used by ev_pathfinder (root copy)
+│
+├── Algorithm/                ← scoring, APIs, LLM, self-contained models
+│   ├── logic.py              ← Calculation_Model: POI, distance, wait, total_score
+│   ├── llm.py                ← Gemini draft → critique → final explanation
+│   ├── config.py             ← paths → Algorithm/model*, data/*
+│   ├── get_Distance_EV.py    ← Google Routes API (road distance, meters)
+│   ├── get_POI.py            ← Google Places API (nearby POI)
+│   ├── get_cache.py          ← POI / sequence caches
+│   ├── model_a.py, model_b.py, preprocessing.py
+│   ├── model/, model_B/      ← pickles + LSTM for Algorithm stack
+│   └── preprocessor_pipeline.joblib
+│
+├── ev_pathfinder/            ← Flask orchestrator + web UI
+│   ├── orchestrator.py       ← T_travel + T_wait, find_best_station
+│   ├── battery.py            ← user battery_pct → range filter (uses Algorithm/logic)
+│   ├── app.py                ← routes: /, /api/stations, /api/predict, /api/health
+│   ├── routing.py, weather.py, stations.py, sequence_builder.py
+│   ├── model_a.py, model_b.py, preprocessing.py  ← mirror of Algorithm
+│   └── requirements.txt
+│
+├── model/, model_B/          ← pickles + LSTM for ev_pathfinder stack
+├── data/                     ← CSVs, GeoJSON, caches, notebooks
+├── Time Series Forecast.ipynb
+├── time_series_forecast.py   ← OOP training script (Model A focus)
+└── *.ipynb                   ← exploratory / cost / other experiments
 ```
 
-## Scoring implementation (`Algorithm/logic.py`)
+---
 
-`Calculation_Model` is the main entry point for station scores.
+## Scoring (`Algorithm/logic.py`)
 
-| Method | Role |
-|--------|------|
-| `get_distance_score()` / `process_distances()` | Driving distance via Google Routes API (not straight-line) |
-| `get_POI()` / `POI_score()` / `process_all_stations()` | Nearby POI from Google Places API; per-place score from rating, review count, and distance |
-| `predict_waiting_time()` | Model A → Model B pipeline for one station’s wait time |
-| `process_waiting_times()` | Adds a `waiting_time` column to a DataFrame (calls `predict_waiting_time` per row) |
-| `total_score()` | Normalizes distance, POI, waiting time (and efficiency), applies weights, sorts stations |
+### Criteria
 
-**POI score** (per place, then summed):
+| Criterion | Column | Source | Better direction |
+|-----------|--------|--------|------------------|
+| Distance | `distance` | `get_Distance_EV` (road meters) | Lower |
+| POI | `poi_sum` | `get_POI` + `POI_score` | Higher |
+| Wait | `waiting_time` | Model A → Model B (seconds) | Lower |
+| Cost | `cost` | `data/unit_price_by_station_palo_alto.csv` or row `fee` | Lower |
+
+Default weights on `Calculation_Model`: `w_dist`, `w_poi`, `w_wait`, `w_cost` = **0.25** each.
+
+`total_score()` min–max normalizes each factor, applies weights, sorts **descending** by `total_score`.
+
+### POI score (per place, then summed)
 
 ```text
 poi_score = (rating × log10(reviews + 1)) / (1 + distance_meters / 100)
 ```
 
-**Distance** uses `get_Distance_EV.get_distance_ev(destination, user_location)` and reads `routes[0].distanceMeters`.
+### Required columns before `total_score()`
 
-**Waiting time** is predicted on `Calculation_Model` via `predict_waiting_time()` (see below). The sample `main()` still uses random minutes when station rows lack the full model feature set (e.g. `ev_stations_2025.csv`).
+```text
+poi_sum, distance, waiting_time, cost
+```
 
-### Predicting waiting time (`Calculation_Model.predict_waiting_time`)
+Pass `include_llm_context=True` to add `llm_context` JSON per row for `llm.run_reflection_pipeline()`.
 
-Use an instance of `Calculation_Model` and pass one station’s features as a **dict**, **pandas Series**, or **single-row DataFrame**.
+### Wait-time input schema
 
-**Pipeline**
+Same features as training (`data/Final_Cleaned_Dataset.csv`), without labels `Availability` / `Total_Duration_Secs`:
 
-1. **Model A** (`model/`) — Is the station available? If yes → waiting time = **0**.
-2. **Model B** (`model_B/`) — If occupied → predicted session duration in **seconds** (returned as minutes by default).
-
-**Required fields** (same schema as `data/Final_Cleaned_Dataset.csv`, without labels):
-
-`MAC Address`, `temp`, `precip`, `clouds`, `Plug Type Encoded` (or `Plug Type`: `J1772` / `NEMA 5-20R`), plus time columns — or omit time fields and pass `at_time=datetime(...)`.
-
-**Single station**
+- `MAC Address`, `temp`, `precip`, `clouds`, `Plug Type` or `Plug Type Encoded`, `fee`
+- Time fields, or omit and pass `at_time=datetime(...)`
 
 ```python
 from datetime import datetime
-import pandas as pd
 from logic import Calculation_Model
 
 user_location = (37.4419, -122.1430)  # (lat, lon)
 model = Calculation_Model(user_location)
-
-# From a cleaned training row
-row = pd.read_csv("../data/Final_Cleaned_Dataset.csv", nrows=1).iloc[0]
-row = row.drop(labels=["Availability", "Total_Duration_Secs"], errors="ignore")
-
-wait_mins = model.predict_waiting_time(row, at_time=datetime.now())
-print(f"Predicted wait: {wait_mins} minutes")
-
-# Or pass a dict
-wait_mins = model.predict_waiting_time({
-    "MAC Address": "000D:6F00:015A:9D76",
-    "temp": 16.2,
-    "precip": 0.0,
-    "clouds": 56,
-    "Plug Type": "J1772",
-}, at_time=datetime.now())
-
-# Full breakdown (availability + per-model durations)
-details = model.predict_waiting_time(row, return_details=True)
-print(details["status"], details["waiting_time_mins"])
+wait_secs = model.predict_waiting_time(row_dict, at_time=datetime.now(), return_minutes=False)
 ```
 
-**Options**
+---
 
-| Argument | Default | Description |
-|----------|---------|-------------|
-| `at_time` | `now()` | Fills `Hour`, `Minute`, `DayOfWeek`, etc. when missing |
-| `return_minutes` | `True` | `False` returns seconds instead |
-| `return_details` | `False` | `True` returns a dict with `status`, consensus, and Model B outputs |
+## Web orchestrator (`ev_pathfinder`)
 
-**Many stations (DataFrame)**
+Loads Palo Alto stations from cleaned ChargePoint data, fetches live weather, runs Model A/B (+ LSTM when `selected_time` is set), and computes driving time via Google Routes.
 
-```python
-stations = pd.read_csv("../data/Final_Cleaned_Dataset.csv", nrows=10)
-stations = stations.drop(columns=["Availability", "Total_Duration_Secs"], errors="ignore")
-stations = model.process_waiting_times(stations, at_time=datetime.now())
-# stations["waiting_time"] is in minutes — use in total_score()
-ranked = model.total_score(stations_with_poi_and_distance)
-```
+**REST API** (`POST /api/predict` JSON body):
 
-**Prerequisites**
+| Field | Required | Description |
+|-------|----------|-------------|
+| `user_lat`, `user_lon` | yes | WGS84 |
+| `mode` | no | `"single"` (default) or `"find_best"` |
+| `station_mac` | single mode | Station MAC address |
+| `selected_time` | no | ISO-8601; enables 12-step LSTM history |
 
-- Trained artifacts in `model/` (Model A) and `model_B/` (Model B)
-- `preprocessor_pipeline.joblib` at project root (for Model B features)
-- Run scripts from `Algorithm/` or ensure the project root is on `PYTHONPATH`
-
-Run the batch pipeline and write results:
+**Run:**
 
 ```bash
-cd Algorithm
-python logic.py
-```
-
-Output: `final_recommendations_summary.csv` (used by `Algorithm/app.py`).
-
-## Waiting time — two-stage ML
-
-Waiting time is one scoring criterion. Prediction is split into two models:
-
-1. **Model A** (`model/`) — Will the station be **available** when the user arrives?  
-   - Binary classification: available vs occupied  
-   - Artifacts: XGBoost, Random Forest, Decision Tree, Logistic Regression, LSTM (`lstm.pkl` / Keras)
-   - Note: If available then waiting time is == 0
-
-2. **Model B** (`model_B/`) — If occupied, **how long** until it is free?  
-   - Regression on session duration  
-   - Output: **seconds** (also exposed as minutes in `ev_pathfinder`)  
-   - Artifacts: same classifier families plus `lstm_duration.keras`
-
-Training and experimentation:
-
-- `Time Series Forecast.ipynb` → availability → `model/`
-- `Time Series Forecast model B.ipynb` → duration → `model_B/`
-
-At inference, `ev_pathfinder/` loads both folders, runs Model A, and only runs Model B when the station is predicted occupied. It also combines **travel time** (Google Routes) with **wait time** for pathfinding (`T_total = T_travel + T_wait`).
-
-```bash
+cd AI
+pip install -r ev_pathfinder/requirements.txt
+# also install: tensorflow (LSTM), scikit-learn, xgboost, joblib, google-genai (for Algorithm/llm only)
 python -m ev_pathfinder
 ```
 
+Open `http://localhost:5000`. Health check: `GET /api/health`.
+
+---
+
+## LLM explanations (`Algorithm/llm.py`)
+
+Optional layer on top of ranked results:
+
+1. **Draft V1** — short justification  
+2. **Critique** — self-check for hallucinations / tone  
+3. **Final V2** — revised text  
+
+Requires `GEMINI_API_KEY` in `.env`. Model fallback chain is defined in `MODEL_FALLBACK_CHAIN` inside `llm.py`.
+
+`logic.py` `main()` runs ranking with `include_llm_context=True`, then calls `run_reflection_pipeline()` on the top station vs alternatives.
+
+---
+
+## Machine learning artifacts
+
+### Model A (`model/` or `Algorithm/model/`)
+
+| File pattern | Role |
+|--------------|------|
+| `best_xgb_model.pkl`, `best_rf_model.pkl`, `best_dt_model.pkl`, `best_lr_model.pkl` | Availability classifiers |
+| `lstm.pkl` | Sequence availability (ev_pathfinder LSTM path) |
+
+### Model B (`model_B/` or `Algorithm/model_B/`)
+
+| File pattern | Role |
+|--------------|------|
+| Same `best_*` names | Duration regressors |
+| `lstm_duration.keras`, `lstm.keras`, `lstm.pkl` | LSTM duration variants |
+
+### Training
+
+| Asset | Produces |
+|-------|----------|
+| `Time Series Forecast.ipynb` | Experiments → save to `model/` / `model_B/` |
+| `time_series_forecast.py` | CLI/OOP pipeline for Model A training |
+| `data/Final_Cleaned_Dataset.csv` | Cleaned supervised set |
+| `data/ChargePointData2011-2020-ManullyPreCleaned3.csv` | Raw sessions |
+
+`AVAILABILITY_THRESHOLD` (default `0.5`) is in both `config.py` files — see comments for classifier vs LSTM semantics.
+
+---
+
+## Data files
+
+| Path | Purpose |
+|------|---------|
+| `data/Final_Cleaned_Dataset.csv` | Training / inference feature schema |
+| `data/ChargePointData2011-2020-ManullyPreCleaned3.csv` | Raw ChargePoint sessions |
+| `data/unit_price_by_station_palo_alto.csv` | Median $/kWh by station name → `cost` |
+| `data/chargers.geojson` | Station map layer |
+| `data/poi_cache.json` | Cached Places API results |
+| `data/sequence_history_cache.pkl` | LSTM sequence history |
+| `Algorithm/final_recommendations_summary.csv` | Output of `python logic.py` |
+
+---
+
 ## Environment
 
-Create a `.env` in the project root (see `.gitignore`):
+Create `.env` (gitignored) in the project root or `AI/`:
 
 ```env
-GOOGLE_MAPS_API_KEY=your_key_here
+GOOGLE_MAPS_API_KEY=...    # Routes + Places (Algorithm + ev_pathfinder)
+GEMINI_API_KEY=...         # Optional; Algorithm/llm.py only
 ```
 
-Required for distance and POI calls in `Algorithm/`, and for routing in `ev_pathfinder/`.
+Weather uses **Open-Meteo** (no key).
 
-Python dependencies are expected in a local virtual environment (`.venv/`). Install packages used by your notebooks and scripts (e.g. `pandas`, `numpy`, `requests`, `python-dotenv`, `scikit-learn`, `tensorflow`, `streamlit`, `folium`).
+Suggested install (from `AI/`):
 
-## Data
+```bash
+python -m venv .venv
+.venv\Scripts\activate          # Windows
+pip install -r ev_pathfinder/requirements.txt
+pip install tensorflow xgboost google-genai scikit-learn joblib pandas numpy requests python-dotenv
+```
 
-| File | Use |
-|------|-----|
-| `data/ev_stations_2025.csv` | Sample stations for `logic.py` `main()` |
-| `data/ChargePointData2011-2020-ManullyPreCleaned3.csv` | Raw sessions for model training |
-| `data/Final_Cleaned_Dataset.csv` | Cleaned training data |
-| `preprocessor_pipeline.joblib` | Feature pipeline for `ev_pathfinder` inference |
+---
 
-## Roadmap (from `logic.py` comments)
+## Common tasks (agent playbook)
+
+1. **Re-rank stations from Python** — `cd Algorithm`, build DataFrame with lat/lon per station, run `process_distances` → `process_all_stations` → `process_waiting_times` → `total_score`.
+2. **Debug one station wait** — `predict_waiting_time(..., return_details=True)` on `Calculation_Model`.
+3. **Change scoring weights** — edit `w_*` on `Calculation_Model` instance before `total_score()`.
+4. **Retrain models** — notebook or `time_series_forecast.py`, then copy pickles into both `model/` trees.
+5. **Fix “model not found”** — check which stack you run (`Algorithm` vs `ev_pathfinder`) and that `preprocessor_pipeline.joblib` sits beside that stack’s `config.py`.
+6. **Add natural-language explanation** — rank with `include_llm_context=True`, pass row `llm_context` to `llm.generate_ev_explanation` or `run_reflection_pipeline`.
+
+---
+
+## Roadmap / known gaps
 
 - [x] Road-following distance (Google Routes)
 - [x] POI scoring
-- [x] `Calculation_Model.predict_waiting_time()` (Model A + Model B)
-- [x] Use ML wait times in `main()` for all production station datasets (needs full feature columns per row)
-- [ ] Align `total_score()` with `algorithm` only 
-- [ ] Change efficiency to battery usage by SUMO simulation dataset
+- [x] Two-stage wait prediction (Model A + B)
+- [x] Cost from unit-price CSV
+- [x] LLM reflection pipeline (`llm.py`)
+- [x] Flask pathfinder with `find_best` mode
+- [x] User battery search (`battery_pct` + optional drainage/capacity) in Flask + `logic.py`
+- [x] Battery range filter + rolling Wh/km + SUMO-GUI labels (`logic.py`, `sumo_ev_display.py`)
+- [ ] Full production wait times for arbitrary station lists without manual weather/feature rows
+- [ ] Unify duplicate `model*` folders and `Algorithm` vs `ev_pathfinder` code paths
+- [ ] Align target formula docs with any future weight changes
 
-## License & context
+---
 
-University final project — EV station recommendation for Taiwan / international datasets as configured in your CSVs and APIs.
+## License and context
+
+Academic final project — EV station recommendation using ChargePoint historical data and Google APIs. Station coverage and bounds are configured for **Palo Alto** unless datasets and `PALO_ALTO_BOUNDS` are changed.

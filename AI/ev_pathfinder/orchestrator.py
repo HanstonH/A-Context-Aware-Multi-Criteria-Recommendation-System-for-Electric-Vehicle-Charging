@@ -15,6 +15,12 @@ from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from typing import Dict, List, Optional
 
+from .battery import (
+    EVBatteryState,
+    describe_ev_range,
+    filter_stations_by_battery,
+    station_within_battery_range,
+)
 from .config import AVAILABILITY_THRESHOLD
 from .model_a import AvailabilityPrediction, ModelAService
 from .model_b import DurationPrediction, ModelBService
@@ -50,6 +56,8 @@ class OrchestratorResponse:
     best: Optional[Dict] = None
     all_results: List[Dict] = field(default_factory=list)
     user_location: Optional[Dict] = None
+    range_estimate: Optional[Dict] = None
+    stations_excluded_by_range: int = 0
 
 
 class EVPathfinderOrchestrator:
@@ -89,6 +97,7 @@ class EVPathfinderOrchestrator:
         user_lat: float,
         user_lon: float,
         selected_time: Optional[datetime] = None,
+        ev_battery: Optional[EVBatteryState] = None,
     ) -> OrchestratorResponse:
         """Evaluate all stations within 5 mi and return the optimal one."""
         if not is_within_palo_alto(user_lat, user_lon):
@@ -105,6 +114,25 @@ class EVPathfinderOrchestrator:
                 message="No stations found within 5-mile radius.",
             )
 
+        range_info: Optional[Dict] = None
+        excluded = 0
+        if ev_battery is not None:
+            nearby, excluded, range_info = filter_stations_by_battery(
+                nearby, user_lat, user_lon, ev_battery,
+            )
+            if not nearby:
+                ri = range_info or describe_ev_range(ev_battery)
+                return OrchestratorResponse(
+                    success=False,
+                    message=(
+                        f"No stations within your estimated range "
+                        f"(~{ri['max_drivable_km']:.1f} km at {ri['soc_percent']:.0f}% battery)."
+                    ),
+                    range_estimate=range_info,
+                    stations_excluded_by_range=excluded,
+                    user_location={"lat": user_lat, "lon": user_lon},
+                )
+
         results: List[StationResult] = []
         for station in nearby:
             try:
@@ -115,26 +143,18 @@ class EVPathfinderOrchestrator:
         if not results:
             return OrchestratorResponse(success=False, message="All station evaluations failed.")
 
-        try:
-            self._apply_recommendation_scores(user_lat, user_lon, results, selected_time)
-        except Exception as exc:
-            print(f"[Orchestrator] Recommendation scoring failed:\n{RecommendationScoringService.format_error(exc)}")
-            return OrchestratorResponse(
-                success=False,
-                message=f"Station evaluation succeeded but scoring failed: {exc}",
-            )
-
-        results.sort(key=lambda r: r.total_score or 0.0, reverse=True)
-
+        results.sort(key=lambda r: r.total_mins)
+        msg = f"Evaluated {len(results)} station(s). Best option shown first."
+        if ev_battery is not None and excluded:
+            msg += f" ({excluded} station(s) removed — out of battery range.)"
         return OrchestratorResponse(
             success=True,
-            message=(
-                f"Evaluated {len(results)} station(s) using distance, POI, waiting time, "
-                f"and cost. Best recommendation shown first."
-            ),
+            message=msg,
             best=self._serialise(results[0]),
             all_results=[self._serialise(r) for r in results],
             user_location={"lat": user_lat, "lon": user_lon},
+            range_estimate=range_info,
+            stations_excluded_by_range=excluded,
         )
 
     def evaluate_single(
@@ -143,6 +163,7 @@ class EVPathfinderOrchestrator:
         user_lon: float,
         station_mac: str,
         selected_time: Optional[datetime] = None,
+        ev_battery: Optional[EVBatteryState] = None,
     ) -> OrchestratorResponse:
         """Evaluate a specific station."""
         if not is_within_palo_alto(user_lat, user_lon):
@@ -150,6 +171,25 @@ class EVPathfinderOrchestrator:
                 success=False,
                 message="Your location is outside the Palo Alto boundary.",
             )
+
+        station = self.registry.get(station_mac)
+        if station is None:
+            return OrchestratorResponse(success=False, message=f"Unknown station MAC: {station_mac}")
+
+        range_info: Optional[Dict] = None
+        if ev_battery is not None:
+            range_info = describe_ev_range(ev_battery)
+            if not station_within_battery_range(station, user_lat, user_lon, ev_battery):
+                return OrchestratorResponse(
+                    success=False,
+                    message=(
+                        f"{station.name} is outside your estimated range "
+                        f"(~{range_info['max_drivable_km']:.1f} km at "
+                        f"{range_info['soc_percent']:.0f}% battery)."
+                    ),
+                    range_estimate=range_info,
+                    user_location={"lat": user_lat, "lon": user_lon},
+                )
 
         try:
             result = self.evaluate_station(user_lat, user_lon, station_mac, selected_time)
@@ -171,6 +211,7 @@ class EVPathfinderOrchestrator:
             best=self._serialise(result),
             all_results=[self._serialise(result)],
             user_location={"lat": user_lat, "lon": user_lon},
+            range_estimate=range_info,
         )
 
     # ── Internal pipeline ────────────────────────────────────────────────────

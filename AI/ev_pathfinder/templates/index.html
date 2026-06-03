@@ -289,6 +289,27 @@
       <p style="font-size:11px;color:var(--text-dim);margin-bottom:8px;">Or click on the map to set your location.</p>
     </div>
 
+    <!-- Battery -->
+    <div class="card">
+      <h3>Battery</h3>
+      <label for="batteryPct">State of charge (%)</label>
+      <input id="batteryPct" type="number" min="0" max="100" step="1" value="45" placeholder="45">
+      <div class="input-row" style="margin-top:10px;">
+        <div>
+          <label for="whPerKm">Drainage Wh/km <span style="opacity:0.7">(optional)</span></label>
+          <input id="whPerKm" type="number" min="1" step="1" placeholder="180 default">
+        </div>
+        <div>
+          <label for="capacityKwh">Capacity kWh <span style="opacity:0.7">(optional)</span></label>
+          <input id="capacityKwh" type="number" min="1" step="0.1" placeholder="60 default">
+        </div>
+      </div>
+      <p style="font-size:11px;color:var(--text-dim);margin-top:8px;">
+        Stations outside your estimated range are excluded before ranking.
+        Defaults: 60&nbsp;kWh pack, 180&nbsp;Wh/km, 15% safety buffer.
+      </p>
+    </div>
+
     <!-- Station Selection -->
     <div class="card">
       <h3>Target Station</h3>
@@ -476,14 +497,29 @@ async function runPredict(mode) {
   clearResults();
   const userLat = parseFloat(document.getElementById('userLat').value);
   const userLon = parseFloat(document.getElementById('userLon').value);
+  const batteryPct = parseFloat(document.getElementById('batteryPct').value);
   const mac = document.getElementById('stationSelect').value;
 
   if (isNaN(userLat) || isNaN(userLon)) { showBanner('Enter valid coordinates.', false); return; }
+  if (isNaN(batteryPct) || batteryPct < 0 || batteryPct > 100) {
+    showBanner('Enter battery percentage between 0 and 100.', false);
+    return;
+  }
   if (mode === 'single' && !mac) { showBanner('Select a station first.', false); return; }
 
   const timeInput = document.getElementById('selectedTime').value;
-  const payload = { user_lat: userLat, user_lon: userLon, mode, station_mac: mac };
+  const whPerKmRaw = document.getElementById('whPerKm').value;
+  const capacityRaw = document.getElementById('capacityKwh').value;
+  const payload = {
+    user_lat: userLat,
+    user_lon: userLon,
+    battery_pct: batteryPct,
+    mode,
+    station_mac: mac,
+  };
   if (timeInput) payload.selected_time = timeInput;
+  if (whPerKmRaw !== '') payload.wh_per_km = parseFloat(whPerKmRaw);
+  if (capacityRaw !== '') payload.capacity_kwh = parseFloat(capacityRaw);
 
   showLoading(true);
   try {
@@ -496,7 +532,12 @@ async function runPredict(mode) {
     showLoading(false);
 
     if (!data.success) { showBanner(data.message, false); return; }
-    showBanner(data.message, true);
+    let bannerMsg = data.message;
+    if (data.range_estimate) {
+      const ri = data.range_estimate;
+      bannerMsg += ` Range ~${ri.max_drivable_km} km (${ri.soc_percent}% SoC, ${ri.wh_per_km} Wh/km).`;
+    }
+    showBanner(bannerMsg, true);
     renderBestResult(data.best);
 
     if (data.all_results && data.all_results.length > 1) {
