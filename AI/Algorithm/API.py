@@ -15,8 +15,13 @@ from __future__ import annotations
 
 import time
 from typing import Any, Dict, List, Optional
+import os
 
 import requests
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 # Auth + service endpoints (see https://github.com/tdxmotc/SampleCode).
 TDX_AUTH_URL = (
@@ -196,8 +201,8 @@ if __name__ == "__main__":
         sys.stdout.reconfigure(encoding="utf-8")
 
     # Replace with your actual TDX Client ID and Secret
-    CLIENT_ID = "13890433-9b96bfd5-3f9e-4598"
-    CLIENT_SECRET = "6ca592f7-add1-4ceb-8db4-4729d5d4f1be"
+    CLIENT_ID = os.getenv("TDX_CLIENT_ID")
+    CLIENT_SECRET = os.getenv("TDX_CLIENT_SECRET")
 
     CITY = "Taipei"
 
