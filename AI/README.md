@@ -1,178 +1,145 @@
-# AI — EV Charging Station Recommendation
+# AI — EV Charging Station Recommendation (Taiwan)
 
-University final-project code for **ranking and explaining EV charging stations** in the Palo Alto area. The system combines **Google Maps APIs** (road distance, nearby POI), **machine-learning wait-time prediction** (two-stage models), **unit-price cost data**, and optional **Gemini LLM** explanations.
+University final-project code for **ranking and explaining EV charging stations** in Taiwan. The active pipeline uses **TDX** (Transport Data eXchange) for station metadata, live availability, and pricing, plus **Google Maps** for road distance and nearby points of interest. Optional **Gemini** explanations are generated after ranking.
 
 ---
 
-## Quick reference (for humans and AI agents)
+## Quick reference
 
 | Item | Value |
 |------|--------|
 | **Domain** | EV charging station recommendation |
-| **Geography** | Palo Alto, CA (bounding box in `ev_pathfinder/config.py`) |
-| **Primary goal** | Score stations by distance, POI, predicted wait, and cost; pick the best option |
-| **User search inputs** | **Location** (lat/lon) + **battery %** (required); optional Wh/km and capacity kWh |
-| **Simulation inputs** | SUMO TraCI / battery XML (auto); see `Simulation/` |
-| **Wait-time formula (orchestrator)** | `T_total = T_travel + T_wait` |
-| **Ranking formula (`Algorithm/logic.py`)** | Weighted sum of min–max normalized POI, distance, wait, cost (default weights 0.25 each) |
-| **Python package to run web UI** | `ev_pathfinder` (`python -m ev_pathfinder`) |
-| **Batch ranking + LLM demo** | `python logic.py` from `Algorithm/` |
-| **Training** | `Time Series Forecast.ipynb` and/or `time_series_forecast.py` |
-| **Secrets** | `.env` at repo root or `AI/` (see [Environment](#environment)) |
-
-### Entry points
-
-| Command | CWD | What it does |
-|---------|-----|----------------|
-| `python -m ev_pathfinder` | `AI/` | Flask app on port 5000 — map UI + `/api/predict` |
-| `python logic.py` | `AI/Algorithm/` | Batch pipeline: distance → POI → wait → `total_score` → CSV + LLM reflection |
-| `python llm.py` | `AI/Algorithm/` | Standalone Gemini reflection demo (needs `GEMINI_API_KEY`) |
-| `python time_series_forecast.py` | `AI/` | Train/export Model A artifacts (notebook migration) |
-
-### Two inference stacks (important)
-
-The repo maintains **two parallel implementations** of Model A/B inference. They are similar but use **different model directories**:
-
-| Stack | Config | Models live in | Use when |
-|-------|--------|----------------|----------|
-| **Recommendation / ranking** | `Algorithm/config.py` | `AI/Algorithm/model/`, `AI/Algorithm/model_B/` | `Calculation_Model` in `logic.py`, batch CSV export |
-| **Pathfinder orchestrator** | `ev_pathfinder/config.py` | `AI/model/`, `AI/model_B/` | Web app, `find_best_station`, LSTM sequence context |
-
-Both expect `preprocessor_pipeline.joblib` next to their config root (`Algorithm/` vs `AI/`). After retraining, copy artifacts to **both** locations or align `config.py` paths.
+| **Geography** | Taiwan (city-scoped via TDX, e.g. `Taipei`) |
+| **Primary goal** | Given user location + battery %, find reachable stations with free connectors, score them, pick the best |
+| **Ranking** | Weighted sum of normalized distance, POI, cost, availability (0.25 each for now) |
+| **Main entry point** | `python logic.py` from `Algorithm/` |
+| **Secrets** | `AI/.env` (gitignored) |
 
 ---
 
-## User search vs SUMO simulation
-
-| Mode | Who provides data | Battery | Location |
-|------|-------------------|---------|----------|
-| **User search** (Flask UI, `logic.py`) | The driver | `battery_pct` (+ optional `wh_per_km`, `capacity_kwh`) | User lat/lon |
-| **SUMO simulation** (`Simulation/`) | TraCI / battery XML | Live SoC + rolling Wh/km from driving | Vehicle position in network |
-
-Both paths converge on the same idea: **filter by estimated range first**, then rank survivors.
-
-### Battery range filter (user search)
-
-1. `EVBatteryState.from_user_input(battery_pct, ...)` — defaults: **60 kWh**, **180 Wh/km**, **0.85** safety factor (`Algorithm/config.py`).
-2. `max_range_m ≈ 0.85 × usable_wh / wh_per_m`
-3. Drop stations farther than `max_range_m` (haversine straight-line pre-filter).
-4. Run distance / POI / wait / cost scoring on reachable stations only.
-
-**CLI (Algorithm):**
-
-```bash
-cd Algorithm
-python logic.py --battery-pct 45 --lat 37.4419 --lon -122.1430
-# optional: --wh-per-km 200 --capacity-kwh 75
-```
-
-**REST (`POST /api/predict`):**
-
-```json
-{
-  "user_lat": 37.4419,
-  "user_lon": -122.1430,
-  "battery_pct": 45,
-  "wh_per_km": 180,
-  "capacity_kwh": 60,
-  "mode": "find_best"
-}
-```
-
-Response includes `range_estimate` (SoC, Wh/km, max km) and `stations_excluded_by_range`.
-
----
-
-## Architecture
+## How it works
 
 ```mermaid
-flowchart TB
-    subgraph inputs [Inputs]
-        U[User lat/lon + battery pct]
-        T[Optional arrival time]
-        S[SUMO TraCI optional]
-    end
-
-    subgraph external [External APIs]
-        GMaps[Google Maps: Routes + Places]
-        Weather[Open-Meteo weather]
-        Gemini[Gemini API optional]
-    end
-
-    subgraph ml [ML pipeline]
-        MA[Model A: available?]
-        MB[Model B: session duration if occupied]
-        PP[preprocessor_pipeline.joblib]
-    end
-
-    subgraph rank [Ranking Algorithm]
-        CM[Calculation_Model]
-        TS[total_score weighted sum]
-        LLM[llm.py reflection]
-    end
-
-    subgraph web [Web pathfinder]
-        ORCH[EVPathfinderOrchestrator]
-        FLASK[Flask app]
-    end
-
-    U --> ORCH
-    T --> ORCH
-    ORCH --> GMaps
-    ORCH --> Weather
-    ORCH --> PP --> MA
-    MA -->|occupied| MB
-
-    U --> CM
-    CM --> GMaps
-    CM --> MA
-    MA --> MB
-    CM --> TS
-    TS --> LLM
-    Gemini --> LLM
-
-    ORCH --> FLASK
-    CM --> TS
+flowchart LR
+    U[User lat/lon + battery %] --> TDX[TDX API]
+    TDX --> Filter[Reachable + available now]
+    Filter --> Top10[10 closest candidates]
+    Top10 --> GMaps[Google Routes + Places]
+    GMaps --> Score[Weighted total_score]
+    Score --> Best[Best station]
+    Score -. optional .-> LLM[Gemini explanation]
+>>>>>>> taiwan
 ```
 
-**Model A** — binary availability (0 = available, 1 = occupied). If predicted available → wait = 0.  
-**Model B** — regression on session length in **seconds** when occupied.  
-**LSTM** — optional sequence of last 12 sessions (`ev_pathfinder/sequence_builder.py`); uses `data/sequence_history_cache.pkl` when a timestamp is selected.
+1. **Battery range** — remaining drive distance is estimated from battery %, full range (default 300 km), and a safety factor (default 0.8).
+2. **TDX fetch** — stations, live connector status, and charging rates for the chosen city.
+3. **Filter** — keep stations within range that have at least one connector available now (`ConnectorStatus == 1`).
+4. **Shortlist** — take the 10 closest by straight-line distance (limits paid Google API calls).
+5. **Enrich** — road distance (Routes API), POI score (Places API New), cost (TDX rates).
+6. **Rank** — `total_score` picks the winner. Equal weights today; tunable later.
 
 ---
 
-## Directory map
+## Project layout
 
 ```
 AI/
 ├── README.md                 ← you are here
-├── .env                      ← GOOGLE_MAPS_API_KEY, GEMINI_API_KEY (gitignored)
-├── preprocessor_pipeline.joblib   ← used by ev_pathfinder (root copy)
+├── .env                      ← API keys (gitignored; see Environment)
+├── .venv/                    ← Python virtual environment
 │
-├── Algorithm/                ← scoring, APIs, LLM, self-contained models
-│   ├── logic.py              ← Calculation_Model: POI, distance, wait, total_score
+├── Algorithm/                ← active Taiwan recommender
+│   ├── logic.py              ← Calculation_Model + recommend() pipeline
+│   ├── API.py                ← TDX OAuth client (stations, live status, rates)
+│   ├── get_Distance_EV.py    ← Google Routes API (road distance)
+│   ├── get_POI.py            ← Google Places API (New) — nearby POI
+│   ├── get_cache.py          ← POI response cache helper
 │   ├── llm.py                ← Gemini draft → critique → final explanation
-│   ├── config.py             ← paths → Algorithm/model*, data/*
-│   ├── get_Distance_EV.py    ← Google Routes API (road distance, meters)
-│   ├── get_POI.py            ← Google Places API (nearby POI)
-│   ├── get_cache.py          ← POI / sequence caches
-│   ├── model_a.py, model_b.py, preprocessing.py
-│   ├── model/, model_B/      ← pickles + LSTM for Algorithm stack
-│   └── preprocessor_pipeline.joblib
+│   └── final_recommendations_summary.csv   ← output from logic.py main()
 │
-├── ev_pathfinder/            ← Flask orchestrator + web UI
-│   ├── orchestrator.py       ← T_travel + T_wait, find_best_station
-│   ├── battery.py            ← user battery_pct → range filter (uses Algorithm/logic)
-│   ├── app.py                ← routes: /, /api/stations, /api/predict, /api/health
-│   ├── routing.py, weather.py, stations.py, sequence_builder.py
-│   ├── model_a.py, model_b.py, preprocessing.py  ← mirror of Algorithm
-│   └── requirements.txt
-│
-├── model/, model_B/          ← pickles + LSTM for ev_pathfinder stack
-├── data/                     ← CSVs, GeoJSON, caches, notebooks
-├── Time Series Forecast.ipynb
-├── time_series_forecast.py   ← OOP training script (Model A focus)
-└── *.ipynb                   ← exploratory / cost / other experiments
+└── archive/                  ← legacy US / Palo Alto code (reference only)
+    ├── README.md
+    └── legacy_us/            ← old models, notebooks, ev_pathfinder, ChargePoint data
+```
+
+**Do not use `archive/` for new development** unless you explicitly need the old Palo Alto stack. Consider adding `AI/archive/**` to `.cursorignore` to keep AI agents from loading legacy context.
+
+---
+
+## Setup
+
+### 1. Virtual environment
+
+```powershell
+cd AI
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install pandas numpy requests python-dotenv google-genai
+```
+
+(Install any other packages as needed when imports fail.)
+
+### 2. Environment variables
+
+Create `AI/.env`:
+
+```env
+GOOGLE_MAPS_API_KEY=your_google_maps_key
+GEMINI_API_KEY=your_gemini_key          # optional; only for llm.py
+TDX_CLIENT_ID=your_tdx_client_id
+TDX_CLIENT_SECRET=your_tdx_client_secret
+```
+
+| Key | Used by | Purpose |
+|-----|---------|---------|
+| `GOOGLE_MAPS_API_KEY` | `get_Distance_EV.py`, `get_POI.py` | Routes API + Places API (New) |
+| `GEMINI_API_KEY` | `llm.py` | Natural-language recommendation explanation |
+| `TDX_CLIENT_ID` / `TDX_CLIENT_SECRET` | `API.py`, `logic.py` | TDX OAuth2 client credentials |
+
+**TDX:** register at [tdx.transportdata.tw](https://tdx.transportdata.tw) and create API keys in the member center.  
+**Google:** enable **Routes API** and **Places API (New)** for the same key.
+
+---
+
+## Running
+
+### Full recommendation pipeline
+
+```powershell
+cd AI\Algorithm
+python logic.py
+```
+
+This runs the Taipei demo (user near Taipei Main Station, 35% battery), writes `final_recommendations_summary.csv`, prints ranked stations, and attempts an LLM reflection if `GEMINI_API_KEY` is set.
+
+### Programmatic use
+
+```python
+from logic import Calculation_Model
+
+user_location = (25.0478, 121.5170)   # (lat, lon)
+battery_percent = 35.0
+
+model = Calculation_Model(user_location, battery_percent, city="Taipei")
+ranked = model.recommend(include_llm_context=True)
+
+best = ranked.iloc[0]
+print(best["station_name"], best["total_score"])
+```
+
+### Test TDX only
+
+```powershell
+cd AI\Algorithm
+python API.py
+```
+
+### Test distance / POI helpers
+
+```powershell
+python get_Distance_EV.py
+python get_POI.py
+>>>>>>> taiwan
 ```
 
 ---
@@ -183,14 +150,14 @@ AI/
 
 | Criterion | Column | Source | Better direction |
 |-----------|--------|--------|------------------|
-| Distance | `distance` | `get_Distance_EV` (road meters) | Lower |
-| POI | `poi_sum` | `get_POI` + `POI_score` | Higher |
-| Wait | `waiting_time` | Model A → Model B (seconds) | Lower |
-| Cost | `cost` | `data/unit_price_by_station_palo_alto.csv` or row `fee` | Lower |
+| Distance | `distance` | Google Routes API (metres) | Lower |
+| POI | `poi_sum` | Google Places + local score | Higher |
+| Cost | `cost` | TDX `ChargingRate` (median per station) | Lower |
+| Availability | `available_points` | TDX `ConnectorLiveStatus` (idle count) | Higher |
 
-Default weights on `Calculation_Model`: `w_dist`, `w_poi`, `w_wait`, `w_cost` = **0.25** each.
+Default weights on `Calculation_Model`: `w_dist`, `w_poi`, `w_cost`, `w_avail` = **0.25** each.
 
-`total_score()` min–max normalizes each factor, applies weights, sorts **descending** by `total_score`.
+`total_score()` min–max normalizes each factor within the candidate set, applies weights, and sorts **descending** by `total_score`.
 
 ### POI score (per place, then summed)
 
@@ -198,164 +165,74 @@ Default weights on `Calculation_Model`: `w_dist`, `w_poi`, `w_wait`, `w_cost` = 
 poi_score = (rating × log10(reviews + 1)) / (1 + distance_meters / 100)
 ```
 
-### Required columns before `total_score()`
+### TDX city codes
 
-```text
-poi_sum, distance, waiting_time, cost
-```
+Pass English enum values to `city=`, e.g. `Taipei`, `NewTaipei`, `Taichung`, `Kaohsiung`. Full list is in `API.TDX_CITIES`.
 
-Pass `include_llm_context=True` to add `llm_context` JSON per row for `llm.run_reflection_pipeline()`.
+---
 
-### Wait-time input schema
+## External APIs
 
-Same features as training (`data/Final_Cleaned_Dataset.csv`), without labels `Availability` / `Total_Duration_Secs`:
+### TDX (`API.py`)
 
-- `MAC Address`, `temp`, `precip`, `clouds`, `Plug Type` or `Plug Type Encoded`, `fee`
-- Time fields, or omit and pass `at_time=datetime(...)`
+| Endpoint | Purpose |
+|----------|---------|
+| `/v1/EV/Station/City/{City}` | Station name, lat/lon, spaces |
+| `/v1/EV/ConnectorLiveStatus/City/{City}` | Live connector availability |
+| `/v1/EV/ChargingRate/City/{City}` | Charging prices |
+| `/v1/EV/ParkingRate/City/{City}` | Parking prices (wrapped; not yet in scoring) |
+
+Auth: OAuth2 client credentials → Bearer token (auto-refreshed in `TDXClient`).
+
+### Google Maps
+
+| Module | API | Notes |
+|--------|-----|-------|
+| `get_Distance_EV.py` | Routes API `computeRoutes` | `DRIVE`, traffic-aware; very short trips may omit `distanceMeters` (fallback to straight-line in `logic.py`) |
+| `get_POI.py` | Places API (New) `places:searchNearby` | Coffee shops, restaurants, malls, parks within 500 m |
+
+---
+
+## LLM explanations (`llm.py`)
+
+After ranking with `include_llm_context=True`, each row gets an `llm_context` dict. Feed the top pick plus alternatives into:
 
 ```python
-from datetime import datetime
-from logic import Calculation_Model
+from llm import run_reflection_pipeline, print_reflection_report
 
-user_location = (37.4419, -122.1430)  # (lat, lon)
-model = Calculation_Model(user_location)
-wait_secs = model.predict_waiting_time(row_dict, at_time=datetime.now(), return_minutes=False)
+reflection = run_reflection_pipeline({
+    "recommended": ranked.iloc[0]["llm_context"],
+    "alternatives": ranked.iloc[1:4]["llm_context"].tolist(),
+})
+print_reflection_report(reflection)
 ```
 
----
-
-## Web orchestrator (`ev_pathfinder`)
-
-Loads Palo Alto stations from cleaned ChargePoint data, fetches live weather, runs Model A/B (+ LSTM when `selected_time` is set), and computes driving time via Google Routes.
-
-**REST API** (`POST /api/predict` JSON body):
-
-| Field | Required | Description |
-|-------|----------|-------------|
-| `user_lat`, `user_lon` | yes | WGS84 |
-| `mode` | no | `"single"` (default) or `"find_best"` |
-| `station_mac` | single mode | Station MAC address |
-| `selected_time` | no | ISO-8601; enables 12-step LSTM history |
-
-**Run:**
-
-```bash
-cd AI
-pip install -r ev_pathfinder/requirements.txt
-# also install: tensorflow (LSTM), scikit-learn, xgboost, joblib, google-genai (for Algorithm/llm only)
-python -m ev_pathfinder
-```
-
-Open `http://localhost:5000`. Health check: `GET /api/health`.
+Requires `GEMINI_API_KEY`. Ranking works without it.
 
 ---
 
-## LLM explanations (`Algorithm/llm.py`)
+## Archive (`archive/legacy_us/`)
 
-Optional layer on top of ranked results:
+Previous iteration targeted **Palo Alto, CA** with:
 
-1. **Draft V1** — short justification  
-2. **Critique** — self-check for hallucinations / tone  
-3. **Final V2** — revised text  
+- ChargePoint session CSVs and unit-price tables  
+- Model A / Model B wait-time prediction (availability + duration)  
+- `ev_pathfinder` Flask web UI  
+- US holiday / weather feature engineering  
 
-Requires `GEMINI_API_KEY` in `.env`. Model fallback chain is defined in `MODEL_FALLBACK_CHAIN` inside `llm.py`.
-
-`logic.py` `main()` runs ranking with `include_llm_context=True`, then calls `run_reflection_pipeline()` on the top station vs alternatives.
-
----
-
-## Machine learning artifacts
-
-### Model A (`model/` or `Algorithm/model/`)
-
-| File pattern | Role |
-|--------------|------|
-| `best_xgb_model.pkl`, `best_rf_model.pkl`, `best_dt_model.pkl`, `best_lr_model.pkl` | Availability classifiers |
-| `lstm.pkl` | Sequence availability (ev_pathfinder LSTM path) |
-
-### Model B (`model_B/` or `Algorithm/model_B/`)
-
-| File pattern | Role |
-|--------------|------|
-| Same `best_*` names | Duration regressors |
-| `lstm_duration.keras`, `lstm.keras`, `lstm.pkl` | LSTM duration variants |
-
-### Training
-
-| Asset | Produces |
-|-------|----------|
-| `Time Series Forecast.ipynb` | Experiments → save to `model/` / `model_B/` |
-| `time_series_forecast.py` | CLI/OOP pipeline for Model A training |
-| `data/Final_Cleaned_Dataset.csv` | Cleaned supervised set |
-| `data/ChargePointData2011-2020-ManullyPreCleaned3.csv` | Raw sessions |
-
-`AVAILABILITY_THRESHOLD` (default `0.5`) is in both `config.py` files — see comments for classifier vs LSTM semantics.
+That code is kept for reference and comparison. The Taiwan pipeline replaces wait-time ML with **live TDX connector counts** and replaces static US price CSVs with **TDX charging rates**.
 
 ---
 
-## Data files
+## Known limitations
 
-| Path | Purpose |
-|------|---------|
-| `data/Final_Cleaned_Dataset.csv` | Training / inference feature schema |
-| `data/ChargePointData2011-2020-ManullyPreCleaned3.csv` | Raw ChargePoint sessions |
-| `data/unit_price_by_station_palo_alto.csv` | Median $/kWh by station name → `cost` |
-| `data/chargers.geojson` | Station map layer |
-| `data/poi_cache.json` | Cached Places API results |
-| `data/sequence_history_cache.pkl` | LSTM sequence history |
-| `Algorithm/final_recommendations_summary.csv` | Output of `python logic.py` |
+- **Cost comparison** — TDX rates can be per-kWh, per-minute, or free; scoring uses a simplified median per station.
+- **Battery model** — linear `% × range` estimate; not tied to a specific vehicle yet.
+- **API quota** — full `recommend()` calls TDX once per run plus ~20 Google calls (10 routes + 10 POI searches).
+- **Routes edge case** — degenerate ~0 s routes may lack `distanceMeters`; straight-line fallback is used.
 
 ---
 
-## Environment
+## License / attribution
 
-Create `.env` (gitignored) in the project root or `AI/`:
-
-```env
-GOOGLE_MAPS_API_KEY=...    # Routes + Places (Algorithm + ev_pathfinder)
-GEMINI_API_KEY=...         # Optional; Algorithm/llm.py only
-```
-
-Weather uses **Open-Meteo** (no key).
-
-Suggested install (from `AI/`):
-
-```bash
-python -m venv .venv
-.venv\Scripts\activate          # Windows
-pip install -r ev_pathfinder/requirements.txt
-pip install tensorflow xgboost google-genai scikit-learn joblib pandas numpy requests python-dotenv
-```
-
----
-
-## Common tasks (agent playbook)
-
-1. **Re-rank stations from Python** — `cd Algorithm`, build DataFrame with lat/lon per station, run `process_distances` → `process_all_stations` → `process_waiting_times` → `total_score`.
-2. **Debug one station wait** — `predict_waiting_time(..., return_details=True)` on `Calculation_Model`.
-3. **Change scoring weights** — edit `w_*` on `Calculation_Model` instance before `total_score()`.
-4. **Retrain models** — notebook or `time_series_forecast.py`, then copy pickles into both `model/` trees.
-5. **Fix “model not found”** — check which stack you run (`Algorithm` vs `ev_pathfinder`) and that `preprocessor_pipeline.joblib` sits beside that stack’s `config.py`.
-6. **Add natural-language explanation** — rank with `include_llm_context=True`, pass row `llm_context` to `llm.generate_ev_explanation` or `run_reflection_pipeline`.
-
----
-
-## Roadmap / known gaps
-
-- [x] Road-following distance (Google Routes)
-- [x] POI scoring
-- [x] Two-stage wait prediction (Model A + B)
-- [x] Cost from unit-price CSV
-- [x] LLM reflection pipeline (`llm.py`)
-- [x] Flask pathfinder with `find_best` mode
-- [x] User battery search (`battery_pct` + optional drainage/capacity) in Flask + `logic.py`
-- [x] Battery range filter + rolling Wh/km + SUMO-GUI labels (`logic.py`, `sumo_ev_display.py`)
-- [ ] Full production wait times for arbitrary station lists without manual weather/feature rows
-- [ ] Unify duplicate `model*` folders and `Algorithm` vs `ev_pathfinder` code paths
-- [ ] Align target formula docs with any future weight changes
-
----
-
-## License and context
-
-Academic final project — EV station recommendation using ChargePoint historical data and Google APIs. Station coverage and bounds are configured for **Palo Alto** unless datasets and `PALO_ALTO_BOUNDS` are changed.
+TDX data is provided by Taiwan MOTC under their platform terms. Google Maps and Gemini usage are subject to Google API terms. See course/university requirements for project licensing.

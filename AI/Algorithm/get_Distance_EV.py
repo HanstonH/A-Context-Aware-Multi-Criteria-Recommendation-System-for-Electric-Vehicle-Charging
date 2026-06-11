@@ -183,10 +183,20 @@ def get_distance_ev(destination_location, user_location):
 
     if response.status_code == 200:
         results = response.json()
-        # The distance is returned in meters
-        distance_meters = results['routes'][0]['distanceMeters']
-        print(f"Distance: {distance_meters} meters")
-        # print(results)
+        routes = results.get("routes") or []
+        if routes:
+            route = routes[0]
+            # Very short / degenerate routes (e.g. same building, ~0 s drive)
+            # can return duration + polyline but omit distanceMeters.
+            distance_meters = route.get("distanceMeters")
+            if distance_meters is not None:
+                print(f"Distance: {distance_meters} meters")
+            else:
+                print(
+                    "Distance: unavailable from Routes API "
+                    f"(duration={route.get('duration', '?')}); "
+                    "caller should use a fallback."
+                )
         return results
     else:
         print(f"Error: {response.status_code}")
