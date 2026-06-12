@@ -12,10 +12,8 @@ Flow:
    - POI score      (Google Places API New)
    - Cost           (TDX charging rates)
    - Live connector counts (TDX ConnectorLiveStatus)
-5. Rank candidates with the TOPSIS algorithm using context-aware weights:
-   - Critical  (battery < 20% OR urgent):  distance 0.55, pots 0.35, cost 0.05, poi 0.05
-   - Normal    (20% <= battery < 50%):     distance 0.35, pots 0.25, cost 0.25, poi 0.15
-   - Comfort   (battery >= 50%, not urgent): poi 0.40, cost 0.30, distance 0.15, pots 0.15
+5. Rank candidates with the TOPSIS algorithm using exponential context-aware weights
+   derived from battery level (survival growth + comfort decay curves).
 '''
 from __future__ import annotations
 
@@ -55,8 +53,24 @@ def haversine_metres(lat1: float, lon1: float, lat2, lon2):
 
 
 # =============================================================================
-# Part A: Dynamic Context-Aware Weight Engine
+# Part A: Exponential Context-Aware Weight Engine
 # =============================================================================
+
+# Survival growth parameters (distance & available pots increase as battery drops).
+_W_BASE_DIST = 0.10
+_W_SURVIVAL_AMP_DIST = 0.60
+_W_BASE_POTS = 0.15
+_W_SURVIVAL_AMP_POTS = 0.30
+_K_SURVIVAL = 7.0
+
+# Comfort decay parameters (cost & POI increase as battery rises).
+_W_MAX_COST = 0.40
+_W_MAX_POI = 0.35
+_K_COMFORT = 4.0
+
+# Hardcoded urgency override — already sums to 1.0.
+_URGENCY_WEIGHTS = [0.55, 0.05, 0.05, 0.35]  # [w_distance, w_poi, w_cost, w_pots]
+
 
 @dataclass(frozen=True)
 class WeightVector:
@@ -80,10 +94,61 @@ class WeightVector:
         return np.array([self.w_distance, self.w_poi, self.w_cost, self.w_pots])
 
 
-# Pre-defined weight presets (frozen so they are never mutated).
-_WEIGHT_CRITICAL = WeightVector(w_distance=0.55, w_poi=0.05, w_cost=0.05, w_pots=0.35)
-_WEIGHT_NORMAL   = WeightVector(w_distance=0.35, w_poi=0.15, w_cost=0.25, w_pots=0.25)
-_WEIGHT_COMFORT  = WeightVector(w_distance=0.15, w_poi=0.40, w_cost=0.30, w_pots=0.15)
+def get_exponential_weights(
+    battery_percentage: float,
+    is_available_now: bool,
+) -> List[float]:
+    """Compute TOPSIS weight vector via independent exponential growth/decay curves.
+
+    Parameters
+    ----------
+    battery_percentage:
+        Remaining battery as a fraction in [0.0, 1.0] (clamped if out of range).
+    is_available_now:
+        When True, bypass exponential math and return the hardcoded urgency vector.
+
+    Returns
+    -------
+    list[float]
+        Strictly normalised ``[w_distance, w_poi, w_cost, w_pots]`` summing to 1.0.
+
+    Formulas (B = clamped battery fraction)
+    ---------------------------------------
+    w_dist_raw  = W_base_dist  + A      * exp(-k_survival * B)
+    w_pots_raw  = W_base_pots  + B_amp  * exp(-k_survival * B)
+    w_cost_raw  = W_max_cost   * (1 - exp(-k_comfort * B))
+    w_poi_raw   = W_max_poi    * (1 - exp(-k_comfort * B))
+    """
+    if is_available_now:
+        return list(_URGENCY_WEIGHTS)
+
+    B = float(np.clip(battery_percentage, 0.0, 1.0))
+
+    survival_decay = np.exp(-_K_SURVIVAL * B)
+    comfort_growth = 1.0 - np.exp(-_K_COMFORT * B)
+
+    w_dist_raw = _W_BASE_DIST + _W_SURVIVAL_AMP_DIST * survival_decay
+    w_pots_raw = _W_BASE_POTS + _W_SURVIVAL_AMP_POTS * survival_decay
+    w_cost_raw = _W_MAX_COST * comfort_growth
+    w_poi_raw  = _W_MAX_POI  * comfort_growth
+
+    raw = np.array([w_dist_raw, w_poi_raw, w_cost_raw, w_pots_raw], dtype=float)
+    total = raw.sum()
+    if total <= 0.0:
+        raise ValueError("Exponential weight raw sum is zero; cannot normalise.")
+    return (raw / total).tolist()
+
+
+def get_dynamic_weights(battery_percentage: float, is_available_now: bool) -> WeightVector:
+    """Return context-aware weights as a ``WeightVector`` for TOPSIS.
+
+    Delegates to ``get_exponential_weights`` and wraps the result.
+    """
+    w_dist, w_poi, w_cost, w_pots = get_exponential_weights(
+        battery_percentage, is_available_now
+    )
+    return WeightVector(w_distance=w_dist, w_poi=w_poi, w_cost=w_cost, w_pots=w_pots)
+
 
 # TOPSIS column order: [distance, poi, cost, pots]
 # True  = cost criterion (lower is better) → PIS = min, NIS = max
@@ -93,30 +158,6 @@ _IS_COST_CRITERION = np.array([True, False, True, False])
 # Distance added to stations with zero available pots when the user is urgent,
 # making them sort last without hard-removing them (edge case: all stations full).
 _OCCUPIED_PENALTY = 1e9
-
-
-def get_dynamic_weights(battery_percentage: float, is_available_now: bool) -> WeightVector:
-    """Return context-aware weights based on the user's current state.
-
-    Parameters
-    ----------
-    battery_percentage:
-        Battery remaining as a fraction in [0.0, 1.0].
-    is_available_now:
-        True when the user needs to charge immediately.
-
-    Returns
-    -------
-    WeightVector
-        Critical  — battery < 0.20 OR is_available_now: heavy distance + pots.
-        Normal    — 0.20 <= battery < 0.50: balanced.
-        Comfort   — battery >= 0.50 AND not urgent: heavy POI + cost.
-    """
-    if battery_percentage < 0.20 or is_available_now:
-        return _WEIGHT_CRITICAL
-    if battery_percentage < 0.50:
-        return _WEIGHT_NORMAL
-    return _WEIGHT_COMFORT
 
 
 # =============================================================================
@@ -546,11 +587,7 @@ class Calculation_Model:
         Also includes ``total_score`` and normalised / contribution columns.
         """
         context = self.weights
-        state = (
-            "CRITICAL" if (self.battery_fraction < 0.20 or self.is_available_now)
-            else "NORMAL" if self.battery_fraction < 0.50
-            else "COMFORT"
-        )
+        state = _context_state_label(self.battery_fraction, self.is_available_now)
         print(
             f"[{self.city}] battery {self.battery_percent:.0f}% → "
             f"{self.reachable_metres / 1000:.1f} km range | "
@@ -586,11 +623,13 @@ def _format_distance(metres: float) -> str:
 
 
 def _context_state_label(battery_fraction: float, is_available_now: bool) -> str:
-    if battery_fraction < 0.20 or is_available_now:
-        return "CRITICAL"
+    if is_available_now:
+        return "URGENT"
+    if battery_fraction < 0.20:
+        return "LOW BATTERY"
     if battery_fraction < 0.50:
-        return "NORMAL"
-    return "COMFORT"
+        return "MID BATTERY"
+    return "HIGH BATTERY"
 
 
 def print_recommendation_report(
