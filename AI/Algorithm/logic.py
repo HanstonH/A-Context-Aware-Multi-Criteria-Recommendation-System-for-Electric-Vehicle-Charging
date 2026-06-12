@@ -575,24 +575,198 @@ class Calculation_Model:
         return candidates.sort_values("topsis_score", ascending=False).reset_index(drop=True)
 
 
+# =============================================================================
+# Terminal reporting
+# =============================================================================
+
+def _format_distance(metres: float) -> str:
+    if metres >= 1000:
+        return f"{metres / 1000:.2f} km"
+    return f"{int(round(metres))} m"
+
+
+def _context_state_label(battery_fraction: float, is_available_now: bool) -> str:
+    if battery_fraction < 0.20 or is_available_now:
+        return "CRITICAL"
+    if battery_fraction < 0.50:
+        return "NORMAL"
+    return "COMFORT"
+
+
+def print_recommendation_report(
+    ranked_df: pd.DataFrame,
+    *,
+    city: str,
+    battery_percent: float,
+    is_available_now: bool,
+    weights: WeightVector,
+    reachable_km: float,
+) -> None:
+    """Pretty-print the ranked recommendation table to the terminal."""
+    try:
+        from rich import box
+        from rich.console import Console
+        from rich.panel import Panel
+        from rich.table import Table
+        from rich.text import Text
+
+        console = Console()
+        state = _context_state_label(battery_percent / 100.0, is_available_now)
+
+        header = Text.assemble(
+            ("City: ", "dim"), (city, "bold cyan"), "  |  ",
+            ("Battery: ", "dim"), (f"{battery_percent:.0f}%", "bold yellow"), "  |  ",
+            ("State: ", "dim"), (state, "bold magenta"), "  |  ",
+            ("Range: ", "dim"), (f"{reachable_km:.1f} km", "bold green"),
+        )
+        weights_line = (
+            f"Weights  dist={weights.w_distance:.2f}  "
+            f"poi={weights.w_poi:.2f}  "
+            f"cost={weights.w_cost:.2f}  "
+            f"pots={weights.w_pots:.2f}"
+        )
+        console.print(Panel(header, subtitle=weights_line, border_style="blue"))
+
+        table = Table(
+            box=box.ROUNDED,
+            show_header=True,
+            header_style="bold white on dark_blue",
+            row_styles=["", "dim"],
+            expand=True,
+            title="Ranked EV Charging Stations",
+            title_style="bold",
+        )
+        table.add_column("#", justify="right", style="cyan", width=4)
+        table.add_column("Station", style="bold", min_width=24, max_width=32, overflow="ellipsis")
+        table.add_column("Distance", justify="right", style="green")
+        table.add_column("POI", justify="right", style="magenta")
+        table.add_column("Cost", justify="right", style="yellow")
+        table.add_column("Avail", justify="center", style="blue")
+        table.add_column("TOPSIS", justify="right", style="bold")
+        table.add_column("Score", justify="right", style="dim")
+
+        for rank, (_, row) in enumerate(ranked_df.iterrows(), start=1):
+            name = str(row.get("station_name") or row.get("StationID") or "—")
+            if len(name) > 32:
+                name = name[:29] + "..."
+            avail = f"{int(row.get('available_points') or 0)}/{int(row.get('total_connectors') or 0)}"
+            topsis = float(row.get("topsis_score") or 0)
+            total = float(row.get("total_score") or 0)
+
+            rank_cell = f"#{rank}"
+            if rank == 1:
+                rank_cell = "[bold gold1]★ #1[/]"
+                name = f"[bold gold1]{name}[/]"
+            elif rank == 2:
+                rank_cell = "[bold] #2[/]"
+            elif rank == 3:
+                rank_cell = "[bold] #3[/]"
+
+            table.add_row(
+                rank_cell,
+                name,
+                _format_distance(float(row.get("distance") or 0)),
+                str(int(row.get("poi_count") or 0)),
+                f"NT${float(row.get('cost') or 0):.2f}",
+                avail,
+                f"{topsis:.4f}",
+                f"{total:.3f}",
+            )
+
+        console.print(table)
+
+        if not ranked_df.empty:
+            best = ranked_df.iloc[0]
+            console.print(
+                Panel(
+                    Text.assemble(
+                        ("Recommended: ", "bold"),
+                        (str(best.get("station_name") or "—"), "bold green"),
+                        "\n",
+                        ("TOPSIS ", "dim"),
+                        (f"{float(best.get('topsis_score') or 0):.4f}", "bold cyan"),
+                        ("  ·  ", "dim"),
+                        ("Distance ", "dim"),
+                        (_format_distance(float(best.get("distance") or 0)), "bold"),
+                        ("  ·  ", "dim"),
+                        ("Available ", "dim"),
+                        (f"{int(best.get('available_points') or 0)} plug(s)", "bold"),
+                    ),
+                    title="Best Pick",
+                    border_style="green",
+                )
+            )
+        return
+
+    except ImportError:
+        pass
+
+    # Stdlib fallback when rich is not installed.
+    state = _context_state_label(battery_percent / 100.0, is_available_now)
+    width = 88
+    print()
+    print("=" * width)
+    print("  EV CHARGING STATION RECOMMENDATIONS".center(width))
+    print("=" * width)
+    print(
+        f"  City: {city}  |  Battery: {battery_percent:.0f}%  |  "
+        f"State: {state}  |  Range: {reachable_km:.1f} km"
+    )
+    print(
+        f"  Weights  dist={weights.w_distance:.2f}  poi={weights.w_poi:.2f}  "
+        f"cost={weights.w_cost:.2f}  pots={weights.w_pots:.2f}"
+    )
+    print("-" * width)
+    print(
+        f"{'#':>3}  {'Station':<28} {'Distance':>10} {'POI':>4} "
+        f"{'Cost':>8} {'Avail':>7} {'TOPSIS':>8} {'Score':>7}"
+    )
+    print("-" * width)
+
+    for rank, (_, row) in enumerate(ranked_df.iterrows(), start=1):
+        name = str(row.get("station_name") or row.get("StationID") or "—")
+        if len(name) > 28:
+            name = name[:25] + "..."
+        marker = "★" if rank == 1 else " "
+        avail = f"{int(row.get('available_points') or 0)}/{int(row.get('total_connectors') or 0)}"
+        print(
+            f"{marker}{rank:>2}  {name:<28} "
+            f"{_format_distance(float(row.get('distance') or 0)):>10} "
+            f"{int(row.get('poi_count') or 0):>4} "
+            f"{'NT$' + format(float(row.get('cost') or 0), '.2f'):>8} "
+            f"{avail:>7} "
+            f"{float(row.get('topsis_score') or 0):>8.4f} "
+            f"{float(row.get('total_score') or 0):>7.3f}"
+        )
+
+    print("=" * width)
+    if not ranked_df.empty:
+        best = ranked_df.iloc[0]
+        print(
+            f"  Best pick: {best.get('station_name')}  "
+            f"(TOPSIS {float(best.get('topsis_score') or 0):.4f})"
+        )
+    print()
+
+
 def main():
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
 
-    # --- Quick TOPSIS self-test (no API calls) --------------------------------
-    sample_stations = [
-        {"id": "A", "distance": 500,  "poi_count": 8,  "cost": 9.0,  "available_pots": 2},
-        {"id": "B", "distance": 1200, "poi_count": 15, "cost": 7.5,  "available_pots": 5},
-        {"id": "C", "distance": 300,  "poi_count": 2,  "cost": 10.0, "available_pots": 0},
-        {"id": "D", "distance": 800,  "poi_count": 10, "cost": 8.0,  "available_pots": 3},
-    ]
-    print("=== TOPSIS self-test (critical state, urgent) ===")
-    for s in topsis_rank(sample_stations, battery_percentage=0.15, is_available_now=True):
-        print(f"  {s['id']}  topsis_score={s['topsis_score']:.4f}  pots={s['available_pots']}")
+    # # --- Quick TOPSIS self-test (no API calls) --------------------------------
+    # sample_stations = [
+    #     {"id": "A", "distance": 500,  "poi_count": 8,  "cost": 9.0,  "available_pots": 2},
+    #     {"id": "B", "distance": 1200, "poi_count": 15, "cost": 7.5,  "available_pots": 5},
+    #     {"id": "C", "distance": 300,  "poi_count": 2,  "cost": 10.0, "available_pots": 0},
+    #     {"id": "D", "distance": 800,  "poi_count": 10, "cost": 8.0,  "available_pots": 3},
+    # ]
+    # print("=== TOPSIS self-test (critical state, urgent) ===")
+    # for s in topsis_rank(sample_stations, battery_percentage=0.15, is_available_now=True):
+    #     print(f"  {s['id']}  topsis_score={s['topsis_score']:.4f}  pots={s['available_pots']}")
 
-    print("\n=== TOPSIS self-test (comfort state) ===")
-    for s in topsis_rank(sample_stations, battery_percentage=0.80, is_available_now=False):
-        print(f"  {s['id']}  topsis_score={s['topsis_score']:.4f}  poi={s['poi_count']}  cost={s['cost']}")
+    # print("\n=== TOPSIS self-test (comfort state) ===")
+    # for s in topsis_rank(sample_stations, battery_percentage=0.80, is_available_now=False):
+    #     print(f"  {s['id']}  topsis_score={s['topsis_score']:.4f}  poi={s['poi_count']}  cost={s['cost']}")
 
     # --- Full live pipeline ---------------------------------------------------
     print("\n=== Full pipeline (Taipei, 35% battery) ===")
@@ -608,15 +782,14 @@ def main():
     final_ranked_df = model.recommend()
     final_ranked_df.to_csv("final_recommendations_summary.csv", index=False)
 
-    print(
-        final_ranked_df[[
-            "station_name", "distance", "poi_sum", "cost",
-            "available_points", "total_score", "topsis_score",
-        ]].to_string()
+    print_recommendation_report(
+        final_ranked_df,
+        city=model.city,
+        battery_percent=model.battery_percent,
+        is_available_now=model.is_available_now,
+        weights=model.weights,
+        reachable_km=model.reachable_metres / 1000.0,
     )
-
-    best = final_ranked_df.iloc[0]
-    print(f"\nBest station: {best['station_name']}  TOPSIS={best['topsis_score']:.4f}")
 
 
 if __name__ == "__main__":
