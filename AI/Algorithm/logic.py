@@ -519,16 +519,9 @@ class Calculation_Model:
         lo, hi = values.min(), values.max()
         if pd.isna(lo) or pd.isna(hi):
             return pd.Series(0.0, index=series.index)
-<<<<<<< HEAD
-        if max_value == min_value:
-            # Identical values (e.g. all free, all zero wait) must not score as "best".
-            return pd.Series(0.5, index=series.index)
-        return ((max_value - values) / (max_value - min_value)).fillna(0.0)
-=======
         if hi == lo:
             return pd.Series(1.0, index=series.index)
         return ((hi - values) / (hi - lo)).fillna(0.0)
->>>>>>> taiwan
 
     def total_score(self, stations_df: pd.DataFrame) -> pd.DataFrame:
         """Add normalised columns and weighted-sum ``total_score``.

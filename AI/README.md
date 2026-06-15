@@ -1,6 +1,6 @@
 # AI — EV Charging Station Recommendation (Taiwan)
 
-University final-project code for **ranking and explaining EV charging stations** in Taiwan. The active pipeline uses **TDX** (Transport Data eXchange) for station metadata, live availability, and pricing, plus **Google Maps** for road distance and nearby points of interest. Optional **Gemini** explanations are generated after ranking.
+University final-project code for **ranking and explaining EV charging stations** in Taiwan. The active pipeline uses **TDX** (Transport Data eXchange) for station metadata, live availability, and pricing, plus **Google Maps** for road distance and nearby points of interest. Optional **Gemini** explanations live in `llm.py` (not wired into `logic.py` by default).
 
 ---
 
@@ -11,7 +11,9 @@ University final-project code for **ranking and explaining EV charging stations*
 | **Domain** | EV charging station recommendation |
 | **Geography** | Taiwan (city-scoped via TDX, e.g. `Taipei`) |
 | **Primary goal** | Given user location + battery %, find reachable stations with free connectors, score them, pick the best |
-| **Ranking** | Weighted sum of normalized distance, POI, cost, availability (0.25 each for now) |
+| **Ranking** | **TOPSIS** with exponential, battery-aware weights (distance, POI count, cost, availability) |
+| **Primary sort key** | `topsis_score` (closeness coefficient ∈ [0, 1]) |
+| **Auxiliary score** | `total_score` — weighted sum using the same dynamic weights (breakdown columns) |
 | **Main entry point** | `python logic.py` from `Algorithm/` |
 | **Secrets** | `AI/.env` (gitignored) |
 
@@ -21,22 +23,33 @@ University final-project code for **ranking and explaining EV charging stations*
 
 ```mermaid
 flowchart LR
-    U[User lat/lon + battery %] --> TDX[TDX API]
+    U[User lat/lon + battery % + urgency] --> TDX[TDX API]
     TDX --> Filter[Reachable + available now]
     Filter --> Top10[10 closest candidates]
     Top10 --> GMaps[Google Routes + Places]
-    GMaps --> Score[Weighted total_score]
-    Score --> Best[Best station]
-    Score -. optional .-> LLM[Gemini explanation]
->>>>>>> taiwan
+    GMaps --> Weights[Exponential context weights]
+    Weights --> TOPSIS[TOPSIS topsis_score]
+    TOPSIS --> Best[Best station]
 ```
 
 1. **Battery range** — remaining drive distance is estimated from battery %, full range (default 300 km), and a safety factor (default 0.8).
-2. **TDX fetch** — stations, live connector status, and charging rates for the chosen city.
-3. **Filter** — keep stations within range that have at least one connector available now (`ConnectorStatus == 1`).
-4. **Shortlist** — take the 10 closest by straight-line distance (limits paid Google API calls).
-5. **Enrich** — road distance (Routes API), POI score (Places API New), cost (TDX rates).
-6. **Rank** — `total_score` picks the winner. Equal weights today; tunable later.
+2. **Context weights** — exponential curves shift priority by battery level and urgency (`is_available_now`). Low battery emphasises distance and free connectors; high battery emphasises cost and POI. Urgent users get a fixed override vector.
+3. **TDX fetch** — stations, live connector status, and charging rates for the chosen city.
+4. **Filter** — keep stations within range that have at least one connector available now (`ConnectorStatus == 1`). Falls back to all reachable stations if none are free.
+5. **Shortlist** — take the 10 closest by straight-line distance (limits paid Google API calls).
+6. **Enrich** — road distance (Routes API), POI score and count (Places API New), cost (TDX rates), live connector counts.
+7. **Rank** — **TOPSIS** (`topsis_score`) is the primary sort key. A weighted-sum `total_score` with the same dynamic weights is also computed for transparency.
+
+### User context states
+
+| State | Condition | Weight behaviour |
+|-------|-----------|------------------|
+| **URGENT** | `is_available_now=True` | Fixed weights: dist 0.55, poi 0.05, cost 0.05, pots 0.35 |
+| **LOW BATTERY** | battery &lt; 20% | Survival curves dominate (distance + availability) |
+| **MID BATTERY** | 20% ≤ battery &lt; 50% | Blend of survival and comfort |
+| **HIGH BATTERY** | battery ≥ 50% | Comfort curves dominate (cost + POI) |
+
+When urgent, stations with zero available connectors receive a large distance penalty so they rank last without being dropped from results.
 
 ---
 
@@ -49,12 +62,12 @@ AI/
 ├── .venv/                    ← Python virtual environment
 │
 ├── Algorithm/                ← active Taiwan recommender
-│   ├── logic.py              ← Calculation_Model + recommend() pipeline
+│   ├── logic.py              ← Calculation_Model + TOPSIS + recommend() pipeline
 │   ├── API.py                ← TDX OAuth client (stations, live status, rates)
 │   ├── get_Distance_EV.py    ← Google Routes API (road distance)
 │   ├── get_POI.py            ← Google Places API (New) — nearby POI
 │   ├── get_cache.py          ← POI response cache helper
-│   ├── llm.py                ← Gemini draft → critique → final explanation
+│   ├── llm.py                ← Gemini draft → critique → final explanation (standalone)
 │   └── final_recommendations_summary.csv   ← output from logic.py main()
 │
 └── archive/                  ← legacy US / Palo Alto code (reference only)
@@ -74,10 +87,10 @@ AI/
 cd AI
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-pip install pandas numpy requests python-dotenv google-genai
+pip install pandas numpy requests python-dotenv google-genai rich
 ```
 
-(Install any other packages as needed when imports fail.)
+(`rich` is optional — enables coloured terminal tables in `logic.py`; a plain-text fallback is used if missing.)
 
 ### 2. Environment variables
 
@@ -110,7 +123,7 @@ cd AI\Algorithm
 python logic.py
 ```
 
-This runs the Taipei demo (user near Taipei Main Station, 35% battery), writes `final_recommendations_summary.csv`, prints ranked stations, and attempts an LLM reflection if `GEMINI_API_KEY` is set.
+This runs the Taipei demo (user near Taipei Main Station, 35% battery), writes `final_recommendations_summary.csv`, and prints a ranked table with TOPSIS scores and dynamic weights.
 
 ### Programmatic use
 
@@ -120,11 +133,19 @@ from logic import Calculation_Model
 user_location = (25.0478, 121.5170)   # (lat, lon)
 battery_percent = 35.0
 
-model = Calculation_Model(user_location, battery_percent, city="Taipei")
-ranked = model.recommend(include_llm_context=True)
+model = Calculation_Model(
+    user_location,
+    battery_percent,
+    is_available_now=False,   # True when the user cannot wait
+    city="Taipei",
+)
+ranked = model.recommend()
 
 best = ranked.iloc[0]
-print(best["station_name"], best["total_score"])
+print(best["station_name"], best["topsis_score"], best["total_score"])
+
+# Inspect the weight vector used for this run
+print(model.weights)  # WeightVector(w_distance=..., w_poi=..., w_cost=..., w_pots=...)
 ```
 
 ### Test TDX only
@@ -139,7 +160,6 @@ python API.py
 ```powershell
 python get_Distance_EV.py
 python get_POI.py
->>>>>>> taiwan
 ```
 
 ---
@@ -148,22 +168,50 @@ python get_POI.py
 
 ### Criteria
 
-| Criterion | Column | Source | Better direction |
-|-----------|--------|--------|------------------|
-| Distance | `distance` | Google Routes API (metres) | Lower |
-| POI | `poi_sum` | Google Places + local score | Higher |
-| Cost | `cost` | TDX `ChargingRate` (median per station) | Lower |
-| Availability | `available_points` | TDX `ConnectorLiveStatus` (idle count) | Higher |
+| Criterion | TOPSIS column | Weighted-sum column | Source | Better direction |
+|-----------|---------------|---------------------|--------|------------------|
+| Distance | `distance` | `distance` | Google Routes API (metres) | Lower |
+| POI | `poi_count` | `poi_sum` | Google Places + local score | Higher |
+| Cost | `cost` | `cost` | TDX `ChargingRate` (median per station) | Lower |
+| Availability | `available_pots` | `available_points` | TDX `ConnectorLiveStatus` (idle count) | Higher |
 
-Default weights on `Calculation_Model`: `w_dist`, `w_poi`, `w_cost`, `w_avail` = **0.25** each.
+### Dynamic weights
 
-`total_score()` min–max normalizes each factor within the candidate set, applies weights, and sorts **descending** by `total_score`.
+Weights are computed by `get_exponential_weights()` from battery fraction and urgency:
 
-### POI score (per place, then summed)
+```text
+w_dist_raw  = 0.10 + 0.60 × exp(-7.0 × B)
+w_pots_raw  = 0.15 + 0.30 × exp(-7.0 × B)
+w_cost_raw  = 0.40 × (1 - exp(-4.0 × B))
+w_poi_raw   = 0.35 × (1 - exp(-4.0 × B))
+```
+
+(`B` = clamped battery fraction in [0, 1]; raw values are normalised to sum to 1.0.)
+
+When `is_available_now=True`, the fixed urgency vector `[0.55, 0.05, 0.05, 0.35]` is used instead.
+
+Access at runtime via `model.weights` or the `contrib_*` columns on the output DataFrame.
+
+### TOPSIS (`topsis_rank`)
+
+1. Build decision matrix `[distance, poi_count, cost, available_pots]`.
+2. Vector-normalise columns, apply dynamic weights.
+3. Compute ideal (PIS) and anti-ideal (NIS) solutions (cost criteria minimised; benefit criteria maximised).
+4. Closeness coefficient `topsis_score = S_neg / (S_pos + S_neg)` — higher is better.
+
+Results are sorted **descending** by `topsis_score`.
+
+### Weighted sum (`total_score`)
+
+An auxiliary breakdown using min–max normalisation and the same dynamic weights. Output includes `n_poi`, `n_dist`, `n_cost`, `n_avail` and `contrib_*` columns. Useful for explaining trade-offs; **ranking uses TOPSIS**.
+
+### POI score (per place, then summed into `poi_sum`)
 
 ```text
 poi_score = (rating × log10(reviews + 1)) / (1 + distance_meters / 100)
 ```
+
+`poi_count` is the number of nearby places returned; TOPSIS uses the count, while `poi_sum` aggregates per-place scores for the weighted-sum view.
 
 ### TDX city codes
 
@@ -195,14 +243,15 @@ Auth: OAuth2 client credentials → Bearer token (auto-refreshed in `TDXClient`)
 
 ## LLM explanations (`llm.py`)
 
-After ranking with `include_llm_context=True`, each row gets an `llm_context` dict. Feed the top pick plus alternatives into:
+Standalone module for natural-language justification via Gemini. It is **not** called from `logic.py` `main()` today; wire it up manually if needed:
 
 ```python
 from llm import run_reflection_pipeline, print_reflection_report
 
+# Build a payload from ranked DataFrame rows (station name, distance, cost, etc.)
 reflection = run_reflection_pipeline({
-    "recommended": ranked.iloc[0]["llm_context"],
-    "alternatives": ranked.iloc[1:4]["llm_context"].tolist(),
+    "recommended": {...},
+    "alternatives": [{...}, ...],
 })
 print_reflection_report(reflection)
 ```
@@ -226,10 +275,11 @@ That code is kept for reference and comparison. The Taiwan pipeline replaces wai
 
 ## Known limitations
 
-- **Cost comparison** — TDX rates can be per-kWh, per-minute, or free; scoring uses a simplified median per station.
+- **Cost comparison** — TDX rates can be per-kWh, per-minute, or free; scoring uses a simplified median per station (prefers per-kWh rates).
 - **Battery model** — linear `% × range` estimate; not tied to a specific vehicle yet.
 - **API quota** — full `recommend()` calls TDX once per run plus ~20 Google calls (10 routes + 10 POI searches).
 - **Routes edge case** — degenerate ~0 s routes may lack `distanceMeters`; straight-line fallback is used.
+- **TOPSIS vs POI** — TOPSIS ranks on `poi_count` (place count); `poi_sum` (quality-weighted sum) is only used in the auxiliary weighted-sum score.
 
 ---
 
