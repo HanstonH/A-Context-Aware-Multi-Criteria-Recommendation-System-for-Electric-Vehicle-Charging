@@ -1,6 +1,6 @@
 .venv/
 env/
-
+.extraction_state/
 
 .env
 

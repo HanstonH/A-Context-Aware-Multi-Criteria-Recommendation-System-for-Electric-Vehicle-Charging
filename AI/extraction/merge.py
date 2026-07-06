@@ -9,8 +9,9 @@ import pandas as pd
 
 from .paths import (
     live_daily_parquet,
-    live_hour_dir,
     live_processed_latest,
+    live_slot_dir,
+    snapshot_at_from_slot,
     static_processed_master,
     static_raw_path,
 )
@@ -165,24 +166,24 @@ def _live_rows_from_body(
     return rows
 
 
-def merge_live_from_hour(date_str: str, hour_str: str) -> pd.DataFrame:
-    """Aggregate one hour folder into latest.parquet and append daily rollup."""
-    hour_dir = live_hour_dir(date_str, hour_str)
-    if not hour_dir.is_dir():
-        raise FileNotFoundError(f"Live hour folder not found: {hour_dir}")
+def merge_live_from_slot(date_str: str, slot_str: str) -> pd.DataFrame:
+    """Aggregate one time-slot folder into latest.parquet and append daily rollup."""
+    slot_dir = live_slot_dir(date_str, slot_str)
+    if not slot_dir.is_dir():
+        raise FileNotFoundError(f"Live slot folder not found: {slot_dir}")
 
-    snapshot_at = f"{date_str}T{hour_str}:00:00+08:00"
+    snapshot_at = snapshot_at_from_slot(date_str, slot_str)
     all_rows: list[dict[str, Any]] = []
 
     for city in TDX_CITIES:
-        path = hour_dir / f"{city}.json"
+        path = slot_dir / f"{city}.json"
         if not path.is_file():
             continue
         body = _load_json(path)
         all_rows.extend(_live_rows_from_body(body, city=city, snapshot_at=snapshot_at))
 
     if not all_rows:
-        raise FileNotFoundError(f"No live city JSON in {hour_dir}")
+        raise FileNotFoundError(f"No live city JSON in {slot_dir}")
 
     df = pd.DataFrame(all_rows)
     latest_path = live_processed_latest()
@@ -203,14 +204,24 @@ def merge_live_from_hour(date_str: str, hour_str: str) -> pd.DataFrame:
     return df
 
 
-def iter_live_hour_dirs() -> Iterable[tuple[str, str]]:
-    """Yield (date_str, hour_str) for every archived live hour folder."""
-    root = live_hour_dir("placeholder", "00").parent.parent
+def merge_live_from_hour(date_str: str, slot_str: str) -> pd.DataFrame:
+    """Deprecated alias; use merge_live_from_slot."""
+    return merge_live_from_slot(date_str, slot_str)
+
+
+def iter_live_slot_dirs() -> Iterable[tuple[str, str]]:
+    """Yield (date_str, slot_str) for every archived live slot folder."""
+    root = live_slot_dir("placeholder", "00-00").parent.parent
     if not root.is_dir():
         return
     for date_dir in sorted(root.iterdir()):
         if not date_dir.is_dir():
             continue
-        for hour_dir in sorted(date_dir.iterdir()):
-            if hour_dir.is_dir() and hour_dir.name.startswith("hour-"):
-                yield date_dir.name, hour_dir.name.replace("hour-", "")
+        for slot_dir in sorted(date_dir.iterdir()):
+            if slot_dir.is_dir() and slot_dir.name.startswith("hour-"):
+                yield date_dir.name, slot_dir.name.replace("hour-", "")
+
+
+def iter_live_hour_dirs() -> Iterable[tuple[str, str]]:
+    """Deprecated alias; use iter_live_slot_dirs."""
+    yield from iter_live_slot_dirs()
