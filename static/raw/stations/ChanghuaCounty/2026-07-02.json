@@ -1,0 +1,1527 @@
+{
+  "UpdateTime": "2026-07-02T14:04:58+08:00",
+  "UpdateInterval": 14400,
+  "SrcUpdateTime": "2026-07-02T10:45:04+08:00",
+  "SrcUpdateInterval": -1,
+  "AuthorityCode": "CHA",
+  "Stations": [
+    {
+      "StationID": "94511080-SA0558011",
+      "StationName": {
+        "Zh_tw": "和美廣停三停車場"
+      },
+      "Description": "充電樁2支",
+      "OperatorID": "94511080",
+      "OperationType": 1,
+      "PositionLat": 24.108425,
+      "PositionLon": 120.497356,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "暫不收費",
+      "ChargingRate": "暫不收費",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "和美鎮",
+          "Road": "愛華路",
+          "No": "323號旁空地"
+        }
+      },
+      "Telephone": "04-7553574",
+      "Reference": {
+        "CarPark": {
+          "CarParkID": "A0558011"
+        }
+      }
+    },
+    {
+      "StationID": "94511096-SA0559011",
+      "StationName": {
+        "Zh_tw": "和美廣停四停車場"
+      },
+      "Description": "充電樁1支",
+      "OperatorID": "94511096",
+      "OperationType": 1,
+      "PositionLat": 24.107741,
+      "PositionLon": 120.495244,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "免費",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "和美鎮",
+          "Road": "鹿和路6段",
+          "No": "337號對面空地"
+        }
+      },
+      "Telephone": "04-7553574",
+      "Reference": {
+        "CarPark": {
+          "CarParkID": "A0559011"
+        }
+      }
+    },
+    {
+      "StationID": "94511125-SA0557011",
+      "StationName": {
+        "Zh_tw": "和美廣停一停車場"
+      },
+      "Description": "一個充電車格",
+      "OperatorID": "94511125",
+      "OperationType": 1,
+      "PositionLat": 24.110379,
+      "PositionLon": 120.498793,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "尚未收費",
+      "ChargingRate": "尚未收費",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "彰化縣",
+          "Town": "和美鎮",
+          "Road": "仁安路"
+        },
+        "Place": {
+          "POI": "和美廣停一停車場"
+        },
+        "Address": {
+          "City": "彰化縣",
+          "Town": "和美鎮",
+          "Road": "仁安路",
+          "No": "222號旁空地"
+        }
+      },
+      "Telephone": "047553574",
+      "Reference": {
+        "CarPark": {
+          "CarParkID": "A0557011"
+        }
+      }
+    },
+    {
+      "StationID": "80096903-SA0591011",
+      "StationName": {
+        "Zh_tw": "彰化辭修停車場"
+      },
+      "Description": "本停車場設置電動車充電樁，提供來場車輛使用。充電設備安全合規，支援多數電動車型，使用者可依現場指示或透過指定平台進行充電與付費，提升停車與充電之便利性。",
+      "OperatorID": "80096903",
+      "OperationType": 3,
+      "PositionLat": 24.0858733,
+      "PositionLon": 120.5380533,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "本充電車位停車費依停車場現行費率計算，充電費用另依實際用電量，相關費率以現場公告或系統顯示為準。",
+      "ChargingRate": "電動車充電費用依實際用電量計費，費率以充電設備系統或現場公告顯示為準。",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "彰化市",
+          "Road": "辭修路",
+          "No": "137號旁停車場"
+        }
+      },
+      "Telephone": "0911-768909"
+    },
+    {
+      "StationID": "94542675-SA0560011",
+      "StationName": {
+        "Zh_tw": "彰化秀傳"
+      },
+      "Description": "本停車場設置電動車充電樁，提供來場車輛使用。充電設備安全合規，支援多數電動車型，使用者可依現場指示或透過指定平台進行充電與付費，提升停車與充電之便利性。",
+      "OperatorID": "94542675",
+      "OperationType": 3,
+      "PositionLat": 24.077136,
+      "PositionLon": 120.535544,
+      "Spaces": 7,
+      "ChargingPoints": 7,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 7
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "本充電車位停車費依停車場現行費率計算，相關費率以現場公告或系統顯示為準。",
+      "ChargingRate": "電動車充電費用依時數計費，費率以充電設備系統或現場公告顯示為準。",
+      "Floors": "B1,1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "彰化市",
+          "Road": "南瑤里南平街",
+          "Lane": "61巷",
+          "No": "51號"
+        }
+      },
+      "Telephone": "0911768909"
+    },
+    {
+      "StationID": "94542669-SA0561011",
+      "StationName": {
+        "Zh_tw": "彰濱秀傳停車場"
+      },
+      "Description": "本停車場設置電動車充電樁，提供來場車輛使用。充電設備安全合規，支援多數電動車型，使用者可依現場指示或透過指定平台進行充電與付費，提升停車與充電之便利性。",
+      "OperatorID": "94542669",
+      "OperationType": 3,
+      "PositionLat": 24.09375169,
+      "PositionLon": 120.5498536,
+      "Spaces": 5,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 5
+        }
+      ],
+      "ServiceTime": "24小時對外開放",
+      "ParkingRate": "本充電車位停車費依停車場現行費率計算，充電費用另依實際用電量計費，相關費率以現場公告或系統顯示為準。",
+      "ChargingRate": "電動車充電費用依實際用電量計費，費率以充電設備系統或現場公告顯示為準。",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "鹿港鎮",
+          "Road": "鹿工路",
+          "No": "6號"
+        }
+      },
+      "Telephone": "0911-768910"
+    },
+    {
+      "StationID": "12745271-SPSS_HA417",
+      "StationName": {
+        "Zh_tw": "城市車旅惠明"
+      },
+      "Description": "無",
+      "OperatorID": "12745271",
+      "OperationType": 1,
+      "PositionLat": 23.9506522,
+      "PositionLon": 120.5662798,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "每小時30元，當日最高120元",
+      "ChargingRate": "一度10元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "員林市",
+          "Road": "惠明街",
+          "No": "169號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "12745271-SPSS_HA418",
+      "StationName": {
+        "Zh_tw": "城市車旅廣九"
+      },
+      "Description": "無",
+      "OperatorID": "12745271",
+      "OperationType": 1,
+      "PositionLat": 23.9488721,
+      "PositionLon": 120.5680598,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "一小時30元",
+      "ChargingRate": "一度10元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "員林市",
+          "Road": "員林大道一段",
+          "No": "298號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "12745271-SPSS_HA419",
+      "StationName": {
+        "Zh_tw": "城市車旅泰山"
+      },
+      "Description": "無",
+      "OperatorID": "12745271",
+      "OperationType": 1,
+      "PositionLat": 23.9652412,
+      "PositionLon": 120.5736321,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "一小時30元",
+      "ChargingRate": "一度10元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "員林市",
+          "Road": "浮圳路二段",
+          "No": "439號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "12745271-SPSS_HA420",
+      "StationName": {
+        "Zh_tw": "城市車旅八條通"
+      },
+      "Description": "無",
+      "OperatorID": "12745271",
+      "OperationType": 1,
+      "PositionLat": 23.9571088,
+      "PositionLon": 120.57588,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "每小時30元，當日最高120元",
+      "ChargingRate": "慢充: 一度10元快充: 一度15元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "員林市",
+          "Road": "員東路二段",
+          "No": "535號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "12745271-SPSS_HA427",
+      "StationName": {
+        "Zh_tw": "城市車旅鹿港遊客中心"
+      },
+      "Description": "無",
+      "OperatorID": "12745271",
+      "OperationType": 1,
+      "PositionLat": 24.97207,
+      "PositionLon": 121.25557,
+      "Spaces": 16,
+      "ChargingPoints": 16,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 15
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "一小時40元",
+      "ChargingRate": "1度7元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "彰化縣",
+          "Road": "鹿港鎮復興路",
+          "No": "506號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "12745271-SPSS_HA527",
+      "StationName": {
+        "Zh_tw": "城市車旅八卦第一停車場"
+      },
+      "Description": "無",
+      "OperatorID": "12745271",
+      "OperationType": 1,
+      "PositionLat": 24.0792052,
+      "PositionLon": 120.5503369,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "平日一小時30元假日一小時40元",
+      "ChargingRate": "一度10元",
+      "Floors": "B1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "彰化市",
+          "Road": "溫泉路",
+          "No": "31號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "12745271-SPSS_HA527A",
+      "StationName": {
+        "Zh_tw": "城市車旅八卦山第二停車場"
+      },
+      "Description": "無",
+      "OperatorID": "12745271",
+      "OperationType": 1,
+      "PositionLat": 24.0799428,
+      "PositionLon": 120.5492045,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "平日一小時30元假日一小時40元",
+      "ChargingRate": "一度10元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "彰化市",
+          "Road": "溫泉路",
+          "No": "31號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "12745271-SPSS_HA527B",
+      "StationName": {
+        "Zh_tw": "城市車旅八卦山第三停車場"
+      },
+      "Description": "無",
+      "OperatorID": "12745271",
+      "OperationType": 1,
+      "PositionLat": 24.0786514,
+      "PositionLon": 120.5514805,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "平日一小時30元假日一小時40元",
+      "ChargingRate": "一度10元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "彰化市",
+          "Road": "八卦山路與公園路一段237巷路",
+          "No": "5號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "12745271-SPSS_HA543",
+      "StationName": {
+        "Zh_tw": "城市車旅員林廣四站"
+      },
+      "Description": "無",
+      "OperatorID": "12745271",
+      "OperationType": 1,
+      "PositionLat": 23.96605,
+      "PositionLon": 120.56343,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "30",
+      "ChargingRate": "慢充每度10元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "員林市",
+          "Road": "復興五街",
+          "No": "73號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "12745271-SPSS_HA544",
+      "StationName": {
+        "Zh_tw": "城市車旅員林廣十站"
+      },
+      "Description": "無",
+      "OperatorID": "12745271",
+      "OperationType": 1,
+      "PositionLat": 23.95277,
+      "PositionLon": 120.58582,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "30",
+      "ChargingRate": "慢充每度10元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "員林市",
+          "Road": "明倫路",
+          "No": "185號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "12745271-SPSS_HA545",
+      "StationName": {
+        "Zh_tw": "城市車旅員林廣十四站"
+      },
+      "Description": "無",
+      "OperatorID": "12745271",
+      "OperationType": 1,
+      "PositionLat": 23.97466,
+      "PositionLon": 120.5739,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "30",
+      "ChargingRate": "慢充每度10元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "員林市",
+          "Road": "三多七街",
+          "No": "52號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "12745271-SPSS_HA555",
+      "StationName": {
+        "Zh_tw": "城市車旅員林中山站"
+      },
+      "Description": "無",
+      "OperatorID": "12745271",
+      "OperationType": 1,
+      "PositionLat": 23.96116,
+      "PositionLon": 120.57043,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "40",
+      "ChargingRate": "慢充每度10元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "員林市",
+          "Road": "中山路二段",
+          "No": "73號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "12745271-SPSS_HA556",
+      "StationName": {
+        "Zh_tw": "城市車旅員林華成站"
+      },
+      "Description": "無",
+      "OperatorID": "12745271",
+      "OperationType": 1,
+      "PositionLat": 23.963381,
+      "PositionLon": 120.5736,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "40",
+      "ChargingRate": "慢充每度10元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "員林市",
+          "Road": "員林大道三段",
+          "No": "158號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "12745271-SPSS_HA565",
+      "StationName": {
+        "Zh_tw": "城市車旅員林停2C站"
+      },
+      "Description": "無",
+      "OperatorID": "12745271",
+      "OperationType": 1,
+      "PositionLat": 23.9641,
+      "PositionLon": 120.58413,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "30",
+      "ChargingRate": "慢充每度10元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "員林市",
+          "Road": "條和街",
+          "No": "350號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "12745271-SPSS_HA567",
+      "StationName": {
+        "Zh_tw": "城市車旅員林廣十二站"
+      },
+      "Description": "無",
+      "OperatorID": "12745271",
+      "OperationType": 1,
+      "PositionLat": 23.95843,
+      "PositionLon": 120.586,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "30",
+      "ChargingRate": "慢充每度10元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "員林市",
+          "Road": "員林大道三段",
+          "No": "158號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "12745271-SPSS_HA568",
+      "StationName": {
+        "Zh_tw": "城市車旅員林公二十站"
+      },
+      "Description": "無",
+      "OperatorID": "12745271",
+      "OperationType": 1,
+      "PositionLat": 23.965,
+      "PositionLon": 120.58418,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "30",
+      "ChargingRate": "慢充每度10元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "員林市",
+          "Road": "浮圳路二段",
+          "No": "107巷44號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "12745271-SPSS_HA571",
+      "StationName": {
+        "Zh_tw": "城市車旅三和公園站"
+      },
+      "Description": "無",
+      "OperatorID": "12745271",
+      "OperationType": 1,
+      "PositionLat": 23.9620361,
+      "PositionLon": 120.5784641,
+      "Spaces": 13,
+      "ChargingPoints": 13,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 13
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "30",
+      "ChargingRate": "慢充每度10元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "員林市",
+          "Road": "和平東街",
+          "No": "61號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "42861108-S42b07e09-828d-4118-9efc-7780f55d1ec2",
+      "StationName": {
+        "Zh_tw": "Changhua, Changhua - Water Recycling Center",
+        "En": "Changhua, Changhua - Water Recycling Center"
+      },
+      "Description": "充電格位數6",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.06329,
+      "PositionLon": 120.52127,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 3
+        },
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "ChanghuaZhonghua West RoadNo. 701"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S8b97e428-395c-4180-86d7-3b36739b4bc2",
+      "StationName": {
+        "Zh_tw": "Changhua, Puxin - Yuanlu Rd",
+        "En": "Changhua, Puxin - Yuanlu Rd"
+      },
+      "Description": "充電格位數6",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.95141,
+      "PositionLon": 120.51409,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 4
+        },
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "ChanghuaSection 5, Yuanlu RoadNo.338"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S14ae2b58-eff3-4d0c-bfc8-b03a0e84d1bf",
+      "StationName": {
+        "Zh_tw": "鬥陣自助洗車 伸港店",
+        "En": "鬥陣自助洗車 伸港店"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.15162,
+      "PositionLon": 120.48872,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Changhua中興路一段536號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S92445175-1cff-4127-a74c-e5db25773cc3",
+      "StationName": {
+        "Zh_tw": "波心汽車旅館",
+        "En": "波心汽車旅館"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.95216,
+      "PositionLon": 120.52432,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Changhua興霖路166號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S043fea04-d4e9-4b84-b8dc-dca4ce2ecacc",
+      "StationName": {
+        "Zh_tw": "Dou Zhen Self Car Wash Plaza Pí Tóu",
+        "En": "Dou Zhen Self Car Wash Plaza Pí Tóu"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.89365,
+      "PositionLon": 120.4493,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Changhua斗苑西路633號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S8cd4403a-6a30-469a-b788-a236d8a67d83",
+      "StationName": {
+        "Zh_tw": "鹿港澄悦商旅",
+        "En": "鹿港澄悦商旅"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.06195,
+      "PositionLon": 120.43771,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Changhua中正路510巷1號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sb1b48c18-e9ae-487f-a6bc-a2f42cde1790",
+      "StationName": {
+        "Zh_tw": "Dou Zhen Self Car Wash Plaza Zhang Lu",
+        "En": "Dou Zhen Self Car Wash Plaza Zhang Lu"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.04946,
+      "PositionLon": 120.48478,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Changhua彰鹿路638號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S599fc8e5-a53a-4edd-b77d-9fb18b8485bb",
+      "StationName": {
+        "Zh_tw": "Changhua, Changhua - Gongyuan Rd",
+        "En": "Changhua, Changhua - Gongyuan Rd"
+      },
+      "Description": "充電格位數6",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.07412,
+      "PositionLon": 120.55678,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "ChanghuaSec. 2, Gongyuan RdNo.15"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S2670ca10-85d6-4510-85ae-7aa5c7c7503b",
+      "StationName": {
+        "Zh_tw": "幸福客棧",
+        "En": "幸福客棧"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.08546,
+      "PositionLon": 120.50954,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Changhua南安路176號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S757509ad-2f47-4f95-9fc0-b2286f978d02",
+      "StationName": {
+        "Zh_tw": "Changhua, Yuanlin - Minquan St",
+        "En": "Changhua, Yuanlin - Minquan St"
+      },
+      "Description": "充電格位數6",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.95641,
+      "PositionLon": 120.56969,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 4
+        },
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "ChanghuaMinquan St No.55"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S06e9396d-8f89-449e-baa4-2bf5cf2bd4ca",
+      "StationName": {
+        "Zh_tw": "德國馬牌輪胎BestDrive - 瑞宬輪胎",
+        "En": "德國馬牌輪胎BestDrive - 瑞宬輪胎"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.95375,
+      "PositionLon": 120.56771,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Changhua惠安街1號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sd8000882-3c3a-4165-bb44-57a38bfcca60",
+      "StationName": {
+        "Zh_tw": "群英夢汽車旅館",
+        "En": "群英夢汽車旅館"
+      },
+      "Description": "充電格位數15",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 25.01703,
+      "PositionLon": 121.29453,
+      "Spaces": 15,
+      "ChargingPoints": 15,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 13
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Taoyuan南平路476號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S75da3f32-b7e4-4809-9bfd-81c101245ad1",
+      "StationName": {
+        "Zh_tw": "頌謙文旅",
+        "En": "頌謙文旅"
+      },
+      "Description": "充電格位數1",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.06385,
+      "PositionLon": 120.43711,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Changhua自由路329巷69號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "85051710-S349",
+      "StationName": {
+        "Zh_tw": "鹿港正興停車場"
+      },
+      "Description": "全天候開放，停車依場域規定繳費",
+      "OperatorID": "85051710",
+      "OperationType": 3,
+      "PositionLat": 24.0593,
+      "PositionLon": 120.43619,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "計時/平日/20 元每小時, 計時/假日/40元每小時",
+      "ChargingRate": "計時/每1分鐘0.99元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "彰化縣",
+          "Town": "鹿港鎮",
+          "Road": "正興路"
+        },
+        "Address": {
+          "City": "彰化縣",
+          "Town": "鹿港鎮",
+          "Road": "正興路",
+          "No": "66"
+        }
+      },
+      "Telephone": "02-27935818"
+    },
+    {
+      "StationID": "50965513-SDP5113004a",
+      "StationName": {
+        "Zh_tw": "國立彰化師範大學地下停車場",
+        "En": "National Changhua University of Education"
+      },
+      "Description": "慢充，充電格位數2，使用電子票證方式充電和支付",
+      "OperatorID": "50965513",
+      "OperationType": 3,
+      "PositionLat": 24.08149,
+      "PositionLon": 120.55833,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24小時/每日/00:00-24:00",
+      "ParkingRate": "計時/每日/每小時30元",
+      "ChargingRate": "計分/1元每分/固定費率/00:00-24:00;計分/1元每分/固定費率/00:00-24:00;",
+      "Floors": "B1",
+      "PhotoURLs": [
+        "https://chargeserver.chacha-charging.com.tw"
+      ],
+      "Location": {
+        "Address": {
+          "City": "彰化",
+          "Town": "彰化市",
+          "Road": "進德路",
+          "No": "1號"
+        }
+      },
+      "Telephone": "04-7232105分機5875"
+    },
+    {
+      "StationID": "50965513-SDP5113004b",
+      "StationName": {
+        "Zh_tw": "國立彰化師範大學寶山校區停車場",
+        "En": "Department of English, NCUE"
+      },
+      "Description": "慢充，充電格位數1，使用電子票證方式充電和支付",
+      "OperatorID": "50965513",
+      "OperationType": 3,
+      "PositionLat": 24.06541,
+      "PositionLon": 120.55765,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時/每日/00:00-24:00",
+      "ParkingRate": "計時/每日/每小時20元",
+      "ChargingRate": "計分/1元每分/固定費率/00:00-24:00;",
+      "Floors": "1",
+      "PhotoURLs": [
+        "https://chargeserver.chacha-charging.com.tw"
+      ],
+      "Location": {
+        "Address": {
+          "City": "彰化",
+          "Town": "彰化市",
+          "Road": "師大路",
+          "No": "2號"
+        }
+      },
+      "Telephone": "04-7232105分機7912"
+    },
+    {
+      "StationID": "50965513-SPJL3701001",
+      "StationName": {
+        "Zh_tw": "彰化延平公園停車場",
+        "En": " Changhua Yanping Park Parking"
+      },
+      "Description": "快充和慢充，充電格位數16，使用電子票證或APP方式充電和支付",
+      "OperatorID": "50965513",
+      "OperationType": 3,
+      "PositionLat": 24.06631,
+      "PositionLon": 120.5412,
+      "Spaces": 15,
+      "ChargingPoints": 15,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 15
+        }
+      ],
+      "ServiceTime": "24小時/每日/00:00-24:00",
+      "ParkingRate": "計時/每日/每小時30元/每日最高200元",
+      "ChargingRate": "計度/00:00-24:00/每度7元(慢充)，每度10元(快充)",
+      "Floors": "B1",
+      "PhotoURLs": [
+        "https://chargeserver.chacha-charging.com.tw/upload/img/20260413/69dc53ec7963.jpg"
+      ],
+      "Location": {
+        "Address": {
+          "City": "彰化",
+          "Town": "彰化市",
+          "Road": "南平街",
+          "No": "53號"
+        }
+      },
+      "Telephone": "(02)8912-1051"
+    },
+    {
+      "StationID": "12681939-SHA570",
+      "StationName": {
+        "Zh_tw": "城市車旅員林國小站"
+      },
+      "Description": "J1772AC充電樁*12",
+      "OperatorID": "12681939",
+      "OperationType": 1,
+      "PositionLat": 23.9609227,
+      "PositionLon": 120.5773399,
+      "Spaces": 12,
+      "ChargingPoints": 12,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 12
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "平日：一小時30元、假日：一小時30元、無當日最高",
+      "ChargingRate": "一度10元/充飽未離場每半小時10元/占用每半小時加收10元",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "彰化縣",
+          "Town": "員林市",
+          "Road": "正興街",
+          "No": "91號"
+        }
+      },
+      "Telephone": "800208333"
+    },
+    {
+      "StationID": "58807405-S1",
+      "StationName": {
+        "Zh_tw": "彰化市成功停車場"
+      },
+      "Description": "充電車位3格，充電樁3座",
+      "OperatorID": "58807405",
+      "OperationType": 2,
+      "PositionLat": 24.06893,
+      "PositionLon": 120.54144,
+      "Spaces": 3,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "進場停車費率每小時20元，停放充電車格每小時加計20元，充電不計費",
+      "ChargingRate": "進場停車費率每小時20元，停放充電車格每小時加計20元，充電不計費",
+      "Floors": "平面",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "彰化縣衛生局外成功停車場"
+        },
+        "Address": {
+          "City": "彰化縣",
+          "Town": "彰化市",
+          "Road": "中山路二段",
+          "No": "160"
+        }
+      },
+      "Telephone": "047119126"
+    }
+  ]
+}

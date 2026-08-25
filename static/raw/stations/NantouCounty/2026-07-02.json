@@ -1,0 +1,1125 @@
+{
+  "UpdateTime": "2026-07-02T10:04:59+08:00",
+  "UpdateInterval": 14400,
+  "SrcUpdateTime": "2026-07-01T20:02:22+08:00",
+  "SrcUpdateInterval": 86400,
+  "AuthorityCode": "NAN",
+  "Stations": [
+    {
+      "StationID": "97179430-S126",
+      "StationName": {
+        "Zh_tw": "草屯療養院"
+      },
+      "Description": "本站目前共有1樁7kW充電樁",
+      "OperatorID": "97179430",
+      "OperationType": 2,
+      "PositionLat": 23.989661,
+      "PositionLon": 120.70417,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度 /固定 /8元 AC 7kW每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "南投縣",
+          "Town": "草屯鎮",
+          "Road": "玉屏路",
+          "No": "161號"
+        }
+      },
+      "Telephone": "0809-095-665"
+    },
+    {
+      "StationID": "97179430-S124",
+      "StationName": {
+        "Zh_tw": "集集國小地下停車場"
+      },
+      "Description": "本站目前共有7樁 7kW 充電樁",
+      "OperatorID": "97179430",
+      "OperationType": 2,
+      "PositionLat": 23.826693555740313,
+      "PositionLon": 120.786097555621,
+      "Spaces": 7,
+      "ChargingPoints": 7,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 7
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時 /平日/20 元每小時，計時 /假日/40 元每小時，每日最高收費上限100元，進場未滿15分鐘內離場免予收費。",
+      "ChargingRate": "計度 /固定 /0元 AC每度",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "南投縣",
+          "Town": "集集鎮",
+          "Road": "民權路",
+          "No": "321號"
+        }
+      },
+      "Telephone": "04-92760555"
+    },
+    {
+      "StationID": "97179430-S189",
+      "StationName": {
+        "Zh_tw": "中興大學南投校區_循環經濟學院前停車場",
+        "En": "NCHU_Nantou_CircularEconomy"
+      },
+      "Description": "本站目前共有1樁180kW 充電樁",
+      "OperatorID": "97179430",
+      "OperationType": 3,
+      "PositionLat": 23.938172,
+      "PositionLon": 120.699935,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時 /每日/20元每半小時",
+      "ChargingRate": "計度 /固定 /12元 DC 180kW每度",
+      "Floors": "1F",
+      "UsageRestriction": "",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "南投縣",
+          "Town": "南投市",
+          "Road": "光明路",
+          "Lane": "",
+          "Alley": "",
+          "No": "15號"
+        }
+      },
+      "Telephone": "0809-095-665"
+    },
+    {
+      "StationID": "97179430-S188",
+      "StationName": {
+        "Zh_tw": "中興大學南投校區_內轆溪停車場",
+        "En": "NCHU_Nantou_Neilu"
+      },
+      "Description": "本站目前共有1樁180kW 充電樁",
+      "OperatorID": "97179430",
+      "OperationType": 3,
+      "PositionLat": 23.943563,
+      "PositionLon": 120.700877,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時 /每日/20元每半小時",
+      "ChargingRate": "計度 /固定 /12元 DC 180kW每度",
+      "Floors": "1F",
+      "UsageRestriction": "",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "南投縣南投市光明里"
+        }
+      },
+      "Telephone": "0809-095-665"
+    },
+    {
+      "StationID": "85051710-S621",
+      "StationName": {
+        "Zh_tw": "草屯鎮大成街停車場"
+      },
+      "Description": "全天候開放，停車費依場域規定繳費，緩衝時間15分鐘，此站點不適用車廠優惠費率，停車場內有廁所",
+      "OperatorID": "85051710",
+      "OperationType": 3,
+      "PositionLat": 23.977425,
+      "PositionLon": 120.687936,
+      "Spaces": 12,
+      "ChargingPoints": 11,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 10
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "計時/平日/20 元每小時",
+      "ChargingRate": "&nbsp;收費方式：DC快充採用尖.離峰兩階段收費，尖峰12.14元/每度、離峰6.2元/每度<br>「啟動前請確認車輛已到位並完成插槍。若因誤觸啟動導致非本人車輛充電，相關扣費恕不退還。」&nbsp;",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "草屯鎮",
+          "Road": "大成街"
+        },
+        "Address": {
+          "City": "南投縣",
+          "Town": "草屯鎮",
+          "Road": "大成街",
+          "No": "78號"
+        }
+      },
+      "Telephone": "049-2338161#113"
+    },
+    {
+      "StationID": "85051710-S622",
+      "StationName": {
+        "Zh_tw": "草屯鎮中正路停車場"
+      },
+      "Description": "全天候開放，停車費依場域規定繳費此站點不適用車廠優惠費率&nbsp;",
+      "OperatorID": "85051710",
+      "OperationType": 3,
+      "PositionLat": 23.978819,
+      "PositionLon": 120.686163,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "計時/平日/20 元每小時",
+      "ChargingRate": "計度/每度9.00元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "草屯鎮",
+          "Road": "中正路"
+        },
+        "Address": {
+          "City": "南投縣",
+          "Town": "草屯鎮",
+          "Road": "中正路",
+          "No": "603號"
+        }
+      },
+      "Telephone": "049-2338161#127"
+    },
+    {
+      "StationID": "85051710-S623",
+      "StationName": {
+        "Zh_tw": "草屯鎮公有零售市場附設停車場"
+      },
+      "Description": "全天候開放，停車費依場域規定繳費&nbsp;此站點不適用車廠優惠費率&nbsp;",
+      "OperatorID": "85051710",
+      "OperationType": 3,
+      "PositionLat": 23.978347,
+      "PositionLon": 120.684975,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "計時/平日/20 元每小時",
+      "ChargingRate": "計度/每度9.00元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "草屯鎮",
+          "Road": "和興街"
+        },
+        "Address": {
+          "City": "南投縣",
+          "Town": "草屯鎮",
+          "Road": "和興街",
+          "No": "69-55號"
+        }
+      },
+      "Telephone": "049-2338847"
+    },
+    {
+      "StationID": "85051710-S624",
+      "StationName": {
+        "Zh_tw": "草屯鎮草鞋墩停二立體停車場"
+      },
+      "Description": "全天候開放，停車費依場域規定繳費，此站點不適用車廠優惠費率，停車場內有廁所",
+      "OperatorID": "85051710",
+      "OperationType": 3,
+      "PositionLat": 23.975634,
+      "PositionLon": 120.68532,
+      "Spaces": 10,
+      "ChargingPoints": 9,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 8
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "計時/平日/20 元每小時",
+      "ChargingRate": "&nbsp;收費方式：DC快充採用尖.離峰兩階段收費，尖峰12.14元/每度、離峰6.2元/每度<br>「啟動前請確認車輛已到位並完成插槍。若因誤觸啟動導致非本人車輛充電，相關扣費恕不退還。」&nbsp;",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "草屯鎮",
+          "Road": "虎山路"
+        },
+        "Address": {
+          "City": "南投縣",
+          "Town": "草屯鎮",
+          "Road": "虎山路",
+          "No": "819號B1F"
+        }
+      },
+      "Telephone": "049-2338161#122"
+    },
+    {
+      "StationID": "89132567-S0050",
+      "StationName": {
+        "Zh_tw": "Acon-eco南投明昌站",
+        "En": "AconElectricEnergyStation"
+      },
+      "Description": "充電格數4格",
+      "OperatorID": "89132567",
+      "OperationType": 3,
+      "PositionLat": 23.85139,
+      "PositionLon": 120.69636,
+      "Spaces": 4,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/12 元每度",
+      "Floors": "1",
+      "UsageRestriction": "依現場告示",
+      "PhotoURLs": [
+        "https://backend.acon-eco.com/api/File?id=c1069782-6249-4868-ada2-d79b5983449f"
+      ],
+      "Location": {
+        "Address": {
+          "City": "南投縣",
+          "Town": "名間鄉",
+          "Road": "彰南路",
+          "No": "252號"
+        }
+      },
+      "Telephone": "0800-868885"
+    },
+    {
+      "StationID": "90807408-SCSD02106",
+      "StationName": {
+        "Zh_tw": "7-11_南投竹秀門市"
+      },
+      "Description": "停車位:1 充電樁數量:2 停車費:免費 費率:浮動費率,計度/尖峰/16:00-22:00/13.5元每度,計度/一般/00:00-15:59*22:01-23:59/6.6元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 23.800113,
+      "PositionLon": 120.713371,
+      "Spaces": 1,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "浮動費率,計度/尖峰/16:00-22:00/13.5元每度,計度/一般/00:00-15:59*22:01-23:59/6.6元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "南投縣",
+          "Town": "竹山鎮",
+          "Road": "集山路二段",
+          "No": "58號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02529",
+      "StationName": {
+        "Zh_tw": "日月潭力麗溫德姆溫泉酒店"
+      },
+      "Description": "停車位:8 充電樁數量:8 停車費:40元/半小時 費率:計度/固定/8.5元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 23.847174,
+      "PositionLon": 120.932005,
+      "Spaces": 8,
+      "ChargingPoints": 8,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 4
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "40元/半小時",
+      "ChargingRate": "計度/固定/8.5元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "南投縣",
+          "Town": "魚池鄉",
+          "Road": "瑪蓋旦街",
+          "No": "28號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02786",
+      "StationName": {
+        "Zh_tw": "凱映_南投三塊厝停車場"
+      },
+      "Description": "停車位:1 充電樁數量:2 停車費:20元/時 費率:計度/固定/10元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 23.909383,
+      "PositionLon": 120.688802,
+      "Spaces": 1,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "20元/時",
+      "ChargingRate": "計度/固定/10元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "南投縣",
+          "Town": "南投市",
+          "Road": "民族路",
+          "No": "200號旁停車場"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "12745271-SPSSHA025",
+      "StationName": {
+        "Zh_tw": "城市車旅埔基站"
+      },
+      "Description": "快慢充收費機制：7kW 10元/度。未充電佔用 10元/0.5H 充電插頭J1772。充電格位數3。",
+      "OperatorID": "12745271",
+      "OperationType": 3,
+      "PositionLat": 23.9706153,
+      "PositionLon": 120.9462861,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/20元每小時",
+      "ChargingRate": "7kW 8元/度；120kW 10元/度",
+      "Floors": "平面",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "埔里鎮",
+          "Road": "鐵山路"
+        }
+      },
+      "Telephone": "0800208333"
+    },
+    {
+      "StationID": "53758995-S68944b3b961d9a9a483ab504",
+      "StationName": {
+        "Zh_tw": "南投市停一停車場"
+      },
+      "Description": "充電費率\r\n慢充1台，每度10元，槍頭J-1772，充電格位數1。\r\n快充1台，每度13元，CCS1+CCS2，充電格位數2。",
+      "OperatorID": "53758995",
+      "OperationType": 2,
+      "PositionLat": 23.911904,
+      "PositionLon": 120.688246,
+      "Spaces": 3,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時每小時20元",
+      "ChargingRate": "慢充-每度10元 快充-每度13元",
+      "Floors": "平面",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "南投市",
+          "Road": "南陽路"
+        }
+      },
+      "Telephone": "04-37025499"
+    },
+    {
+      "StationID": "53758995-S68944bc7961d9a9a483ab506",
+      "StationName": {
+        "Zh_tw": "南投市停二三四停車場"
+      },
+      "Description": "充電費率\r\n慢充2台，每度10元，槍頭J-1772，充電格位數2。\r\n快充1台，每度13元，CCS1+CCS2，充電格位數2。",
+      "OperatorID": "53758995",
+      "OperationType": 2,
+      "PositionLat": 23.905994,
+      "PositionLon": 120.688586,
+      "Spaces": 4,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時每小時20元",
+      "ChargingRate": "慢充-每度10元 快充-每度13元",
+      "Floors": "平面",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "南投市",
+          "Road": "大同街"
+        }
+      },
+      "Telephone": "04-37025499"
+    },
+    {
+      "StationID": "53758995-S67e356af8e197cd52378e926",
+      "StationName": {
+        "Zh_tw": "南投市停五停車場"
+      },
+      "Description": "充電費率\r\n慢充2台，每度10元，槍頭J-1772，充電格位數2。",
+      "OperatorID": "53758995",
+      "OperationType": 2,
+      "PositionLat": 23.908745,
+      "PositionLon": 120.690153,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時每小時20元",
+      "ChargingRate": "每度10元",
+      "Floors": "平面",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "南投市",
+          "Road": "平和街"
+        }
+      },
+      "Telephone": "04-37025499"
+    },
+    {
+      "StationID": "53758995-S67e357098e197cd52378e928",
+      "StationName": {
+        "Zh_tw": "南投市停六停車場"
+      },
+      "Description": "充電費率\r\n慢充1台，每度10元，槍頭J-1772，充電格位數1。",
+      "OperatorID": "53758995",
+      "OperationType": 2,
+      "PositionLat": 23.904468,
+      "PositionLon": 120.68388,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時每小時20元",
+      "ChargingRate": "每度10元",
+      "Floors": "平面",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "南投市",
+          "Road": "集賢路"
+        }
+      },
+      "Telephone": "04-37025499"
+    },
+    {
+      "StationID": "53758995-S68944c24961d9a9a483ab508",
+      "StationName": {
+        "Zh_tw": "南投市停七停車場"
+      },
+      "Description": "充電費率\r\n慢充2台，每度10元，槍頭J-1772，充電格位數2。\r\n快充1台，每度13元，CCS1+CCS2，充電格位數2。",
+      "OperatorID": "53758995",
+      "OperationType": 2,
+      "PositionLat": 23.907811,
+      "PositionLon": 120.681727,
+      "Spaces": 4,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時每小時20元",
+      "ChargingRate": "慢充-每度10元 快充-每度13元",
+      "Floors": "平面",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "南投市",
+          "Road": "民權街"
+        }
+      },
+      "Telephone": "04-37025499"
+    },
+    {
+      "StationID": "53758995-S67e357358e197cd52378e92a",
+      "StationName": {
+        "Zh_tw": "南投市停八停車場"
+      },
+      "Description": "充電費率\r\n慢充1台，每度10元，槍頭J-1772，充電格位數1。",
+      "OperatorID": "53758995",
+      "OperationType": 2,
+      "PositionLat": 23.908697,
+      "PositionLon": 120.681335,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時每小時20元",
+      "ChargingRate": "每度10元",
+      "Floors": "平面",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "南投市",
+          "Road": "建國路"
+        }
+      },
+      "Telephone": "04-37025499"
+    },
+    {
+      "StationID": "53758995-S67e357838e197cd52378e92c",
+      "StationName": {
+        "Zh_tw": "南投市停九停車場"
+      },
+      "Description": "充電費率\r\n慢充1台，每度10元，槍頭J-1772，充電格位數2。",
+      "OperatorID": "53758995",
+      "OperationType": 2,
+      "PositionLat": 23.911574,
+      "PositionLon": 120.675777,
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時每小時20元",
+      "ChargingRate": "每度10元",
+      "Floors": "平面",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "南投市",
+          "Road": "文化路"
+        }
+      },
+      "Telephone": "04-37025499"
+    },
+    {
+      "StationID": "53758995-S68944c74961d9a9a483ab50a",
+      "StationName": {
+        "Zh_tw": "南投市民族路停車場"
+      },
+      "Description": "充電費率\r\n慢充1台，每度10元，槍頭J-1772，充電格位數3。",
+      "OperatorID": "53758995",
+      "OperationType": 2,
+      "PositionLat": 23.907313,
+      "PositionLon": 120.682403,
+      "Spaces": 3,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時每小時20元",
+      "ChargingRate": "每度10元",
+      "Floors": "平面",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "南投市",
+          "Road": "民族路"
+        }
+      },
+      "Telephone": "04-37025499"
+    },
+    {
+      "StationID": "42642316-S001",
+      "StationName": {
+        "Zh_tw": "日月潭力麗溫德姆溫泉酒店停車場"
+      },
+      "Description": "充電費率每度8.5元。充電插頭J-1772。充電格位數4。充電插頭Type2。充電格位數4",
+      "OperatorID": "42642316",
+      "OperationType": 3,
+      "PositionLat": 23.847472,
+      "PositionLon": 120.931278,
+      "Spaces": 8,
+      "ChargingPoints": 8,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/平日/60元每小時、假日/80元每小時",
+      "ChargingRate": "計度每度8.5元",
+      "Floors": "B1",
+      "UsageRestriction": "任何車輛皆可",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "魚池鄉",
+          "Road": "中正路"
+        }
+      },
+      "Telephone": "049-2850085#8520"
+    },
+    {
+      "StationID": "42642316-S002",
+      "StationName": {
+        "Zh_tw": "日月潭力麗溫德姆溫泉酒店公共停車場"
+      },
+      "Description": "BMW、特斯拉、保時捷等廠牌免費",
+      "OperatorID": "42642316",
+      "OperationType": 3,
+      "PositionLat": 23.847472,
+      "PositionLon": 120.931278,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/平日/60元每小時、假日/80元每小時",
+      "ChargingRate": "免費",
+      "Floors": "B2",
+      "UsageRestriction": "BMW、特斯拉、保時捷專用",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "魚池鄉",
+          "Road": "中正路"
+        }
+      },
+      "Telephone": "049-2850085#8520"
+    },
+    {
+      "StationID": "24311573-S0001",
+      "StationName": {
+        "Zh_tw": "竹山鎮親子館停車場充電站"
+      },
+      "Description": "充電費率交流慢充$6-$10/KWH。充電插頭J-1772。充電格位數1。",
+      "OperatorID": "24311573",
+      "OperationType": 1,
+      "PositionLat": 23.75923,
+      "PositionLon": 120.67213,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "交流慢充$6-$10/KWH",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "竹山鎮",
+          "Road": "公所路"
+        },
+        "Place": {
+          "POI": "竹山鎮親子館"
+        },
+        "Address": {
+          "City": "南投縣",
+          "Town": "竹山鎮",
+          "Road": "公所路",
+          "No": "120號"
+        }
+      },
+      "Telephone": "049-2642175"
+    },
+    {
+      "StationID": "24311573-S0002",
+      "StationName": {
+        "Zh_tw": "竹山鎮廣停三停車場充電站"
+      },
+      "Description": "充電費率直流快充$8-$12/KWH。充電插頭CCS1&CCS2。充電格位數2。",
+      "OperatorID": "24311573",
+      "OperationType": 1,
+      "PositionLat": 23.75261,
+      "PositionLon": 120.67932,
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "計時每小時20元",
+      "ChargingRate": "直流快充$8-$12/KWH",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "竹山鎮",
+          "Road": "大智路"
+        },
+        "Place": {
+          "POI": "竹山鎮戶政事務所"
+        },
+        "Address": {
+          "City": "南投縣",
+          "Town": "竹山鎮",
+          "Road": "大智路",
+          "No": "823號"
+        }
+      },
+      "Telephone": "049-2642175"
+    },
+    {
+      "StationID": "24311573-S0003",
+      "StationName": {
+        "Zh_tw": "竹山鎮水塔一巷停車場充電站"
+      },
+      "Description": "充電費率直流快充$8-$12/KWH。充電插頭CCS1&CCS2。充電格位數2。",
+      "OperatorID": "24311573",
+      "OperationType": 1,
+      "PositionLat": 23.75153,
+      "PositionLon": 120.68034,
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "計時每小時20元",
+      "ChargingRate": "直流快充$8-$12/KWH",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "竹山鎮",
+          "Road": "鯉南路"
+        },
+        "Place": {
+          "POI": "竹山鎮水塔一巷停車場"
+        },
+        "Address": {
+          "City": "南投縣",
+          "Town": "竹山鎮",
+          "Road": "鯉南路",
+          "No": "19號"
+        }
+      },
+      "Telephone": "049-2642175"
+    },
+    {
+      "StationID": "24311573-S0004",
+      "StationName": {
+        "Zh_tw": "竹山鎮中山停車場充電站"
+      },
+      "Description": "充電費率交流慢充$6-$10/KWH、充電費率直流快充$8-$12/KWH。充電插頭CCS1&CCS2、J-1772。充電格位數5。",
+      "OperatorID": "24311573",
+      "OperationType": 1,
+      "PositionLat": 23.75355,
+      "PositionLon": 120.68514,
+      "Spaces": 5,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "直流快充$8-$12/KWH、交流慢充$6-$10/KWH",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "竹山鎮",
+          "Road": "橫街"
+        },
+        "Place": {
+          "POI": "竹山鎮中山停車場"
+        },
+        "Address": {
+          "City": "南投縣",
+          "Town": "竹山鎮",
+          "Road": "橫街",
+          "No": "8號"
+        }
+      },
+      "Telephone": "049-2642175"
+    },
+    {
+      "StationID": "92606743-S0001",
+      "StationName": {
+        "Zh_tw": "九九峰動物園"
+      },
+      "Description": "充電費率每度電8元",
+      "OperatorID": "92606743",
+      "OperationType": 3,
+      "PositionLat": 23.9621892,
+      "PositionLon": 120.7072459,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "平日/09:00-17:00~ 假日/09:00-17:30",
+      "ParkingRate": "無",
+      "ChargingRate": "8元",
+      "Floors": "1樓",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "草屯鎮",
+          "Road": "富頂路一段726巷101號"
+        }
+      },
+      "Telephone": "0800-333-889"
+    }
+  ]
+}

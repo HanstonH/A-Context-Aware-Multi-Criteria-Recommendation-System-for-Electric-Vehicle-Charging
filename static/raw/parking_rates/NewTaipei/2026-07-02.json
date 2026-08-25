@@ -1,0 +1,3695 @@
+{
+  "UpdateTime": "2026-07-02T14:45:35+08:00",
+  "UpdateInterval": 14400,
+  "SrcUpdateTime": "2026-07-02T14:45:33+08:00",
+  "SrcUpdateInterval": -1,
+  "AuthorityCode": "NWT",
+  "ParkingRates": [
+    {
+      "StationID": "34104124-S01",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 1,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S17090",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 1,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "70553757-S0001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 1,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "54710871-S0001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "MaxPrice": 200.0
+        }
+      ]
+    },
+    {
+      "StationID": "90016138-SF001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90016138-S643927b1",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "94128120-S0004120",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "94128120-S0004121",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "94273051-S2gpG2Tp",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "StartTime": "00:00",
+          "EndTime": "12:00",
+          "MaxPrice": -1.0
+        },
+        {
+          "RateType": 4,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 2500.0,
+          "StartTime": "00:00",
+          "EndTime": "12:00",
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "93519232-S0010",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 60.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "MaxPrice": -1.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 3,
+          "RatePrice": 70.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "37759379-SB0021",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": 1.0
+        }
+      ]
+    },
+    {
+      "StationID": "60225577-SA0694011",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "MaxPrice": 80.0
+        }
+      ]
+    },
+    {
+      "StationID": "91887251-SA040601",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "91903689-SA040701",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "60199085-SA0638011",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": 180.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": 180.0
+        }
+      ]
+    },
+    {
+      "StationID": "12681939-SPSS_YA41001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 60.0,
+          "StartTime": "00:00",
+          "EndTime": "23:59",
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "12681939-Shfc_17",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 60.0,
+          "MaxPrice": 350.0
+        }
+      ]
+    },
+    {
+      "StationID": "60219358-S168_8",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "87545789-S168_13",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "87545768-S168_26",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "87545768-S168_11",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "80390037-S168_7",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "24394433-Ssungreen_20",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "86711789-Sgowin_1",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 2,
+          "RatePrice": 60.0,
+          "MaxPrice": -1.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 3,
+          "RatePrice": 100.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "41127410-Seyxjot_1",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": 200.0
+        }
+      ]
+    },
+    {
+      "StationID": "82317673-Sgowin_4",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 2,
+          "RatePrice": 30.0,
+          "MaxPrice": 200.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 3,
+          "RatePrice": 40.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S162",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 60.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S161",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 1,
+          "RatePrice": 10.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "28114216-S124",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "StartTime": "06:00",
+          "EndTime": "22:00",
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "28114216-S184",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "85051710-S471",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "MaxPrice": 400.0
+        },
+        {
+          "RateType": 4,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 3000.0,
+          "MaxPrice": 3000.0
+        }
+      ]
+    },
+    {
+      "StationID": "85051710-S639",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 20.0,
+          "MaxPrice": 200.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 4,
+          "RatePrice": 40.0,
+          "MaxPrice": 200.0
+        }
+      ]
+    },
+    {
+      "StationID": "90148497-S1046",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "90148497-S1171",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "90148497-S1215",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "90148497-S1240",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCF0279F048",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 100.0,
+          "StartTime": "10:00",
+          "EndTime": "21:30",
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCF0233F039",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 100.0,
+          "StartTime": "10:00",
+          "EndTime": "21:30",
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCG0178G001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "StartTime": "06:00",
+          "EndTime": "22:00",
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCF0259F040",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 100.0,
+          "StartTime": "10:00",
+          "EndTime": "21:30",
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCB0078G002",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCB0233G002",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 50.0,
+          "StartTime": "07:30",
+          "EndTime": "23:00",
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCG0015G001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 60.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90444103-S53",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "46037888-S59",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "46037888-S60",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "54991324-S62",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "46037888-S64",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 10.0,
+          "MaxPrice": 600.0
+        }
+      ]
+    },
+    {
+      "StationID": "46037888-S65",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 60.0,
+          "MaxPrice": 600.0
+        }
+      ]
+    },
+    {
+      "StationID": "54991324-S74",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "46037888-S122",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "53328840-S132",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "34176631-S179",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "MaxPrice": 600.0
+        }
+      ]
+    },
+    {
+      "StationID": "24788035-S185",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "34220432-S238",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "MaxPrice": 600.0
+        }
+      ]
+    },
+    {
+      "StationID": "83284334-S00001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "28007736-S049",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": 120.0
+        }
+      ]
+    },
+    {
+      "StationID": "28007736-S051",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": 120.0
+        }
+      ]
+    },
+    {
+      "StationID": "28007736-S099",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "28007736-S111",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "28652185-SJIA001",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "28652185-SLINKOU001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "MaxPrice": 150.0
+        }
+      ]
+    },
+    {
+      "StationID": "28652185-SLINKOU002",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "MaxPrice": 150.0
+        }
+      ]
+    },
+    {
+      "StationID": "28652185-SLINKOU003",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "MaxPrice": 150.0
+        }
+      ]
+    },
+    {
+      "StationID": "28652185-SLINKOU004",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "MaxPrice": 150.0
+        }
+      ]
+    },
+    {
+      "StationID": "28652185-SXZPEP0001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 30.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "MaxPrice": 180.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 30.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "28652185-SMRTHL0001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "StartTime": "06:00",
+          "EndTime": "24:00",
+          "MaxPrice": 150.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 10.0,
+          "StartTime": "00:00",
+          "EndTime": "06:00",
+          "MaxPrice": 150.0
+        }
+      ]
+    },
+    {
+      "StationID": "28652185-SBQTS0001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "MaxPrice": 300.0
+        }
+      ]
+    },
+    {
+      "StationID": "28652185-SMRTHS0001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 40.0,
+          "StartTime": "06:00",
+          "EndTime": "22:00",
+          "MaxPrice": 180.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 20.0,
+          "StartTime": "22:00",
+          "EndTime": "06:00",
+          "MaxPrice": 180.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 3,
+          "RatePrice": 40.0,
+          "StartTime": "06:00",
+          "EndTime": "22:00",
+          "MaxPrice": 200.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 3,
+          "RatePrice": 20.0,
+          "StartTime": "22:00",
+          "EndTime": "06:00",
+          "MaxPrice": 200.0
+        }
+      ]
+    },
+    {
+      "StationID": "28652185-SMRTYN0001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "StartTime": "06:00",
+          "EndTime": "24:00",
+          "MaxPrice": 200.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 10.0,
+          "StartTime": "00:00",
+          "EndTime": "06:00",
+          "MaxPrice": 200.0
+        }
+      ]
+    },
+    {
+      "StationID": "28652185-SMRTDP0001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "StartTime": "06:00",
+          "EndTime": "24:00",
+          "MaxPrice": 200.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 10.0,
+          "StartTime": "00:00",
+          "EndTime": "06:00",
+          "MaxPrice": 200.0
+        }
+      ]
+    },
+    {
+      "StationID": "85017137-SNWT0001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 4,
+          "RatePrice": 50.0,
+          "StartTime": "08:00",
+          "EndTime": "23:00",
+          "Peak": 0,
+          "MaxPrice": 400.0
+        }
+      ]
+    },
+    {
+      "StationID": "33029464-STP6820001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 60.0,
+          "MaxPrice": -1.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 70.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "33029464-STP6640001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 10.0,
+          "MaxPrice": -1.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "28371994-STP7630001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 60.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "28371994-STP4370001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S32202",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": 400.0
+        }
+      ]
+    },
+    {
+      "StationID": "50965513-SPDP3104001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 40.0,
+          "StartTime": "08:00",
+          "EndTime": "20:00",
+          "MaxPrice": 200.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 10.0,
+          "StartTime": "20:00",
+          "EndTime": "08:00",
+          "MaxPrice": 200.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 3,
+          "RatePrice": 20.0,
+          "StartTime": "08:00",
+          "EndTime": "20:00",
+          "MaxPrice": 200.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 3,
+          "RatePrice": 10.0,
+          "StartTime": "20:00",
+          "EndTime": "08:00",
+          "MaxPrice": 200.0
+        }
+      ]
+    },
+    {
+      "StationID": "83039115-S0003",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RateSequence": 1,
+          "StayStart": 0,
+          "StayEnd": -1,
+          "RatePrice": 20.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "83039115-S0002",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RateSequence": 1,
+          "StayStart": 0,
+          "StayEnd": -1,
+          "RatePrice": 20.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "53703514-S2209",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "53703514-S2375",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "StartTime": "07:00",
+          "EndTime": "21:00",
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "53703514-S1101",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90482725-S0080",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 50.0,
+          "MaxPrice": -1.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 3,
+          "RatePrice": 90.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "52693448-S0010",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 1,
+          "RatePrice": 15.0,
+          "MaxPrice": 90.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0067",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0069",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0072",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0080",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0081",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0084",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 4,
+          "RatePrice": 50.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0105",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0109",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0110",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0113",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0114",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 3,
+          "RatePrice": 40.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0115",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0116",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 3,
+          "RatePrice": 40.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0121",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 50.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0122",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0128",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0134",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 100.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0135",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 60.0,
+          "MaxPrice": -1.0
+        },
+        {
+          "RateType": 2,
+          "PricingType": 3,
+          "DayType": 3,
+          "RatePrice": 120.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0148",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 70.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0149",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 50.0,
+          "MaxPrice": -1.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 3,
+          "RatePrice": 100.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0153",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 3,
+          "RatePrice": 40.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0155",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sd70033ee-9101-425a-adb5-919c788f5dbc",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S543408c0-ad77-4f2c-af34-6bbbf4175c31",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S09bf3b8f-8fe9-44d3-be15-2a0cf5891db6",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sbe38b430-6d41-40e7-bc9d-d0f913b1f36a",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S5f440307-00e3-4c34-a2a1-f66f48123618",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S945a1b98-3f8d-4da2-8de2-928295b1378d",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sf90c9fd9-843b-4573-bba4-96b5740c6ab9",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S6b706da3-fa15-4a3c-8d93-320a5c21af23",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S90b04491-49d2-4010-b5f5-30dd08d88254",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S7cb16f34-2913-4db7-bc2f-a6ba16f52005",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S01342a10-aa64-4f90-ae30-1b8d7d3fcc86",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S852a2236-52bc-4366-aa9e-1552330789ac",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S9e864926-d6fd-4100-929e-27498da60fb2",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S663cbaf2-0ad2-43cf-89de-d05bfe391308",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S554815bb-24da-4ed1-8e6d-5aeb04c584c6",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Se3f94cf3-0acd-4ed4-a383-7d095af4e934",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S5a4c664d-b9f1-4b87-b33a-51295d34979a",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SACSD00069",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00077",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02391",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02634",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02635",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02645",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02685",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02686",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02687",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02693",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02763",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02779",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02780",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02781",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02782",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02783",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02787",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02788",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02789",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02790",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02791",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02792",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02793",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02794",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02802",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02803",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02804",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02809",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02810",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02811",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02812",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02813",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02814",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02815",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02816",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02817",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02878",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02879",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02880",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02881",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02882",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02883",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02884",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02885",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02886",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02887",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02888",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02889",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02890",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02891",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02892",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02893",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02894",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02895",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02896",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02897",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02898",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02899",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02900",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02901",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02902",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02903",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02904",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02905",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02906",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02907",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02908",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02909",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02910",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02911",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02912",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02913",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02914",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02915",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02916",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 10.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02917",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02918",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02919",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02920",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02921",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02922",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02923",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02924",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02925",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02926",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02927",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02928",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02930",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02931",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02932",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02933",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02934",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02935",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02936",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02937",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02938",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02939",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02940",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02941",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02942",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02943",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02944",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02945",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02946",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02947",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02948",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02949",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02950",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02951",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02952",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02953",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02954",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02955",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02956",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02957",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 60.0,
+          "Peak": 0,
+          "MaxPrice": 60.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02958",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02959",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02960",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02961",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02962",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02965",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02966",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02967",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02968",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD02969",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03173",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03192",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03203",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03220",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03230",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03253",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03263",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03463",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03467",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03484",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03505",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03510",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03511",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03541",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03546",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 60.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03547",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03554",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 80.0,
+          "Peak": 0,
+          "MaxPrice": 80.0
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03556",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90505425-S58665",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 60.0,
+          "StartTime": "11:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "90505425-SNWT0001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": -1.0
+        },
+        {
+          "RateType": 4,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 5000.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": 5000.0
+        }
+      ]
+    }
+  ]
+}

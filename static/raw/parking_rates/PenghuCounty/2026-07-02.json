@@ -1,0 +1,131 @@
+{
+  "UpdateTime": "2026-07-02T15:05:03+08:00",
+  "UpdateInterval": 14400,
+  "SrcUpdateTime": "2026-07-02T15:04:59+08:00",
+  "SrcUpdateInterval": -1,
+  "AuthorityCode": "PEN",
+  "ParkingRates": [
+    {
+      "StationID": "00345802-SB0420011",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "MaxPrice": 150.0
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S91",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S100",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S101",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S102",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S103",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S104",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S105",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S106",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S107",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    }
+  ]
+}

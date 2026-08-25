@@ -1,0 +1,33 @@
+{
+  "UpdateTime": "2026-07-02T14:04:58+08:00",
+  "UpdateInterval": 14400,
+  "SrcUpdateTime": "2026-07-02T14:04:58+08:00",
+  "SrcUpdateInterval": 86400,
+  "AuthorityCode": "CYQ",
+  "ParkingRates": [
+    {
+      "StationID": "60242679-S0019",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "85051710-S75",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    }
+  ]
+}

@@ -2,11 +2,12 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from typing import Any
 
+from .config import LIVE_INTERVAL_MINUTES
 from .manifest import Manifest
-from .paths import checkpoint_json, now_local
+from .paths import checkpoint_json, now_local, snapshot_at_from_slot
 from .tdx import SUPPORTED_EV_CITIES
 
 
@@ -24,6 +25,21 @@ def _write(data: dict[str, Any]) -> None:
     data["last_updated"] = datetime.now(timezone.utc).isoformat()
     with path.open("w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+
+
+def _next_refresh_local() -> datetime:
+    """Next scheduled run at :05 and :35 past each hour (30-min cadence)."""
+    local = now_local()
+    interval = max(1, LIVE_INTERVAL_MINUTES)
+    offsets = [5]
+    while offsets[-1] + interval < 60:
+        offsets.append(offsets[-1] + interval)
+    hour_base = local.replace(minute=0, second=0, microsecond=0)
+    for offset in offsets:
+        candidate = hour_base + timedelta(minutes=offset)
+        if candidate > local:
+            return candidate
+    return hour_base + timedelta(hours=1, minutes=offsets[0])
 
 
 def update_static(*, date_str: str, run_summary: dict[str, int]) -> None:
@@ -48,26 +64,20 @@ def update_static(*, date_str: str, run_summary: dict[str, int]) -> None:
 def update_live(
     *,
     date_str: str,
-    hour_str: str,
+    slot_str: str,
     run_summary: dict[str, int],
     stations_with_availability: int | None = None,
 ) -> None:
     data = _read()
-    local = now_local()
-    next_hour = local.replace(minute=5, second=0, microsecond=0)
-    if local.minute >= 5:
-        from datetime import timedelta
-
-        next_hour = next_hour + timedelta(hours=1)
-
     data["live"] = {
         "enabled": True,
-        "last_archive_path": f"live/raw/{date_str}/hour-{hour_str}",
+        "interval_minutes": LIVE_INTERVAL_MINUTES,
+        "last_archive_path": f"live/raw/{date_str}/hour-{slot_str}",
         "last_refresh": datetime.now(timezone.utc).isoformat(),
-        "snapshot_at": f"{date_str}T{hour_str}:00:00+08:00",
+        "snapshot_at": snapshot_at_from_slot(date_str, slot_str),
         "cities_written": run_summary.get("cities_ok", 0),
         "stations_with_availability": stations_with_availability,
-        "next_scheduled_refresh": next_hour.isoformat(),
+        "next_scheduled_refresh": _next_refresh_local().isoformat(),
         "last_run": run_summary,
     }
     _write(data)

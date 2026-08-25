@@ -1,0 +1,637 @@
+{
+  "UpdateTime": "2026-07-02T14:45:06+08:00",
+  "UpdateInterval": 14400,
+  "SrcUpdateTime": "2026-07-02T14:28:01+08:00",
+  "SrcUpdateInterval": -1,
+  "AuthorityCode": "YUN",
+  "Stations": [
+    {
+      "StationID": "54363149-s2ri",
+      "StationName": {
+        "Zh_tw": "劍湖山世界主題樂園"
+      },
+      "Description": "Zappoint powered by Noodoe 適用環島充電網會員免費充電方案。\n充電車位設於戶外停車場。",
+      "OperatorID": "54363149",
+      "OperationType": 3,
+      "PositionLat": 23.6155414,
+      "PositionLon": 120.5770647,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日09:20~17:30",
+      "ParkingRate": "大小型車NT$150/天",
+      "ChargingRate": "每分鐘NT$1.17元",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "劍湖山世界主題樂園"
+        },
+        "Address": {
+          "City": "雲林縣",
+          "Town": "古坑鄉",
+          "Road": "大湖口",
+          "No": "67號"
+        }
+      },
+      "Telephone": "05-5825789"
+    },
+    {
+      "StationID": "95374268-SL0002011",
+      "StationName": {
+        "Zh_tw": "虎尾公安"
+      },
+      "Description": "低碳車格30格、充電樁7座，位於3樓及4樓",
+      "OperatorID": "95374268",
+      "OperationType": 1,
+      "PositionLat": 23.7100484,
+      "PositionLon": 120.4302225,
+      "Spaces": 30,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "早上8點至晚上8號",
+      "ParkingRate": "計時，每小時30元/平日當日上限150元/假日當日上限200元",
+      "ChargingRate": "固定每度10元",
+      "Floors": "3,4",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "雲林縣",
+          "Town": "虎尾鎮",
+          "Road": "公安路",
+          "No": "188號"
+        }
+      },
+      "Telephone": "05-6365793"
+    },
+    {
+      "StationID": "24644312-Sqba_4",
+      "StationName": {
+        "Zh_tw": "土庫鎮童心綠園停車場"
+      },
+      "Description": "充電車位*12",
+      "OperatorID": "24644312",
+      "OperationType": 2,
+      "PositionLat": 23.68273,
+      "PositionLon": 120.38958,
+      "Spaces": 12,
+      "ChargingPoints": 12,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 12
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "0",
+      "ChargingRate": "週一 - 週五: 16時 ~ 22時:  10元/度；其他時間: 8元/度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "雲林縣",
+          "Town": "土庫鎮",
+          "Road": "復興段",
+          "No": "127號"
+        }
+      },
+      "Telephone": "03-85836006"
+    },
+    {
+      "StationID": "90148497-S1175",
+      "StationName": {
+        "Zh_tw": "星舟x雲林縣議會地下B1"
+      },
+      "Description": "服務時間：每週一~週五 08:00~17:00 / 停車費率：入場請洽現場電話預約05-5322310，無須停車費 / 充電費率：AC 7kW $5/度",
+      "OperatorID": "90148497",
+      "OperationType": 1,
+      "PositionLat": 23.69597,
+      "PositionLon": 120.52865,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每週一~週五 08:00~17:00",
+      "ParkingRate": "入場請洽現場電話預約05-5322310，無須停車費",
+      "ChargingRate": "AC 7kW $5/度",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "雲林縣",
+          "Town": "斗六",
+          "Road": "大學路三段",
+          "No": "222"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1237",
+      "StationName": {
+        "Zh_tw": "家樂福-雲林虎尾店"
+      },
+      "Description": "服務時間：24小時開放。 / 停車費率：停車費率依現場公告為準。 / 充電費率：充電費率依系統公告為準。",
+      "OperatorID": "90148497",
+      "OperationType": 3,
+      "PositionLat": 23.70462,
+      "PositionLon": 120.426661,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時開放。",
+      "ParkingRate": "停車費率依現場公告為準。",
+      "ChargingRate": "充電費率依系統公告為準。",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "雲林縣",
+          "Town": "虎尾鎮",
+          "Road": "立新街",
+          "No": "96"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90807408-SCSD02537",
+      "StationName": {
+        "Zh_tw": "7-11_雲林保庄門市"
+      },
+      "Description": "停車位:0 充電樁數量:0 停車費:免費 費率: 樓層:",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 23.709253,
+      "PositionLon": 120.530541,
+      "Spaces": 0,
+      "ChargingPoints": 0,
+      "Connectors": [],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "",
+      "Floors": "",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "雲林縣",
+          "Town": "斗六市",
+          "Road": "明德北路3段",
+          "No": "285號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "12681939-SHB182",
+      "StationName": {
+        "Zh_tw": "城市車旅雲林縣政府站"
+      },
+      "Description": "Mennekes(Type2)*2、J1772AC充電樁*2",
+      "OperatorID": "12681939",
+      "OperationType": 1,
+      "PositionLat": 23.69875,
+      "PositionLon": 120.52749,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時不分平假日每小時10元/每日最高100元",
+      "ChargingRate": "10元/每度",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "雲林縣",
+          "Town": "斗六市",
+          "Road": "雲林路二段",
+          "No": "515號"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB404",
+      "StationName": {
+        "Zh_tw": "城市車旅虎尾高鐵站"
+      },
+      "Description": "J1772AC充電樁*3",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 23.73817,
+      "PositionLon": 120.41779,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每半小時30/每日最高200元",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "雲林縣",
+          "Town": "虎尾鎮",
+          "Road": "高北段145地號"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB371",
+      "StationName": {
+        "Zh_tw": "城市車旅家樂福虎尾站停車場"
+      },
+      "Description": "J1772AC充電樁*1",
+      "OperatorID": "12681939",
+      "OperationType": 1,
+      "PositionLat": 23.70458,
+      "PositionLon": 120.42668,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/第1小時50爾後每半小時25元 每日最高600元",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "雲林縣",
+          "Town": "虎尾鎮",
+          "Road": "立新街",
+          "No": "96號對面"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB123",
+      "StationName": {
+        "Zh_tw": "城市車旅家樂福北港站停車場"
+      },
+      "Description": "J1772AC充電樁*3",
+      "OperatorID": "12681939",
+      "OperationType": 1,
+      "PositionLat": 23.57043,
+      "PositionLon": 120.29955,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日/09:00 22:30",
+      "ParkingRate": "計時/每半時30元 每日最高500元",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "3",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "雲林縣",
+          "Town": "北港鎮",
+          "Road": "華南路",
+          "No": "101號"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB415",
+      "StationName": {
+        "Zh_tw": "城市車旅雲林縣立體育館站停車場"
+      },
+      "Description": "J1772AC充電樁*2",
+      "OperatorID": "12681939",
+      "OperationType": 1,
+      "PositionLat": 23.69534,
+      "PositionLon": 120.52713,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每日/20元每小時/每日最高/100元每日",
+      "ChargingRate": "計度 /固定 /10元/度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "雲林縣",
+          "Town": "斗六市",
+          "Road": "大學路三段",
+          "No": "600號"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SIC0458",
+      "StationName": {
+        "Zh_tw": "若瑟醫院平面"
+      },
+      "Description": "J1772AC充電樁*2",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 23.70883,
+      "PositionLon": 120.43388,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "10元每0.5小時/180元",
+      "ChargingRate": "10元/每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "雲林縣",
+          "Town": "虎尾鎮",
+          "Road": "新生路",
+          "No": "66號"
+        }
+      },
+      "Telephone": "56337333"
+    },
+    {
+      "StationID": "42861108-Se886a51d-71c4-4c08-a857-8310f7f0dd02",
+      "StationName": {
+        "Zh_tw": "Yunlin, Dounan - Datong",
+        "En": "Yunlin, Dounan - Datong"
+      },
+      "Description": "充電格位數8",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.68936,
+      "PositionLon": 120.47775,
+      "Spaces": 8,
+      "ChargingPoints": 8,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 5
+        },
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "YunlinLane 568, Datong RdNo. 101-1"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S07fcf56f-53b1-47de-bf22-673f0fabfb35",
+      "StationName": {
+        "Zh_tw": "Yunlin, Linnei - Zhongzheng Rd",
+        "En": "Yunlin, Linnei - Zhongzheng Rd"
+      },
+      "Description": "充電格位數6",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.74924,
+      "PositionLon": 120.6094,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "YunlinZhongzheng RoadNo. 646"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S170ffea5-febd-4e44-8427-56bd11cf7223",
+      "StationName": {
+        "Zh_tw": "觀月商務旅館",
+        "En": "觀月商務旅館"
+      },
+      "Description": "充電格位數4",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.70318,
+      "PositionLon": 120.53121,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 3
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Yunlin 斗六市雲林路二段196號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sd814565e-2ceb-4e2b-bc12-c1e7af342464",
+      "StationName": {
+        "Zh_tw": "Orient Luxury Villa",
+        "En": "Orient Luxury Villa"
+      },
+      "Description": "充電格位數4",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.70418,
+      "PositionLon": 120.45775,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Yunlin平和路20-15號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S6bf476c9-0b97-494e-bf9e-3df8a0f58cd1",
+      "StationName": {
+        "Zh_tw": "Yunlin, Huwei - Qingyun 1st St",
+        "En": "Yunlin, Huwei - Qingyun 1st St"
+      },
+      "Description": "充電格位數6",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.73021,
+      "PositionLon": 120.42868,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "YunlinQingyun 1st St "
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "94039160-S159",
+      "StationName": {
+        "Zh_tw": "東燊土庫中山路 evbar"
+      },
+      "Description": "7x24 小時。停車費率：計時/每日/30 元每小時。充電樁數目：2，J1772數量：2",
+      "OperatorID": "94039160",
+      "OperationType": 1,
+      "PositionLat": 23.6746830838778,
+      "PositionLon": 120.38952053818858,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "計時/每日/30 元每小時",
+      "ChargingRate": "固定費率(非尖峰費率)",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "雲林縣",
+          "Town": "土庫鎮",
+          "Road": "中山路",
+          "No": "67號"
+        }
+      },
+      "Telephone": "02-22559610"
+    }
+  ]
+}

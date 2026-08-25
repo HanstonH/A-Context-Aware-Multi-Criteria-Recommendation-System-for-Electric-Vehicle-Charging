@@ -1,0 +1,5853 @@
+{
+  "UpdateTime": "2026-07-02T14:45:05+08:00",
+  "UpdateInterval": 14400,
+  "SrcUpdateTime": "2026-07-02T14:45:01+08:00",
+  "SrcUpdateInterval": -1,
+  "AuthorityCode": "HSZ",
+  "ChargingRates": [
+    {
+      "StationID": "50728553-SA013002",
+      "ChargingPointID": "50728553-PA013002_7",
+      "ConnectorID": "50728553-CA013002_7",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50728553-SA013002",
+      "ChargingPointID": "50728553-PA013002_8",
+      "ConnectorID": "50728553-CA013002_8",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 7.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50728553-SA013002",
+      "ChargingPointID": "50728553-PA013002_9",
+      "ConnectorID": "50728553-CA013002_9",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 7.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50728553-SA013002",
+      "ChargingPointID": "50728553-PA013002_1",
+      "ConnectorID": "50728553-CA013002_1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50728553-SA013002",
+      "ChargingPointID": "50728553-PA013002_2",
+      "ConnectorID": "50728553-CA013002_2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50728553-SA013002",
+      "ChargingPointID": "50728553-PA013002_3",
+      "ConnectorID": "50728553-CA013002_3",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50728553-SA013002",
+      "ChargingPointID": "50728553-PA013002_4",
+      "ConnectorID": "50728553-CA013002_4",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50728553-SA013002",
+      "ChargingPointID": "50728553-PA013002_5",
+      "ConnectorID": "50728553-CA013002_5",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50728553-SA013002",
+      "ChargingPointID": "50728553-PA013002_6",
+      "ConnectorID": "50728553-CA013002_6",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50728553-SA013002",
+      "ChargingPointID": "50728553-PA013002_10",
+      "ConnectorID": "50728553-CA013002_10",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50728553-SA013002",
+      "ChargingPointID": "50728553-PA013002_11",
+      "ConnectorID": "50728553-CA013002_11",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280789-SA020001",
+      "ChargingPointID": "82280789-PA020001_2",
+      "ConnectorID": "82280789-CA020001_1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280789-SA020001",
+      "ChargingPointID": "82280789-PA020001_7",
+      "ConnectorID": "82280789-CA020001_2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280789-SA020001",
+      "ChargingPointID": "82280789-PA020001_6",
+      "ConnectorID": "82280789-CA020001_4",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280789-SA020001",
+      "ChargingPointID": "82280789-PA020001_3",
+      "ConnectorID": "82280789-CA020001_5",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280789-SA020001",
+      "ChargingPointID": "82280789-PA020001_9",
+      "ConnectorID": "82280789-CA020001_6",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280789-SA020001",
+      "ChargingPointID": "82280789-PA020001_4",
+      "ConnectorID": "82280789-CA020001_7",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280789-SA020001",
+      "ChargingPointID": "82280789-PA020001_1",
+      "ConnectorID": "82280789-CA020001_8",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280789-SA020001",
+      "ChargingPointID": "82280789-PA020001_5",
+      "ConnectorID": "82280789-CA020001_9",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280789-SA020001",
+      "ChargingPointID": "82280789-PA020001_10",
+      "ConnectorID": "82280789-CA020001_10",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280789-SA020001",
+      "ChargingPointID": "82280789-PA020001_11",
+      "ConnectorID": "82280789-CA020001_11",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 2,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "91383456-SA032801",
+      "ChargingPointID": "91383456-PA032801_1",
+      "ConnectorID": "91383456-CA032801_1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "91383456-SA032801",
+      "ChargingPointID": "91383456-PA032801_2",
+      "ConnectorID": "91383456-CA032801_2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "91383456-SA032801",
+      "ChargingPointID": "91383456-PA032801_3",
+      "ConnectorID": "91383456-CA032801_3",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "60091985-SA0563011",
+      "ChargingPointID": "60091985-PA0563011_1",
+      "ConnectorID": "60091985-CA0563011_1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "60091985-SA0563011",
+      "ChargingPointID": "60091985-PA0563011_3",
+      "ConnectorID": "60091985-CA0563011_2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "60091985-SA0563011",
+      "ChargingPointID": "60091985-PA0563011_4",
+      "ConnectorID": "60091985-CA0563011_3",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "60091985-SA0563011",
+      "ChargingPointID": "60091985-PA0563011_2",
+      "ConnectorID": "60091985-CA0563011_4",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280774-SA020101",
+      "ChargingPointID": "82280774-PA020101_15",
+      "ConnectorID": "82280774-CA020101_1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280774-SA020101",
+      "ChargingPointID": "82280774-PA020101_13",
+      "ConnectorID": "82280774-CA020101_3",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280774-SA020101",
+      "ChargingPointID": "82280774-PA020101_5",
+      "ConnectorID": "82280774-CA020101_7",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280774-SA020101",
+      "ChargingPointID": "82280774-PA020101_6",
+      "ConnectorID": "82280774-CA020101_8",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280774-SA020101",
+      "ChargingPointID": "82280774-PA020101_12",
+      "ConnectorID": "82280774-CA020101_9",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280774-SA020101",
+      "ChargingPointID": "82280774-PA020101_1",
+      "ConnectorID": "82280774-CA020101_10",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280774-SA020101",
+      "ChargingPointID": "82280774-PA020101_9",
+      "ConnectorID": "82280774-CA020101_12",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280774-SA020101",
+      "ChargingPointID": "82280774-PA020101_8",
+      "ConnectorID": "82280774-CA020101_13",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280774-SA020101",
+      "ChargingPointID": "82280774-PA020101_18",
+      "ConnectorID": "82280774-CA020101_15",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280774-SA020101",
+      "ChargingPointID": "82280774-PA020101_17",
+      "ConnectorID": "82280774-CA020101_16",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280774-SA020101",
+      "ChargingPointID": "82280774-PA020101_16",
+      "ConnectorID": "82280774-CA020101_17",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280774-SA020101",
+      "ChargingPointID": "82280774-PA020101_11",
+      "ConnectorID": "82280774-CA020101_18",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280774-SA020101",
+      "ChargingPointID": "82280774-PA020101_1007",
+      "ConnectorID": "82280774-CA020101_19",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280774-SA020101",
+      "ChargingPointID": "82280774-PA020101_1006",
+      "ConnectorID": "82280774-CA020101_20",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280774-SA020101",
+      "ChargingPointID": "82280774-PA020101_1004",
+      "ConnectorID": "82280774-CA020101_21",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280774-SA020101",
+      "ChargingPointID": "82280774-PA020101_1005",
+      "ConnectorID": "82280774-CA020101_22",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280774-SA020101",
+      "ChargingPointID": "82280774-PA020101_1009",
+      "ConnectorID": "82280774-CA020101_23",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "82280774-SA020101",
+      "ChargingPointID": "82280774-PA020101_1010",
+      "ConnectorID": "82280774-CA020101_24",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50696460-SA0124",
+      "ChargingPointID": "50696460-PA0124_2",
+      "ConnectorID": "50696460-CA0124_1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "91650093-SB027201",
+      "ChargingPointID": "91650093-PB027201_1",
+      "ConnectorID": "91650093-CB027201_1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "91650093-SB027201",
+      "ChargingPointID": "91650093-PB027201_2",
+      "ConnectorID": "91650093-CB027201_2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "91650018-SB027001",
+      "ChargingPointID": "91650018-PB027001_1",
+      "ConnectorID": "91650018-CB027001_1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "91650018-SB027001",
+      "ChargingPointID": "91650018-PB027001_2",
+      "ConnectorID": "91650018-CB027001_2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50696320-SA0125",
+      "ChargingPointID": "50696320-PA0125_2",
+      "ConnectorID": "50696320-CA0125_1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50696139-SA012001",
+      "ChargingPointID": "50696139-PA012001_1",
+      "ConnectorID": "50696139-CA012001_1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50696139-SA012001",
+      "ChargingPointID": "50696139-PA012001_2",
+      "ConnectorID": "50696139-CA012001_2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50727800-SA013001",
+      "ChargingPointID": "50727800-PA013001_6",
+      "ConnectorID": "50727800-CA013001_1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50727800-SA013001",
+      "ChargingPointID": "50727800-PA013001_2",
+      "ConnectorID": "50727800-CA013001_2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50727800-SA013001",
+      "ChargingPointID": "50727800-PA013001_3",
+      "ConnectorID": "50727800-CA013001_3",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50727800-SA013001",
+      "ChargingPointID": "50727800-PA013001_4",
+      "ConnectorID": "50727800-CA013001_4",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50727800-SA013001",
+      "ChargingPointID": "50727800-PA013001_5",
+      "ConnectorID": "50727800-CA013001_5",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50727800-SA013001",
+      "ChargingPointID": "50727800-PA013001_7",
+      "ConnectorID": "50727800-CA013001_6",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50727800-SA013001",
+      "ChargingPointID": "50727800-PA013001_1",
+      "ConnectorID": "50727800-CA013001_7",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50727800-SA013001",
+      "ChargingPointID": "50727800-PA013001_8",
+      "ConnectorID": "50727800-CA013001_8",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "50727800-SA013001",
+      "ChargingPointID": "50727800-PA013001_9",
+      "ConnectorID": "50727800-CA013001_9",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "90505425-SCD42",
+      "ChargingPointID": "90505425-PCD42V001",
+      "ConnectorID": "90505425-CCD42V00101",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "90505425-SCD42",
+      "ChargingPointID": "90505425-PCD42V001",
+      "ConnectorID": "90505425-CCD42V00102",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "90505425-SCD42",
+      "ChargingPointID": "90505425-PCD42V002",
+      "ConnectorID": "90505425-CCD42V00201",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "90505425-SCD42",
+      "ChargingPointID": "90505425-PCD42V002",
+      "ConnectorID": "90505425-CCD42V00202",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "90505425-SCD42",
+      "ChargingPointID": "90505425-PCD42V003",
+      "ConnectorID": "90505425-CCD42V00301",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "90505425-SCD42",
+      "ChargingPointID": "90505425-PCD42V003",
+      "ConnectorID": "90505425-CCD42V00302",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "90505425-SCD42",
+      "ChargingPointID": "90505425-PCD42V004",
+      "ConnectorID": "90505425-CCD42V00401",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "90505425-SCD42",
+      "ChargingPointID": "90505425-PCD42V004",
+      "ConnectorID": "90505425-CCD42V00402",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "90505425-SCD42",
+      "ChargingPointID": "90505425-PCD42V005",
+      "ConnectorID": "90505425-CCD42V00501",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.8,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "90505425-SCD42",
+      "ChargingPointID": "90505425-PCD42V006",
+      "ConnectorID": "90505425-CCD42V00601",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.8,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "90505425-SCD42",
+      "ChargingPointID": "90505425-PCD42V007",
+      "ConnectorID": "90505425-CCD42V00701",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.8,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "90505425-SCD42",
+      "ChargingPointID": "90505425-PCD42V008",
+      "ConnectorID": "90505425-CCD42V00801",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.8,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S118",
+      "ChargingPointID": "97179430-P00153",
+      "ConnectorID": "97179430-C00153-1",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "RatePrice": 0.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S118",
+      "ChargingPointID": "97179430-P00154",
+      "ConnectorID": "97179430-C00154-1",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "RatePrice": 0.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S118",
+      "ChargingPointID": "97179430-P00151",
+      "ConnectorID": "97179430-C00151-1",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "RatePrice": 0.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S118",
+      "ChargingPointID": "97179430-P00152",
+      "ConnectorID": "97179430-C00152-1",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "RatePrice": 0.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S118",
+      "ChargingPointID": "97179430-P00149",
+      "ConnectorID": "97179430-C00149-1",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "RatePrice": 0.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S118",
+      "ChargingPointID": "97179430-P00150",
+      "ConnectorID": "97179430-C00150-1",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "RatePrice": 0.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S119",
+      "ChargingPointID": "97179430-P00175",
+      "ConnectorID": "97179430-C00175-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S119",
+      "ChargingPointID": "97179430-P00172",
+      "ConnectorID": "97179430-C00172-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S119",
+      "ChargingPointID": "97179430-P00176",
+      "ConnectorID": "97179430-C00176-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S119",
+      "ChargingPointID": "97179430-P00177",
+      "ConnectorID": "97179430-C00177-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S119",
+      "ChargingPointID": "97179430-P00174",
+      "ConnectorID": "97179430-C00174-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S119",
+      "ChargingPointID": "97179430-P00173",
+      "ConnectorID": "97179430-C00173-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S121",
+      "ChargingPointID": "97179430-P00141",
+      "ConnectorID": "97179430-C00141-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S121",
+      "ChargingPointID": "97179430-P00139",
+      "ConnectorID": "97179430-C00139-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S121",
+      "ChargingPointID": "97179430-P00140",
+      "ConnectorID": "97179430-C00140-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S121",
+      "ChargingPointID": "97179430-P00142",
+      "ConnectorID": "97179430-C00142-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S121",
+      "ChargingPointID": "97179430-P00136",
+      "ConnectorID": "97179430-C00136-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S121",
+      "ChargingPointID": "97179430-P00135",
+      "ConnectorID": "97179430-C00135-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S121",
+      "ChargingPointID": "97179430-P00144",
+      "ConnectorID": "97179430-C00144-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S121",
+      "ChargingPointID": "97179430-P00138",
+      "ConnectorID": "97179430-C00138-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S121",
+      "ChargingPointID": "97179430-P00137",
+      "ConnectorID": "97179430-C00137-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S121",
+      "ChargingPointID": "97179430-P00143",
+      "ConnectorID": "97179430-C00143-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00046",
+      "ConnectorID": "97179430-C00046-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00037",
+      "ConnectorID": "97179430-C00037-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-PT0230",
+      "ConnectorID": "97179430-CT0230-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-PT0230",
+      "ConnectorID": "97179430-CT0230-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00042",
+      "ConnectorID": "97179430-C00042-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00049",
+      "ConnectorID": "97179430-C00049-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00053",
+      "ConnectorID": "97179430-C00053-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00054",
+      "ConnectorID": "97179430-C00054-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00056",
+      "ConnectorID": "97179430-C00056-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00048",
+      "ConnectorID": "97179430-C00048-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00043",
+      "ConnectorID": "97179430-C00043-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00036",
+      "ConnectorID": "97179430-C00036-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00040",
+      "ConnectorID": "97179430-C00040-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00051",
+      "ConnectorID": "97179430-C00051-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00047",
+      "ConnectorID": "97179430-C00047-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00045",
+      "ConnectorID": "97179430-C00045-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00038",
+      "ConnectorID": "97179430-C00038-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00050",
+      "ConnectorID": "97179430-C00050-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00055",
+      "ConnectorID": "97179430-C00055-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00039",
+      "ConnectorID": "97179430-C00039-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00052",
+      "ConnectorID": "97179430-C00052-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00044",
+      "ConnectorID": "97179430-C00044-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-PT0231",
+      "ConnectorID": "97179430-CT0231-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-PT0231",
+      "ConnectorID": "97179430-CT0231-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-P00041",
+      "ConnectorID": "97179430-C00041-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-PT0229",
+      "ConnectorID": "97179430-CT0229-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S114",
+      "ChargingPointID": "97179430-PT0229",
+      "ConnectorID": "97179430-CT0229-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S120",
+      "ChargingPointID": "97179430-P00181",
+      "ConnectorID": "97179430-C00181-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S120",
+      "ChargingPointID": "97179430-P00180",
+      "ConnectorID": "97179430-C00180-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S120",
+      "ChargingPointID": "97179430-P00178",
+      "ConnectorID": "97179430-C00178-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S120",
+      "ChargingPointID": "97179430-P00179",
+      "ConnectorID": "97179430-C00179-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S125",
+      "ChargingPointID": "97179430-PT0280",
+      "ConnectorID": "97179430-CT0280-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S125",
+      "ChargingPointID": "97179430-PT0279",
+      "ConnectorID": "97179430-CT0279-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S125",
+      "ChargingPointID": "97179430-PT0258",
+      "ConnectorID": "97179430-CT0258-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S125",
+      "ChargingPointID": "97179430-PT0257",
+      "ConnectorID": "97179430-CT0257-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S130",
+      "ChargingPointID": "97179430-PT0246",
+      "ConnectorID": "97179430-CT0246-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S130",
+      "ChargingPointID": "97179430-PT0246",
+      "ConnectorID": "97179430-CT0246-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S130",
+      "ChargingPointID": "97179430-PT0260",
+      "ConnectorID": "97179430-CT0260-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S130",
+      "ChargingPointID": "97179430-PT0259",
+      "ConnectorID": "97179430-CT0259-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S131",
+      "ChargingPointID": "97179430-PT0240",
+      "ConnectorID": "97179430-CT0240-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S131",
+      "ChargingPointID": "97179430-PT0240",
+      "ConnectorID": "97179430-CT0240-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S131",
+      "ChargingPointID": "97179430-PT0244",
+      "ConnectorID": "97179430-CT0244-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S131",
+      "ChargingPointID": "97179430-PT0244",
+      "ConnectorID": "97179430-CT0244-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S131",
+      "ChargingPointID": "97179430-PT0103",
+      "ConnectorID": "97179430-CT0103-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S131",
+      "ChargingPointID": "97179430-PT0119",
+      "ConnectorID": "97179430-CT0119-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S131",
+      "ChargingPointID": "97179430-PT0110",
+      "ConnectorID": "97179430-CT0110-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S131",
+      "ChargingPointID": "97179430-PT0122",
+      "ConnectorID": "97179430-CT0122-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S131",
+      "ChargingPointID": "97179430-PT0106",
+      "ConnectorID": "97179430-CT0106-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S131",
+      "ChargingPointID": "97179430-PT0125",
+      "ConnectorID": "97179430-CT0125-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S131",
+      "ChargingPointID": "97179430-PT0121",
+      "ConnectorID": "97179430-CT0121-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S132",
+      "ChargingPointID": "97179430-P00118",
+      "ConnectorID": "97179430-C00118-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S132",
+      "ChargingPointID": "97179430-P00118",
+      "ConnectorID": "97179430-C00118-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S132",
+      "ChargingPointID": "97179430-P00117",
+      "ConnectorID": "97179430-C00117-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S132",
+      "ChargingPointID": "97179430-P00115",
+      "ConnectorID": "97179430-C00115-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S132",
+      "ChargingPointID": "97179430-P00116",
+      "ConnectorID": "97179430-C00116-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S132",
+      "ChargingPointID": "97179430-P00113",
+      "ConnectorID": "97179430-C00113-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S132",
+      "ChargingPointID": "97179430-P00114",
+      "ConnectorID": "97179430-C00114-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S184",
+      "ChargingPointID": "97179430-PT0633",
+      "ConnectorID": "97179430-CT0633-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S184",
+      "ChargingPointID": "97179430-PT0633",
+      "ConnectorID": "97179430-CT0633-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S184",
+      "ChargingPointID": "97179430-PT0465",
+      "ConnectorID": "97179430-CT0465-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S184",
+      "ChargingPointID": "97179430-PT0466",
+      "ConnectorID": "97179430-CT0466-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S184",
+      "ChargingPointID": "97179430-PT0324",
+      "ConnectorID": "97179430-CT0324-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S184",
+      "ChargingPointID": "97179430-PT0315",
+      "ConnectorID": "97179430-CT0315-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S184",
+      "ChargingPointID": "97179430-PT0327",
+      "ConnectorID": "97179430-CT0327-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S184",
+      "ChargingPointID": "97179430-PT0321",
+      "ConnectorID": "97179430-CT0321-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S181",
+      "ChargingPointID": "97179430-PT0215",
+      "ConnectorID": "97179430-CT0215-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S181",
+      "ChargingPointID": "97179430-PT0330",
+      "ConnectorID": "97179430-CT0330-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S181",
+      "ChargingPointID": "97179430-PT0540",
+      "ConnectorID": "97179430-CT0540-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S181",
+      "ChargingPointID": "97179430-PT0540",
+      "ConnectorID": "97179430-CT0540-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S180",
+      "ChargingPointID": "97179430-PT0329",
+      "ConnectorID": "97179430-CT0329-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S180",
+      "ChargingPointID": "97179430-PT0326",
+      "ConnectorID": "97179430-CT0326-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S180",
+      "ChargingPointID": "97179430-PT0331",
+      "ConnectorID": "97179430-CT0331-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S180",
+      "ChargingPointID": "97179430-PT0323",
+      "ConnectorID": "97179430-CT0323-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0212",
+      "ConnectorID": "97179430-CT0212-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0213",
+      "ConnectorID": "97179430-CT0213-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0210",
+      "ConnectorID": "97179430-CT0210-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0242",
+      "ConnectorID": "97179430-CT0242-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0242",
+      "ConnectorID": "97179430-CT0242-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0292",
+      "ConnectorID": "97179430-CT0292-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0291",
+      "ConnectorID": "97179430-CT0291-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0289",
+      "ConnectorID": "97179430-CT0289-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0227",
+      "ConnectorID": "97179430-CT0227-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0247",
+      "ConnectorID": "97179430-CT0247-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0247",
+      "ConnectorID": "97179430-CT0247-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0226",
+      "ConnectorID": "97179430-CT0226-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0211",
+      "ConnectorID": "97179430-CT0211-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0228",
+      "ConnectorID": "97179430-CT0228-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0290",
+      "ConnectorID": "97179430-CT0290-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0209",
+      "ConnectorID": "97179430-CT0209-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0243",
+      "ConnectorID": "97179430-CT0243-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0243",
+      "ConnectorID": "97179430-CT0243-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0224",
+      "ConnectorID": "97179430-CT0224-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S177",
+      "ChargingPointID": "97179430-PT0225",
+      "ConnectorID": "97179430-CT0225-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S178",
+      "ChargingPointID": "97179430-PT0268",
+      "ConnectorID": "97179430-CT0268-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S178",
+      "ChargingPointID": "97179430-PT0253",
+      "ConnectorID": "97179430-CT0253-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S178",
+      "ChargingPointID": "97179430-PT0253",
+      "ConnectorID": "97179430-CT0253-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S178",
+      "ChargingPointID": "97179430-PT0285",
+      "ConnectorID": "97179430-CT0285-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S178",
+      "ChargingPointID": "97179430-PT0249",
+      "ConnectorID": "97179430-CT0249-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S178",
+      "ChargingPointID": "97179430-PT0249",
+      "ConnectorID": "97179430-CT0249-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S178",
+      "ChargingPointID": "97179430-PT0201",
+      "ConnectorID": "97179430-CT0201-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S178",
+      "ChargingPointID": "97179430-PT0267",
+      "ConnectorID": "97179430-CT0267-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S178",
+      "ChargingPointID": "97179430-PT0286",
+      "ConnectorID": "97179430-CT0286-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S179",
+      "ChargingPointID": "97179430-PT0348",
+      "ConnectorID": "97179430-CT0348-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S179",
+      "ChargingPointID": "97179430-PT0462",
+      "ConnectorID": "97179430-CT0462-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S179",
+      "ChargingPointID": "97179430-PT0461",
+      "ConnectorID": "97179430-CT0461-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S179",
+      "ChargingPointID": "97179430-PT0347",
+      "ConnectorID": "97179430-CT0347-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S182",
+      "ChargingPointID": "97179430-PT0322",
+      "ConnectorID": "97179430-CT0322-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S182",
+      "ChargingPointID": "97179430-PT0538",
+      "ConnectorID": "97179430-CT0538-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S182",
+      "ChargingPointID": "97179430-PT0538",
+      "ConnectorID": "97179430-CT0538-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S182",
+      "ChargingPointID": "97179430-PT0317",
+      "ConnectorID": "97179430-CT0317-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S182",
+      "ChargingPointID": "97179430-PT0320",
+      "ConnectorID": "97179430-CT0320-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S182",
+      "ChargingPointID": "97179430-PT0539",
+      "ConnectorID": "97179430-CT0539-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S182",
+      "ChargingPointID": "97179430-PT0539",
+      "ConnectorID": "97179430-CT0539-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S182",
+      "ChargingPointID": "97179430-PT0333",
+      "ConnectorID": "97179430-CT0333-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S183",
+      "ChargingPointID": "97179430-PT0203",
+      "ConnectorID": "97179430-CT0203-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S183",
+      "ChargingPointID": "97179430-PT0202",
+      "ConnectorID": "97179430-CT0202-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S183",
+      "ChargingPointID": "97179430-PT0543",
+      "ConnectorID": "97179430-CT0543-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S183",
+      "ChargingPointID": "97179430-PT0543",
+      "ConnectorID": "97179430-CT0543-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S183",
+      "ChargingPointID": "97179430-PT0542",
+      "ConnectorID": "97179430-CT0542-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S183",
+      "ChargingPointID": "97179430-PT0542",
+      "ConnectorID": "97179430-CT0542-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S183",
+      "ChargingPointID": "97179430-PT0218",
+      "ConnectorID": "97179430-CT0218-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S183",
+      "ChargingPointID": "97179430-PT0318",
+      "ConnectorID": "97179430-CT0318-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S183",
+      "ChargingPointID": "97179430-PT0111",
+      "ConnectorID": "97179430-CT0111-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S185",
+      "ChargingPointID": "97179430-PT0319",
+      "ConnectorID": "97179430-CT0319-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S185",
+      "ChargingPointID": "97179430-PT0427",
+      "ConnectorID": "97179430-CT0427-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S185",
+      "ChargingPointID": "97179430-PT0417",
+      "ConnectorID": "97179430-CT0417-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S185",
+      "ChargingPointID": "97179430-PT0426",
+      "ConnectorID": "97179430-CT0426-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S186",
+      "ChargingPointID": "97179430-PT0657",
+      "ConnectorID": "97179430-CT0657-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S186",
+      "ChargingPointID": "97179430-PT0657",
+      "ConnectorID": "97179430-CT0657-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S186",
+      "ChargingPointID": "97179430-PT0358",
+      "ConnectorID": "97179430-CT0358-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S186",
+      "ChargingPointID": "97179430-PT0658",
+      "ConnectorID": "97179430-CT0658-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S186",
+      "ChargingPointID": "97179430-PT0658",
+      "ConnectorID": "97179430-CT0658-2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 12.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "97179430-S186",
+      "ChargingPointID": "97179430-PT0357",
+      "ConnectorID": "97179430-CT0357-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 14.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "89132567-S0137",
+      "ChargingPointID": "89132567-P0379",
+      "ConnectorID": "89132567-C0416",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 9.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ],
+      "OvertimeRate": "0"
+    },
+    {
+      "StationID": "89132567-S0137",
+      "ChargingPointID": "89132567-P0379",
+      "ConnectorID": "89132567-C0417",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 9.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ],
+      "OvertimeRate": "0"
+    },
+    {
+      "StationID": "89132567-S0137",
+      "ChargingPointID": "89132567-P0380",
+      "ConnectorID": "89132567-C0418",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 9.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ],
+      "OvertimeRate": "0"
+    },
+    {
+      "StationID": "89132567-S0137",
+      "ChargingPointID": "89132567-P0380",
+      "ConnectorID": "89132567-C0419",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 9.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ],
+      "OvertimeRate": "0"
+    },
+    {
+      "StationID": "94175832-SUCF0274F041",
+      "ChargingPointID": "94175832-P127b8b49e741",
+      "ConnectorID": "94175832-C127b8b49e7411",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 6.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCF0274F041",
+      "ChargingPointID": "94175832-P229f432b2fb8",
+      "ConnectorID": "94175832-C229f432b2fb81",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 6.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCF0274F041",
+      "ChargingPointID": "94175832-P22c346bc880e",
+      "ConnectorID": "94175832-C22c346bc880e1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 6.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCF0274F041",
+      "ChargingPointID": "94175832-P27de01f37355",
+      "ConnectorID": "94175832-C27de01f373551",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 6.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCF0274F041",
+      "ChargingPointID": "94175832-P30b458f7d996",
+      "ConnectorID": "94175832-C30b458f7d9961",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 6.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCF0274F041",
+      "ChargingPointID": "94175832-P4b62de6a0699",
+      "ConnectorID": "94175832-C4b62de6a06991",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 6.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCF0274F041",
+      "ChargingPointID": "94175832-P5f0cac162a3b",
+      "ConnectorID": "94175832-C5f0cac162a3b1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 6.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCF0274F041",
+      "ChargingPointID": "94175832-P7a7d2bb37be2",
+      "ConnectorID": "94175832-C7a7d2bb37be21",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 6.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCF0274F041",
+      "ChargingPointID": "94175832-Pa1c20e877306",
+      "ConnectorID": "94175832-Ca1c20e8773061",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 6.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCF0274F041",
+      "ChargingPointID": "94175832-Pbb8ba867536b",
+      "ConnectorID": "94175832-Cbb8ba867536b1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 6.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCF0274F041",
+      "ChargingPointID": "94175832-Pc64c9adeb932",
+      "ConnectorID": "94175832-Cc64c9adeb9321",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 6.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCF0274F041",
+      "ChargingPointID": "94175832-Pc74fdf379dcb",
+      "ConnectorID": "94175832-Cc74fdf379dcb1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 6.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCF0274F041",
+      "ChargingPointID": "94175832-Pd28f0705d509",
+      "ConnectorID": "94175832-Cd28f0705d5091",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 6.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "94175832-SUCF0274F041",
+      "ChargingPointID": "94175832-Pe4b5fe1bd6b4",
+      "ConnectorID": "94175832-Ce4b5fe1bd6b41",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 6.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "28007736-S072",
+      "ChargingPointID": "28007736-PFUSN008001",
+      "ConnectorID": "28007736-CFUSN008001001",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "90148497-S1217",
+      "ChargingPointID": "90148497-P6000",
+      "ConnectorID": "90148497-C8191",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 5.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90148497-S1217",
+      "ChargingPointID": "90148497-P6001",
+      "ConnectorID": "90148497-C8192",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 5.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90148497-S1217",
+      "ChargingPointID": "90148497-P6002",
+      "ConnectorID": "90148497-C8193",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 5.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90148497-S1217",
+      "ChargingPointID": "90148497-P6003",
+      "ConnectorID": "90148497-C8194",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 5.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00020",
+      "ChargingPointID": "90807408-PCP04756",
+      "ConnectorID": "90807408-CCP04756",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00020",
+      "ChargingPointID": "90807408-PCP04757",
+      "ConnectorID": "90807408-CCP04757",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00021",
+      "ChargingPointID": "90807408-PCP04764",
+      "ConnectorID": "90807408-CCP04764",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00021",
+      "ChargingPointID": "90807408-PCP04765",
+      "ConnectorID": "90807408-CCP04765",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00026",
+      "ChargingPointID": "90807408-PCP01285",
+      "ConnectorID": "90807408-CCP01285",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 6.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00026",
+      "ChargingPointID": "90807408-PCP04754",
+      "ConnectorID": "90807408-CCP04754",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00026",
+      "ChargingPointID": "90807408-PCP04755",
+      "ConnectorID": "90807408-CCP04755",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00029",
+      "ChargingPointID": "90807408-PCP04766",
+      "ConnectorID": "90807408-CCP04766",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00029",
+      "ChargingPointID": "90807408-PCP04767",
+      "ConnectorID": "90807408-CCP04767",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP01541",
+      "ConnectorID": "90807408-CCP01541",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP01542",
+      "ConnectorID": "90807408-CCP01542",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP01543",
+      "ConnectorID": "90807408-CCP01543",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP02401",
+      "ConnectorID": "90807408-CCP02401",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP02402",
+      "ConnectorID": "90807408-CCP02402",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP03049",
+      "ConnectorID": "90807408-CCP03049",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP03050",
+      "ConnectorID": "90807408-CCP03050",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP03051",
+      "ConnectorID": "90807408-CCP03051",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP03052",
+      "ConnectorID": "90807408-CCP03052",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP03053",
+      "ConnectorID": "90807408-CCP03053",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP03054",
+      "ConnectorID": "90807408-CCP03054",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP03055",
+      "ConnectorID": "90807408-CCP03055",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP03056",
+      "ConnectorID": "90807408-CCP03056",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP03057",
+      "ConnectorID": "90807408-CCP03057",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP03058",
+      "ConnectorID": "90807408-CCP03058",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP03059",
+      "ConnectorID": "90807408-CCP03059",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP03060",
+      "ConnectorID": "90807408-CCP03060",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP03061",
+      "ConnectorID": "90807408-CCP03061",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP03062",
+      "ConnectorID": "90807408-CCP03062",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP04587",
+      "ConnectorID": "90807408-CCP04587",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP05413",
+      "ConnectorID": "90807408-CCP05413",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP05414",
+      "ConnectorID": "90807408-CCP05414",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP05415",
+      "ConnectorID": "90807408-CCP05415",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP05416",
+      "ConnectorID": "90807408-CCP05416",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP05417",
+      "ConnectorID": "90807408-CCP05417",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP05418",
+      "ConnectorID": "90807408-CCP05418",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP05419",
+      "ConnectorID": "90807408-CCP05419",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD00072",
+      "ChargingPointID": "90807408-PCP05420",
+      "ConnectorID": "90807408-CCP05420",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 7.5,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03097",
+      "ChargingPointID": "90807408-PCP04776",
+      "ConnectorID": "90807408-CCP04776",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03097",
+      "ChargingPointID": "90807408-PCP04777",
+      "ConnectorID": "90807408-CCP04777",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03099",
+      "ChargingPointID": "90807408-PCP04780",
+      "ConnectorID": "90807408-CCP04780",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03099",
+      "ChargingPointID": "90807408-PCP04781",
+      "ConnectorID": "90807408-CCP04781",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90807408-SCSD03099",
+      "ChargingPointID": "90807408-PCP04782",
+      "ConnectorID": "90807408-CCP04782",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "RatePrice": 8.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "90505425-S58246",
+      "ChargingPointID": "90505425-P582461",
+      "ConnectorID": "90505425-C582461-1",
+      "Rates": []
+    },
+    {
+      "StationID": "90505425-S58246",
+      "ChargingPointID": "90505425-P582462",
+      "ConnectorID": "90505425-C582462-1",
+      "Rates": []
+    },
+    {
+      "StationID": "90505425-S58246",
+      "ChargingPointID": "90505425-P582463",
+      "ConnectorID": "90505425-C582463-1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 9.9,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "90505425-S58246",
+      "ChargingPointID": "90505425-P582464",
+      "ConnectorID": "90505425-C582464-1",
+      "Rates": []
+    },
+    {
+      "StationID": "90505425-S58246",
+      "ChargingPointID": "90505425-P582465",
+      "ConnectorID": "90505425-C582465-1",
+      "Rates": []
+    },
+    {
+      "StationID": "90505425-S58246",
+      "ChargingPointID": "90505425-P582466",
+      "ConnectorID": "90505425-C582466-1",
+      "Rates": []
+    },
+    {
+      "StationID": "42861108-Sdf72215f-42ec-4d91-84f0-a14df1ef6aba",
+      "ChargingPointID": "42861108-Pe0060201-ef4d-492a-8f73-61f893f40dd9",
+      "ConnectorID": "42861108-Ccf3f5736-cf92-4429-aa72-e31c44c84c31",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 0,
+          "EndKW": 60,
+          "RatePrice": 5.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 60,
+          "EndKW": 100,
+          "RatePrice": 11.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 100,
+          "EndKW": 180,
+          "RatePrice": 17.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 180,
+          "EndKW": 250,
+          "RatePrice": 28.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sdf72215f-42ec-4d91-84f0-a14df1ef6aba",
+      "ChargingPointID": "42861108-Pe0060201-ef4d-492a-8f73-61f893f40dd9",
+      "ConnectorID": "42861108-C0326d70d-0a71-4369-8d47-6561bd8e74b0",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 0,
+          "EndKW": 60,
+          "RatePrice": 5.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 60,
+          "EndKW": 100,
+          "RatePrice": 11.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 100,
+          "EndKW": 180,
+          "RatePrice": 17.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 180,
+          "EndKW": 250,
+          "RatePrice": 28.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sdf72215f-42ec-4d91-84f0-a14df1ef6aba",
+      "ChargingPointID": "42861108-P4fbcba50-78f9-4b0a-83e9-601390df4a02",
+      "ConnectorID": "42861108-Cf1555a3a-5596-44d4-9853-8cde203c4484",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 0,
+          "EndKW": 60,
+          "RatePrice": 5.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 60,
+          "EndKW": 100,
+          "RatePrice": 11.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 100,
+          "EndKW": 180,
+          "RatePrice": 17.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 180,
+          "EndKW": 250,
+          "RatePrice": 28.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sdf72215f-42ec-4d91-84f0-a14df1ef6aba",
+      "ChargingPointID": "42861108-P4fbcba50-78f9-4b0a-83e9-601390df4a02",
+      "ConnectorID": "42861108-C139c413b-dc81-4057-9afa-879960e43f7e",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 0,
+          "EndKW": 60,
+          "RatePrice": 5.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 60,
+          "EndKW": 100,
+          "RatePrice": 11.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 100,
+          "EndKW": 180,
+          "RatePrice": 17.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 180,
+          "EndKW": 250,
+          "RatePrice": 28.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sdf72215f-42ec-4d91-84f0-a14df1ef6aba",
+      "ChargingPointID": "42861108-P28b3a206-96fe-42e9-a466-e2a6adeec7a4",
+      "ConnectorID": "42861108-C8332e353-b005-402d-af91-1688bc5e3339",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 0,
+          "EndKW": 60,
+          "RatePrice": 5.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 60,
+          "EndKW": 100,
+          "RatePrice": 11.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 100,
+          "EndKW": 180,
+          "RatePrice": 17.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 180,
+          "EndKW": 250,
+          "RatePrice": 28.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sdf72215f-42ec-4d91-84f0-a14df1ef6aba",
+      "ChargingPointID": "42861108-P28b3a206-96fe-42e9-a466-e2a6adeec7a4",
+      "ConnectorID": "42861108-Cb172572f-bdcd-4dcc-8d1c-bee5cc393465",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 0,
+          "EndKW": 60,
+          "RatePrice": 5.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 60,
+          "EndKW": 100,
+          "RatePrice": 11.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 100,
+          "EndKW": 180,
+          "RatePrice": 17.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 180,
+          "EndKW": 250,
+          "RatePrice": 28.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sdf72215f-42ec-4d91-84f0-a14df1ef6aba",
+      "ChargingPointID": "42861108-P0e2b029f-969d-4473-8f2f-f6c2b24f72e3",
+      "ConnectorID": "42861108-C8d177871-7505-4c97-a03c-380a620eb8f0",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 0,
+          "EndKW": 60,
+          "RatePrice": 5.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 60,
+          "EndKW": 100,
+          "RatePrice": 11.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 100,
+          "EndKW": 180,
+          "RatePrice": 17.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 180,
+          "EndKW": 250,
+          "RatePrice": 28.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sdf72215f-42ec-4d91-84f0-a14df1ef6aba",
+      "ChargingPointID": "42861108-P0e2b029f-969d-4473-8f2f-f6c2b24f72e3",
+      "ConnectorID": "42861108-Ced6886dc-b2b7-45ce-930d-927663d9e633",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 0,
+          "EndKW": 60,
+          "RatePrice": 5.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 60,
+          "EndKW": 100,
+          "RatePrice": 11.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 100,
+          "EndKW": 180,
+          "RatePrice": 17.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 180,
+          "EndKW": 250,
+          "RatePrice": 28.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sdf72215f-42ec-4d91-84f0-a14df1ef6aba",
+      "ChargingPointID": "42861108-P3e695131-2ad2-460c-974c-167480c7a802",
+      "ConnectorID": "42861108-C5dc4812b-ff6d-4328-b067-c1923b77b426",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 0,
+          "EndKW": 60,
+          "RatePrice": 5.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 60,
+          "EndKW": 100,
+          "RatePrice": 11.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 100,
+          "EndKW": 180,
+          "RatePrice": 17.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 180,
+          "EndKW": 250,
+          "RatePrice": 28.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sdf72215f-42ec-4d91-84f0-a14df1ef6aba",
+      "ChargingPointID": "42861108-P3e695131-2ad2-460c-974c-167480c7a802",
+      "ConnectorID": "42861108-Cfd884307-8c00-4876-bbec-94a358e9e601",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 0,
+          "EndKW": 60,
+          "RatePrice": 5.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 60,
+          "EndKW": 100,
+          "RatePrice": 11.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 100,
+          "EndKW": 180,
+          "RatePrice": 17.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 180,
+          "EndKW": 250,
+          "RatePrice": 28.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sdf72215f-42ec-4d91-84f0-a14df1ef6aba",
+      "ChargingPointID": "42861108-P1447fa99-7887-48f2-9420-b2e2c8f128a4",
+      "ConnectorID": "42861108-C05ecded2-35d5-4635-8503-4e1cd7689601",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 0,
+          "EndKW": 60,
+          "RatePrice": 5.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 60,
+          "EndKW": 100,
+          "RatePrice": 11.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 100,
+          "EndKW": 180,
+          "RatePrice": 17.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 180,
+          "EndKW": 250,
+          "RatePrice": 28.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sdf72215f-42ec-4d91-84f0-a14df1ef6aba",
+      "ChargingPointID": "42861108-P1447fa99-7887-48f2-9420-b2e2c8f128a4",
+      "ConnectorID": "42861108-Cd27c6ca9-d9d3-47b3-9370-0753a4ac9fa0",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 0,
+          "EndKW": 60,
+          "RatePrice": 5.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 60,
+          "EndKW": 100,
+          "RatePrice": 11.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 100,
+          "EndKW": 180,
+          "RatePrice": 17.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 180,
+          "EndKW": 250,
+          "RatePrice": 28.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sdf72215f-42ec-4d91-84f0-a14df1ef6aba",
+      "ChargingPointID": "42861108-Paf3bf84b-3c48-4b71-a580-67cd363a6663",
+      "ConnectorID": "42861108-C0260653e-bd44-472e-94e4-7685f77362c9",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 0,
+          "EndKW": 60,
+          "RatePrice": 5.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 60,
+          "EndKW": 100,
+          "RatePrice": 11.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 100,
+          "EndKW": 180,
+          "RatePrice": 17.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 180,
+          "EndKW": 250,
+          "RatePrice": 28.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sdf72215f-42ec-4d91-84f0-a14df1ef6aba",
+      "ChargingPointID": "42861108-Paf3bf84b-3c48-4b71-a580-67cd363a6663",
+      "ConnectorID": "42861108-Ca069d95c-2691-4fe1-9736-21e3810c0fa7",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 0,
+          "EndKW": 60,
+          "RatePrice": 5.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 60,
+          "EndKW": 100,
+          "RatePrice": 11.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 100,
+          "EndKW": 180,
+          "RatePrice": 17.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 180,
+          "EndKW": 250,
+          "RatePrice": 28.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sdf72215f-42ec-4d91-84f0-a14df1ef6aba",
+      "ChargingPointID": "42861108-Pcdd64739-bf15-43e6-a28a-c89530277b78",
+      "ConnectorID": "42861108-C0b6013cb-365b-4e9b-81a8-0a7fded34267",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 0,
+          "EndKW": 60,
+          "RatePrice": 5.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 60,
+          "EndKW": 100,
+          "RatePrice": 11.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 100,
+          "EndKW": 180,
+          "RatePrice": 17.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 180,
+          "EndKW": 250,
+          "RatePrice": 28.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sdf72215f-42ec-4d91-84f0-a14df1ef6aba",
+      "ChargingPointID": "42861108-Pcdd64739-bf15-43e6-a28a-c89530277b78",
+      "ConnectorID": "42861108-C9ff63959-6a9f-4b77-9f86-3153b2d4cc03",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 0,
+          "EndKW": 60,
+          "RatePrice": 5.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 60,
+          "EndKW": 100,
+          "RatePrice": 11.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 100,
+          "EndKW": 180,
+          "RatePrice": 17.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        },
+        {
+          "RateType": 3,
+          "PricingType": 5,
+          "StartKW": 180,
+          "EndKW": 250,
+          "RatePrice": 28.0,
+          "Peak": 0,
+          "StartTime": "00:00",
+          "EndTime": "24:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S9df3838e-d934-45ad-b366-3a62060fc784",
+      "ChargingPointID": "42861108-Pdd752965-0569-4111-a942-878dc56096ff",
+      "ConnectorID": "42861108-C1446ca25-96a8-4569-aae1-4e04ccd0d774",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "00:00",
+          "EndTime": "16:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 13.0,
+          "Peak": 1,
+          "StartTime": "16:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "22:00",
+          "EndTime": "00:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S9df3838e-d934-45ad-b366-3a62060fc784",
+      "ChargingPointID": "42861108-P81272a72-d836-425d-820c-a8aabf633130",
+      "ConnectorID": "42861108-C646059ab-2eca-4408-987c-399d3814c5b2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "00:00",
+          "EndTime": "16:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 13.0,
+          "Peak": 1,
+          "StartTime": "16:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "22:00",
+          "EndTime": "00:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S9df3838e-d934-45ad-b366-3a62060fc784",
+      "ChargingPointID": "42861108-P1adedb13-a982-421d-bd82-ce6061d8a8d3",
+      "ConnectorID": "42861108-Caf8e20e6-165f-4c66-919f-523ca79f8ba4",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "00:00",
+          "EndTime": "16:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 13.0,
+          "Peak": 1,
+          "StartTime": "16:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "22:00",
+          "EndTime": "00:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S9df3838e-d934-45ad-b366-3a62060fc784",
+      "ChargingPointID": "42861108-P3fdc156b-8c49-4a1f-b29e-cca86a2e1b57",
+      "ConnectorID": "42861108-C7bd6eb6b-0dbd-4a68-904f-fb3cb63d8ad1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "00:00",
+          "EndTime": "16:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 13.0,
+          "Peak": 1,
+          "StartTime": "16:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "22:00",
+          "EndTime": "00:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S9df3838e-d934-45ad-b366-3a62060fc784",
+      "ChargingPointID": "42861108-P54e8bdff-e047-447a-ad26-6a7123f2494c",
+      "ConnectorID": "42861108-C8aaa8d24-d9ab-4b20-b122-980e78fcc918",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "00:00",
+          "EndTime": "16:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 13.0,
+          "Peak": 1,
+          "StartTime": "16:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "22:00",
+          "EndTime": "00:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sc6ad7826-4e8c-4ffd-ab8a-6aaab12776ed",
+      "ChargingPointID": "42861108-Pb7639d3d-299c-4aff-ba46-a178c984ea5d",
+      "ConnectorID": "42861108-Cf296f417-efcf-4ab8-87df-fdb6ccf38846",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "00:00",
+          "EndTime": "16:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 13.0,
+          "Peak": 1,
+          "StartTime": "16:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "22:00",
+          "EndTime": "00:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sc6ad7826-4e8c-4ffd-ab8a-6aaab12776ed",
+      "ChargingPointID": "42861108-P12af34fe-9657-4b83-bcb8-a06dd97c995e",
+      "ConnectorID": "42861108-C11e39275-1595-472e-8d73-63fe15ff2632",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "00:00",
+          "EndTime": "16:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 13.0,
+          "Peak": 1,
+          "StartTime": "16:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "22:00",
+          "EndTime": "00:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sc6ad7826-4e8c-4ffd-ab8a-6aaab12776ed",
+      "ChargingPointID": "42861108-Pf900d2b1-454b-46fb-8071-a1887b54464b",
+      "ConnectorID": "42861108-C1e798809-7587-4486-b920-682e6e70ac62",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "00:00",
+          "EndTime": "16:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 13.0,
+          "Peak": 1,
+          "StartTime": "16:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "22:00",
+          "EndTime": "00:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sc6ad7826-4e8c-4ffd-ab8a-6aaab12776ed",
+      "ChargingPointID": "42861108-P2487c651-8342-4160-84b3-dab27d5573b3",
+      "ConnectorID": "42861108-C2a39744e-a8c6-48ea-9aa6-e9e602ee9981",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "00:00",
+          "EndTime": "16:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 13.0,
+          "Peak": 1,
+          "StartTime": "16:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "22:00",
+          "EndTime": "00:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sc6ad7826-4e8c-4ffd-ab8a-6aaab12776ed",
+      "ChargingPointID": "42861108-P6435c921-fb3d-45b4-a59f-7536573f0bf0",
+      "ConnectorID": "42861108-Ce1d48bac-a78a-442a-81fc-26edd85303f4",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "00:00",
+          "EndTime": "16:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 13.0,
+          "Peak": 1,
+          "StartTime": "16:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "22:00",
+          "EndTime": "00:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sc6ad7826-4e8c-4ffd-ab8a-6aaab12776ed",
+      "ChargingPointID": "42861108-Pc8703668-fa26-470d-afe4-34065b5cf7ef",
+      "ConnectorID": "42861108-C5c1d25fb-31a8-45ca-9ba4-de27cb303125",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "00:00",
+          "EndTime": "16:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 13.0,
+          "Peak": 1,
+          "StartTime": "16:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "22:00",
+          "EndTime": "00:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sb26d25e3-12f5-49d2-94b6-baf2206b6ad1",
+      "ChargingPointID": "42861108-Pd2f34c36-1ac5-420d-b408-ef47289cf350",
+      "ConnectorID": "42861108-C93670a7b-14fa-4dd5-b4df-35b0ffd3c9d0",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "00:00",
+          "EndTime": "16:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 13.0,
+          "Peak": 1,
+          "StartTime": "16:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "22:00",
+          "EndTime": "00:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sb26d25e3-12f5-49d2-94b6-baf2206b6ad1",
+      "ChargingPointID": "42861108-P018950f9-9b11-43da-a6ff-4d1a5220f5a1",
+      "ConnectorID": "42861108-Cb111cac8-6570-4b23-8da1-1bad0c46231e",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "00:00",
+          "EndTime": "16:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 13.0,
+          "Peak": 1,
+          "StartTime": "16:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "22:00",
+          "EndTime": "00:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sb26d25e3-12f5-49d2-94b6-baf2206b6ad1",
+      "ChargingPointID": "42861108-P1d8b3ed7-fae3-40c1-8c68-e1b9e069fa2b",
+      "ConnectorID": "42861108-C34906e9b-045c-453c-b266-a09ab37b8d12",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "00:00",
+          "EndTime": "16:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 13.0,
+          "Peak": 1,
+          "StartTime": "16:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "22:00",
+          "EndTime": "00:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sb26d25e3-12f5-49d2-94b6-baf2206b6ad1",
+      "ChargingPointID": "42861108-P2bd70a93-2bd8-4322-beaa-af2793f8c7b9",
+      "ConnectorID": "42861108-C5c4a92d8-f093-49b7-baeb-58dc3efa6ddf",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "00:00",
+          "EndTime": "16:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 13.0,
+          "Peak": 1,
+          "StartTime": "16:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "22:00",
+          "EndTime": "00:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sb26d25e3-12f5-49d2-94b6-baf2206b6ad1",
+      "ChargingPointID": "42861108-P68d4628b-7b2a-4472-afae-7e4e137d687e",
+      "ConnectorID": "42861108-C1c3c52ba-dadb-4859-9cc1-e55633f63370",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "00:00",
+          "EndTime": "16:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 13.0,
+          "Peak": 1,
+          "StartTime": "16:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "22:00",
+          "EndTime": "00:00"
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sb26d25e3-12f5-49d2-94b6-baf2206b6ad1",
+      "ChargingPointID": "42861108-P9801071c-a06d-4cc6-ae77-9fb44a285515",
+      "ConnectorID": "42861108-Cd4132b63-aca9-4eb8-8a11-1c1164a830ee",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "00:00",
+          "EndTime": "16:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 13.0,
+          "Peak": 1,
+          "StartTime": "16:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "RatePrice": 6.0,
+          "Peak": 2,
+          "StartTime": "22:00",
+          "EndTime": "00:00"
+        }
+      ]
+    }
+  ]
+}

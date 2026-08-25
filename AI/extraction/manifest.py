@@ -1,4 +1,4 @@
-"""SQLite progress tracking for extraction runs."""
+"""SQLite progress tracking for extraction runs (local non-synced path)."""
 from __future__ import annotations
 
 import sqlite3
@@ -21,20 +21,8 @@ class Manifest:
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
         self._init_schema()
 
-    @contextmanager
-    def _conn(self) -> Iterator[sqlite3.Connection]:
-        conn = sqlite3.connect(self.db_path)
-        conn.row_factory = sqlite3.Row
-        try:
-            yield conn
-            conn.commit()
-        finally:
-            conn.close()
-
-    def _init_schema(self) -> None:
-        with self._conn() as conn:
-            conn.executescript(
-                """
+    def _schema_sql(self) -> str:
+        return """
                 CREATE TABLE IF NOT EXISTS tasks (
                     task_id TEXT PRIMARY KEY,
                     phase TEXT NOT NULL,
@@ -57,7 +45,65 @@ class Manifest:
                     notes TEXT
                 );
                 """
+
+    def _reset_db(self) -> None:
+        """Replace a corrupt DB with a fresh one."""
+        if self.db_path.is_file():
+            corrupt = self.db_path.with_name(
+                f"{self.db_path.stem}_corrupt{self.db_path.suffix}"
             )
+            try:
+                if corrupt.is_file():
+                    corrupt.unlink()
+                self.db_path.replace(corrupt)
+            except OSError:
+                try:
+                    self.db_path.unlink()
+                except OSError:
+                    self.db_path = self.db_path.with_name(
+                        f"{self.db_path.stem}_{uuid4().hex[:8]}{self.db_path.suffix}"
+                    )
+
+    def _open_conn(self) -> sqlite3.Connection:
+        try:
+            conn = sqlite3.connect(self.db_path, timeout=30)
+            conn.execute("PRAGMA journal_mode=DELETE")
+            conn.execute("SELECT 1 FROM sqlite_master LIMIT 1")
+            conn.row_factory = sqlite3.Row
+            return conn
+        except sqlite3.DatabaseError:
+            self._reset_db()
+            conn = sqlite3.connect(self.db_path, timeout=30)
+            conn.execute("PRAGMA journal_mode=DELETE")
+            conn.executescript(self._schema_sql())
+            conn.row_factory = sqlite3.Row
+            return conn
+
+    @contextmanager
+    def _conn(self) -> Iterator[sqlite3.Connection]:
+        last_exc: Exception | None = None
+        for attempt in range(2):
+            conn: sqlite3.Connection | None = None
+            try:
+                conn = self._open_conn()
+                yield conn
+                conn.commit()
+                return
+            except sqlite3.DatabaseError as exc:
+                last_exc = exc
+                if attempt == 0:
+                    self._reset_db()
+                else:
+                    raise
+            finally:
+                if conn is not None:
+                    conn.close()
+        if last_exc is not None:
+            raise last_exc
+
+    def _init_schema(self) -> None:
+        with self._conn() as conn:
+            conn.executescript(self._schema_sql())
 
     def get_task(self, task_id: str) -> Optional[dict[str, Any]]:
         with self._conn() as conn:
@@ -101,7 +147,6 @@ class Manifest:
 
     def reset_stale_in_progress(self, phase: str, older_than_minutes: int = 30) -> int:
         """Mark abandoned in_progress tasks as pending (crash recovery)."""
-        # Simple approach: any in_progress for this phase -> pending
         with self._conn() as conn:
             cur = conn.execute(
                 "UPDATE tasks SET status = 'pending' WHERE phase = ? AND status = 'in_progress'",

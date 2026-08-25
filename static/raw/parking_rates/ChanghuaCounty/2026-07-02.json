@@ -1,0 +1,533 @@
+{
+  "UpdateTime": "2026-07-02T14:04:58+08:00",
+  "UpdateInterval": 14400,
+  "SrcUpdateTime": "2026-07-02T14:04:58+08:00",
+  "SrcUpdateInterval": -1,
+  "AuthorityCode": "CHA",
+  "ParkingRates": [
+    {
+      "StationID": "12681939-SHA570",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S42b07e09-828d-4118-9efc-7780f55d1ec2",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S8b97e428-395c-4180-86d7-3b36739b4bc2",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S14ae2b58-eff3-4d0c-bfc8-b03a0e84d1bf",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S92445175-1cff-4127-a74c-e5db25773cc3",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S043fea04-d4e9-4b84-b8dc-dca4ce2ecacc",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S8cd4403a-6a30-469a-b788-a236d8a67d83",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sb1b48c18-e9ae-487f-a6bc-a2f42cde1790",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S599fc8e5-a53a-4edd-b77d-9fb18b8485bb",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S2670ca10-85d6-4510-85ae-7aa5c7c7503b",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S757509ad-2f47-4f95-9fc0-b2286f978d02",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S06e9396d-8f89-449e-baa4-2bf5cf2bd4ca",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-Sd8000882-3c3a-4165-bb44-57a38bfcca60",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "42861108-S75da3f32-b7e4-4809-9bfd-81c101245ad1",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "94511125-SA0557011",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "94511080-SA0558011",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "StartTime": "00:00",
+          "EndTime": "24:00",
+          "Peak": 0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "94511096-SA0559011",
+      "Rates": [
+        {
+          "RateType": 1,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 0.0,
+          "Peak": 0,
+          "MaxPrice": 0.0
+        }
+      ]
+    },
+    {
+      "StationID": "80096903-SA0591011",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": 200.0
+        }
+      ]
+    },
+    {
+      "StationID": "94542675-SA0560011",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 50.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "94542669-SA0561011",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": 150.0
+        }
+      ]
+    },
+    {
+      "StationID": "50965513-SDP5113004a",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "50965513-SDP5113004b",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 20.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "50965513-SPJL3701001",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": 200.0
+        }
+      ]
+    },
+    {
+      "StationID": "85051710-S349",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 20.0,
+          "MaxPrice": 50.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 4,
+          "RatePrice": 40.0,
+          "MaxPrice": 200.0
+        }
+      ]
+    },
+    {
+      "StationID": "12745271-SPSS_HA427",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "12745271-SPSS_HA420",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": 150.0
+        }
+      ]
+    },
+    {
+      "StationID": "12745271-SPSS_HA417",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": 130.0
+        }
+      ]
+    },
+    {
+      "StationID": "12745271-SPSS_HA419",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": 100.0
+        }
+      ]
+    },
+    {
+      "StationID": "12745271-SPSS_HA418",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": 130.0
+        }
+      ]
+    },
+    {
+      "StationID": "12745271-SPSS_HA527",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 3,
+          "RatePrice": 40.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "12745271-SPSS_HA527A",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 3,
+          "RatePrice": 40.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "12745271-SPSS_HA527B",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 2,
+          "RatePrice": 30.0,
+          "MaxPrice": -1.0
+        },
+        {
+          "RateType": 3,
+          "PricingType": 3,
+          "DayType": 3,
+          "RatePrice": 40.0,
+          "MaxPrice": -1.0
+        }
+      ]
+    },
+    {
+      "StationID": "12745271-SPSS_HA568",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": 150.0
+        }
+      ]
+    },
+    {
+      "StationID": "12745271-SPSS_HA565",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": 150.0
+        }
+      ]
+    },
+    {
+      "StationID": "12745271-SPSS_HA543",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": 200.0
+        }
+      ]
+    },
+    {
+      "StationID": "12745271-SPSS_HA544",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": 120.0
+        }
+      ]
+    },
+    {
+      "StationID": "12745271-SPSS_HA545",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": 120.0
+        }
+      ]
+    },
+    {
+      "StationID": "12745271-SPSS_HA567",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": 190.0
+        }
+      ]
+    },
+    {
+      "StationID": "12745271-SPSS_HA556",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "MaxPrice": 150.0
+        }
+      ]
+    },
+    {
+      "StationID": "12745271-SPSS_HA555",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 40.0,
+          "MaxPrice": 150.0
+        }
+      ]
+    },
+    {
+      "StationID": "12745271-SPSS_HA571",
+      "Rates": [
+        {
+          "RateType": 3,
+          "PricingType": 1,
+          "DayType": 1,
+          "RatePrice": 30.0,
+          "MaxPrice": 150.0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1560 @@
+{
+  "UpdateTime": "2026-07-02T14:44:58+08:00",
+  "UpdateInterval": 14400,
+  "SrcUpdateTime": "2026-07-02T14:44:58+08:00",
+  "SrcUpdateInterval": -1,
+  "AuthorityCode": "TTT",
+  "Stations": [
+    {
+      "StationID": "90203890-ST24002A",
+      "StationName": {
+        "Zh_tw": "鹿野鄉公所站"
+      },
+      "Description": "充電車位2格,充電槍2支(CCS2*2),皆為快速充電規格。",
+      "OperatorID": "90203890",
+      "OperationType": 1,
+      "PositionLat": 22.939372,
+      "PositionLon": 121.151118,
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "免費",
+      "ChargingRate": "離峰：週一至週五非尖峰時間、週六及週日全時段 8 元每度；尖峰：週一至週五 15:00-21:00 13.5 元每度；半尖峰：週一至週五 05:00-15:00 10 元每度。超過 5 分鐘後未進行充電，每分鐘收取站位費 30 元；總費用上限 2250 元。",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "台東縣",
+          "Town": "鹿野鄉",
+          "Road": "大原段",
+          "No": "3809地號"
+        }
+      },
+      "Telephone": "07-5523017"
+    },
+    {
+      "StationID": "90203890-ST24004A",
+      "StationName": {
+        "Zh_tw": "台東火車站"
+      },
+      "Description": "充電車位2格,充電槍2支(CCS2*2),皆為快速充電規格。",
+      "OperatorID": "90203890",
+      "OperationType": 1,
+      "PositionLat": 22.795005,
+      "PositionLon": 121.125102,
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "(1)計時/每日/5元半小時(第一小時以一小時計算，滿一小時後以半小時計算)",
+      "ChargingRate": "離峰：週一至週五非尖峰時間、週六及週日全時段 8 元每度；尖峰：週一至週五 15:00-21:00 13.5 元每度；半尖峰：週一至週五 05:00-15:00 10 元每度。超過 5 分鐘後未進行充電，每分鐘收取站位費 30 元；總費用上限 2250 元。",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "台東縣",
+          "Town": "台東市",
+          "Road": "岩灣段",
+          "No": "187-4地號"
+        }
+      },
+      "Telephone": "07-5523017"
+    },
+    {
+      "StationID": "90203890-ST24003A",
+      "StationName": {
+        "Zh_tw": "富岡漁港站"
+      },
+      "Description": "充電車位2格,充電槍2支(CCS1*1、CCS2*1),皆為快速充電規格。",
+      "OperatorID": "90203890",
+      "OperationType": 1,
+      "PositionLat": 22.79217,
+      "PositionLon": 121.190005,
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "(1)計時/每日/10元半小時\n(2)身心障礙車主經提驗身心障礙手冊、行車執照、駕駛執照等3樣正本，每日享有1次(限3小時)免費停車，若超時則以計時費率計算",
+      "ChargingRate": "離峰：週一至週五非尖峰時間、週六及週日全時段 8 元每度；尖峰：週一至週五 15:00-21:00 13.5 元每度；半尖峰：週一至週五 05:00-15:00 10 元每度。超過 5 分鐘後未進行充電，每分鐘收取站位費 30 元；總費用上限 2250 元。",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "台東縣",
+          "Town": "",
+          "Road": "富岡段",
+          "No": ""
+        }
+      },
+      "Telephone": "07-5523017"
+    },
+    {
+      "StationID": "42861108-S830656c9-a991-4853-a613-b08f8961fab4",
+      "StationName": {
+        "Zh_tw": "Taitung, Taitung - Naruwan",
+        "En": "Taitung, Taitung - Naruwan"
+      },
+      "Description": "充電格位數8",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 22.77051,
+      "PositionLon": 121.12222,
+      "Spaces": 8,
+      "ChargingPoints": 8,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 8
+        },
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 8
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "TaitungTaitung City Lianhang Rd66"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sd9b965d7-3e41-4e76-81f2-951e9ff10e8b",
+      "StationName": {
+        "Zh_tw": "Taitung, Changbin - Provincial Way",
+        "En": "Taitung, Changbin - Provincial Way"
+      },
+      "Description": "充電格位數4",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.28287,
+      "PositionLon": 121.42764,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "TaitungNo.11 Provincial WayNo. 47號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S5c5900b2-89ea-4176-976a-9d84356c8a30",
+      "StationName": {
+        "Zh_tw": "Taitung, Taimali - PXMart",
+        "En": "Taitung, Taimali - PXMart"
+      },
+      "Description": "充電格位數4",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 22.60744,
+      "PositionLon": 121.00441,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "TaitungWaihuan RdNo. 190"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S4e0c64ae-e96a-47d3-a818-550a6e8da1e4",
+      "StationName": {
+        "Zh_tw": "Taitung, Guanshan - PXMart",
+        "En": "Taitung, Guanshan - PXMart"
+      },
+      "Description": "充電格位數4",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.04341,
+      "PositionLon": 121.16207,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "TaitungHeping RdNo. 22"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sf53700b6-9269-42ec-a980-324323e4a0a7",
+      "StationName": {
+        "Zh_tw": "環山雅築",
+        "En": "環山雅築"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 22.64501,
+      "PositionLon": 120.95994,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "台東縣大王村佳崙路292號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Saf846924-3097-4dc1-91b3-aae71f7dc28c",
+      "StationName": {
+        "Zh_tw": "Hoya Resort Hotel Taitung",
+        "En": "Hoya Resort Hotel Taitung"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 22.7501,
+      "PositionLon": 121.15335,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "台東市復興路38號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S2cc92131-4e19-4809-a0e1-25846fd073fd",
+      "StationName": {
+        "Zh_tw": "Taitung - Naruwan Hotel",
+        "En": "Taitung - Naruwan Hotel"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 22.76962,
+      "PositionLon": 121.1224,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Taitung連航路66號 B2 210及211車位"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sd6fceb01-62d9-4253-9b84-3a1d291e6bd3",
+      "StationName": {
+        "Zh_tw": "大尾山姆 維拉",
+        "En": "大尾山姆 維拉"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.00576,
+      "PositionLon": 121.31665,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "台東縣信義里小馬路134-7號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S25c778dc-03cd-48e7-89c0-1408366e6428",
+      "StationName": {
+        "Zh_tw": "桔子圓民宿",
+        "En": "桔子圓民宿"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 22.75779,
+      "PositionLon": 121.13606,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "台東縣開封街805巷8號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sc31b9e11-91cd-4e31-a476-61525edcad6a",
+      "StationName": {
+        "Zh_tw": "竹湖山居櫟見之丘生態園區",
+        "En": "竹湖山居櫟見之丘生態園區"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.30293,
+      "PositionLon": 121.41959,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "台東縣竹湖村1鄰41號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S562d8cbe-9aff-41d7-88c6-732a53cfd532",
+      "StationName": {
+        "Zh_tw": "馬亨亨民宿",
+        "En": "馬亨亨民宿"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 22.7984,
+      "PositionLon": 121.12529,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "台東縣新站路15號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S88f718f4-3333-4305-a1f6-53ea87d0019a",
+      "StationName": {
+        "Zh_tw": "Tan Villa",
+        "En": "Tan Villa"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 22.80481,
+      "PositionLon": 121.1305,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 254,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Taitung岩灣里北安路679巷1號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S5bcdaf4c-be42-4211-91bb-b95c5f98ddc6",
+      "StationName": {
+        "Zh_tw": "歐拉民宿",
+        "En": "歐拉民宿"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 22.79598,
+      "PositionLon": 121.12433,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "台東縣新站路98巷35號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sce1b6075-90fc-46bf-bde3-7b1840892eaa",
+      "StationName": {
+        "Zh_tw": "石一方民宿Stone Party",
+        "En": "石一方民宿Stone Party"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 22.87541,
+      "PositionLon": 121.22171,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "台東縣都蘭村都蘭59-5號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S77a369f8-55ac-4878-b054-e37db201b87f",
+      "StationName": {
+        "Zh_tw": "雲海灣海景民宿",
+        "En": "雲海灣海景民宿"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 22.78982,
+      "PositionLon": 121.1843,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "台東市吉林路二段578號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sabd37819-fc3d-4807-a59e-5830dd66abf4",
+      "StationName": {
+        "Zh_tw": "Happy Life Hostel Taitung",
+        "En": "Happy Life Hostel Taitung"
+      },
+      "Description": "充電格位數4",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 22.79647,
+      "PositionLon": 121.12668,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 2
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "台東市安和路6號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S451b01d1-545a-4d53-91a5-89140bb18f45",
+      "StationName": {
+        "Zh_tw": "奧麗雅安莊園民宿",
+        "En": "奧麗雅安莊園民宿"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.00709,
+      "PositionLon": 121.31899,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "台東縣小馬路134之18號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S4eaee637-c441-4ceb-8c6a-6bb808bfa94c",
+      "StationName": {
+        "Zh_tw": "太麻里城堡溫泉會舘",
+        "En": "太麻里城堡溫泉會舘"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 22.53211,
+      "PositionLon": 120.95816,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "台東縣鄉金崙村14鄰溫泉7之2號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S1230ab48-f5f3-4aa3-84e4-6fa4471e53eb",
+      "StationName": {
+        "Zh_tw": "小馬客棧",
+        "En": "小馬客棧"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 22.99724,
+      "PositionLon": 121.31602,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "台東縣信義里小馬路92-1號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sbc72fe23-1cb2-463a-876b-1bb89b7b3568",
+      "StationName": {
+        "Zh_tw": "Papago International Resort",
+        "En": "Papago International Resort"
+      },
+      "Description": "充電格位數7",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.10609,
+      "PositionLon": 121.19944,
+      "Spaces": 7,
+      "ChargingPoints": 7,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 6
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Taitung新興村新興107號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Scf29a56b-a85e-49b2-955e-79624646620b",
+      "StationName": {
+        "Zh_tw": "真善居民宿",
+        "En": "真善居民宿"
+      },
+      "Description": "充電格位數4",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 22.75237,
+      "PositionLon": 121.10907,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 2
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "台東市康樂路30號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Se13431cb-162a-46df-8e50-2d820f4f8190",
+      "StationName": {
+        "Zh_tw": "煙燻貓民宿",
+        "En": "煙燻貓民宿"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 22.75779,
+      "PositionLon": 121.13606,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "台東縣開封街805巷10號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S8866bb47-f2b4-49a5-a0e6-7f6b9f60c761",
+      "StationName": {
+        "Zh_tw": "Chii Lih Resort",
+        "En": "Chii Lih Resort"
+      },
+      "Description": "充電格位數3",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 22.89507,
+      "PositionLon": 121.11775,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Taitung中華路一段260號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S87a3cadc-d20f-4d61-abc0-e6dc429f15cb",
+      "StationName": {
+        "Zh_tw": "Taitung - Kindness Hotel Taitung",
+        "En": "Taitung - Kindness Hotel Taitung"
+      },
+      "Description": "充電格位數4",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 22.76753,
+      "PositionLon": 121.14203,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "TaitungZhongxing Rd. Sec. 1, Ln. 20916"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S2276c44b-a80a-49ba-b946-d0b4ca660153",
+      "StationName": {
+        "Zh_tw": "星夜甯境民宿",
+        "En": "星夜甯境民宿"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 22.79095,
+      "PositionLon": 121.15269,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Taitung志航路二段188號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sb78dfe79-92f8-4393-8ecf-5314c224d110",
+      "StationName": {
+        "Zh_tw": "擁月星宿",
+        "En": "擁月星宿"
+      },
+      "Description": "充電格位數4",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.05027,
+      "PositionLon": 121.34347,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 2
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Taitung豐田路25號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sc0f32bdb-5872-4a8a-a68d-6cd1ab7e06e8",
+      "StationName": {
+        "Zh_tw": "長濱跑者之家",
+        "En": "長濱跑者之家"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.28255,
+      "PositionLon": 121.42765,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "台東縣竹湖村47號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "90203890-S152",
+      "StationName": {
+        "Zh_tw": "台東環保局 evbar"
+      },
+      "Description": "星期一：00:00～11:59\n星期二：00:00～23:59\n星期三：00:00～23:59\n星期四：00:00～23:59\n星期五：00:00～23:59\n星期六：00:00～23:59\n星期日：00:00～23:59。停車費率：免費。充電樁數目：1，J1772數量：1",
+      "OperatorID": "90203890",
+      "OperationType": 2,
+      "PositionLat": 22.74717973619186,
+      "PositionLon": 121.15388400932508,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "星期一：00:00～11:59\n星期二：00:00～23:59\n星期三：00:00～23:59\n星期四：00:00～23:59\n星期五：00:00～23:59\n星期六：00:00～23:59\n星期日：00:00～23:59",
+      "ParkingRate": "免費",
+      "ChargingRate": "固定費率(非尖峰費率)",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "台東縣",
+          "Town": "台東市",
+          "Road": "臨海路一段",
+          "No": "525號"
+        }
+      },
+      "Telephone": "02-22559610"
+    },
+    {
+      "StationID": "93859153-S165",
+      "StationName": {
+        "Zh_tw": "臺北榮民總醫院臺東分院 evbar"
+      },
+      "Description": "7x24 小時。停車費率：免費。充電樁數目：2，Type2數量：1，J1772數量：1",
+      "OperatorID": "93859153",
+      "OperationType": 2,
+      "PositionLat": 22.77274455186941,
+      "PositionLon": 121.1329873959097,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/尖峰/16:00-22:00/10.00 元每度, 計度/半尖峰/09:00-16:00/10.00 元每度, 計度/半尖峰/22:00-23:59/10.00 元每度, 計度/半尖峰/06:00-11:00/8.00 元每度, 計度/半尖峰/14:00-23:59/8.00 元每度, 計度/離峰/23:59-09:00/8.00 元每度, 計度/離峰/23:59-06:00/8.00 元每度, 計度/離峰/11:00-14:00/8.00 元每度, 計度/半尖峰/09:00-23:59/10.00 元每度, 計度/半尖峰/06:00-11:00/8.00 元每度, 計度/半尖峰/14:00-23:59/8.00 元每度, 計度/離峰/23:59-09:00/8.00 元每度, 計度/離峰/23:59-06:00/8.00 元每度, 計度/離峰/11:00-14:00/8.00 元每度, 計度/離峰/00:00-23:59/8.00 元每度, 計度/離峰/00:00-23:59/8.00 元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "台東縣",
+          "Town": "台東市",
+          "Road": "更生路",
+          "No": "1000號"
+        }
+      },
+      "Telephone": "02-22559610"
+    },
+    {
+      "StationID": "26455048-S239",
+      "StationName": {
+        "Zh_tw": "東基醫療財團法人台東基督教醫院 evbar"
+      },
+      "Description": "7x24 小時。停車費率：計時/每日/20 元每小時。充電樁數目：2，J1772數量：1，Type2數量：1",
+      "OperatorID": "26455048",
+      "OperationType": 3,
+      "PositionLat": 22.76399443471066,
+      "PositionLon": 121.14615129583201,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "計時/每日/20 元每小時",
+      "ChargingRate": "固定費率(非尖峰費率)",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "台東縣",
+          "Town": "台東市",
+          "Road": "開封街",
+          "No": "350號"
+        }
+      },
+      "Telephone": ""
+    },
+    {
+      "StationID": "90807408-SCSD02397",
+      "StationName": {
+        "Zh_tw": "7-11_台東卑南門市"
+      },
+      "Description": "停車位:0 充電樁數量:0 停車費:免費 費率: 樓層:",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 22.776385,
+      "PositionLon": 121.127443,
+      "Spaces": 0,
+      "ChargingPoints": 0,
+      "Connectors": [],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "",
+      "Floors": "",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "臺東縣",
+          "Town": "臺東市",
+          "Road": "南榮里更生路",
+          "No": "1267號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02764",
+      "StationName": {
+        "Zh_tw": "台東火車站D區停車場"
+      },
+      "Description": "停車位:1 充電樁數量:3 停車費:10元/時，當日最高100元 費率:計度/固定/8.5元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 22.791544,
+      "PositionLon": 121.124501,
+      "Spaces": 1,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "10元/時，當日最高100元",
+      "ChargingRate": "計度/固定/8.5元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "臺東縣",
+          "Town": "臺東市",
+          "Road": "新站路",
+          "No": "283號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02765",
+      "StationName": {
+        "Zh_tw": "台東波浪屋停車場"
+      },
+      "Description": "停車位:1 充電樁數量:4 停車費:10元/時(第一小時未滿一小時以一小時計)，第二小時起以5元/半小時計費 費率:計度/固定/8.5元每度 樓層:1樓",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 22.753477,
+      "PositionLon": 121.147261,
+      "Spaces": 1,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "10元/時(第一小時未滿一小時以一小時計)，第二小時起以5元/半小時計費",
+      "ChargingRate": "計度/固定/8.5元每度",
+      "Floors": "1樓",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "臺東縣",
+          "Town": "臺東市",
+          "Road": "新生路",
+          "No": "170號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02766",
+      "StationName": {
+        "Zh_tw": "台東南昌街停車場"
+      },
+      "Description": "停車位:1 充電樁數量:3 停車費:10元/半小時(未滿三十分鐘者以三十分鐘計) 費率:計度/固定/8.5元每度 樓層:1樓",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 22.749317,
+      "PositionLon": 121.149913,
+      "Spaces": 1,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "10元/半小時(未滿三十分鐘者以三十分鐘計)",
+      "ChargingRate": "計度/固定/8.5元每度",
+      "Floors": "1樓",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "臺東縣",
+          "Town": "臺東市",
+          "Road": "台東段",
+          "No": "688-14、689地號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02767",
+      "StationName": {
+        "Zh_tw": "台東柳州街停車場"
+      },
+      "Description": "停車位:1 充電樁數量:5 停車費:10元/半小時(未滿三十分鐘者以三十分鐘計) 費率:計度/固定/8.5元每度 樓層:1樓",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 22.749861,
+      "PositionLon": 121.135972,
+      "Spaces": 1,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 5
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "10元/半小時(未滿三十分鐘者以三十分鐘計)",
+      "ChargingRate": "計度/固定/8.5元每度",
+      "Floors": "1樓",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "臺東縣",
+          "Town": "臺東市",
+          "Road": "長德段",
+          "No": "542地號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02768",
+      "StationName": {
+        "Zh_tw": "台東成功鎮公所"
+      },
+      "Description": "停車位:0 充電樁數量:0 停車費:免費 費率: 樓層:1樓",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 23.105931,
+      "PositionLon": 121.380366,
+      "Spaces": 0,
+      "ChargingPoints": 0,
+      "Connectors": [],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "",
+      "Floors": "1樓",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "臺東縣",
+          "Town": "臺東市",
+          "Road": "成功鎮忠智段",
+          "No": "1309地號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02769",
+      "StationName": {
+        "Zh_tw": "臺東森林公園"
+      },
+      "Description": "停車位:1 充電樁數量:7 停車費:30元/次(臺東縣籍15元/次) 費率:計度/固定/11元每度,計度/固定/8.5元每度 樓層:1樓",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 22.762777,
+      "PositionLon": 121.15795,
+      "Spaces": 1,
+      "ChargingPoints": 7,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 5
+        }
+      ],
+      "ServiceTime": "每日/06:00-18:00",
+      "ParkingRate": "30元/次(臺東縣籍15元/次)",
+      "ChargingRate": "計度/固定/11元每度,計度/固定/8.5元每度",
+      "Floors": "1樓",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "臺東縣",
+          "Town": "臺東市",
+          "Road": "華泰路",
+          "No": "300號 "
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90148497-S1040",
+      "StationName": {
+        "Zh_tw": "台東瑞源站"
+      },
+      "Description": "服務時間：0:00~24:00 / 停車費率：無收費 / 充電費率：均一價\n$8/度",
+      "OperatorID": "90148497",
+      "OperationType": 1,
+      "PositionLat": 22.955989,
+      "PositionLon": 121.158965,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "0:00~24:00",
+      "ParkingRate": "無收費",
+      "ChargingRate": "均一價\n$8/度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "臺東縣",
+          "Town": "鹿野鄉",
+          "Road": "瑞源村瑞景路一段",
+          "Lane": "336",
+          "No": "8-1"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1049",
+      "StationName": {
+        "Zh_tw": "台東關山站"
+      },
+      "Description": "服務時間：0:00~24:00 / 停車費率：無收費 / 充電費率：夏季時間電價\n16:00~22:00 尖峰$13/度\n22:00~16:00  離峰$9/度\n非夏季時間電價\n15:00~21:00 尖峰$13/度\n21:00~15:00 離峰$9/度\n周末(六、日)\n24H均一價$9/度",
+      "OperatorID": "90148497",
+      "OperationType": 1,
+      "PositionLat": 23.045614,
+      "PositionLon": 121.164175,
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "0:00~24:00",
+      "ParkingRate": "無收費",
+      "ChargingRate": "夏季時間電價\n16:00~22:00 尖峰$13/度\n22:00~16:00  離峰$9/度\n非夏季時間電價\n15:00~21:00 尖峰$13/度\n21:00~15:00 離峰$9/度\n周末(六、日)\n24H均一價$9/度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "臺東縣",
+          "Town": "關山鎮",
+          "Road": "里壠里博愛路",
+          "No": "2"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "94099645-S0055",
+      "StationName": {
+        "Zh_tw": "知本國家森林遊樂區停車場",
+        "En": "Zhiben National Forest Recreation Area Parking Lot"
+      },
+      "Description": "知本國家森林遊樂區停車場",
+      "OperatorID": "94099645",
+      "OperationType": 1,
+      "PositionLat": 22.698715,
+      "PositionLon": 121.025125,
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/20 元每小時",
+      "ChargingRate": "計度/離峰/00:00-14:59/8元每度, 計度/尖峰/15:00-22:00/15 元每度, 計度/離峰/22:00-24:00/8元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "知本國家森林遊樂區"
+        },
+        "Address": {
+          "City": "台東縣",
+          "Town": "卑南鄉",
+          "Road": "龍泉路",
+          "No": "290號"
+        }
+      },
+      "Telephone": "089510961"
+    }
+  ]
+}

@@ -1,0 +1,1632 @@
+{
+  "UpdateTime": "2026-06-30T08:15:11+08:00",
+  "UpdateInterval": 14400,
+  "SrcUpdateTime": "2026-06-30T08:15:07+08:00",
+  "SrcUpdateInterval": -1,
+  "AuthorityCode": "PIF",
+  "Stations": [
+    {
+      "StationID": "93519232-S0008",
+      "StationName": {
+        "Zh_tw": "詮銘潮州站"
+      },
+      "Description": "充電車位3格，J1772*3",
+      "OperatorID": "93519232",
+      "OperationType": 1,
+      "PositionLat": 22.55284,
+      "PositionLon": 120.54029,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/20 元每小時",
+      "ChargingRate": "計度/固定/7 元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "潮州鎮",
+          "Road": "延平路",
+          "No": "40"
+        }
+      },
+      "Telephone": "03-5285025"
+    },
+    {
+      "StationID": "00292235-S0001",
+      "StationName": {
+        "Zh_tw": "信義立體停車場充電站"
+      },
+      "Description": "提供25格11kW單槍充電樁(J-1772)，本場採離、尖峰兩段式收費方式，詳細費率依照充電費率說明為準。",
+      "OperatorID": "292235",
+      "OperationType": 1,
+      "PositionLat": 22.6756726698113,
+      "PositionLon": 120.488328354562,
+      "Spaces": 25,
+      "ChargingPoints": 25,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 25
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/每小時20元/最高160元每日",
+      "ChargingRate": "11kW計度/尖峰週一至週五15:00-21:59/13.5元每度，11kW計度/離峰週一至週五22:00-14:59/6.5元每度",
+      "Floors": "2F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "信義路",
+          "No": "116-1號"
+        }
+      },
+      "Telephone": "(08)7324313"
+    },
+    {
+      "StationID": "40789073-S0001",
+      "StationName": {
+        "Zh_tw": "屏東縣府立體停車場充電站"
+      },
+      "Description": "提供6格11kW單槍充電樁(J-1772)，本場採離、尖峰兩段式收費方式，詳細費率依照充電費率說明為準。",
+      "OperatorID": "40789073",
+      "OperationType": 1,
+      "PositionLat": 22.6827473014965,
+      "PositionLon": 120.489211832156,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/20 元每小時",
+      "ChargingRate": "11kW計度/尖峰週一至週五15:00-21:59/13.5元每度，11kW計度/離峰週一至週五22:00-14:59/6.5元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "勝利里忠孝路",
+          "No": "225號"
+        }
+      },
+      "Telephone": "(08)7324313"
+    },
+    {
+      "StationID": "85051710-S352",
+      "StationName": {
+        "Zh_tw": "屏東公園中華路停車場"
+      },
+      "Description": "全天候開放，使用完請放回角錐，停車依場域規定繳費",
+      "OperatorID": "85051710",
+      "OperationType": 3,
+      "PositionLat": 22.675367,
+      "PositionLon": 120.491235,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "每小時20元",
+      "ChargingRate": "計時/每1分鐘0.93元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "中華路",
+          "No": "134號"
+        }
+      },
+      "Telephone": "08-7324313"
+    },
+    {
+      "StationID": "00292538-S0001",
+      "StationName": {
+        "Zh_tw": "恆春立體停車場充電站"
+      },
+      "Description": "提供8格11kW單槍充電樁(J-1772)、2格120kW雙槍充電樁(CCS1, CCS2)，本場採離、尖峰兩段式收費方式，詳細費率依照充電費率說明為準。",
+      "OperatorID": "292538",
+      "OperationType": 1,
+      "PositionLat": 22.0042535260561,
+      "PositionLon": 120.747894941056,
+      "Spaces": 10,
+      "ChargingPoints": 10,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 8
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/每小時20元/每日最高160元",
+      "ChargingRate": "11kW計度/尖峰週一至週五15:00-21:59/13.5元每度，11kW計度/離峰週一至週五22:00-14:59/6.5元每度120kW計度/尖峰週一至週五15:00-21:59/13.5元每度，120kW計度/離峰週一至週五22:00-14:59/8.5元每度",
+      "Floors": "2F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "恆春鎮",
+          "Road": "文教路",
+          "No": "10號"
+        }
+      },
+      "Telephone": "(08)7324313"
+    },
+    {
+      "StationID": "81373970-S0005",
+      "StationName": {
+        "Zh_tw": "勝利星村空翔區路外停車場"
+      },
+      "Description": "提供2格11kW單槍充電樁(J-1772)，本場採離、尖峰兩段式收費方式，詳細費率依照充電費率說明為準。",
+      "OperatorID": "81373970",
+      "OperationType": 1,
+      "PositionLat": 22.6800216384832,
+      "PositionLon": 120.482894070449,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計次/平日/30元每次,計時/假日/20元每小時/每日最高上限160元",
+      "ChargingRate": "11kW計度/尖峰週一至週五15:00-21:59/13.5元每度，11kW計度/離峰週一至週五22:00-14:59/6.5元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "蘭州街",
+          "No": "9號"
+        }
+      },
+      "Telephone": "(08)7324313"
+    },
+    {
+      "StationID": "81373970-S0006",
+      "StationName": {
+        "Zh_tw": "第三路外停車場充電站"
+      },
+      "Description": "提供3格11kW單槍充電樁(J-1772)，本場採離、尖峰兩段式收費方式，詳細費率依照充電費率說明為準。",
+      "OperatorID": "81373970",
+      "OperationType": 1,
+      "PositionLat": 22.6748048891142,
+      "PositionLon": 120.488394262999,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/20 元每小時",
+      "ChargingRate": "11kW計度/尖峰週一至週五15:00-21:59/13.5元每度，11kW計度/離峰週一至週五22:00-14:59/6.5元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "北平段",
+          "No": "1058-0000地號"
+        }
+      },
+      "Telephone": "(08)7324313"
+    },
+    {
+      "StationID": "81373970-S0002",
+      "StationName": {
+        "Zh_tw": "屏東公園中華路停車場充電站"
+      },
+      "Description": "提供4格11kW單槍充電樁(J-1772)，本場採離、尖峰兩段式收費方式，詳細費率依照充電費率說明為準。",
+      "OperatorID": "81373970",
+      "OperationType": 1,
+      "PositionLat": 22.6762372854327,
+      "PositionLon": 120.491218191144,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/20 元每小時",
+      "ChargingRate": "11kW計度/尖峰週一至週五15:00-21:59/13.5元每度，11kW計度/離峰週一至週五22:00-14:59/6.5元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "公園段三小段",
+          "No": "17地號"
+        }
+      },
+      "Telephone": "(08)7324313"
+    },
+    {
+      "StationID": "00292170-S0001",
+      "StationName": {
+        "Zh_tw": "屏東公園仁愛路停車場充電站"
+      },
+      "Description": "提供13格11kW單槍充電樁(J-1772)、2格120kW雙槍充電樁(CCS1, CCS2)，本場採離、尖峰兩段式收費方式，詳細費率依照充電費率說明為準。",
+      "OperatorID": "292170",
+      "OperationType": 1,
+      "PositionLat": 22.6770366724131,
+      "PositionLon": 120.494164707467,
+      "Spaces": 15,
+      "ChargingPoints": 15,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 13
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/每小時20元/每日最高160元",
+      "ChargingRate": "11kW計度/尖峰週一至週五15:00-21:59/13.5元每度，11kW計度/離峰週一至週五22:00-14:59/6.5元每度120kW計度/尖峰週一至週五15:00-21:59/13.5元每度，120kW計度/離峰週一至週五22:00-14:59/8.5元每度",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "仁愛路",
+          "No": "77號"
+        }
+      },
+      "Telephone": "(08)7324313"
+    },
+    {
+      "StationID": "00292164-S0001",
+      "StationName": {
+        "Zh_tw": "幸福公園停車場充電站"
+      },
+      "Description": "提供25格11kW單槍充電樁(J-1772)，本場採離、尖峰兩段式收費方式，詳細費率依照充電費率說明為準。",
+      "OperatorID": "292164",
+      "OperationType": 1,
+      "PositionLat": 22.6788463666241,
+      "PositionLon": 120.491357439204,
+      "Spaces": 25,
+      "ChargingPoints": 25,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 25
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/每小時20元/最高160元每日",
+      "ChargingRate": "11kW計度/尖峰週一至週五15:00-21:59/13.5元每度，11kW計度/離峰週一至週五22:00-14:59/6.5元每度",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "勝利路",
+          "No": "35號"
+        }
+      },
+      "Telephone": "(08)7324313"
+    },
+    {
+      "StationID": "81373970-S0003",
+      "StationName": {
+        "Zh_tw": "勝利星村路外停車場充電站"
+      },
+      "Description": "提供3格11kW單槍充電樁(J-1772)、2格120kW雙槍充電樁(CCS1, CCS2)，本場採離、尖峰兩段式收費方式，詳細費率依照充電費率說明為準。",
+      "OperatorID": "81373970",
+      "OperationType": 1,
+      "PositionLat": 22.678852522832,
+      "PositionLon": 120.481254081201,
+      "Spaces": 5,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/每小時15元/平日最高30元/假日最高160元",
+      "ChargingRate": "11kW計度/尖峰週一至週五15:00-21:59/13.5元每度，11kW計度/離峰週一至週五22:00-14:59/6.5元每度120kW計度/尖峰週一至週五15:00-21:59/13.5元每度，120kW計度/離峰週一至週五22:00-14:59/8.5元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "博愛路",
+          "No": "202號"
+        }
+      },
+      "Telephone": "(08)7324313"
+    },
+    {
+      "StationID": "89024758-S0001",
+      "StationName": {
+        "Zh_tw": "屏菸停車場充電站"
+      },
+      "Description": "提供20格11kW單槍充電樁(J-1772)、2格120kW雙槍充電樁(CCS1, CCS2)，本場採離、尖峰兩段式收費方式，詳細費率依照充電費率說明為準。",
+      "OperatorID": "89024758",
+      "OperationType": 1,
+      "PositionLat": 22.6622588580971,
+      "PositionLon": 120.504907250923,
+      "Spaces": 22,
+      "ChargingPoints": 22,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 20
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/20 元每小時",
+      "ChargingRate": "11kW計度/尖峰週一至週五15:00-21:59/13.5元每度，11kW計度/離峰週一至週五22:00-14:59/6.5元每度120kW計度/尖峰週一至週五15:00-21:59/13.5元每度，120kW計度/離峰週一至週五22:00-14:59/8.5元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "瑞光里菸廠路",
+          "No": "3號"
+        }
+      },
+      "Telephone": "(08)7324313"
+    },
+    {
+      "StationID": "00293109-S0001",
+      "StationName": {
+        "Zh_tw": "東港中山路立體停車場充電站"
+      },
+      "Description": "提供23格11kW單槍充電樁(J-1772)、2格120kW雙槍充電樁(CCS1, CCS2)，本場採離、尖峰兩段式收費方式，詳細費率依照充電費率說明為準。",
+      "OperatorID": "293109",
+      "OperationType": 1,
+      "PositionLat": 22.4662241565434,
+      "PositionLon": 120.451314051129,
+      "Spaces": 4,
+      "ChargingPoints": 25,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 23
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/20 元每小時",
+      "ChargingRate": "11kW計度/尖峰週一至週五15:00-21:59/13.5元每度，11kW計度/離峰週一至週五22:00-14:59/6.5元每度120kW計度/尖峰週一至週五15:00-21:59/13.5元每度，120kW計度/離峰週一至週五22:00-14:59/8.5元每度",
+      "Floors": "1F,2F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "東港鎮",
+          "Road": "中山路",
+          "No": "27號"
+        }
+      },
+      "Telephone": "(08)7324313"
+    },
+    {
+      "StationID": "00293092-S0001",
+      "StationName": {
+        "Zh_tw": "東港行政中心立體停車場充電站"
+      },
+      "Description": "提供26格11kW單槍充電樁(J-1772)、2格120kW雙槍充電樁(CCS1, CCS2)，本場採離、尖峰兩段式收費方式，詳細費率依照充電費率說明為準。",
+      "OperatorID": "293092",
+      "OperationType": 1,
+      "PositionLat": 22.4645184544151,
+      "PositionLon": 120.459180994108,
+      "Spaces": 28,
+      "ChargingPoints": 28,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 26
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/20 元每小時",
+      "ChargingRate": "11kW計度/尖峰週一至週五15:00-21:59/13.5元每度，11kW計度/離峰週一至週五22:00-14:59/6.5元每度120kW計度/尖峰週一至週五15:00-21:59/13.5元每度，120kW計度/離峰週一至週五22:00-14:59/8.5元每度",
+      "Floors": "2F,3F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "東港鎮",
+          "Road": "新義路",
+          "No": "85號"
+        }
+      },
+      "Telephone": "(08)7324313"
+    },
+    {
+      "StationID": "81373970-S0004",
+      "StationName": {
+        "Zh_tw": "機場北路停車場充電站"
+      },
+      "Description": "提供2格11kW單槍充電樁(J-1772)，本場採離、尖峰兩段式收費方式，詳細費率依照充電費率說明為準。",
+      "OperatorID": "81373970",
+      "OperationType": 1,
+      "PositionLat": 22.6876547973925,
+      "PositionLon": 120.471371704561,
+      "Spaces": 3,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/20 元每小時/每日最高30元",
+      "ChargingRate": "11kW計度/尖峰週一至週五15:00-21:59/13.5元每度，11kW計度/離峰週一至週五22:00-14:59/6.5元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "機場北路",
+          "No": "526號"
+        }
+      },
+      "Telephone": "(08)7324313"
+    },
+    {
+      "StationID": "94357241-S0001",
+      "StationName": {
+        "Zh_tw": "屏東潮州聯辦停車場充電站"
+      },
+      "Description": "提供21格11kW單槍充電樁(J-1772)，本場採離、尖峰兩段式收費方式，詳細費率依照充電費率說明為準。",
+      "OperatorID": "94357241",
+      "OperationType": 1,
+      "PositionLat": 22.5511647544249,
+      "PositionLon": 120.543980038112,
+      "Spaces": 21,
+      "ChargingPoints": 21,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 21
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/20 元每小時",
+      "ChargingRate": "11kW計度/尖峰週一至週五15:00-21:59/13.5元每度，11kW計度/離峰週一至週五22:00-14:59/6.5元每度",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "潮州鎮",
+          "Road": "光華里中山路",
+          "No": "32號"
+        }
+      },
+      "Telephone": "(08)7324313"
+    },
+    {
+      "StationID": "85051710-S284",
+      "StationName": {
+        "Zh_tw": "屏菸1936停車場"
+      },
+      "Description": "全天候開放，停車費依場域規定繳費，使用完請放回角錐",
+      "OperatorID": "85051710",
+      "OperationType": 3,
+      "PositionLat": 22.6617765,
+      "PositionLon": 120.5050761,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "每小時20元",
+      "ChargingRate": "計時/每1分鐘0.88元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "菸廠路",
+          "No": "1號"
+        }
+      },
+      "Telephone": "08-7324313"
+    },
+    {
+      "StationID": "12681939-SPSS_HB052",
+      "StationName": {
+        "Zh_tw": "城市車旅東港立體停車場"
+      },
+      "Description": "無",
+      "OperatorID": "12681939",
+      "OperationType": 1,
+      "PositionLat": 22.4678473,
+      "PositionLon": 120.4434395,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "每半小時10元，當日最高220元",
+      "ChargingRate": "1度10元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "東港鎮",
+          "Road": "朝隆路",
+          "No": "313號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "12681939-SPSS_HB419",
+      "StationName": {
+        "Zh_tw": "城市車旅屏東成功站"
+      },
+      "Description": "無",
+      "OperatorID": "12681939",
+      "OperationType": 1,
+      "PositionLat": 22.67367514,
+      "PositionLon": 120.481886,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "每半小時20元，當日最高150元",
+      "ChargingRate": "一度10元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "成功路",
+          "No": "99號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "12681939-SPSS_IC0453",
+      "StationName": {
+        "Zh_tw": "屏東榮民總醫院停車場"
+      },
+      "Description": "無",
+      "OperatorID": "12681939",
+      "OperationType": 1,
+      "PositionLat": 22.66180289,
+      "PositionLon": 120.4750635,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "半小時10元，當日最高180元",
+      "ChargingRate": "一度10元",
+      "Floors": "B2",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "榮總東路",
+          "No": "1號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "81319821-Szdint_1",
+      "StationName": {
+        "Zh_tw": "復興停車場"
+      },
+      "Description": "無",
+      "OperatorID": "81319821",
+      "OperationType": 1,
+      "PositionLat": 22.666954,
+      "PositionLon": 120.48952,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "平日每次25元，隔日重計；假日每2小時25元，最高100元，隔日重計。逾時未充電緩衝時間 30分,逾時 每半小時10元",
+      "ChargingRate": "8元/度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "自由路",
+          "No": "114號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "85051710-S598",
+      "StationName": {
+        "Zh_tw": "屏東看海美術館超充站"
+      },
+      "Description": "全天候開放",
+      "OperatorID": "85051710",
+      "OperationType": 3,
+      "PositionLat": 22.089662,
+      "PositionLon": 120.715782,
+      "Spaces": 4,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/每度8.00元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "車城鄉",
+          "Road": "海口路",
+          "No": "1-12號"
+        }
+      },
+      "Telephone": "08-8825601"
+    },
+    {
+      "StationID": "83497603-S7189",
+      "StationName": {
+        "Zh_tw": "北興中正停車場充電站"
+      },
+      "Description": "充電站免費使用，充電插頭J-1772。充電格位數1",
+      "OperatorID": "83497603",
+      "OperationType": 3,
+      "PositionLat": 22.688075,
+      "PositionLon": 120.495318,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時或每日/00:00-24:00",
+      "ParkingRate": "50元每小時 /每日",
+      "ChargingRate": "免費",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "北興一街",
+          "Lane": "\r\n          ",
+          "No": "15號對面"
+        }
+      },
+      "Telephone": "0980200900"
+    },
+    {
+      "StationID": "83497603-S6737",
+      "StationName": {
+        "Zh_tw": "福星昆明停車場充電站"
+      },
+      "Description": "充電站免費使用，充電插頭J-1772。充電格位數2",
+      "OperatorID": "83497603",
+      "OperationType": 3,
+      "PositionLat": 22.545547,
+      "PositionLon": 120.546692,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時或每日/00:00-24:00",
+      "ParkingRate": "50元每小時 /每日",
+      "ChargingRate": "免費",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "潮州鎮",
+          "Road": "福星路",
+          "Lane": "\r\n          ",
+          "No": "267號後面空地"
+        }
+      },
+      "Telephone": "0980200900"
+    },
+    {
+      "StationID": "83497603-S6454",
+      "StationName": {
+        "Zh_tw": "公園忠孝停車場充電站"
+      },
+      "Description": "充電站免費使用，充電插頭J-1772。充電格位數1",
+      "OperatorID": "83497603",
+      "OperationType": 3,
+      "PositionLat": 22.674601,
+      "PositionLon": 120.487003,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時或每日/00:00-24:00",
+      "ParkingRate": "50元每小時 /每日",
+      "ChargingRate": "免費",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "忠孝路",
+          "Lane": "\r\n          ",
+          "No": "108-11號對面"
+        }
+      },
+      "Telephone": "0980200900"
+    },
+    {
+      "StationID": "83497603-S7779",
+      "StationName": {
+        "Zh_tw": "公園中山停車場充電站"
+      },
+      "Description": "充電費率每小時60元。充電插頭J-1772。充電格位數1",
+      "OperatorID": "83497603",
+      "OperationType": 3,
+      "PositionLat": 22.675777,
+      "PositionLon": 120.485563,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時或每日/00:00-24:00",
+      "ParkingRate": "50元每小時 /每日",
+      "ChargingRate": "計時/60元每小時",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "公園路",
+          "Lane": "\r\n          ",
+          "No": "103號對面"
+        }
+      },
+      "Telephone": "0980200900"
+    },
+    {
+      "StationID": "83497603-S6671",
+      "StationName": {
+        "Zh_tw": "廣東中山停車場充電站"
+      },
+      "Description": "充電站免費使用，充電插頭J-1772。充電格位數1",
+      "OperatorID": "83497603",
+      "OperationType": 3,
+      "PositionLat": 22.687304,
+      "PositionLon": 120.482879,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時或每日/00:00-24:00",
+      "ParkingRate": "50元每小時 /每日",
+      "ChargingRate": "免費",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "廣東路",
+          "Lane": "\r\n          ",
+          "No": "1017號旁"
+        }
+      },
+      "Telephone": "0980200900"
+    },
+    {
+      "StationID": "90505425-S39175",
+      "StationName": {
+        "Zh_tw": "TAIL 屏東海生館(海生館停車場)"
+      },
+      "Description": "A-1汽車停車區",
+      "OperatorID": "90505425",
+      "OperationType": 1,
+      "PositionLat": 22.04625,
+      "PositionLon": 120.6992,
+      "Spaces": 22,
+      "ChargingPoints": 22,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 13
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 8
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "計次/每日/50元每次",
+      "ChargingRate": "計分/1元每分",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "車城鄉",
+          "Road": "後灣路",
+          "No": "2號"
+        }
+      },
+      "Telephone": "02-25310858"
+    },
+    {
+      "StationID": "90505425-S42712",
+      "StationName": {
+        "Zh_tw": "屏東民生路立體停車場"
+      },
+      "Description": "位於民生路立體停車場2樓和3樓",
+      "OperatorID": "90505425",
+      "OperationType": 1,
+      "PositionLat": 22.66919,
+      "PositionLon": 120.49195,
+      "Spaces": 30,
+      "ChargingPoints": 28,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 15
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 11
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "計時/平日/20元每小時/每日最高/150元每日，計時/假日/20元每小時/每日最高/200元每日",
+      "ChargingRate": "快充/計度/離峰/6.5元每度，快充/計度/尖峰/13.5元每度，慢充/計分/1元每分",
+      "Floors": "2",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "民生路酒泉二巷",
+          "No": "17號"
+        }
+      },
+      "Telephone": "02-25310858"
+    },
+    {
+      "StationID": "90505425-S57666",
+      "StationName": {
+        "Zh_tw": "屏東水門停車場(大車區)"
+      },
+      "Description": "位於屏東水門停車場大車區",
+      "OperatorID": "90505425",
+      "OperationType": 3,
+      "PositionLat": 22.70897,
+      "PositionLon": 120.63827,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "計次/每日/60元每次，隔日另計，月租/每月/7200元",
+      "ChargingRate": "計分/1元每分",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "內埔鄉",
+          "Road": "忠孝路",
+          "No": "120號"
+        }
+      },
+      "Telephone": "02-25310858"
+    },
+    {
+      "StationID": "90505425-S57667",
+      "StationName": {
+        "Zh_tw": "屏東水門轉運站停車場(小車)"
+      },
+      "Description": "位於屏東水門轉運站停車場",
+      "OperatorID": "90505425",
+      "OperationType": 3,
+      "PositionLat": 22.7094,
+      "PositionLon": 120.63607,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "計次/每日/30元每次，隔日另計，月租/每月/3600元",
+      "ChargingRate": "計分/1元每分",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "內埔鄉",
+          "Road": "成功路",
+          "No": "251號"
+        }
+      },
+      "Telephone": "02-25310858"
+    },
+    {
+      "StationID": "56605950-S4932",
+      "StationName": {
+        "Zh_tw": "騰本企業有限公司自由延平停車場"
+      },
+      "Description": "充電站免費使用，充電插頭J-1772。充電格位數1",
+      "OperatorID": "56605950",
+      "OperationType": 3,
+      "PositionLat": 22.666577,
+      "PositionLon": 120.484415,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時或每日/00:00-24:00",
+      "ParkingRate": "20元每小時 /100元每日上限",
+      "ChargingRate": "免費",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "建華三街",
+          "Lane": "\r\n          ",
+          "No": "1號"
+        }
+      },
+      "Telephone": "062700640"
+    },
+    {
+      "StationID": "47926170-SA0146",
+      "StationName": {
+        "Zh_tw": "屏東中華停車場"
+      },
+      "Description": "充電車位16格",
+      "OperatorID": "47926170",
+      "OperationType": 1,
+      "PositionLat": 22.6737395,
+      "PositionLon": 120.4903067,
+      "Spaces": 16,
+      "ChargingPoints": 15,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 14
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "平假日/計時/10元/每半小時",
+      "ChargingRate": "計度/固定/10元每度",
+      "Floors": "2F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "中華路",
+          "No": "91號"
+        }
+      },
+      "Telephone": "08-7320543"
+    },
+    {
+      "StationID": "40927929-SA0099",
+      "StationName": {
+        "Zh_tw": "俥亭鵝鑾鼻停車場"
+      },
+      "Description": "平假日/計次(當日)/60元",
+      "OperatorID": "40927929",
+      "OperationType": 1,
+      "PositionLat": 21.90144,
+      "PositionLon": 120.85371,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "平假日/計次(當日)/60元",
+      "ChargingRate": "平假日/固定/10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "恆春鎮",
+          "Road": "燈塔",
+          "No": "88"
+        }
+      },
+      "Telephone": "08-8861191"
+    },
+    {
+      "StationID": "00478289-SA0716011",
+      "StationName": {
+        "Zh_tw": "潮州潮和停車場"
+      },
+      "Description": "充電車位1格",
+      "OperatorID": "478289",
+      "OperationType": 3,
+      "PositionLat": 22.5570895,
+      "PositionLon": 120.5391594,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "平日/計時/10元/每半小時",
+      "ChargingRate": "計度/固定/10元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "潮州鎮",
+          "Road": "龍嚴街",
+          "No": "32號旁空地停車場"
+        }
+      },
+      "Telephone": "08-7320543"
+    },
+    {
+      "StationID": "89085109-SA040101",
+      "StationName": {
+        "Zh_tw": "潮州新生停車場"
+      },
+      "Description": "充電車位1格",
+      "OperatorID": "89085109",
+      "OperationType": 1,
+      "PositionLat": 22.5499011,
+      "PositionLon": 120.5387087,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/平日/20元每小時/每日最高/150元每日,計時/假日/20元每小時/每日最高/200元每日",
+      "ChargingRate": "計度/固定/10元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "潮州鎮",
+          "Road": "新生路",
+          "No": "74號旁空地停車場"
+        }
+      },
+      "Telephone": "08-7320543"
+    },
+    {
+      "StationID": "88925365-SA031101",
+      "StationName": {
+        "Zh_tw": "潮州朝昇營業所"
+      },
+      "Description": "充電車位2格",
+      "OperatorID": "88925365",
+      "OperationType": 1,
+      "PositionLat": 22.5561052,
+      "PositionLon": 120.5413639,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/20元每小時",
+      "ChargingRate": "計度/固定/10元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "潮州鎮",
+          "Road": "朝昇路",
+          "No": "257號旁空地停車場"
+        }
+      },
+      "Telephone": "08-7320543"
+    },
+    {
+      "StationID": "00359690-SB0389011",
+      "StationName": {
+        "Zh_tw": "日月亭潮州第一立體停車場"
+      },
+      "Description": "充電車位20格",
+      "OperatorID": "359690",
+      "OperationType": 1,
+      "PositionLat": 22.5527874,
+      "PositionLon": 120.5380789,
+      "Spaces": 20,
+      "ChargingPoints": 20,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 15
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 5
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "平假日/計時/20元/每小時",
+      "ChargingRate": "計度/固定/10元每度",
+      "Floors": "2F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "潮州鎮",
+          "Road": "公園路",
+          "No": "2號"
+        }
+      },
+      "Telephone": "08-7320543"
+    },
+    {
+      "StationID": "92481624-SA048101",
+      "StationName": {
+        "Zh_tw": "屏東榮總東側停車場"
+      },
+      "Description": "充電車位6格",
+      "OperatorID": "92481624",
+      "OperationType": 1,
+      "PositionLat": 22.663293,
+      "PositionLon": 120.476231,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "平假日/計時/20元/每小時",
+      "ChargingRate": "計度/固定/10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "榮總東路",
+          "No": "1號對面空地停車場"
+        }
+      },
+      "Telephone": "08-7320543"
+    },
+    {
+      "StationID": "90016138-ST001",
+      "StationName": {
+        "Zh_tw": "小灣遊客服務中心停車場站"
+      },
+      "Description": "充電車位 3 格，充電樁 3 座，J1772*2，CCS1*1/CCS2*2",
+      "OperatorID": "90016138",
+      "OperationType": 1,
+      "PositionLat": 21.943045,
+      "PositionLon": 120.80242,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/開放日/50元每小時,當日最高150元 ",
+      "ChargingRate": "計度/固定/10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "恒春鎮",
+          "Road": "墾丁路",
+          "No": "12號"
+        }
+      },
+      "Telephone": "02-77292389"
+    },
+    {
+      "StationID": "28371994-SPT030001",
+      "StationName": {
+        "Zh_tw": "屏東東港站"
+      },
+      "Description": "充電車位1格，充電樁1座",
+      "OperatorID": "28371994",
+      "OperationType": 3,
+      "PositionLat": 22.4698,
+      "PositionLon": 120.4591,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "每1小時0元",
+      "ChargingRate": "計度/固定/10元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "東港鎮",
+          "Road": "光復路",
+          "Lane": "\r\n          ",
+          "No": "一段299號旁空地"
+        }
+      },
+      "Telephone": "02-26550818"
+    },
+    {
+      "StationID": "89132567-S0126",
+      "StationName": {
+        "Zh_tw": "Acon-eco屏東大學屏師校區站"
+      },
+      "Description": "充電格數2格，停車費率 每日/20元/每小時",
+      "OperatorID": "89132567",
+      "OperationType": 1,
+      "PositionLat": 22.66922,
+      "PositionLon": 120.50163,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "計時/每日/20元/每小時",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "林森路",
+          "No": "1號"
+        }
+      },
+      "Telephone": "0800-868885"
+    },
+    {
+      "StationID": "89132567-S0144",
+      "StationName": {
+        "Zh_tw": "Acon-eco屏東和生站"
+      },
+      "Description": "充電格數2格，停車費率 免費 ",
+      "OperatorID": "89132567",
+      "OperationType": 3,
+      "PositionLat": 22.6544,
+      "PositionLon": 120.49734,
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/12元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市",
+          "Road": "頂宅里和生路一段一段",
+          "No": "511號"
+        }
+      },
+      "Telephone": "0800-868885"
+    },
+    {
+      "StationID": "54363149-s2x2",
+      "StationName": {
+        "Zh_tw": "永溢民生停車場"
+      },
+      "Description": "Zappoint powered by Noodoe。 不適用環島充電網會員免費充電方案。",
+      "OperatorID": "54363149",
+      "OperationType": 2,
+      "PositionLat": 22.66158,
+      "PositionLon": 120.5086,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24 小時",
+      "ParkingRate": "NT40/小時",
+      "ChargingRate": "NT8/度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "屏東縣",
+          "Town": "屏東市瑞光里",
+          "Road": "瑞光段",
+          "No": "0859-0009等七筆地號"
+        }
+      },
+      "Telephone": "02-7728-7300"
+    }
+  ]
+}

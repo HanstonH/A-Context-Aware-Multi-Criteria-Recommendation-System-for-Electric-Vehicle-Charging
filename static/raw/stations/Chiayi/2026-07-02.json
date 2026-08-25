@@ -1,0 +1,1231 @@
+{
+  "UpdateTime": "2026-07-02T15:04:58+08:00",
+  "UpdateInterval": 14400,
+  "SrcUpdateTime": "2026-07-02T15:04:58+08:00",
+  "SrcUpdateInterval": -1,
+  "AuthorityCode": "CYI",
+  "Stations": [
+    {
+      "StationID": "24788035-S141",
+      "StationName": {
+        "Zh_tw": "湖廣2停車場 evbar"
+      },
+      "Description": "7x24 小時。停車費率：免費。充電樁數目：1，CCS1數量：1，CCS2數量：1",
+      "OperatorID": "24788035",
+      "OperationType": 3,
+      "PositionLat": 23.45906165194718,
+      "PositionLon": 120.45289216441606,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/尖峰/16:00-22:00/14.00 元每度, 計度/尖峰/15:00-21:00/14.00 元每度, 計度/離峰/23:59-16:00/7.00 元每度, 計度/離峰/22:00-23:59/7.00 元每度, 計度/離峰/23:59-15:00/7.00 元每度, 計度/離峰/21:00-23:59/7.00 元每度, 計度/離峰/00:00-23:59/7.00 元每度, 計度/離峰/00:00-23:59/7.00 元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "東區",
+          "Road": "湖子內興安小段163地號",
+          "No": ""
+        }
+      },
+      "Telephone": "02-22559610"
+    },
+    {
+      "StationID": "24788035-S142",
+      "StationName": {
+        "Zh_tw": "湖廣12停車場 evbar"
+      },
+      "Description": "7x24 小時。停車費率：免費。充電樁數目：1，CCS1數量：1，CCS2數量：1",
+      "OperatorID": "24788035",
+      "OperationType": 3,
+      "PositionLat": 23.45216880049653,
+      "PositionLon": 120.43279570559159,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/尖峰/16:00-22:00/14.00 元每度, 計度/尖峰/15:00-21:00/14.00 元每度, 計度/離峰/23:59-16:00/7.00 元每度, 計度/離峰/22:00-23:59/7.00 元每度, 計度/離峰/23:59-15:00/7.00 元每度, 計度/離峰/21:00-23:59/7.00 元每度, 計度/離峰/00:00-23:59/7.00 元每度, 計度/離峰/00:00-23:59/7.00 元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "湖仔內新民小段14地號",
+          "No": ""
+        }
+      },
+      "Telephone": "02-22559610"
+    },
+    {
+      "StationID": "42861108-S80130e2f-4714-41c7-9533-75415fc0b90d",
+      "StationName": {
+        "Zh_tw": "嘉義－西區",
+        "En": "Chiayi, West District -  Guohua St"
+      },
+      "Description": "充電格位數10",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.4747,
+      "PositionLon": 120.44897,
+      "Spaces": 10,
+      "ChargingPoints": 10,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 4
+        },
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "計度/離峰/00:00-16:00/6 元每度計度/尖峰/16:00-22:00/13 元每度計度/離峰/22:00-00:00/6 元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "嘉義國華街121號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "85051710-S58",
+      "StationName": {
+        "Zh_tw": "嘉義民生停車場"
+      },
+      "Description": "24H開放，停車費依場域規定繳費，使用完請放回角錐",
+      "OperatorID": "85051710",
+      "OperationType": 3,
+      "PositionLat": 23.4801048,
+      "PositionLon": 120.4462928,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "計時/平日/50 元每小時, 計時/假日/60元每小時",
+      "ChargingRate": "計時/每1分鐘0.99元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "嘉義市",
+          "Town": "東區",
+          "Road": "民生北路"
+        },
+        "Address": {
+          "City": "嘉義市",
+          "Town": "東區",
+          "Road": "民生北路",
+          "No": "232號"
+        }
+      },
+      "Telephone": "05-3711026"
+    },
+    {
+      "StationID": "90148497-S1176",
+      "StationName": {
+        "Zh_tw": "百城停車場"
+      },
+      "Description": "服務時間：週一~週日 00:00~23:59 / 停車費率：平日一~五 0:00~24:00 每小時20元\n假日/國定假日 0:00~24:00 每小時30元 / 充電費率：$8/kWh",
+      "OperatorID": "90148497",
+      "OperationType": 3,
+      "PositionLat": 23.483712,
+      "PositionLon": 120.445685,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "週一~週日 00:00~23:59",
+      "ParkingRate": "平日一~五 0:00~24:00 每小時20元\n假日/國定假日 0:00~24:00 每小時30元",
+      "ChargingRate": "$8/kWh",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "林森西路",
+          "Lane": "296",
+          "No": "1"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1189",
+      "StationName": {
+        "Zh_tw": "星舟x城市車旅_垂楊站"
+      },
+      "Description": "服務時間：24小時營業   / 停車費率：停車費率依現場公告為準。 / 充電費率：充電費率依系統公告為準。",
+      "OperatorID": "90148497",
+      "OperationType": 3,
+      "PositionLat": 23.470926,
+      "PositionLon": 120.438999,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24小時營業  ",
+      "ParkingRate": "停車費率依現場公告為準。",
+      "ChargingRate": "充電費率依系統公告為準。",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "垂楊路",
+          "No": "605"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1190",
+      "StationName": {
+        "Zh_tw": "星舟x城市車旅_崇仁站"
+      },
+      "Description": "服務時間：24小時開放。 / 停車費率：停車費率依現場公告為準。 / 充電費率：充電費率依系統公告為準。",
+      "OperatorID": "90148497",
+      "OperationType": 3,
+      "PositionLat": 23.480185,
+      "PositionLon": 120.484213,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時開放。",
+      "ParkingRate": "停車費率依現場公告為準。",
+      "ChargingRate": "充電費率依系統公告為準。",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "東區",
+          "Road": "大雅路一段",
+          "No": "870"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1191",
+      "StationName": {
+        "Zh_tw": "星舟x城市車旅_停九站"
+      },
+      "Description": "服務時間：24小時開放。 / 停車費率：停車費率依現場公告為準。 / 充電費率：充電費率依系統公告為準。",
+      "OperatorID": "90148497",
+      "OperationType": 3,
+      "PositionLat": 23.47719,
+      "PositionLon": 120.474706,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時開放。",
+      "ParkingRate": "停車費率依現場公告為準。",
+      "ChargingRate": "充電費率依系統公告為準。",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "東區",
+          "Road": "大雅路二段",
+          "No": "361"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1192",
+      "StationName": {
+        "Zh_tw": "星舟x城市車旅_博物館站"
+      },
+      "Description": "服務時間：24小時營業   / 停車費率：停車費率依現場公告為準。 / 充電費率：充電費率依系統公告為準。",
+      "OperatorID": "90148497",
+      "OperationType": 3,
+      "PositionLat": 23.486629,
+      "PositionLon": 120.451481,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24小時營業  ",
+      "ParkingRate": "停車費率依現場公告為準。",
+      "ChargingRate": "充電費率依系統公告為準。",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "東",
+          "Road": "忠孝路",
+          "No": "275-1"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1193",
+      "StationName": {
+        "Zh_tw": "星舟x城市車旅_垂楊二站"
+      },
+      "Description": "服務時間：24小時開放。 / 停車費率：停車費率依現場公告為準。 / 充電費率：充電費率依系統公告為準。",
+      "OperatorID": "90148497",
+      "OperationType": 3,
+      "PositionLat": 23.4737,
+      "PositionLon": 120.436511,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時開放。",
+      "ParkingRate": "停車費率依現場公告為準。",
+      "ChargingRate": "充電費率依系統公告為準。",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "垂楊路",
+          "No": "908"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1194",
+      "StationName": {
+        "Zh_tw": "星舟x城市車旅_東市站"
+      },
+      "Description": "服務時間：24小時開放。 / 停車費率：停車費率依現場公告為準。 / 充電費率：充電費率依系統公告為準。",
+      "OperatorID": "90148497",
+      "OperationType": 3,
+      "PositionLat": 23.478705,
+      "PositionLon": 120.453395,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時開放。",
+      "ParkingRate": "停車費率依現場公告為準。",
+      "ChargingRate": "充電費率依系統公告為準。",
+      "Floors": "3",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "東區",
+          "Road": "吳鳳北路",
+          "No": "184"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1195",
+      "StationName": {
+        "Zh_tw": "星舟x城市車旅_機六站"
+      },
+      "Description": "服務時間：24小時開放。 / 停車費率：停車費率依現場公告為準。 / 充電費率：充電費率依系統公告為準。",
+      "OperatorID": "90148497",
+      "OperationType": 3,
+      "PositionLat": 23.490171,
+      "PositionLon": 120.454859,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "24小時開放。",
+      "ParkingRate": "停車費率依現場公告為準。",
+      "ChargingRate": "充電費率依系統公告為準。",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "東區",
+          "Road": "忠孝路",
+          "Lane": "346",
+          "No": "21"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1196",
+      "StationName": {
+        "Zh_tw": "星舟x城市車旅_林森站"
+      },
+      "Description": "服務時間：24小時開放。 / 停車費率：停車費率依現場公告為準。 / 充電費率：充電費率依系統公告為準。",
+      "OperatorID": "90148497",
+      "OperationType": 3,
+      "PositionLat": 23.480753,
+      "PositionLon": 120.443348,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24小時開放。",
+      "ParkingRate": "停車費率依現場公告為準。",
+      "ChargingRate": "充電費率依系統公告為準。",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "林森西路",
+          "No": "478"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1208",
+      "StationName": {
+        "Zh_tw": "星舟x城市車旅_中正站"
+      },
+      "Description": "服務時間：24小時開放。 / 停車費率：停車費率依現場公告為準。 / 充電費率：充電費率依系統公告為準。",
+      "OperatorID": "90148497",
+      "OperationType": 3,
+      "PositionLat": 23.481817,
+      "PositionLon": 120.447333,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "24小時開放。",
+      "ParkingRate": "停車費率依現場公告為準。",
+      "ChargingRate": "充電費率依系統公告為準。",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "民權路",
+          "No": "415"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90412860-SO25050009",
+      "StationName": {
+        "Zh_tw": "康正停車場"
+      },
+      "Description": "充電費率每度10元。充電插頭Type2。充電格位數1。AC 7kW充電樁",
+      "OperatorID": "90412860",
+      "OperationType": 3,
+      "PositionLat": 23.477503,
+      "PositionLon": 120.450731,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/平日/40元每小時/每日最高無上限,計時/假日/60元每小時/每日最高無上限",
+      "ChargingRate": "計度/固定/10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "康正停車場"
+        },
+        "Address": {
+          "City": "嘉義市",
+          "Town": "東區",
+          "Road": "蘭井街",
+          "No": "169-171號"
+        }
+      },
+      "Telephone": "05-2228111"
+    },
+    {
+      "StationID": "12681939-SHB095",
+      "StationName": {
+        "Zh_tw": "城市車旅嘉義火車站前站"
+      },
+      "Description": "J1772AC充電樁*4",
+      "OperatorID": "12681939",
+      "OperationType": 1,
+      "PositionLat": 23.48043,
+      "PositionLon": 120.44176,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每半小時10/每日最高500元",
+      "ChargingRate": "計度 /固定 /8元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "林森西路",
+          "Lane": "502巷口",
+          "No": "-"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB493",
+      "StationName": {
+        "Zh_tw": "城市車旅嘉義國華二站停車場"
+      },
+      "Description": "J1772AC充電樁*1",
+      "OperatorID": "12681939",
+      "OperationType": 1,
+      "PositionLat": 23.48489,
+      "PositionLon": 120.44731,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每半小時40/每日最高500元",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "國華街377號對面"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB032",
+      "StationName": {
+        "Zh_tw": "城市車旅文化公園(停6)停車場"
+      },
+      "Description": "J1772AC充電樁*3",
+      "OperatorID": "12681939",
+      "OperationType": 1,
+      "PositionLat": 23.4742,
+      "PositionLon": 120.44912,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每半小時40/每日最高400元",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "國華街與垂楊路口"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB203",
+      "StationName": {
+        "Zh_tw": "城市車旅in89站停車場"
+      },
+      "Description": "J1772AC充電樁*1",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 23.47695,
+      "PositionLon": 120.45285,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每日/100元每小時/每日最高/800元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "民族路",
+          "No": "328號"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB353",
+      "StationName": {
+        "Zh_tw": "城市車旅嘉義文雅站停車場"
+      },
+      "Description": "J1772AC充電樁*1",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 23.48324,
+      "PositionLon": 120.48568,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每日/80元每小時/每日最高/400元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "東區",
+          "Road": "文雅街",
+          "No": "163號"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB460",
+      "StationName": {
+        "Zh_tw": "城市車旅嘉義保義站停車場"
+      },
+      "Description": "J1772AC充電樁*1",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 23.50273,
+      "PositionLon": 120.45321,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每日/60元每小時/每日最高/400元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "東區",
+          "Road": "保義路",
+          "No": "142號"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB264",
+      "StationName": {
+        "Zh_tw": "城市車旅嘉義南京站停車場"
+      },
+      "Description": "J1772AC充電樁*1",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 23.45597,
+      "PositionLon": 120.44265,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每日/80元每小時/每日最高/400元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "南京路",
+          "No": "27號"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB198",
+      "StationName": {
+        "Zh_tw": "城市車旅嘉義蘭井站停車場"
+      },
+      "Description": "J1772AC充電樁*1",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 23.47665,
+      "PositionLon": 120.4448,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每日/100元每小時/每日最高/500元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "蘭井街",
+          "No": "372號旁"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB133",
+      "StationName": {
+        "Zh_tw": "家樂福嘉義停車場"
+      },
+      "Description": "J1772AC充電樁*3",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 23.47143,
+      "PositionLon": 120.43102,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每日/60元每小時/每日最高/400元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "2",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "博愛路二段",
+          "No": "461號"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB439",
+      "StationName": {
+        "Zh_tw": "黃金假期平面停車場"
+      },
+      "Description": "J1772AC充電樁*2",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 23.48015,
+      "PositionLon": 120.43061,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每日/30元每小時/每日最高/300元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "北港路",
+          "No": "225號"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB382",
+      "StationName": {
+        "Zh_tw": "嘉義中福站停車場"
+      },
+      "Description": "J1772AC充電樁*1",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 23.47414,
+      "PositionLon": 120.43297,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每日/60元每小時/每日最高/200元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "博愛路二段",
+          "No": "482號旁"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB189",
+      "StationName": {
+        "Zh_tw": "城市車旅嘉義五福站停車場"
+      },
+      "Description": "J1772AC充電樁*1",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 23.4847166,
+      "PositionLon": 120.4635639,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每日/60元每小時/每日最高500元每日",
+      "ChargingRate": "計度 / 每度10元",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "東區",
+          "Road": "五福街",
+          "No": "9號旁"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB003",
+      "StationName": {
+        "Zh_tw": "嘉義延平站停車場"
+      },
+      "Description": "J1772AC充電樁*1",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 23.47607,
+      "PositionLon": 120.44139,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每日/80元每小時/每日最高/500元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "仁愛路",
+          "No": "381號"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB028",
+      "StationName": {
+        "Zh_tw": "嘉義署嘉站平面停車場"
+      },
+      "Description": "J1772AC充電樁*2",
+      "OperatorID": "12681939",
+      "OperationType": 2,
+      "PositionLat": 23.48105,
+      "PositionLon": 120.42874,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每日/40元每小時/每日最高/300元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "北港路",
+          "No": "312號"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB452",
+      "StationName": {
+        "Zh_tw": "臺中榮民總醫院嘉義分院停車場"
+      },
+      "Description": "J1772AC充電樁*9",
+      "OperatorID": "12681939",
+      "OperationType": 1,
+      "PositionLat": 23.46799,
+      "PositionLon": 120.42285,
+      "Spaces": 9,
+      "ChargingPoints": 9,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每日/20元每小時/每日最高/150元每日",
+      "ChargingRate": "計度 / 每度10元",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "世賢路二段",
+          "No": "600號"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB013",
+      "StationName": {
+        "Zh_tw": "城市車旅嘉義耐斯廣場站停車場"
+      },
+      "Description": "J1772AC充電樁*4",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 23.49678,
+      "PositionLon": 120.452212,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每日/60元每小時/每日最高/900元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "B2",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "東區",
+          "Road": "忠孝路",
+          "No": "600號"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB344",
+      "StationName": {
+        "Zh_tw": "城市車旅嘉義重慶站停車場"
+      },
+      "Description": "J1772AC充電樁*1",
+      "OperatorID": "12681939",
+      "OperationType": 1,
+      "PositionLat": 23.4658,
+      "PositionLon": 120.43881,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每日/80元每小時/每日最高/500元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "重慶路",
+          "No": "92號旁"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB009",
+      "StationName": {
+        "Zh_tw": "城市車旅嘉義廣寧站停車場"
+      },
+      "Description": "J1772AC充電樁*1",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 23.47332,
+      "PositionLon": 120.44159,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每日/100元每小時/每日最高/500元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "西區",
+          "Road": "垂楊路",
+          "No": "740號旁"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SHB021",
+      "StationName": {
+        "Zh_tw": "聖馬爾定醫院停車場"
+      },
+      "Description": "J1772AC充電樁*3, Type2充電樁*3",
+      "OperatorID": "12681939",
+      "OperationType": 2,
+      "PositionLat": 23.47635,
+      "PositionLon": 120.46731,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每日/30元每小時/每日最高/250元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "4",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "東區",
+          "Road": "大雅路二段",
+          "No": "565號"
+        }
+      },
+      "Telephone": "02-22462098"
+    },
+    {
+      "StationID": "12681939-SIC1020",
+      "StationName": {
+        "Zh_tw": "華奇麗陽明停車場"
+      },
+      "Description": "J1772AC充電樁*1",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 23.48001,
+      "PositionLon": 120.45345,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日 /00:00 24:00",
+      "ParkingRate": "30元每小時/當日最高400",
+      "ChargingRate": "10元/每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "嘉義市",
+          "Town": "東區",
+          "Road": "吳鳳北路",
+          "No": "252號"
+        }
+      },
+      "Telephone": "05-2284567"
+    }
+  ]
+}

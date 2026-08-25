@@ -1,4 +1,4 @@
-"""Hourly live connector status extraction."""
+"""30-minute live connector status extraction."""
 from __future__ import annotations
 
 import json
@@ -9,8 +9,8 @@ from typing import Any
 from .checkpoint import update_live
 from .config import REQUEST_INTERVAL_SEC
 from .manifest import Manifest
-from .merge import merge_live_from_hour
-from .paths import date_hour_strings, ensure_layout, live_raw_path, log_file
+from .merge import merge_live_from_slot
+from .paths import date_slot_strings, ensure_layout, live_raw_path, log_file
 from .tdx import SUPPORTED_EV_CITIES, TDX_CITIES, UNSUPPORTED_EV_CITIES, build_client
 import requests
 
@@ -34,9 +34,10 @@ def _atomic_write_json(path: Path, payload: Any) -> None:
     tmp.replace(path)
 
 
-def _hour_complete(date_str: str, hour_str: str) -> bool:
+def _slot_complete(date_str: str, slot_str: str) -> bool:
     return all(
-        live_raw_path(date_str, hour_str, city).is_file() for city in SUPPORTED_EV_CITIES
+        live_raw_path(date_str, slot_str, city).is_file()
+        for city in SUPPORTED_EV_CITIES
     )
 
 
@@ -45,18 +46,18 @@ def run_live_extract(*, force: bool = False) -> dict[str, int]:
     manifest = Manifest()
     manifest.reset_stale_in_progress("live")
 
-    date_str, hour_str = date_hour_strings()
-    if _hour_complete(date_str, hour_str) and not force:
+    date_str, slot_str = date_slot_strings()
+    if _slot_complete(date_str, slot_str) and not force:
         _log(
-            f"SKIP hour-{hour_str} on {date_str} "
+            f"SKIP hour-{slot_str} on {date_str} "
             f"(all {len(SUPPORTED_EV_CITIES)} supported cities present)"
         )
         try:
-            df = merge_live_from_hour(date_str, hour_str)
+            df = merge_live_from_slot(date_str, slot_str)
             avail = int((df["available_points"] >= 1).sum())
             update_live(
                 date_str=date_str,
-                hour_str=hour_str,
+                slot_str=slot_str,
                 run_summary={
                     "cities_ok": 0,
                     "cities_failed": 0,
@@ -79,8 +80,8 @@ def run_live_extract(*, force: bool = False) -> dict[str, int]:
     ok = failed = skipped = api_calls = 0
 
     for city in TDX_CITIES:
-        task_id = f"live:{date_str}:hour-{hour_str}:{city}"
-        out_path = live_raw_path(date_str, hour_str, city)
+        task_id = f"live:{date_str}:hour-{slot_str}:{city}"
+        out_path = live_raw_path(date_str, slot_str, city)
 
         if city in UNSUPPORTED_EV_CITIES:
             skipped += 1
@@ -102,7 +103,7 @@ def run_live_extract(*, force: bool = False) -> dict[str, int]:
             task_id, "live", "in_progress", increment_attempt=True
         )
         try:
-            _log(f"FETCH {city} -> hour-{hour_str}")
+            _log(f"FETCH {city} -> hour-{slot_str}")
             body = client.fetch_live_status_body(city)
             _atomic_write_json(out_path, body)
             manifest.upsert_task(
@@ -145,13 +146,13 @@ def run_live_extract(*, force: bool = False) -> dict[str, int]:
     manifest.finish_run(
         run_id,
         **summary,
-        notes=f"{date_str} hour-{hour_str}",
+        notes=f"{date_str} hour-{slot_str}",
     )
 
     stations_with_availability = None
-    if _hour_complete(date_str, hour_str):
+    if _slot_complete(date_str, slot_str):
         try:
-            df = merge_live_from_hour(date_str, hour_str)
+            df = merge_live_from_slot(date_str, slot_str)
             stations_with_availability = int((df["available_points"] >= 1).sum())
             _log(
                 f"Merged latest.parquet ({len(df)} rows, "
@@ -161,14 +162,14 @@ def run_live_extract(*, force: bool = False) -> dict[str, int]:
             _log(f"Merge warning: {exc}")
     elif failed:
         _log(
-            f"Hour hour-{hour_str} incomplete "
+            f"Slot hour-{slot_str} incomplete "
             f"({ok + skipped}/{len(SUPPORTED_EV_CITIES)} supported cities); "
             "latest.parquet not updated"
         )
 
     update_live(
         date_str=date_str,
-        hour_str=hour_str,
+        slot_str=slot_str,
         run_summary=summary,
         stations_with_availability=stations_with_availability,
     )

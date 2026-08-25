@@ -1,0 +1,3222 @@
+{
+  "UpdateTime": "2026-07-02T14:07:31+08:00",
+  "UpdateInterval": 14400,
+  "SrcUpdateTime": "2026-07-02T14:00:16+08:00",
+  "SrcUpdateInterval": -1,
+  "AuthorityCode": "ILA",
+  "Stations": [
+    {
+      "StationID": "90807408-SCSD00028",
+      "StationName": {
+        "Zh_tw": "宜蘭科學園區"
+      },
+      "Description": "停車位:2 充電樁數量:2 停車費:Free (依現場為準) 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.73215,
+      "PositionLon": 121.7543,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "Free (依現場為準)",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "宜科南路",
+          "No": "15號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD00036",
+      "StationName": {
+        "Zh_tw": "宜蘭新月廣場"
+      },
+      "Description": "停車位:10 充電樁數量:10 停車費:平日40元/小時，假日60元/小時，家樂福消費不限金額折抵2小時不限平假日 (依現場為準) 費率:計度/固定/8元每度 樓層:B4F D08, B4F D09",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.753837,
+      "PositionLon": 121.750324,
+      "Spaces": 10,
+      "ChargingPoints": 10,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 5
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 5
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "平日40元/小時，假日60元/小時，家樂福消費不限金額折抵2小時不限平假日 (依現場為準)",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "B4F D08, B4F D09",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "民權路二段",
+          "Lane": "38巷",
+          "No": "6號\tB4 D09區"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02419",
+      "StationName": {
+        "Zh_tw": "宜蘭礁溪寒沐酒店"
+      },
+      "Description": "停車位:1 充電樁數量:3 停車費:免費 費率:免費 樓層:B1",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.829922,
+      "PositionLon": 121.7734,
+      "Spaces": 1,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "免費",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "礁溪鄉",
+          "Road": "健康路",
+          "No": "1號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02770",
+      "StationName": {
+        "Zh_tw": "宜蘭縣北成國小停車場"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:平日30元/時，假日30元/時 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.675006,
+      "PositionLon": 121.759193,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "平日 /17:00-21:00, 假日 /08:00-21:00",
+      "ParkingRate": "平日30元/時，假日30元/時",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "羅東鎮",
+          "Road": "北成路一段",
+          "No": "125號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02772",
+      "StationName": {
+        "Zh_tw": "宜蘭縣三期納骨樓地下停車場"
+      },
+      "Description": "停車位:6 充電樁數量:6 停車費:依場域公告為準 費率:計度/固定/8元每度 樓層:B1",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.754103,
+      "PositionLon": 121.700778,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "每日/08:00-17:00",
+      "ParkingRate": "依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "員山鄉",
+          "Road": "蜊埤路",
+          "No": "27號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02795",
+      "StationName": {
+        "Zh_tw": "宜蘭羅東轉運站停車場"
+      },
+      "Description": "停車位:0 充電樁數量:0 停車費:免費 費率: 樓層:B1",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.677712,
+      "PositionLon": 121.779128,
+      "Spaces": 0,
+      "ChargingPoints": 0,
+      "Connectors": [],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "\r\n      ",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "羅東鎮",
+          "Road": "羅榮路",
+          "No": "2號(羅東轉運站)"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02796",
+      "StationName": {
+        "Zh_tw": "宜蘭光復國民小學停車場"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:20元/時 費率:計度/固定/8元每度 樓層:1樓",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.755345,
+      "PositionLon": 121.747813,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "20元/時",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1樓",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "泰山路",
+          "No": "60號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02797",
+      "StationName": {
+        "Zh_tw": "宜蘭東光國中停車場"
+      },
+      "Description": "停車位:1 充電樁數量:2 停車費:平日:20元/小時(當日最高100元)；假日:30元/小時(當日最高150元) 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.67182,
+      "PositionLon": 121.767678,
+      "Spaces": 1,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "平日:20元/小時(當日最高100元)；假日:30元/小時(當日最高150元)",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "羅東鎮",
+          "Road": "興東南路",
+          "No": "201號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02798",
+      "StationName": {
+        "Zh_tw": "宜蘭國華國中停車場"
+      },
+      "Description": "停車位:2 充電樁數量:2 停車費:30元/時 費率:計度/固定/8元每度 樓層:1F, 1樓",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.677554,
+      "PositionLon": 121.761257,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "30元/時",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F, 1樓",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "羅東鎮",
+          "Road": "國華街",
+          "No": "101號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02799",
+      "StationName": {
+        "Zh_tw": "宜蘭南安國小社區公共停車場"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:依場域公告為準 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.578866,
+      "PositionLon": 121.86813,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "蘇澳鎮",
+          "Road": "學府路",
+          "No": "122號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02820",
+      "StationName": {
+        "Zh_tw": "宜蘭羅東國中停車場"
+      },
+      "Description": "停車位:1 充電樁數量:2 停車費:免費 費率:免費 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.681275,
+      "PositionLon": 121.767976,
+      "Spaces": 1,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "免費",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "羅東鎮",
+          "Road": "中華路",
+          "No": "99號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02821",
+      "StationName": {
+        "Zh_tw": "宜蘭羅東國小停車場"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:40元/時 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.672081,
+      "PositionLon": 121.771756,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "40元/時",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "羅東鎮",
+          "Road": "民族路",
+          "No": "1號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02822",
+      "StationName": {
+        "Zh_tw": "宜蘭黎明國小停車場"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:免費 費率:免費 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.751243,
+      "PositionLon": 121.762934,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "免費",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "陽明二路",
+          "No": "4號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02823",
+      "StationName": {
+        "Zh_tw": "宜蘭南屏國小停車場"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:免費 費率:免費 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.753198,
+      "PositionLon": 121.741914,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "免費",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "泰山路",
+          "No": "98號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02824",
+      "StationName": {
+        "Zh_tw": "宜蘭復興國中停車場"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:免費 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.749265,
+      "PositionLon": 121.746895,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "復興路二段",
+          "No": "77號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02825",
+      "StationName": {
+        "Zh_tw": "宜蘭農權停車場"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:免費 費率:免費 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.746645,
+      "PositionLon": 121.750558,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "免費",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "金六結段七結小段",
+          "No": "23-6地號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02826",
+      "StationName": {
+        "Zh_tw": "宜蘭公正國小停車場"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:免費 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.679355,
+      "PositionLon": 121.766715,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "羅東鎮",
+          "Road": "中華路",
+          "No": "78號對面"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03109",
+      "StationName": {
+        "Zh_tw": "宜蘭蘭陽博物館停車場"
+      },
+      "Description": "停車位:0 充電樁數量:0 停車費:免費 費率: 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.870024,
+      "PositionLon": 121.835529,
+      "Spaces": 0,
+      "ChargingPoints": 0,
+      "Connectors": [],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "\r\n      ",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "頭城鎮",
+          "Road": "青雲路3段",
+          "No": "750號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03110",
+      "StationName": {
+        "Zh_tw": "宜蘭礁溪溫泉公園18巷停車場"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:免費 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.831241,
+      "PositionLon": 121.776045,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "礁溪鄉",
+          "Road": "公園路",
+          "No": "16號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03111",
+      "StationName": {
+        "Zh_tw": "宜蘭盱江新村停車場"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:免費 費率:免費 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.82909,
+      "PositionLon": 121.771154,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "免費",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "礁溪鄉",
+          "Road": "五峰段",
+          "No": "40、48地號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03112",
+      "StationName": {
+        "Zh_tw": "宜蘭礁溪轉運站停車場"
+      },
+      "Description": "停車位:1 充電樁數量:2 停車費:免費 費率:計度/固定/8元每度免費 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.831015,
+      "PositionLon": 121.77754,
+      "Spaces": 1,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/8元每度免費",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "礁溪鄉",
+          "Road": "礁溪路6段",
+          "No": "17號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03113",
+      "StationName": {
+        "Zh_tw": "宜蘭龍潭湖風景區停車場"
+      },
+      "Description": "停車位:1 充電樁數量:2 停車費:免費 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.792134,
+      "PositionLon": 121.738097,
+      "Spaces": 1,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "礁溪鄉",
+          "Road": "龍潭段",
+          "No": "20、21、22等3筆地號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03114",
+      "StationName": {
+        "Zh_tw": "宜蘭五峰旗停車場"
+      },
+      "Description": "停車位:1 充電樁數量:4 停車費:免費 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.830154,
+      "PositionLon": 121.752965,
+      "Spaces": 1,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "礁溪鄉",
+          "Road": "得石新段",
+          "No": "643地號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03115",
+      "StationName": {
+        "Zh_tw": "宜蘭縣政府停車場"
+      },
+      "Description": "停車位:1 充電樁數量:7 停車費: 依場域公告為準 費率:計度/固定/8元每度,計度/固定/10元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.731458,
+      "PositionLon": 121.763185,
+      "Spaces": 1,
+      "ChargingPoints": 7,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "平日 /07:00-17:00, 假日 /00:00-23:59",
+      "ParkingRate": " 依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度,計度/固定/10元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "縣政北路",
+          "No": "1號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03116",
+      "StationName": {
+        "Zh_tw": "宜蘭中山公園停車場"
+      },
+      "Description": "停車位:2 充電樁數量:2 停車費:免費 費率:計度/固定/8元每度 樓層:B1",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.754258,
+      "PositionLon": 121.753143,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "中山路2段",
+          "No": "482號地下1樓"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03117",
+      "StationName": {
+        "Zh_tw": "宜蘭運動公園第五停車場"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:依場域公告為準 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.738747,
+      "PositionLon": 121.756548,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "公園路",
+          "No": "66號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03118",
+      "StationName": {
+        "Zh_tw": "宜蘭中山國小停車場"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:免費 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.753606,
+      "PositionLon": 121.756049,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "崇聖街",
+          "No": "4號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03119",
+      "StationName": {
+        "Zh_tw": "宜蘭縣議會停車場"
+      },
+      "Description": "停車位:1 充電樁數量:2 停車費: 依場域公告為準 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.72997,
+      "PositionLon": 121.7649,
+      "Spaces": 1,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "平日 /07:00-17:00, 假日 /00:00-23:59",
+      "ParkingRate": " 依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "中山路一段",
+          "No": "399號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03120",
+      "StationName": {
+        "Zh_tw": "宜蘭壯圍共乘停車場"
+      },
+      "Description": "停車位:1 充電樁數量:3 停車費:免費 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.769158,
+      "PositionLon": 121.779022,
+      "Spaces": 1,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "壯圍鄉",
+          "Road": "功勞段",
+          "No": "930及1404-1地號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03121",
+      "StationName": {
+        "Zh_tw": "宜蘭羅東運動公園停車場"
+      },
+      "Description": "停車位:1 充電樁數量:7 停車費:依場域公告為準 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.681893,
+      "PositionLon": 121.751645,
+      "Spaces": 1,
+      "ChargingPoints": 7,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 7
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "羅東鎮",
+          "Road": "公正路",
+          "No": "666號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03122",
+      "StationName": {
+        "Zh_tw": "宜蘭縣政府文化局羅東文化工場停車場"
+      },
+      "Description": "停車位:1 充電樁數量:2 停車費:免費 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.672434,
+      "PositionLon": 121.763974,
+      "Spaces": 1,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "羅東鎮",
+          "Road": "純精路一段",
+          "No": "96號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03123",
+      "StationName": {
+        "Zh_tw": "宜蘭羅東廣停四停車場"
+      },
+      "Description": "停車位:1 充電樁數量:2 停車費:免費 費率:免費 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.676422,
+      "PositionLon": 121.779222,
+      "Spaces": 1,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "免費",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "羅東鎮",
+          "Road": "信義一段",
+          "No": "23地號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03125",
+      "StationName": {
+        "Zh_tw": "宜蘭冬山河親水公園停車場"
+      },
+      "Description": "停車位:1 充電樁數量:16 停車費:免費 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.675277,
+      "PositionLon": 121.817989,
+      "Spaces": 1,
+      "ChargingPoints": 16,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 16
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "五結鄉",
+          "Road": "親河路2段",
+          "No": "18號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03126",
+      "StationName": {
+        "Zh_tw": "宜蘭五結共乘停車場"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:免費 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.690188,
+      "PositionLon": 121.791102,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "五結鄉",
+          "Road": "國民二段",
+          "No": "991地號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03127",
+      "StationName": {
+        "Zh_tw": "宜蘭中興文化創意產業園區停車場"
+      },
+      "Description": "停車位:1 充電樁數量:3 停車費:免費 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.694349,
+      "PositionLon": 121.771096,
+      "Spaces": 1,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "五結鄉",
+          "Road": "中正路2段",
+          "No": "6-8號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03128",
+      "StationName": {
+        "Zh_tw": "宜蘭仁山植物園停車場"
+      },
+      "Description": "停車位:1 充電樁數量:4 停車費:50元/次 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.62386,
+      "PositionLon": 121.751857,
+      "Spaces": 1,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "50元/次",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "冬山鄉",
+          "Road": "仁山段",
+          "No": "地號353、354-1"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03129",
+      "StationName": {
+        "Zh_tw": "宜蘭冬山河生態綠舟停車場"
+      },
+      "Description": "停車位:1 充電樁數量:3 停車費:免費 費率:計度/固定/8元每度,計度/固定/10元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.637931,
+      "PositionLon": 121.78784,
+      "Spaces": 1,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/8元每度,計度/固定/10元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "冬山鄉",
+          "Road": "富農段",
+          "No": "1350、1358、1359、1360、1361等5筆地號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03130",
+      "StationName": {
+        "Zh_tw": "宜蘭武荖坑露營區第二停車場"
+      },
+      "Description": "停車位:1 充電樁數量:16 停車費:免費 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.612719,
+      "PositionLon": 121.813556,
+      "Spaces": 1,
+      "ChargingPoints": 16,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 16
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "蘇澳鎮",
+          "Road": "新城里武荖坑路",
+          "No": "75號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03131",
+      "StationName": {
+        "Zh_tw": "宜蘭清水地熱停車場"
+      },
+      "Description": "停車位:1 充電樁數量:5 停車費:免費 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.613699,
+      "PositionLon": 121.636441,
+      "Spaces": 1,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 5
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "大同鄉",
+          "Road": "清溪段",
+          "No": "13-1地號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03238",
+      "StationName": {
+        "Zh_tw": "力揚_宜蘭礁溪水景"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:平日30元/時，假日40元/時 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.82494,
+      "PositionLon": 121.77086,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "平日30元/時，假日40元/時",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "礁溪鄉",
+          "Road": "礁溪路五段",
+          "No": "1號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03240",
+      "StationName": {
+        "Zh_tw": "Times_宜蘭羅東車站前停車場"
+      },
+      "Description": "停車位:1 充電樁數量:2 停車費:依場域公告為準 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.678402,
+      "PositionLon": 121.776337,
+      "Spaces": 1,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "羅東鎮",
+          "Road": "傳藝路三段",
+          "No": "229號旁"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03248",
+      "StationName": {
+        "Zh_tw": "宜蘭南門站停車場"
+      },
+      "Description": "停車位:3 充電樁數量:3 停車費:平日20元/時，假日30元/時 費率:計度/固定/8元每度 樓層:B1",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.755169,
+      "PositionLon": 121.748696,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 2
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "平日20元/時，假日30元/時",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "泰山路",
+          "No": "5號B1"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03327",
+      "StationName": {
+        "Zh_tw": "Times_宜蘭中華路停車場"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:依場域公告為準 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.750388,
+      "PositionLon": 121.752666,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "中華路",
+          "No": "176號旁"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03331",
+      "StationName": {
+        "Zh_tw": "Times_宜蘭擺厘路停車場"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:依場域公告為準 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.743899,
+      "PositionLon": 121.750526,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "擺厘路",
+          "No": "18號對面"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03337",
+      "StationName": {
+        "Zh_tw": "Times_宜蘭羅東第2停車場"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:依場域公告為準 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.678745,
+      "PositionLon": 121.770974,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "羅東鎮",
+          "Road": "公正路",
+          "No": "112號後方空地"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03539",
+      "StationName": {
+        "Zh_tw": "宜蘭大同鄉公所九寮溪停車場"
+      },
+      "Description": "停車位:2 充電樁數量:2 停車費:50元/次 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.672308,
+      "PositionLon": 121.60293,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "50元/次",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "大同鄉",
+          "Road": "\r\n          ",
+          "Lane": "林家巷",
+          "No": "2-15號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03561",
+      "StationName": {
+        "Zh_tw": "宜蘭凱渡廣場酒店"
+      },
+      "Description": "停車位:4 充電樁數量:4 停車費:住客免費 費率:計度/固定/8元每度 樓層:B1",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.87134,
+      "PositionLon": 121.839805,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 2
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "住客免費",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "頭城鎮",
+          "Road": "烏石港路",
+          "No": "300號B1"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03566",
+      "StationName": {
+        "Zh_tw": "力揚_宜蘭博愛醫院旁戶外停車場"
+      },
+      "Description": "停車位:1 充電樁數量:2 停車費:30元/時 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.669942,
+      "PositionLon": 121.772691,
+      "Spaces": 1,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "30元/時",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "羅東鎮",
+          "Road": "博愛路",
+          "No": "90號旁"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03571",
+      "StationName": {
+        "Zh_tw": "宜蘭OA HOTEL"
+      },
+      "Description": "停車位:2 充電樁數量:2 停車費:住客免費 費率:計度/固定/8元每度 樓層:B1",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.871531,
+      "PositionLon": 121.839582,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "住客免費",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "頭城鎮",
+          "Road": "烏石港路",
+          "No": "301號B1"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "54866000-S067",
+      "StationName": {
+        "Zh_tw": "聯勤204停車場"
+      },
+      "Description": "充電車位2格，充電樁2座，J1772*2，位於平面停車場1F、 1,2號停車格 ，為交流充電規格。",
+      "OperatorID": "54866000",
+      "OperationType": 1,
+      "PositionLat": 24.75514536,
+      "PositionLon": 121.7513442,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日 /00:00-24:00",
+      "ParkingRate": "計時/平日/30元每小時,假日/60元每小時",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "舊城南路50號旁",
+          "No": "土地"
+        }
+      },
+      "Telephone": "02-27921626"
+    },
+    {
+      "StationID": "46037888-S66",
+      "StationName": {
+        "Zh_tw": "全尚山館充電站 evbar"
+      },
+      "Description": "7x24 小時。停車費率：計時/每日/60 元每小時。充電樁數目：1，J1772數量：1",
+      "OperatorID": "46037888",
+      "OperationType": 3,
+      "PositionLat": 24.80929696091842,
+      "PositionLon": 121.78401895025941,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "計時/每日/60 元每小時",
+      "ChargingRate": "固定費率(非尖峰費率)",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "礁溪鄉",
+          "Road": "淇武蘭三路",
+          "No": "6號"
+        }
+      },
+      "Telephone": "02-22559610"
+    },
+    {
+      "StationID": "46037888-S67",
+      "StationName": {
+        "Zh_tw": "全尚to渡民宿充電站 evbar"
+      },
+      "Description": "7x24 小時。停車費率：計時/每日/60 元每小時。充電樁數目：1，J1772數量：1",
+      "OperatorID": "46037888",
+      "OperationType": 3,
+      "PositionLat": 24.70529835510389,
+      "PositionLon": 121.82046910946168,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "計時/每日/60 元每小時",
+      "ChargingRate": "固定費率(非尖峰費率)",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "五結鄉",
+          "Road": "錦草東路",
+          "No": "3號"
+        }
+      },
+      "Telephone": "02-22559610"
+    },
+    {
+      "StationID": "46037888-S68",
+      "StationName": {
+        "Zh_tw": "全尚二龍館充電站 evbar"
+      },
+      "Description": "7x24 小時。停車費率：計時/每日/60 元每小時。充電樁數目：1，J1772數量：1",
+      "OperatorID": "46037888",
+      "OperationType": 3,
+      "PositionLat": 24.80866828652417,
+      "PositionLon": 121.78385048140615,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "計時/每日/60 元每小時",
+      "ChargingRate": "固定費率(非尖峰費率)",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "礁溪鄉",
+          "Road": "淇武蘭三路",
+          "No": "2號"
+        }
+      },
+      "Telephone": "02-22559610"
+    },
+    {
+      "StationID": "90444103-S108",
+      "StationName": {
+        "Zh_tw": "淞和快充 羅東站 evbar"
+      },
+      "Description": "7x24 小時。停車費率：免費。充電樁數目：2，CCS1數量：2，CCS2數量：2",
+      "OperatorID": "90444103",
+      "OperationType": 3,
+      "PositionLat": 24.6800034,
+      "PositionLon": 121.7778005,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/尖峰/16:00-22:00/13.50 元每度, 計度/尖峰/15:00-21:00/13.50 元每度, 計度/離峰/23:59-16:00/6.00 元每度, 計度/離峰/22:00-23:59/6.00 元每度, 計度/離峰/23:59-15:00/6.00 元每度, 計度/離峰/21:00-23:59/6.00 元每度, 計度/離峰/00:00-23:59/6.50 元每度, 計度/離峰/00:00-23:59/6.50 元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "羅東鎮",
+          "Road": "光榮路",
+          "No": "400號"
+        }
+      },
+      "Telephone": "02-22559610"
+    },
+    {
+      "StationID": "82203215-S245",
+      "StationName": {
+        "Zh_tw": "歡歡喜喜社區管理委員會 evbar (不對外開放)"
+      },
+      "Description": "7x24 小時。停車費率：免費。充電樁數目：1，J1772數量：1",
+      "OperatorID": "82203215",
+      "OperationType": 3,
+      "PositionLat": 24.76178270931818,
+      "PositionLon": 121.75858545356472,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "固定費率(非尖峰費率)",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "樹人路",
+          "No": "68號"
+        }
+      },
+      "Telephone": "02-22559610"
+    },
+    {
+      "StationID": "50965513-SPJP3403001",
+      "StationName": {
+        "Zh_tw": "蘇澳漁會-第一停車場"
+      },
+      "Description": "慢充，充電格位數4，需使用車車電充APP",
+      "OperatorID": "50965513",
+      "OperationType": 3,
+      "PositionLat": 24.58401,
+      "PositionLon": 121.86505,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "24小時/每日/00:00-24:00",
+      "ParkingRate": "計時/平日/每小時30元/每日最高300元,計時/假日/每小時50元/每日最高400元",
+      "ChargingRate": "計度/00:00-24:00/每度8元",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭",
+          "Town": "蘇澳",
+          "Road": "南正段",
+          "No": "112號"
+        }
+      },
+      "Telephone": "無"
+    },
+    {
+      "StationID": "50965513-SPJP3403002",
+      "StationName": {
+        "Zh_tw": "蘇澳漁會-第二停車場"
+      },
+      "Description": "慢充，充電格位數4，需使用車車電充APP",
+      "OperatorID": "50965513",
+      "OperationType": 3,
+      "PositionLat": 24.58347,
+      "PositionLon": 121.86657,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "24小時/每日/00:00-24:00",
+      "ParkingRate": "計時/平日/每小時30元/每日最高300元,計時/假日/每小時50元/每日最高400元",
+      "ChargingRate": "計度/00:00-24:00/每度8元",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭",
+          "Town": "蘇澳",
+          "Road": "海邊路",
+          "No": "126號"
+        }
+      },
+      "Telephone": "無"
+    },
+    {
+      "StationID": "50965513-SPJL3403003",
+      "StationName": {
+        "Zh_tw": "蘇澳漁會-粉鳥林停車場"
+      },
+      "Description": "慢充，充電格位數1，需使用車車電充APP",
+      "OperatorID": "50965513",
+      "OperationType": 3,
+      "PositionLat": 24.49737,
+      "PositionLon": 121.84203,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時/每日/00:00-24:00",
+      "ParkingRate": "計次/每日/每次50元(小車$50元/次，大車$100元/次)",
+      "ChargingRate": "計度/00:00-24:00/每度8元",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭",
+          "Town": "蘇澳",
+          "Road": "蘇花路三段",
+          "No": "東澳灣"
+        }
+      },
+      "Telephone": "(02)8912-1051"
+    },
+    {
+      "StationID": "50965513-SPCP3401001",
+      "StationName": {
+        "Zh_tw": "友愛大樓"
+      },
+      "Description": "慢充，充電格位數1，需使用車車電充APP",
+      "OperatorID": "50965513",
+      "OperationType": 3,
+      "PositionLat": 24.7578017,
+      "PositionLon": 121.7568565,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時/每日/00:00-24:00",
+      "ParkingRate": "計時/每日/每小時50元(平日$30元/1小時，假日$50元/1小時)。",
+      "ChargingRate": "計度/00:00-24:00/每度12元",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭",
+          "Town": "宜蘭市",
+          "Road": "舊城東路",
+          "No": "50號"
+        }
+      },
+      "Telephone": "(02)8912-1051"
+    },
+    {
+      "StationID": "73036700-Por_008",
+      "StationName": {
+        "Zh_tw": "富紳礁溪第一停車場"
+      },
+      "Description": "無",
+      "OperatorID": "73036700",
+      "OperationType": 1,
+      "PositionLat": 24.8312907,
+      "PositionLon": 121.7780408,
+      "Spaces": 7,
+      "ChargingPoints": 7,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "每小時20元",
+      "ChargingRate": "每度電8元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "礁溪鄉",
+          "Road": "礁溪路六段",
+          "No": "35號"
+        }
+      },
+      "Telephone": "0922-997-777"
+    },
+    {
+      "StationID": "28114216-S189",
+      "StationName": {
+        "Zh_tw": "多多停-李科永紀念圖書館"
+      },
+      "Description": "充電車位2格，充電樁2座",
+      "OperatorID": "28114216",
+      "OperationType": 1,
+      "PositionLat": 24.748922,
+      "PositionLon": 21.75966,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/30元每小時/每日最高/200元每日",
+      "ChargingRate": "計度/固定/9.20元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "260宜蘭縣",
+          "Town": "\r\n          ",
+          "Road": "宜蘭市陽明路",
+          "No": "277號"
+        }
+      },
+      "Telephone": "03-5775036"
+    },
+    {
+      "StationID": "52693448-S0008",
+      "StationName": {
+        "Zh_tw": "林森企業社停車場"
+      },
+      "Description": "林森企業社停車場",
+      "OperatorID": "52693448",
+      "OperationType": 1,
+      "PositionLat": 24.67914,
+      "PositionLon": 121.76968,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/30元每小時",
+      "ChargingRate": "計度/固定/8 元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "羅東鎮",
+          "Road": "公正里天津路",
+          "No": "21號"
+        }
+      },
+      "Telephone": "77106666"
+    },
+    {
+      "StationID": "90016138-SG001",
+      "StationName": {
+        "Zh_tw": "臺鐵礁溪站前停車場"
+      },
+      "Description": "充電車位 3 格，充電樁 3 座， CCS1/CCS2*1,J1772*2，位於平面停車場:16、17、18停車格，",
+      "OperatorID": "90016138",
+      "OperationType": 3,
+      "PositionLat": 24.82667,
+      "PositionLon": 121.77486,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/平日/15元每半小時/每日最高/150元每日,計時/假日/20元每半小時",
+      "ChargingRate": "計度/固定/10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "礁溪鎮",
+          "Road": "溫泉路",
+          "No": "1號"
+        }
+      },
+      "Telephone": "03-9881311#502"
+    },
+    {
+      "StationID": "90016138-SG002",
+      "StationName": {
+        "Zh_tw": "宜蘭停七停車場"
+      },
+      "Description": "充電車位 3 格，充電樁 3 座， CCS1/CCS2*1,J1772*2，位於平面停車場:16、17、18停車格，",
+      "OperatorID": "90016138",
+      "OperationType": 3,
+      "PositionLat": 24.75738,
+      "PositionLon": 121.75625,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/平日/20元每半小時/每日最高/160元每日,計時/假日/25元每半小時/每日最高/220元每日",
+      "ChargingRate": "計度/固定/10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "宜興路一段",
+          "No": "159號"
+        }
+      },
+      "Telephone": "03-9881311#502"
+    },
+    {
+      "StationID": "90016138-SG003",
+      "StationName": {
+        "Zh_tw": "金卯頭城站停車場"
+      },
+      "Description": "充電車位 2 格，充電樁 2 座，J1772*2",
+      "OperatorID": "90016138",
+      "OperationType": 1,
+      "PositionLat": 24.860512,
+      "PositionLon": 121.827484,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計次/平日/30元,計次/假日/50元",
+      "ChargingRate": "計度/固定/10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "頭城區",
+          "Road": "青雲路三段",
+          "No": "376號"
+        }
+      },
+      "Telephone": "03-9568886"
+    },
+    {
+      "StationID": "90016138-SG004",
+      "StationName": {
+        "Zh_tw": "羅東民生站停車場"
+      },
+      "Description": "充電車位 6 格，充電樁 6 座，J1772*6",
+      "OperatorID": "90016138",
+      "OperationType": 1,
+      "PositionLat": 24.676561,
+      "PositionLon": 121.770966,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "平日08:00~23:00 15元/半小時，23:00~08:00 10元/1小時，例假日08:00~23:00 20元/半小時，23:00~08:00 20元/1小時。",
+      "ChargingRate": "計度/固定/10元每度",
+      "Floors": "5, 6",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "羅東鎮",
+          "Road": "民生路",
+          "No": "6號"
+        }
+      },
+      "Telephone": "03-9547353"
+    },
+    {
+      "StationID": "90016138-SG005",
+      "StationName": {
+        "Zh_tw": "羅東廣停二站停車場"
+      },
+      "Description": "充電車位 2 格，充電樁 2 座，J1772*2，室內停車場右側車格位。",
+      "OperatorID": "90016138",
+      "OperationType": 1,
+      "PositionLat": 24.681774,
+      "PositionLon": 121.771996,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "平日 15元/半H 當日最高100元，假日 25元/半H 無當日最高。",
+      "ChargingRate": "計度/固定/10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "羅東鎮",
+          "Road": "中正北路",
+          "No": "94號"
+        }
+      },
+      "Telephone": "0800360369"
+    },
+    {
+      "StationID": "53703514-S3171",
+      "StationName": {
+        "Zh_tw": "YES宜蘭轉運站 汽車站"
+      },
+      "Description": "充電費率AC每分1元/DC每度11元。充電插頭CCS1/CCS2/J-1772。充電格位數6",
+      "OperatorID": "53703514",
+      "OperationType": 1,
+      "PositionLat": 24.750636,
+      "PositionLon": 121.758909,
+      "Spaces": 6,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "7*24 小時",
+      "ParkingRate": "計時/平日/30元每小時/每日最高/60元每日, 計時/假日/40元每小時/每日最高/100元每日",
+      "ChargingRate": "計度/固定/11元每度, 計分/1元每分",
+      "Floors": "B2",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "校舍路",
+          "No": "190號"
+        }
+      },
+      "Telephone": "02-55900599"
+    },
+    {
+      "StationID": "53703514-S0288",
+      "StationName": {
+        "Zh_tw": "YES穎辰國際 通安企業社停車場"
+      },
+      "Description": "充電費率AC每度10元/免費。充電插頭J-1772。充電格位數2",
+      "OperatorID": "53703514",
+      "OperationType": 3,
+      "PositionLat": 24.74715,
+      "PositionLon": 121.75941,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7*24 小時",
+      "ParkingRate": "計時/每日/30元每小時",
+      "ChargingRate": "免費, 計度/固定/10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "女中路二段",
+          "No": "88號"
+        }
+      },
+      "Telephone": "\r\n      "
+    },
+    {
+      "StationID": "53703514-S7325",
+      "StationName": {
+        "Zh_tw": "YES裕捷能源 冬山停一停車場"
+      },
+      "Description": "充電費率AC每分1元。充電插頭J-1772。充電格位數1",
+      "OperatorID": "53703514",
+      "OperationType": 3,
+      "PositionLat": 24.63622,
+      "PositionLon": 121.7925,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7*24 小時",
+      "ParkingRate": "計時/平日/30元每半小時/每日最高/100元每日, 計時/假日/30元每半小時/每日最高/200元每日, 計時/連假/60元每小時/每日最高/300元每日",
+      "ChargingRate": "計分/1元每分",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "\r\n          ",
+          "Town": "\r\n          ",
+          "Road": "\r\n          ",
+          "No": "\r\n          "
+        }
+      },
+      "Telephone": "\r\n      "
+    },
+    {
+      "StationID": "53703514-S7307",
+      "StationName": {
+        "Zh_tw": "YES裕捷能源 羅東停一停車場"
+      },
+      "Description": "充電費率AC每分1元。充電插頭J-1772。充電格位數1",
+      "OperatorID": "53703514",
+      "OperationType": 3,
+      "PositionLat": 24.67728,
+      "PositionLon": 121.77397,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7*24 小時",
+      "ParkingRate": "計時/平日/15元每半小時/每日最高/120元每日",
+      "ChargingRate": "計分/1元每分",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "\r\n          ",
+          "Town": "\r\n          ",
+          "Road": "\r\n          ",
+          "No": "\r\n          "
+        }
+      },
+      "Telephone": "\r\n      "
+    },
+    {
+      "StationID": "53703514-S7399",
+      "StationName": {
+        "Zh_tw": "YES裕捷能源 羅東停三停車場"
+      },
+      "Description": "充電費率AC每分1元。充電插頭J-1772。充電格位數1",
+      "OperatorID": "53703514",
+      "OperationType": 3,
+      "PositionLat": 24.67865,
+      "PositionLon": 121.77516,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7*24 小時",
+      "ParkingRate": "計時/平日/20元每半小時/每日最高/80元每日",
+      "ChargingRate": "計分/1元每分",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "\r\n          ",
+          "Town": "\r\n          ",
+          "Road": "\r\n          ",
+          "No": "\r\n          "
+        }
+      },
+      "Telephone": "\r\n      "
+    },
+    {
+      "StationID": "97179430-S129",
+      "StationName": {
+        "Zh_tw": "話水社區"
+      },
+      "Description": "本站目前共有3樁7kW充電樁",
+      "OperatorID": "97179430",
+      "OperationType": 3,
+      "PositionLat": 24.830821528451473,
+      "PositionLon": 121.77519398300394,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 254,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "免費",
+      "ChargingRate": "計時/每日/1元每分鐘",
+      "Floors": "B1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "礁溪鄉",
+          "Road": "健康路",
+          "No": "66號"
+        }
+      },
+      "Telephone": "03-9873737"
+    },
+    {
+      "StationID": "24644312-Sqba_2",
+      "StationName": {
+        "Zh_tw": "宜蘭市公共造產中央臨時停車場"
+      },
+      "Description": "充電車位*7",
+      "OperatorID": "24644312",
+      "OperationType": 1,
+      "PositionLat": 24.75764,
+      "PositionLon": 121.75658,
+      "Spaces": 7,
+      "ChargingPoints": 7,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 7
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "30",
+      "ChargingRate": "週一 - 週五: 16時 ~ 22時:  10元/度；其他時間: 8元/度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "新民路",
+          "No": "105號"
+        }
+      },
+      "Telephone": "03-85836006"
+    },
+    {
+      "StationID": "24644312-Sqba_3",
+      "StationName": {
+        "Zh_tw": "太平山森林遊樂區停車場"
+      },
+      "Description": "充電車位*2",
+      "OperatorID": "24644312",
+      "OperationType": 1,
+      "PositionLat": 24.49738,
+      "PositionLon": 121.53507,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "0",
+      "ChargingRate": "每度電12元",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "大同鄉",
+          "Road": "太平巷",
+          "No": "58-1號"
+        }
+      },
+      "Telephone": "03-85836006"
+    },
+    {
+      "StationID": "24963309-Svivi_2",
+      "StationName": {
+        "Zh_tw": "羅東公正國小地下停車場"
+      },
+      "Description": "無",
+      "OperatorID": "24963309",
+      "OperationType": 1,
+      "PositionLat": 24.67925,
+      "PositionLon": 121.76883,
+      "Spaces": 7,
+      "ChargingPoints": 7,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 7
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "20",
+      "ChargingRate": "慢充每分鐘0.5元",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "羅東鎮",
+          "Road": "公正路",
+          "No": "199號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "87368067-Sqbalocal_1",
+      "StationName": {
+        "Zh_tw": "轉運站停車場"
+      },
+      "Description": "充電車位*2",
+      "OperatorID": "87368067",
+      "OperationType": 1,
+      "PositionLat": 24.753502,
+      "PositionLon": 121.749887,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "30",
+      "ChargingRate": "免費",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "和睦路",
+          "No": "1-41"
+        }
+      },
+      "Telephone": "03-9933797"
+    },
+    {
+      "StationID": "87368067-Sqbalocal_2",
+      "StationName": {
+        "Zh_tw": "宜蘭新月站停車場"
+      },
+      "Description": "充電車位*2",
+      "OperatorID": "87368067",
+      "OperationType": 1,
+      "PositionLat": 24.753502,
+      "PositionLon": 121.749887,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "30",
+      "ChargingRate": "免費",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "女中路三段",
+          "No": "53"
+        }
+      },
+      "Telephone": "03-9933797"
+    },
+    {
+      "StationID": "42213928-SILA0001",
+      "StationName": {
+        "Zh_tw": "雲樁宜蘭上善如水社區站"
+      },
+      "Description": "充電費率每分鐘0.6元。充電插頭Type1。充電格位數1。",
+      "OperatorID": "42213928",
+      "OperationType": 3,
+      "PositionLat": 24.8317513211712,
+      "PositionLon": 121.77492706141,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/08:00-22:00",
+      "ParkingRate": "計時/每日/0元每半小時/每日最高/0元每日",
+      "ChargingRate": "計分/固定/0.6元每分",
+      "Floors": "B2",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "礁溪鄉",
+          "Road": "公園路",
+          "No": "83號"
+        }
+      },
+      "Telephone": "03-987-0798"
+    },
+    {
+      "StationID": "90148497-S1204",
+      "StationName": {
+        "Zh_tw": "宜蘭傳藝中心"
+      },
+      "Description": "服務時間：24小時開放。 / 停車費率：停車費率依現場公告為準。 / 充電費率：充電費率依系統公告為準。",
+      "OperatorID": "90148497",
+      "OperationType": 1,
+      "PositionLat": 24.68562,
+      "PositionLon": 121.823981,
+      "Spaces": 14,
+      "ChargingPoints": 14,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 7
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 7
+        }
+      ],
+      "ServiceTime": "24小時開放。",
+      "ParkingRate": "停車費率依現場公告為準。",
+      "ChargingRate": "充電費率依系統公告為準。",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "五結鄉",
+          "Road": "五濱路二段",
+          "No": "201"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "12681939-SYA504",
+      "StationName": {
+        "Zh_tw": "城市車旅宜蘭清標"
+      },
+      "Description": "J1772AC充電樁*1",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 24.74725,
+      "PositionLon": 121.75932,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "計時/每日/40元每小時/每日最高100元",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "女中路二段",
+          "No": "88號旁"
+        }
+      },
+      "Telephone": "0800208333"
+    },
+    {
+      "StationID": "12681939-SYA206",
+      "StationName": {
+        "Zh_tw": "城市車旅宜蘭礁溪停車場"
+      },
+      "Description": "J1772AC充電樁*1",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 24.82712,
+      "PositionLon": 121.77197,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日 /00:00 24:00",
+      "ParkingRate": "計時/平日/60元每小時/平日最高/200元平日 計次/假日/150元每次",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "礁溪鄉",
+          "Road": "礁溪路五段",
+          "No": "98號旁"
+        }
+      },
+      "Telephone": "0800208333"
+    },
+    {
+      "StationID": "12681939-SYA559",
+      "StationName": {
+        "Zh_tw": "羅東國華中學停車場"
+      },
+      "Description": "J1772AC充電樁*1",
+      "OperatorID": "12681939",
+      "OperationType": 1,
+      "PositionLat": 24.678407912,
+      "PositionLon": 121.76122371783,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日 /00:00 24:00",
+      "ParkingRate": "計時/平日/60元每小時/假日/40元每小時",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "羅東鎮",
+          "Road": "國華街",
+          "No": "101號"
+        }
+      },
+      "Telephone": "0800208333"
+    },
+    {
+      "StationID": "12681939-SIC0896",
+      "StationName": {
+        "Zh_tw": "宏達梅花湖"
+      },
+      "Description": "J1772AC充電樁*2",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 24.64718,
+      "PositionLon": 121.73162,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00 24:00",
+      "ParkingRate": "平日：小客車$70元/次，假日：小客車$100元/次",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "冬山鄉",
+          "Road": "大埤路",
+          "No": "600號空地"
+        }
+      },
+      "Telephone": "02-22835158"
+    },
+    {
+      "StationID": "12681939-SYA489",
+      "StationName": {
+        "Zh_tw": "城市車旅宜蘭市農會"
+      },
+      "Description": "J1772AC充電樁*1",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 24.75963,
+      "PositionLon": 121.75708,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日 /00:00 24:00",
+      "ParkingRate": "計時/每日/40元每小時/每日最高/200元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "小東路",
+          "No": "6-1號"
+        }
+      },
+      "Telephone": "0800208333"
+    },
+    {
+      "StationID": "12681939-SYA261",
+      "StationName": {
+        "Zh_tw": "城市車旅宜蘭宜興站"
+      },
+      "Description": "J1772AC充電樁*2",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 24.7569,
+      "PositionLon": 121.75875,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日 /00:00 24:00",
+      "ParkingRate": "計時/平日/60元每小時/平日最高/250元 計次/假日/150元/每次",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "宜興路一段",
+          "No": "332號旁"
+        }
+      },
+      "Telephone": "0800208333"
+    },
+    {
+      "StationID": "12681939-SYA262",
+      "StationName": {
+        "Zh_tw": "城市車旅宜蘭幸福站"
+      },
+      "Description": "J1772AC充電樁*5",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 24.75147,
+      "PositionLon": 121.75662,
+      "Spaces": 5,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 5
+        }
+      ],
+      "ServiceTime": "每日 /00:00 24:00",
+      "ParkingRate": "計時/平日/60元每小時/最高/130元平日 計時/假日/60元每小時/最高/180元假日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "宜興路一段",
+          "No": "130號旁"
+        }
+      },
+      "Telephone": "0800208333"
+    },
+    {
+      "StationID": "12681939-SYA263",
+      "StationName": {
+        "Zh_tw": "城市車旅宜蘭林森站"
+      },
+      "Description": "J1772AC充電樁*7",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 24.75611,
+      "PositionLon": 121.76014,
+      "Spaces": 7,
+      "ChargingPoints": 7,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 7
+        }
+      ],
+      "ServiceTime": "每日 /00:00 24:00",
+      "ParkingRate": "計時/每日/60元每小時 最高 /100元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "林森路",
+          "No": "105號"
+        }
+      },
+      "Telephone": "0800208333"
+    },
+    {
+      "StationID": "12681939-SYA464",
+      "StationName": {
+        "Zh_tw": "城市車旅宜蘭農會"
+      },
+      "Description": "J1772AC充電樁*1",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 24.75665,
+      "PositionLon": 121.75991,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日 /00:00 24:00",
+      "ParkingRate": "計時/每日/60元每小時/每日最高/100元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "林森路",
+          "No": "155號"
+        }
+      },
+      "Telephone": "0800208333"
+    },
+    {
+      "StationID": "12681939-SYA564",
+      "StationName": {
+        "Zh_tw": "城市車旅陽明交大醫院蘭陽院區"
+      },
+      "Description": "J1772AC充電樁*8",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 24.74942,
+      "PositionLon": 121.75848,
+      "Spaces": 8,
+      "ChargingPoints": 8,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 8
+        }
+      ],
+      "ServiceTime": "每日 /00:00 24:00",
+      "ParkingRate": "計時/每日/30元每小時/每日最高/500元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "校舍路",
+          "No": "169號"
+        }
+      },
+      "Telephone": "0800208333"
+    },
+    {
+      "StationID": "12681939-SYA56401",
+      "StationName": {
+        "Zh_tw": "城市車旅陽明交大醫院新民院區"
+      },
+      "Description": "J1772AC充電樁*2",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 24.75798,
+      "PositionLon": 121.75412,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日 /00:00 24:00",
+      "ParkingRate": "計時/每日/30元每小時/每日最高/500元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "宜蘭市",
+          "Road": "新民路",
+          "No": "152號"
+        }
+      },
+      "Telephone": "0800208333"
+    },
+    {
+      "StationID": "12681939-SHA791",
+      "StationName": {
+        "Zh_tw": "城市車旅礁溪忠孝"
+      },
+      "Description": "J1772AC充電樁*2",
+      "OperatorID": "12681939",
+      "OperationType": 3,
+      "PositionLat": 24.83073,
+      "PositionLon": 121.77269,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日 /00:00 24:00",
+      "ParkingRate": "計時/每日/40元每小時/每日最高/120元每日",
+      "ChargingRate": "計度 /固定 /10元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "宜蘭縣",
+          "Town": "礁溪鄉",
+          "Road": "忠孝路與健康一街交叉口",
+          "No": "號"
+        }
+      },
+      "Telephone": "0800208333"
+    }
+  ]
+}

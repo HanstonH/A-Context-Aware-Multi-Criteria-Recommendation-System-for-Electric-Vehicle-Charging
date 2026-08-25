@@ -1,6 +1,6 @@
 .venv/
 env/
-
+.extraction_state/
 
 .env
 
@@ -10,3 +10,5 @@ env/
 __pycache__/
 *.pyc
 venv/
+
+Algorithm/models/

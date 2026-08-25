@@ -1,0 +1,1852 @@
+{
+  "UpdateTime": "2026-07-02T14:45:07+08:00",
+  "UpdateInterval": 14400,
+  "SrcUpdateTime": "2026-07-02T14:44:58+08:00",
+  "SrcUpdateInterval": -1,
+  "AuthorityCode": "HSQ",
+  "Stations": [
+    {
+      "StationID": "82292602-SPSS_HA107",
+      "StationName": {
+        "Zh_tw": "城市車旅中醫新竹附醫"
+      },
+      "Description": "無",
+      "OperatorID": "82292602",
+      "OperationType": 3,
+      "PositionLat": 24.82525626,
+      "PositionLon": 121.0019788,
+      "Spaces": 25,
+      "ChargingPoints": 25,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 25
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "每小時30元",
+      "ChargingRate": "慢充每度6元。",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "福興路一段",
+          "No": "199號"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "97179430-S122",
+      "StationName": {
+        "Zh_tw": "新竹市_生醫園區大客車停車場"
+      },
+      "Description": "本站目前共有2樁180kW充電樁，1樁120kW充電樁",
+      "OperatorID": "97179430",
+      "OperationType": 2,
+      "PositionLat": 24.804954433853027,
+      "PositionLon": 121.04519632463844,
+      "Spaces": 3,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時 /每日/20 元每小時",
+      "ChargingRate": "免費",
+      "Floors": "1F",
+      "UsageRestriction": "本充電站限新竹市大客車使用",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "生醫路二段",
+          "No": "12號"
+        }
+      },
+      "Telephone": "0809-095-665"
+    },
+    {
+      "StationID": "97179430-S164",
+      "StationName": {
+        "Zh_tw": "竹北莊敬二街公有停車場",
+        "En": "FEDS_CHUPEI"
+      },
+      "Description": "本站目前共有8樁 30kW 充電樁；8樁 7kW充電樁。",
+      "OperatorID": "97179430",
+      "OperationType": 1,
+      "PositionLat": 24.822348684808283,
+      "PositionLon": 121.0241608323069,
+      "Spaces": 16,
+      "ChargingPoints": 16,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 8
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 8
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 8
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時 /每日/20元每小時",
+      "ChargingRate": "計度 /固定 /12元 DC每度,計度 /固定 /8.5元 AC每度",
+      "Floors": "P3",
+      "UsageRestriction": "",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "莊敬二街",
+          "No": "357號"
+        }
+      },
+      "Telephone": "03-6223168"
+    },
+    {
+      "StationID": "28114216-S90",
+      "StationName": {
+        "Zh_tw": "竹北國民運動中心"
+      },
+      "Description": "充電車位2格，充電樁2座",
+      "OperatorID": "28114216",
+      "OperationType": 1,
+      "PositionLat": 24.82091214,
+      "PositionLon": 121.0215676,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/20元每小時",
+      "ChargingRate": "計分/固定/1.01元每分",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "302新竹縣",
+          "Town": "",
+          "Road": "竹北市莊敬南路",
+          "No": "18號"
+        }
+      },
+      "Telephone": "03-5775036"
+    },
+    {
+      "StationID": "90203890-ST23002A",
+      "StationName": {
+        "Zh_tw": "1010 Parking 停車場（福興站）"
+      },
+      "Description": "充電車位2格,充電槍2支(CCS1*1、CCS2*1),皆為快速充電規格。",
+      "OperatorID": "90203890",
+      "OperationType": 3,
+      "PositionLat": 24.81836,
+      "PositionLon": 121.02378,
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度 尖峰時段：每度 13.5元 時間：15:00-21:00。 離峰時段：每度 6.5元 時間：21:00-05:00，以及周六日全天。 半尖峰時段：每度 7元 時間：05:00-15:00。",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "福興東路一段",
+          "No": "301號"
+        }
+      },
+      "Telephone": "07-5523017"
+    },
+    {
+      "StationID": "90807408-SCSD00023",
+      "StationName": {
+        "Zh_tw": "苗栗竹南科學園區_轉運站"
+      },
+      "Description": "停車位:1 充電樁數量:2 停車費:Free (依現場為準) 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.7071,
+      "PositionLon": 120.9228,
+      "Spaces": 1,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "Free (依現場為準)",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "竹南鎮",
+          "Road": "科研路",
+          "No": "36號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD00064",
+      "StationName": {
+        "Zh_tw": "新竹豐邑喜來登大飯店"
+      },
+      "Description": "停車位:9 充電樁數量:9 停車費:50元/小時 (依現場為準) 費率:計度/固定/7.7元每度 樓層:B3",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.820428,
+      "PositionLon": 121.027958,
+      "Spaces": 9,
+      "ChargingPoints": 9,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 3
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "50元/小時 (依現場為準)",
+      "ChargingRate": "計度/固定/7.7元每度",
+      "Floors": "B3",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "光明六路東一段",
+          "No": "265號B3"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02964",
+      "StationName": {
+        "Zh_tw": "新竹芎林停二停車場"
+      },
+      "Description": "停車位:1 充電樁數量:4 停車費:20元/時，依場域公告為準 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.773571,
+      "PositionLon": 121.085242,
+      "Spaces": 1,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "20元/時，依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "芎林鄉",
+          "Road": "文山路",
+          "No": "131號旁邊"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02990",
+      "StationName": {
+        "Zh_tw": "新竹芎林停四停車場"
+      },
+      "Description": "停車位:0 充電樁數量:0 停車費:免費 費率: 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.777744,
+      "PositionLon": 121.075307,
+      "Spaces": 0,
+      "ChargingPoints": 0,
+      "Connectors": [],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "芎林鄉",
+          "Road": "文富街",
+          "No": "(公所對面)"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02991",
+      "StationName": {
+        "Zh_tw": "新竹關西第一停車場"
+      },
+      "Description": "停車位:0 充電樁數量:0 停車費:免費 費率: 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.792506,
+      "PositionLon": 121.177588,
+      "Spaces": 0,
+      "ChargingPoints": 0,
+      "Connectors": [],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "關西鎮",
+          "Road": "光復路",
+          "No": "29-31號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03020",
+      "StationName": {
+        "Zh_tw": "新竹北埔鄧南光公有停車場"
+      },
+      "Description": "停車位:1 充電樁數量:3 停車費:30元/時，依場域公告為準 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.697232,
+      "PositionLon": 121.058944,
+      "Spaces": 1,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "30元/時，依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "北埔鄉",
+          "Road": "",
+          "No": "南興村"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03021",
+      "StationName": {
+        "Zh_tw": "新竹新埔廣停三公有停車場"
+      },
+      "Description": "停車位:1 充電樁數量:4 停車費:20元/時，依場域公告為準 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.825782,
+      "PositionLon": 121.074506,
+      "Spaces": 1,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "20元/時，依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "新埔鎮",
+          "Road": "田新里田新路",
+          "No": "600號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03024",
+      "StationName": {
+        "Zh_tw": "新竹高鐵特區停四停車場"
+      },
+      "Description": "停車位:6 充電樁數量:6 停車費:20元/時，依場域公告為準 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.803633,
+      "PositionLon": 121.03734,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "20元/時，依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "高鐵二路及隘口三街",
+          "No": "路口"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03025",
+      "StationName": {
+        "Zh_tw": "新竹高鐵特區停三停車場"
+      },
+      "Description": "停車位:3 充電樁數量:3 停車費:20元/時，依場域公告為準 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.80829,
+      "PositionLon": 121.029554,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "20元/時，依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "嘉政二街",
+          "No": "40號對面"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03026",
+      "StationName": {
+        "Zh_tw": "新竹新豐廣停四停車場"
+      },
+      "Description": "停車位:1 充電樁數量:4 停車費:20元/時，依場域公告為準 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.865683,
+      "PositionLon": 120.990129,
+      "Spaces": 1,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "20元/時，依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "新豐鄉",
+          "Road": "康樂路一段",
+          "No": "民安街"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03032",
+      "StationName": {
+        "Zh_tw": "新竹湖口王爺壟停四停車場"
+      },
+      "Description": "停車位:0 充電樁數量:0 停車費:免費 費率: 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.893453,
+      "PositionLon": 121.042205,
+      "Spaces": 0,
+      "ChargingPoints": 0,
+      "Connectors": [],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "湖口鄉",
+          "Road": "中正七街&達生六街",
+          "No": ""
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03034",
+      "StationName": {
+        "Zh_tw": "新竹高鐵特區停六停車場"
+      },
+      "Description": "停車位:0 充電樁數量:0 停車費:免費 費率: 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.808356,
+      "PositionLon": 121.035259,
+      "Spaces": 0,
+      "ChargingPoints": 0,
+      "Connectors": [],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "嘉豐十一路一段",
+          "No": "104號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03035",
+      "StationName": {
+        "Zh_tw": "新竹高鐵特區停九停車場"
+      },
+      "Description": "停車位:0 充電樁數量:0 停車費:免費 費率: 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.810793,
+      "PositionLon": 121.036593,
+      "Spaces": 0,
+      "ChargingPoints": 0,
+      "Connectors": [],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "中興里嘉豐十一路一段",
+          "No": "20號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03087",
+      "StationName": {
+        "Zh_tw": "新竹嘉豐二街路外停車場"
+      },
+      "Description": "停車位:8 充電樁數量:8 停車費:20元/時，依場域公告為準 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.80986,
+      "PositionLon": 121.024284,
+      "Spaces": 8,
+      "ChargingPoints": 8,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 8
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "20元/時，依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "東平里六家五路一段",
+          "No": "88號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03088",
+      "StationName": {
+        "Zh_tw": "新竹勝利十一路外停車場"
+      },
+      "Description": "停車位:2 充電樁數量:2 停車費:20元/時，依場域公告為準 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.828117,
+      "PositionLon": 121.027533,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "20元/時，依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "北興里勝利十二街",
+          "No": "64號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03093",
+      "StationName": {
+        "Zh_tw": "新竹竹東二重公五停車場"
+      },
+      "Description": "停車位:1 充電樁數量:2 停車費:20元/時，依場域公告為準 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.772349,
+      "PositionLon": 121.056714,
+      "Spaces": 1,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "20元/時，依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹東鎮",
+          "Road": "旭光二路與光明路",
+          "No": "路口"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03094",
+      "StationName": {
+        "Zh_tw": "新竹五峰清泉第一停車場"
+      },
+      "Description": "停車位:1 充電樁數量:2 停車費:免費 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.575903,
+      "PositionLon": 121.103815,
+      "Spaces": 1,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "五峰鄉",
+          "Road": "",
+          "No": "五峰清泉"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03095",
+      "StationName": {
+        "Zh_tw": "新竹內灣老街公有停車場"
+      },
+      "Description": "停車位:1 充電樁數量:5 停車費:30元/時，依場域公告為準 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.705714,
+      "PositionLon": 121.179215,
+      "Spaces": 1,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 5
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "30元/時，依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "橫山鄉",
+          "Road": "大同路",
+          "No": "99號對面"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03098",
+      "StationName": {
+        "Zh_tw": "歐特儀_新竹竹榮停車場"
+      },
+      "Description": "停車位:2 充電樁數量:2 停車費:20元/時，最高上限200元/12小時 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.723017,
+      "PositionLon": 121.099341,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "20元/時，最高上限200元/12小時",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹東鎮",
+          "Road": "中豐路一段",
+          "No": "81號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03544",
+      "StationName": {
+        "Zh_tw": "Times_新竹新豐明新一街停車場"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:依場域公告為準 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.865656,
+      "PositionLon": 120.989235,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "依場域公告為準",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "新豐鄉",
+          "Road": "明新二街",
+          "No": "105號旁"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90148497-S1177",
+      "StationName": {
+        "Zh_tw": "星舟x城市車旅_竹北M1(停十三停車場)"
+      },
+      "Description": "服務時間：24小時營業 / 停車費率：停車費率依現場公告為準。 / 充電費率：充電費率依系統公告為準。",
+      "OperatorID": "90148497",
+      "OperationType": 1,
+      "PositionLat": 24.836083,
+      "PositionLon": 121.012015,
+      "Spaces": 20,
+      "ChargingPoints": 10,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 10
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 10
+        }
+      ],
+      "ServiceTime": "24小時營業",
+      "ParkingRate": "停車費率依現場公告為準。",
+      "ChargingRate": "充電費率依系統公告為準。",
+      "Floors": "2",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "中正東路",
+          "No": "321"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1178",
+      "StationName": {
+        "Zh_tw": "星舟x城市車旅_竹北P6(高鐵停一)"
+      },
+      "Description": "服務時間：24小時營業 / 停車費率：停車費率依現場公告為準。 / 充電費率：充電費率依系統公告為準。",
+      "OperatorID": "90148497",
+      "OperationType": 1,
+      "PositionLat": 24.812888,
+      "PositionLon": 121.034047,
+      "Spaces": 14,
+      "ChargingPoints": 7,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 7
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 7
+        }
+      ],
+      "ServiceTime": "24小時營業",
+      "ParkingRate": "停車費率依現場公告為準。",
+      "ChargingRate": "充電費率依系統公告為準。",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "復興一街",
+          "No": "242"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1179",
+      "StationName": {
+        "Zh_tw": "星舟x城市車旅_竹北P16(縣華停車場)"
+      },
+      "Description": "服務時間：24小時營業 / 停車費率：停車費率依現場公告為準。 / 充電費率：充電費率依系統公告為準。",
+      "OperatorID": "90148497",
+      "OperationType": 1,
+      "PositionLat": 24.827643,
+      "PositionLon": 121.008989,
+      "Spaces": 30,
+      "ChargingPoints": 16,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 15
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 15
+        }
+      ],
+      "ServiceTime": "24小時營業",
+      "ParkingRate": "停車費率依現場公告為準。",
+      "ChargingRate": "充電費率依系統公告為準。",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "縣政九路南段與光明六路口",
+          "No": "-"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1180",
+      "StationName": {
+        "Zh_tw": "星舟x城市車旅_竹北P5(高鐵停二)"
+      },
+      "Description": "服務時間：24小時營業 / 停車費率：停車費率依現場公告為準。 / 充電費率：充電費率依系統公告為準。",
+      "OperatorID": "90148497",
+      "OperationType": 1,
+      "PositionLat": 24.810294,
+      "PositionLon": 121.032909,
+      "Spaces": 14,
+      "ChargingPoints": 7,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 7
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 7
+        }
+      ],
+      "ServiceTime": "24小時營業",
+      "ParkingRate": "停車費率依現場公告為準。",
+      "ChargingRate": "充電費率依系統公告為準。",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "復興三路一段",
+          "No": "230"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1181",
+      "StationName": {
+        "Zh_tw": "星舟x城市車旅_竹北M2(華興立體停車場)"
+      },
+      "Description": "服務時間：24小時營業 / 停車費率：停車費率依現場公告為準。 / 充電費率：充電費率依系統公告為準。",
+      "OperatorID": "90148497",
+      "OperationType": 1,
+      "PositionLat": 24.838992,
+      "PositionLon": 121.001474,
+      "Spaces": 18,
+      "ChargingPoints": 9,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 9
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 9
+        }
+      ],
+      "ServiceTime": "24小時營業",
+      "ParkingRate": "停車費率依現場公告為準。",
+      "ChargingRate": "充電費率依系統公告為準。",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "華興街",
+          "No": "195"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1182",
+      "StationName": {
+        "Zh_tw": "星舟x城市車旅_竹北P2(高鐵停五)"
+      },
+      "Description": "服務時間：24小時營業 / 停車費率：停車費率依現場公告為準。 / 充電費率：充電費率依系統公告為準。",
+      "OperatorID": "90148497",
+      "OperationType": 1,
+      "PositionLat": 24.801649,
+      "PositionLon": 121.042213,
+      "Spaces": 18,
+      "ChargingPoints": 9,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 9
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 9
+        }
+      ],
+      "ServiceTime": "24小時營業",
+      "ParkingRate": "停車費率依現場公告為準。",
+      "ChargingRate": "充電費率依系統公告為準。",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "隘口三街",
+          "No": "239"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1183",
+      "StationName": {
+        "Zh_tw": "星舟x城市車旅_竹北U1(公二停五停車場)"
+      },
+      "Description": "服務時間：24小時營業 / 停車費率：停車費率依現場公告為準。 / 充電費率：充電費率依系統公告為準。",
+      "OperatorID": "90148497",
+      "OperationType": 1,
+      "PositionLat": 24.831096,
+      "PositionLon": 121.011344,
+      "Spaces": 24,
+      "ChargingPoints": 14,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 12
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 12
+        }
+      ],
+      "ServiceTime": "24小時營業",
+      "ParkingRate": "停車費率依現場公告為準。",
+      "ChargingRate": "充電費率依系統公告為準。",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "文平路",
+          "No": "250"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1184",
+      "StationName": {
+        "Zh_tw": "星舟x城市車旅_竹北中興公園停車場"
+      },
+      "Description": "服務時間：24小時營業 / 停車費率：1.自充電完成後，逾1小時內未駛離電動車格者，將收取超時占用費， 每逾30分鐘加收$10元\n2.若駛入電動車格，緩衝1小時，未使用充電樁者(含一般汽車及電動汽車)，將收取占用電動車格差別費率，每30分鐘收取$10元 / 充電費率：充電費率依市府公告\nDC 30kW : 平日離峰 5.8 元；平日尖峰 13 元/度；假日全天一律  7.4 元/度\nDC 120kW : 平日離峰 6.5 元；平日尖峰 13.5 元/度；假日全天一律 8 元/度",
+      "OperatorID": "90148497",
+      "OperationType": 1,
+      "PositionLat": 24.816001,
+      "PositionLon": 121.026758,
+      "Spaces": 6,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 3
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "24小時營業",
+      "ParkingRate": "1.自充電完成後，逾1小時內未駛離電動車格者，將收取超時占用費， 每逾30分鐘加收$10元\n2.若駛入電動車格，緩衝1小時，未使用充電樁者(含一般汽車及電動汽車)，將收取占用電動車格差別費率，每30分鐘收取$10元",
+      "ChargingRate": "充電費率依市府公告\nDC 30kW : 平日離峰 5.8 元；平日尖峰 13 元/度；假日全天一律  7.4 元/度\nDC 120kW : 平日離峰 6.5 元；平日尖峰 13.5 元/度；假日全天一律 8 元/度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "福興東路二段",
+          "No": "31-2"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1185",
+      "StationName": {
+        "Zh_tw": "星舟x城市車旅_竹北U2(三民停車場)"
+      },
+      "Description": "服務時間：24小時營業 / 停車費率：停車費率依現場公告為準。 / 充電費率：充電費率依系統公告為準。",
+      "OperatorID": "90148497",
+      "OperationType": 1,
+      "PositionLat": 24.835489,
+      "PositionLon": 121.008394,
+      "Spaces": 4,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24小時營業",
+      "ParkingRate": "停車費率依現場公告為準。",
+      "ChargingRate": "充電費率依系統公告為準。",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "三民路",
+          "No": "342"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "28007736-S106",
+      "StationName": {
+        "Zh_tw": "六福村主題遊樂園停車場",
+        "En": "BTSP_LeoFooParking"
+      },
+      "Description": "充電車位50格，充電樁50座，J1772*25，Type2*25位於平面停車場充電停車格 ，為交流充電規格。",
+      "OperatorID": "28007736",
+      "OperationType": 3,
+      "PositionLat": 24.82193939,
+      "PositionLon": 121.1843494,
+      "Spaces": 50,
+      "ChargingPoints": 50,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 50
+        }
+      ],
+      "ServiceTime": "每日 /00:00-24:00",
+      "ParkingRate": "計次/200元每次",
+      "ChargingRate": "計度/固定/12元每度",
+      "Floors": "1",
+      "UsageRestriction": "使用APP確認按壓開始充電功能鈕後再插上充電槍",
+      "PhotoURLs": [
+        "https://www.eviator.net/Parking/EV/HSQ_photo/S106.jpg"
+      ],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "關西鎮",
+          "Road": "仁安里10鄰拱子溝",
+          "No": "60號"
+        }
+      },
+      "Telephone": "0800-006-565"
+    },
+    {
+      "StationID": "53758995-SHX_01",
+      "StationName": {
+        "Zh_tw": "竹東信義立體停車場"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:2 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 3,
+      "PositionLat": 24.7386078259472,
+      "PositionLon": 121.090040263878,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "每度 10 元",
+      "Floors": "2",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "新竹縣",
+          "Town": "竹東鎮",
+          "Road": "信義路"
+        },
+        "Place": {
+          "POI": "竹東信義立體停車場"
+        },
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹東鎮",
+          "Road": "信義路",
+          "Lane": "",
+          "Alley": "",
+          "No": "189"
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "89132567-S0060",
+      "StationName": {
+        "Zh_tw": "Acon-eco竹北文興站",
+        "En": "AconElectricEnergyStation"
+      },
+      "Description": "充電格數8格，停車費率每小時 30 元",
+      "OperatorID": "89132567",
+      "OperationType": 3,
+      "PositionLat": 24.80685,
+      "PositionLon": 121.03646,
+      "Spaces": 8,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 3
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "計時/每日/30 元每小時",
+      "ChargingRate": "計度/固定/8 元每度, 計度/固定/9 元每度",
+      "Floors": "1",
+      "UsageRestriction": "依現場告示",
+      "PhotoURLs": [
+        "https://backend.acon-eco.com/api/File?id=904051e1-b5f9-4cb3-8cc9-9866b3a8d3fc"
+      ],
+      "Location": {
+        "CityRoad": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "文興路二段142號旁"
+        }
+      },
+      "Telephone": "0800-868885"
+    },
+    {
+      "StationID": "95080340-S116",
+      "StationName": {
+        "Zh_tw": "湖口仁樂停車場 evbar"
+      },
+      "Description": "7x24 小時。停車費率：計時/每日/20 元每小時。充電樁數目：6，J1772數量：6",
+      "OperatorID": "95080340",
+      "OperationType": 3,
+      "PositionLat": 24.87183801858505,
+      "PositionLon": 121.01348718055513,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "計時/每日/20 元每小時",
+      "ChargingRate": "計度/尖峰/09:00-23:59/10.00 元每度, 計度/尖峰/06:00-11:00/10.00 元每度, 計度/尖峰/14:00-23:59/10.00 元每度, 計度/離峰/23:59-09:00/8.00 元每度, 計度/離峰/23:59-06:00/8.00 元每度, 計度/離峰/11:00-14:00/8.00 元每度, 計度/離峰/00:00-23:59/8.00 元每度, 計度/離峰/00:00-23:59/8.00 元每度, 計度/離峰/00:00-23:59/8.00 元每度, 計度/離峰/00:00-23:59/8.00 元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "湖口鄉",
+          "Road": "鳳凰村仁樂路",
+          "No": "88號"
+        }
+      },
+      "Telephone": "02-22559610"
+    },
+    {
+      "StationID": "53328840-S168",
+      "StationName": {
+        "Zh_tw": "竹北站前停車場 evbar"
+      },
+      "Description": "7x24 小時。停車費率：免費。充電樁數目：1，J1772數量：1",
+      "OperatorID": "53328840",
+      "OperationType": 1,
+      "PositionLat": 24.83881097386888,
+      "PositionLon": 121.01023750894387,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "固定費率(非尖峰費率)",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹北市",
+          "Road": "中山路",
+          "No": "514號"
+        }
+      },
+      "Telephone": "02-22559610"
+    },
+    {
+      "StationID": "60260953-S252",
+      "StationName": {
+        "Zh_tw": "褆姆股份有限公司竹東運動中心 evbar"
+      },
+      "Description": "7x24 小時。停車費率：計時/每日/20 元每小時。充電樁數目：2，J1772數量：2",
+      "OperatorID": "60260953",
+      "OperationType": 1,
+      "PositionLat": 24.71843665853524,
+      "PositionLon": 121.09378533822115,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "計時/每日/20 元每小時",
+      "ChargingRate": "固定費率(非尖峰費率)",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "新竹縣",
+          "Town": "竹東鎮",
+          "Road": "至善路",
+          "No": "51號"
+        }
+      },
+      "Telephone": ""
+    },
+    {
+      "StationID": "42861108-S2b99e24a-2ae5-4298-a907-ad3d1ed2b2f7",
+      "StationName": {
+        "Zh_tw": "新竹－竹北哈洛德",
+        "En": "Hsinchu, Zhubei - Harrods"
+      },
+      "Description": "充電格位數6",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.8074,
+      "PositionLon": 121.03628,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 6
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "計分/0-60kW/5 元每分,計分/60-100kW/11 元每分,計分/100-180kW/17 元每分,計分/180-250kW/28 元每分",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "竹北市文興路二段297號 B1"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S943417ea-35a1-49b6-9afc-80cbcc5c66e4",
+      "StationName": {
+        "Zh_tw": "新竹－竹北嘉豐南",
+        "En": "Hsinchu, Zhubei - Jiafeng South"
+      },
+      "Description": "充電格位數5",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.80445,
+      "PositionLon": 121.03008,
+      "Spaces": 5,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 4
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "計分/0-60kW/5 元每分,計分/60-100kW/11 元每分,計分/100-180kW/17 元每分,計分/180-250kW/28 元每分",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "新竹嘉豐南路二段1"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S7911ed6a-1e23-4096-b1cd-75ad3b0d746e",
+      "StationName": {
+        "Zh_tw": "GBA吉比鮮釀餐廳 竹北店",
+        "En": "GBA吉比鮮釀餐廳 竹北店"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.83844,
+      "PositionLon": 121.01905,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "新竹縣惟馨街79號1樓"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Se8a631e8-a856-41d8-963e-f29300ac1e56",
+      "StationName": {
+        "Zh_tw": "鯨站休閒自助洗車24H",
+        "En": "鯨站休閒自助洗車24H"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.80461,
+      "PositionLon": 121.03877,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "新竹縣高鐵五路58號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sbd3c67a7-9187-4195-bda4-c74c8cab4786",
+      "StationName": {
+        "Zh_tw": "再興高爾夫俱樂部",
+        "En": "再興高爾夫俱樂部"
+      },
+      "Description": "充電格位數5",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.88285,
+      "PositionLon": 121.08668,
+      "Spaces": 5,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 2
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "新竹縣湖口鄉再興路350號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S270b8309-8207-4795-882e-cbc616598446",
+      "StationName": {
+        "Zh_tw": "遠東百貨 竹北店",
+        "En": "遠東百貨 竹北店"
+      },
+      "Description": "充電格位數9",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.82242,
+      "PositionLon": 121.02334,
+      "Spaces": 9,
+      "ChargingPoints": 9,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 4
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 5
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "新竹縣竹北市莊敬北路18號B4"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S2a2d7f5d-fed9-4903-bcd1-73de4321637b",
+      "StationName": {
+        "Zh_tw": "新竹－竹東北平路",
+        "En": "Hsinchu, Zhudong - Beiping Rd"
+      },
+      "Description": "充電格位數6",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.73121,
+      "PositionLon": 121.09023,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "計度/離峰/00:00-16:00/6 元每度計度/尖峰/16:00-22:00/13 元每度計度/離峰/22:00-00:00/6 元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "新竹北平路No.2"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sc976b24f-e59c-4e2d-84bc-1805e91e41ce",
+      "StationName": {
+        "Zh_tw": "新竹－芎林",
+        "En": "Hsinchu, Qionglin - Wende 2nd St"
+      },
+      "Description": "充電格位數6",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.77699,
+      "PositionLon": 121.07512,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "計度/離峰/00:00-16:00/6 元每度計度/尖峰/16:00-22:00/13 元每度計度/離峰/22:00-00:00/6 元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "新竹文徳二街1"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S1555c0dc-9a16-4e93-9591-5bdb29a41d61",
+      "StationName": {
+        "Zh_tw": "普拉伯義大利坊-竹北文興店",
+        "En": "普拉伯義大利坊-竹北文興店"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.80919,
+      "PositionLon": 121.03155,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "新竹縣竹北市文興路一段273號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S6937fe7d-a089-4cb8-a163-c6f089ca1042",
+      "StationName": {
+        "Zh_tw": "竹北哈洛德",
+        "En": "竹北哈洛德"
+      },
+      "Description": "充電格位數6",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.8074,
+      "PositionLon": 121.03628,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 5
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "新竹縣竹北市文興路二段297號 B1"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S0b4ff62f-c2d4-4e89-9131-a851c3864dea",
+      "StationName": {
+        "Zh_tw": "新竹－享平方",
+        "En": "Hsinchu, Zhubei - Shown Square"
+      },
+      "Description": "充電格位數6",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.81951,
+      "PositionLon": 121.02667,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 4
+        },
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "計度/離峰/00:00-16:00/6 元每度計度/尖峰/16:00-22:00/13 元每度計度/離峰/22:00-00:00/6 元每度",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "新竹自強南路36號"
+        }
+      },
+      "Telephone": "0809007518"
+    }
+  ]
+}
