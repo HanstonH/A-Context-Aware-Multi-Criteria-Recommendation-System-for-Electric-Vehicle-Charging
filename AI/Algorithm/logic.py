@@ -300,8 +300,8 @@ class Calculation_Model:
         self.max_candidates = max_candidates
 
         self._tdx = tdx_client or TDXClient(
-            os.getenv("TDX_CLIENT_ID", "13890433-9b96bfd5-3f9e-4598"),
-            os.getenv("TDX_CLIENT_SECRET", "6ca592f7-add1-4ceb-8db4-4729d5d4f1be"),
+            os.getenv("TDX_CLIENT_ID"),
+            os.getenv("TDX_CLIENT_SECRET"),
         )
 
     # ------------------------------------------------------------------
