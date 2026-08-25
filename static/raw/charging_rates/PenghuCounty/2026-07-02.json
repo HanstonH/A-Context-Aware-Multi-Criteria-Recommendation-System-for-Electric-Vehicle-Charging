@@ -1,0 +1,5291 @@
+{
+  "UpdateTime": "2026-07-02T15:05:03+08:00",
+  "UpdateInterval": 14400,
+  "SrcUpdateTime": "2026-07-02T15:05:01+08:00",
+  "SrcUpdateInterval": -1,
+  "AuthorityCode": "PEN",
+  "ChargingRates": [
+    {
+      "StationID": "00345802-SB0420011",
+      "ChargingPointID": "00345802-PB0420011_11",
+      "ConnectorID": "00345802-CB0420011_1",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "StartTime": "07:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "StartTime": "14:00",
+          "EndTime": "22:00"
+        }
+      ]
+    },
+    {
+      "StationID": "00345802-SB0420011",
+      "ChargingPointID": "00345802-PB0420011_11",
+      "ConnectorID": "00345802-CB0420011_2",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "StartTime": "07:00",
+          "EndTime": "22:00"
+        }
+      ]
+    },
+    {
+      "StationID": "00345802-SB0420011",
+      "ChargingPointID": "00345802-PB0420011_1",
+      "ConnectorID": "00345802-CB0420011_3",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "StartTime": "07:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        }
+      ]
+    },
+    {
+      "StationID": "00345802-SB0420011",
+      "ChargingPointID": "00345802-PB0420011_2",
+      "ConnectorID": "00345802-CB0420011_4",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "StartTime": "07:00",
+          "EndTime": "22:00"
+        }
+      ]
+    },
+    {
+      "StationID": "00345802-SB0420011",
+      "ChargingPointID": "00345802-PB0420011_4",
+      "ConnectorID": "00345802-CB0420011_5",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "StartTime": "07:00",
+          "EndTime": "22:00"
+        }
+      ]
+    },
+    {
+      "StationID": "00345802-SB0420011",
+      "ChargingPointID": "00345802-PB0420011_3",
+      "ConnectorID": "00345802-CB0420011_6",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "StartTime": "07:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        }
+      ]
+    },
+    {
+      "StationID": "00345802-SB0420011",
+      "ChargingPointID": "00345802-PB0420011_5",
+      "ConnectorID": "00345802-CB0420011_7",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "StartTime": "07:00",
+          "EndTime": "22:00"
+        }
+      ]
+    },
+    {
+      "StationID": "00345802-SB0420011",
+      "ChargingPointID": "00345802-PB0420011_6",
+      "ConnectorID": "00345802-CB0420011_8",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "StartTime": "07:00",
+          "EndTime": "22:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        }
+      ]
+    },
+    {
+      "StationID": "00345802-SB0420011",
+      "ChargingPointID": "00345802-PB0420011_7",
+      "ConnectorID": "00345802-CB0420011_9",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "StartTime": "07:00",
+          "EndTime": "22:00"
+        }
+      ]
+    },
+    {
+      "StationID": "00345802-SB0420011",
+      "ChargingPointID": "00345802-PB0420011_8",
+      "ConnectorID": "00345802-CB0420011_10",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "StartTime": "07:00",
+          "EndTime": "22:00"
+        }
+      ]
+    },
+    {
+      "StationID": "00345802-SB0420011",
+      "ChargingPointID": "00345802-PB0420011_9",
+      "ConnectorID": "00345802-CB0420011_11",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 1,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "StartTime": "07:00",
+          "EndTime": "22:00"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S91",
+      "ChargingPointID": "96405802-P335",
+      "ConnectorID": "96405802-C306",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S91",
+      "ChargingPointID": "96405802-P336",
+      "ConnectorID": "96405802-C307",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S100",
+      "ChargingPointID": "96405802-P358",
+      "ConnectorID": "96405802-C331",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S100",
+      "ChargingPointID": "96405802-P359",
+      "ConnectorID": "96405802-C332",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S101",
+      "ChargingPointID": "96405802-P360",
+      "ConnectorID": "96405802-C333",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S101",
+      "ChargingPointID": "96405802-P361",
+      "ConnectorID": "96405802-C334",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S102",
+      "ChargingPointID": "96405802-P362",
+      "ConnectorID": "96405802-C335",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S102",
+      "ChargingPointID": "96405802-P362",
+      "ConnectorID": "96405802-C336",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S102",
+      "ChargingPointID": "96405802-P363",
+      "ConnectorID": "96405802-C337",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S102",
+      "ChargingPointID": "96405802-P364",
+      "ConnectorID": "96405802-C338",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S102",
+      "ChargingPointID": "96405802-P365",
+      "ConnectorID": "96405802-C339",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S102",
+      "ChargingPointID": "96405802-P366",
+      "ConnectorID": "96405802-C340",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S102",
+      "ChargingPointID": "96405802-P367",
+      "ConnectorID": "96405802-C341",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S102",
+      "ChargingPointID": "96405802-P368",
+      "ConnectorID": "96405802-C342",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S102",
+      "ChargingPointID": "96405802-P369",
+      "ConnectorID": "96405802-C343",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S102",
+      "ChargingPointID": "96405802-P370",
+      "ConnectorID": "96405802-C344",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S103",
+      "ChargingPointID": "96405802-P394",
+      "ConnectorID": "96405802-C369",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S103",
+      "ChargingPointID": "96405802-P394",
+      "ConnectorID": "96405802-C370",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S103",
+      "ChargingPointID": "96405802-P395",
+      "ConnectorID": "96405802-C371",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S103",
+      "ChargingPointID": "96405802-P396",
+      "ConnectorID": "96405802-C372",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S103",
+      "ChargingPointID": "96405802-P397",
+      "ConnectorID": "96405802-C373",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S103",
+      "ChargingPointID": "96405802-P398",
+      "ConnectorID": "96405802-C374",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S104",
+      "ChargingPointID": "96405802-P406",
+      "ConnectorID": "96405802-C382",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S104",
+      "ChargingPointID": "96405802-P407",
+      "ConnectorID": "96405802-C383",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S105",
+      "ChargingPointID": "96405802-P408",
+      "ConnectorID": "96405802-C384",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S105",
+      "ChargingPointID": "96405802-P409",
+      "ConnectorID": "96405802-C385",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S106",
+      "ChargingPointID": "96405802-P410",
+      "ConnectorID": "96405802-C386",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S106",
+      "ChargingPointID": "96405802-P411",
+      "ConnectorID": "96405802-C387",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S106",
+      "ChargingPointID": "96405802-P439",
+      "ConnectorID": "96405802-C420",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S106",
+      "ChargingPointID": "96405802-P440",
+      "ConnectorID": "96405802-C421",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 22.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 22.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 19.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S107",
+      "ChargingPointID": "96405802-P412",
+      "ConnectorID": "96405802-C388",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S107",
+      "ChargingPointID": "96405802-P413",
+      "ConnectorID": "96405802-C389",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S107",
+      "ChargingPointID": "96405802-P414",
+      "ConnectorID": "96405802-C390",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    },
+    {
+      "StationID": "96405802-S107",
+      "ChargingPointID": "96405802-P415",
+      "ConnectorID": "96405802-C391",
+      "Rates": [
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 18.0,
+          "Peak": 1,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 2,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": true,
+          "StartTime": "09:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "06:00",
+          "EndTime": "11:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 18.0,
+          "Peak": 3,
+          "Summer": false,
+          "StartTime": "14:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "23:59",
+          "EndTime": "09:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "23:59",
+          "EndTime": "06:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 3,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "11:00",
+          "EndTime": "14:00"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": true,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        },
+        {
+          "RateType": 2,
+          "PricingType": 2,
+          "DayType": 4,
+          "RatePrice": 15.0,
+          "Peak": 2,
+          "Summer": false,
+          "StartTime": "00:00",
+          "EndTime": "23:59"
+        }
+      ]
+    }
+  ]
+}

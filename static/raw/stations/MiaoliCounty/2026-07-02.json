@@ -1,0 +1,2036 @@
+{
+  "UpdateTime": "2026-07-02T14:45:12+08:00",
+  "UpdateInterval": 14400,
+  "SrcUpdateTime": "2026-07-02T14:45:03+08:00",
+  "SrcUpdateInterval": -1,
+  "AuthorityCode": "MIA",
+  "Stations": [
+    {
+      "StationID": "53758995-S001",
+      "StationName": {
+        "Zh_tw": "測試"
+      },
+      "Description": "測試資料",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 23.911,
+      "PositionLon": 120.687,
+      "Spaces": 3,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "測試資料",
+      "ParkingRate": "測試資料",
+      "ChargingRate": "測試資料",
+      "Floors": "測試資料",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "南投縣",
+          "Town": "南投市",
+          "Road": "玉井街"
+        }
+      },
+      "Telephone": "048886042"
+    },
+    {
+      "StationID": "55762636-STP6360001",
+      "StationName": {
+        "Zh_tw": "竹南污水處理廠停車場"
+      },
+      "Description": "充電車位10格，充電樁10座，規格J1772，7kW，位於2F",
+      "OperatorID": "55762636",
+      "OperationType": 1,
+      "PositionLat": 24.7109,
+      "PositionLon": 120.91199,
+      "Geometry": "1",
+      "Spaces": 10,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "$15/30分鐘",
+      "ChargingRate": "1.16/分鐘",
+      "Floors": "2F",
+      "UsageRestriction": "J1772",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "竹南鎮",
+          "Road": "科西一路"
+        }
+      },
+      "Telephone": "88632873259"
+    },
+    {
+      "StationID": "42861108-Sbc82cf4a-4240-4513-88f0-066a7781e8f6",
+      "StationName": {
+        "Zh_tw": "苗栗－銅鑼科學園區",
+        "En": "Miaoli, Tounglo - Science Park"
+      },
+      "Description": "充電格位數12",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.46203,
+      "PositionLon": 120.75945,
+      "Spaces": 12,
+      "ChargingPoints": 12,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 12
+        },
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 12
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "計分/0-60kW/5 元每分,計分/60-100kW/11 元每分,計分/100-180kW/17 元每分,計分/180-250kW/28 元每分",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "苗栗縣銅鑼鄉銅科六路6號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S84132c31-b186-470e-a812-73de01e8c800",
+      "StationName": {
+        "Zh_tw": "苗栗－竹南",
+        "En": "Miaoli, Zhunan - Boai St"
+      },
+      "Description": "充電格位數6",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.68965,
+      "PositionLon": 120.86326,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 4
+        },
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "計度/離峰/00:00-16:00/6 元每度計度/尖峰/16:00-22:00/13 元每度計度/離峰/22:00-00:00/6 元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "苗栗博愛街"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sdd9be3a9-2b9c-4432-bae9-9c4ea06b9079",
+      "StationName": {
+        "Zh_tw": "采風芸舍",
+        "En": "采風芸舍"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.44678,
+      "PositionLon": 120.91139,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "苗栗縣清安村洗水坑86之1號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sd21d4d03-8cfe-4c1b-a50d-af9b30f2d64c",
+      "StationName": {
+        "Zh_tw": "臺灣客家文化館",
+        "En": "臺灣客家文化館"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.4624,
+      "PositionLon": 120.77124,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "苗栗縣九湖村銅科南路6號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S15d57559-f177-4924-8ce1-3d2bcfb5e5ad",
+      "StationName": {
+        "Zh_tw": "苗栗－苑裡",
+        "En": "Miaoli, Yuanli  - Shangan"
+      },
+      "Description": "充電格位數10",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.40375,
+      "PositionLon": 120.67141,
+      "Spaces": 10,
+      "ChargingPoints": 10,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 6
+        },
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "計度/離峰/00:00-16:00/6 元每度計度/尖峰/16:00-22:00/13 元每度計度/離峰/22:00-00:00/6 元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "苗栗山柑No. 83-2"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "53758995-SML_00G",
+      "StationName": {
+        "Zh_tw": "苗栗中華電信愛國路"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.539425,
+      "PositionLon": 120.817807,
+      "Spaces": 6,
+      "ChargingPoints": 7,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 7
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "苗栗市",
+          "Road": "愛國路"
+        },
+        "Place": {
+          "POI": "中華電信"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "苗栗市",
+          "Road": "愛國路",
+          "Lane": "",
+          "Alley": "",
+          "No": "1號"
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00Q",
+      "StationName": {
+        "Zh_tw": "苗栗停二停車場充電站"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.563949167730563,
+      "PositionLon": 120.8207761445219,
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": ""
+        },
+        "Place": {
+          "POI": "苗栗縣政府"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": "",
+          "Lane": "",
+          "Alley": "",
+          "No": ""
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00S",
+      "StationName": {
+        "Zh_tw": "苗栗公北一路充電站"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.692207,
+      "PositionLon": 120.886841,
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "頭份市",
+          "Road": "公北一路"
+        },
+        "Place": {
+          "POI": "苗北藝文中心"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "頭份市",
+          "Road": "公北一路",
+          "Lane": "",
+          "Alley": "",
+          "No": "3"
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00X",
+      "StationName": {
+        "Zh_tw": "苗栗卓蘭鎮公所"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.313040182169576,
+      "PositionLon": 120.82444179353111,
+      "Spaces": 4,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": ""
+        },
+        "Place": {
+          "POI": "卓蘭鎮公所"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": "",
+          "Lane": "",
+          "Alley": "",
+          "No": ""
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00U",
+      "StationName": {
+        "Zh_tw": "苗栗南江水岸公園充電站"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.595386,
+      "PositionLon": 121.000496,
+      "Spaces": 6,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": ""
+        },
+        "Place": {
+          "POI": "南庄鄉南江水岸公園"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": "",
+          "Lane": "",
+          "Alley": "",
+          "No": ""
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_005",
+      "StationName": {
+        "Zh_tw": "苗栗國華路充電站"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.573093,
+      "PositionLon": 120.815862,
+      "Spaces": 4,
+      "ChargingPoints": 7,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 7
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "苗栗市",
+          "Road": "國華路"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "苗栗市",
+          "Road": "國華路",
+          "Lane": "",
+          "Alley": "",
+          "No": "669號"
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00N",
+      "StationName": {
+        "Zh_tw": "苗栗大湖公園充電站"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.424343,
+      "PositionLon": 120.86654,
+      "Spaces": 6,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": ""
+        },
+        "Place": {
+          "POI": "大湖公園"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": "",
+          "Lane": "",
+          "Alley": "",
+          "No": ""
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00A",
+      "StationName": {
+        "Zh_tw": "苗栗市巨蛋體育館"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.564172,
+      "PositionLon": 120.81467,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "苗栗市",
+          "Road": "國華路"
+        },
+        "Place": {
+          "POI": "苗栗市巨蛋體育館"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "苗栗市",
+          "Road": "國華路",
+          "Lane": "",
+          "Alley": "",
+          "No": "1121號"
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00P",
+      "StationName": {
+        "Zh_tw": "苗栗後龍鎮公所充電站"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.613586,
+      "PositionLon": 120.792193,
+      "Spaces": 6,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 3
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": ""
+        },
+        "Place": {
+          "POI": "後龍鎮公所"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": "",
+          "Lane": "",
+          "Alley": "",
+          "No": ""
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00W",
+      "StationName": {
+        "Zh_tw": "苗栗後龍鎮豐富車站停車場"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.60497590931562,
+      "PositionLon": 120.8280397644181,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "後龍鎮",
+          "Road": ""
+        },
+        "Place": {
+          "POI": "豐富車站停車場"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "後龍鎮",
+          "Road": "",
+          "Lane": "",
+          "Alley": "",
+          "No": ""
+        }
+      },
+      "Telephone": "0225771568"
+    },
+    {
+      "StationID": "53758995-SML_00V",
+      "StationName": {
+        "Zh_tw": "苗栗新港六路充電站"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.602569,
+      "PositionLon": 120.822258,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": ""
+        },
+        "Place": {
+          "POI": "新港六路"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": "",
+          "Lane": "",
+          "Alley": "",
+          "No": ""
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00L",
+      "StationName": {
+        "Zh_tw": "苗栗日落大道充電站"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.542354,
+      "PositionLon": 120.701723,
+      "Spaces": 6,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": ""
+        },
+        "Place": {
+          "POI": "日落大道"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": "",
+          "Lane": "",
+          "Alley": "",
+          "No": ""
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00O",
+      "StationName": {
+        "Zh_tw": "苗栗汶水老街充電站"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.456484,
+      "PositionLon": 120.876513,
+      "Spaces": 6,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": ""
+        },
+        "Place": {
+          "POI": "汶水老街"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": "",
+          "Lane": "",
+          "Alley": "",
+          "No": ""
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00M",
+      "StationName": {
+        "Zh_tw": "苗栗灣麗公園充電站"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.447544,
+      "PositionLon": 120.655979,
+      "Spaces": 6,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": ""
+        },
+        "Place": {
+          "POI": "灣麗公園"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": "",
+          "Lane": "",
+          "Alley": "",
+          "No": ""
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00R",
+      "StationName": {
+        "Zh_tw": "苗栗特色館充電站"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.489217,
+      "PositionLon": 120.828165,
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": ""
+        },
+        "Place": {
+          "POI": "苗栗特色館"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": "",
+          "Lane": "",
+          "Alley": "",
+          "No": ""
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00K",
+      "StationName": {
+        "Zh_tw": "苗栗獅山公園充電站"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.677925,
+      "PositionLon": 120.870994,
+      "Spaces": 6,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": ""
+        },
+        "Place": {
+          "POI": "獅山親子公園"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": "",
+          "Lane": "",
+          "Alley": "",
+          "No": ""
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00H",
+      "StationName": {
+        "Zh_tw": "苗栗獅潭鄉公所"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.539529,
+      "PositionLon": 120.9197174,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "獅潭鄉",
+          "Road": ""
+        },
+        "Place": {
+          "POI": "獅潭鄉公所"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "獅潭鄉",
+          "Road": "",
+          "Lane": "",
+          "Alley": "",
+          "No": "130之2號"
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00T",
+      "StationName": {
+        "Zh_tw": "苗栗竹南游泳池充電站"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.690266,
+      "PositionLon": 120.885851,
+      "Spaces": 6,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 3
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": ""
+        },
+        "Place": {
+          "POI": "竹南游泳池"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": "",
+          "Lane": "",
+          "Alley": "",
+          "No": ""
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_007",
+      "StationName": {
+        "Zh_tw": "苗栗竹南運動公園"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.690597,
+      "PositionLon": 120.888355,
+      "Spaces": 4,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "竹南鎮",
+          "Road": "公園路"
+        },
+        "Place": {
+          "POI": "苗栗竹南運動公園"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "竹南鎮",
+          "Road": "公園路",
+          "Lane": "",
+          "Alley": "",
+          "No": "57號"
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00D",
+      "StationName": {
+        "Zh_tw": "苗栗竹南鎮環市路HOMEBOX附近"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.6865,
+      "PositionLon": 120.869172,
+      "Spaces": 7,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "竹南鎮",
+          "Road": "環市路二段"
+        },
+        "Place": {
+          "POI": "HOMEBOX"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "竹南鎮",
+          "Road": "環市路二段",
+          "Lane": "",
+          "Alley": "",
+          "No": "139號"
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00C",
+      "StationName": {
+        "Zh_tw": "苗栗竹南鎮環市路星巴克前"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.686652,
+      "PositionLon": 120.869517,
+      "Spaces": 7,
+      "ChargingPoints": 7,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 7
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "竹南鎮",
+          "Road": "環市路"
+        },
+        "Place": {
+          "POI": "鎮環市路星巴克"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "竹南鎮",
+          "Road": "環市路",
+          "Lane": "",
+          "Alley": "",
+          "No": "112號"
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_002",
+      "StationName": {
+        "Zh_tw": "苗栗自治路充電站"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 2,
+      "PositionLat": 24.569769,
+      "PositionLon": 120.815919,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "苗栗市",
+          "Road": "自治路"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "苗栗市",
+          "Road": "自治路",
+          "Lane": "",
+          "Alley": "",
+          "No": "421號"
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00F",
+      "StationName": {
+        "Zh_tw": "苗栗蟠桃公園"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.695829,
+      "PositionLon": 120.911791,
+      "Spaces": 5,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 5
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "頭份市",
+          "Road": "大同路"
+        },
+        "Place": {
+          "POI": "蟠桃公園"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "頭份市",
+          "Road": "大同路",
+          "Lane": "",
+          "Alley": "",
+          "No": "255號"
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_003",
+      "StationName": {
+        "Zh_tw": "苗栗貓裏喵公園充電站"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 2,
+      "PositionLat": 24.564296687253748,
+      "PositionLon": 120.83751930861112,
+      "Spaces": 10,
+      "ChargingPoints": 10,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 10
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "苗栗市",
+          "Road": "玉清路"
+        },
+        "Place": {
+          "POI": "貓裏喵親子公園"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "苗栗市",
+          "Road": "玉清路",
+          "Lane": "",
+          "Alley": "",
+          "No": "351"
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_004",
+      "StationName": {
+        "Zh_tw": "苗栗通霄鎮公所充電站"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.491671,
+      "PositionLon": 120.684461,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "通霄鎮",
+          "Road": "中正路"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "通霄鎮",
+          "Road": "中正路",
+          "Lane": "",
+          "Alley": "",
+          "No": "8"
+        }
+      },
+      "Telephone": "0225771568"
+    },
+    {
+      "StationID": "53758995-SML_009",
+      "StationName": {
+        "Zh_tw": "苗栗頭份中正路328巷"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.687591,
+      "PositionLon": 120.913812,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "頭份市",
+          "Road": "中正路"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "頭份市",
+          "Road": "中正路",
+          "Lane": "328巷",
+          "Alley": "",
+          "No": ""
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00B",
+      "StationName": {
+        "Zh_tw": "苗栗頭份市忠孝公園"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.692821,
+      "PositionLon": 120.909543,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "頭份市",
+          "Road": "忠孝二路"
+        },
+        "Place": {
+          "POI": "頭份市忠孝公園"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "頭份市",
+          "Road": "忠孝二路",
+          "Lane": "",
+          "Alley": "",
+          "No": "83號"
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00E",
+      "StationName": {
+        "Zh_tw": "苗栗頭份市顯會路"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.692457,
+      "PositionLon": 120.915695,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "頭份市",
+          "Road": "顯會路"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "頭份市",
+          "Road": "顯會路",
+          "Lane": "",
+          "Alley": "",
+          "No": "175號"
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00J",
+      "StationName": {
+        "Zh_tw": "苗栗頭份童話公園"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.688052,
+      "PositionLon": 120.8959,
+      "Spaces": 6,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": ""
+        },
+        "Place": {
+          "POI": "童話公園"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": "",
+          "Lane": "",
+          "Alley": "",
+          "No": ""
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_00I",
+      "StationName": {
+        "Zh_tw": "苗栗頭份藝術公園充電站"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.688691,
+      "PositionLon": 120.899805,
+      "Spaces": 6,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": ""
+        },
+        "Place": {
+          "POI": "藝術公園"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "",
+          "Road": "",
+          "Lane": "",
+          "Alley": "",
+          "No": ""
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_006",
+      "StationName": {
+        "Zh_tw": "苗栗頭份運動公園"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.689922,
+      "PositionLon": 120.892938,
+      "Spaces": 4,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 5
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "頭份市",
+          "Road": "八德一路"
+        },
+        "Place": {
+          "POI": "苗栗頭份運動公園"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "頭份市",
+          "Road": "八德一路",
+          "Lane": "",
+          "Alley": "",
+          "No": "158號"
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "53758995-SML_008",
+      "StationName": {
+        "Zh_tw": "苗栗頭份音樂公園"
+      },
+      "Description": "充電車位停車費率資訊:無 , 充電樁所在樓層資訊:1 , 充電站使用限制:無 , 服務時間資訊:每日/00:00-24:00",
+      "OperatorID": "53758995",
+      "OperationType": 1,
+      "PositionLat": 24.686696,
+      "PositionLon": 120.899781,
+      "Spaces": 4,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/固定/慢充10元每度/快充13元每度",
+      "Floors": "1",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "苗栗縣",
+          "Town": "頭份市",
+          "Road": "和平路"
+        },
+        "Place": {
+          "POI": "苗栗頭份音樂公園"
+        },
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "頭份市",
+          "Road": "和平路",
+          "Lane": "",
+          "Alley": "",
+          "No": "328號"
+        }
+      },
+      "Telephone": "0277215989"
+    },
+    {
+      "StationID": "24381084-S25",
+      "StationName": {
+        "Zh_tw": "春田窯休閒農場站 evbar"
+      },
+      "Description": "星期一：08:00～17:00\n星期二：08:00～17:00\n星期四：08:00～17:00\n星期五：08:00～17:00\n星期六：08:00～17:00\n星期日：08:00～17:00。停車費率：免費。充電樁數目：1，J1772數量：1",
+      "OperatorID": "24381084",
+      "OperationType": 3,
+      "PositionLat": 24.4100778713177,
+      "PositionLon": 120.79883485976505,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "星期一：08:00～17:00\n星期二：08:00～17:00\n星期四：08:00～17:00\n星期五：08:00～17:00\n星期六：08:00～17:00\n星期日：08:00～17:00",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/尖峰/16:00-22:00/14.47 元每度, 計度/尖峰/15:00-21:00/14.14 元每度, 計度/離峰/23:59-16:00/5.05 元每度, 計度/離峰/22:00-23:59/5.05 元每度, 計度/離峰/23:59-15:00/4.90 元每度, 計度/離峰/21:00-23:59/4.90 元每度, 計度/離峰/00:00-23:59/5.05 元每度, 計度/離峰/00:00-23:59/4.90 元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "三義鄉",
+          "Road": "雙潭村大坪",
+          "No": "7號"
+        }
+      },
+      "Telephone": "02-22559610"
+    },
+    {
+      "StationID": "12904087-S248",
+      "StationName": {
+        "Zh_tw": "竹南西南站平面停車場 evbar"
+      },
+      "Description": "7x24 小時。停車費率：計時/每日/30 元每小時。充電樁數目：3，J1772數量：3",
+      "OperatorID": "12904087",
+      "OperationType": 1,
+      "PositionLat": 24.68600581565765,
+      "PositionLon": 120.87997599598154,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "計時/每日/30 元每小時",
+      "ChargingRate": "固定費率(非尖峰費率)",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "竹南鎮",
+          "Road": "中山路",
+          "No": "126號"
+        }
+      },
+      "Telephone": "02-22559610"
+    },
+    {
+      "StationID": "90107670-S253",
+      "StationName": {
+        "Zh_tw": "雲岫莊園 evbar"
+      },
+      "Description": "7x24 小時。停車費率：免費。充電樁數目：2，J1772數量：2",
+      "OperatorID": "90107670",
+      "OperationType": 3,
+      "PositionLat": 24.47930767807591,
+      "PositionLon": 120.84648388054259,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "固定費率(非尖峰費率)",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "公館鄉",
+          "Road": "福星",
+          "No": "306號"
+        }
+      },
+      "Telephone": ""
+    },
+    {
+      "StationID": "50965513-SPKP3501001",
+      "StationName": {
+        "Zh_tw": "苗中停車場",
+        "En": "Miaozhong parking "
+      },
+      "Description": "慢充，充電格位數6，需使用車車電充APP",
+      "OperatorID": "50965513",
+      "OperationType": 3,
+      "PositionLat": 24.557,
+      "PositionLon": 120.81568,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "24小時/每日/00:00-24:00",
+      "ParkingRate": "計時/每日/每小時20元/每日最高100元",
+      "ChargingRate": "計度/00:00-09:00/每度5元,計度/09:00-24:00/每度8元",
+      "Floors": "1",
+      "PhotoURLs": [
+        "https://chargeserver.chacha-charging.com.tw/upload/img/20250114/6785d19efcc3.png"
+      ],
+      "Location": {
+        "Address": {
+          "City": "苗栗",
+          "Town": "苗栗市",
+          "Road": "電台街",
+          "No": "7號"
+        }
+      },
+      "Telephone": "(02)8912-1051"
+    },
+    {
+      "StationID": "90807408-SCSD00025",
+      "StationName": {
+        "Zh_tw": "苗栗銅鑼科學園區"
+      },
+      "Description": "停車位:1 充電樁數量:2 停車費:Free (依現場為準) 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 1,
+      "PositionLat": 24.4633,
+      "PositionLon": 120.7725,
+      "Spaces": 1,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "Free (依現場為準)",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "銅鑼鄉",
+          "Road": "銅科南路",
+          "No": "3號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD02694",
+      "StationName": {
+        "Zh_tw": "7-11_苗栗東館門市"
+      },
+      "Description": "停車位:0 充電樁數量:0 停車費:免費 費率: 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.527387,
+      "PositionLon": 120.819537,
+      "Spaces": 0,
+      "ChargingPoints": 0,
+      "Connectors": [],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "公館鄉",
+          "Road": "",
+          "No": "71-1號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03492",
+      "StationName": {
+        "Zh_tw": "苗栗竹南快充站"
+      },
+      "Description": "停車位:0 充電樁數量:0 停車費:免費 費率: 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 24.712371,
+      "PositionLon": 120.906734,
+      "Spaces": 0,
+      "ChargingPoints": 0,
+      "Connectors": [],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "苗栗縣",
+          "Town": "竹南鎮",
+          "Road": "大埔街",
+          "No": "146號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    }
+  ]
+}

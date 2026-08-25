@@ -1,0 +1,677 @@
+{
+  "UpdateTime": "2026-07-02T11:04:59+08:00",
+  "UpdateInterval": 14400,
+  "SrcUpdateTime": "2026-07-02T11:04:58+08:00",
+  "SrcUpdateInterval": -1,
+  "AuthorityCode": "KIN",
+  "Stations": [
+    {
+      "StationID": "54380127-S87",
+      "StationName": {
+        "Zh_tw": "金門環保公園低碳教育館 evbar"
+      },
+      "Description": "7x24 小時。停車費率：免費。充電樁數目：2，CCS1數量：2，CCS2數量：2",
+      "OperatorID": "54380127",
+      "OperationType": 3,
+      "PositionLat": 24.43755226710538,
+      "PositionLon": 118.36939699644037,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/尖峰/16:00-22:00/15.00 元每度, 計度/尖峰/15:00-21:00/15.00 元每度, 計度/離峰/23:59-16:00/8.00 元每度, 計度/離峰/22:00-23:59/8.00 元每度, 計度/離峰/23:59-15:00/8.00 元每度, 計度/離峰/21:00-23:59/8.00 元每度, 計度/離峰/00:00-23:59/8.00 元每度, 計度/離峰/00:00-23:59/8.00 元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "金門縣",
+          "Town": "金湖鎮",
+          "Road": "尚義",
+          "No": "100號"
+        }
+      },
+      "Telephone": "02-22559610"
+    },
+    {
+      "StationID": "54380127-S88",
+      "StationName": {
+        "Zh_tw": "金門縣環境保護局 evbar"
+      },
+      "Description": "7x24 小時。停車費率：免費。充電樁數目：2，CCS1數量：2，CCS2數量：2",
+      "OperatorID": "54380127",
+      "OperationType": 3,
+      "PositionLat": 24.44040647352553,
+      "PositionLon": 118.3691597059908,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/尖峰/16:00-22:00/15.00 元每度, 計度/尖峰/15:00-21:00/15.00 元每度, 計度/離峰/23:59-16:00/8.00 元每度, 計度/離峰/22:00-23:59/8.00 元每度, 計度/離峰/23:59-15:00/8.00 元每度, 計度/離峰/21:00-23:59/8.00 元每度, 計度/離峰/00:00-23:59/8.00 元每度, 計度/離峰/00:00-23:59/8.00 元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "金門縣",
+          "Town": "金湖鎮",
+          "Road": "尚義",
+          "No": "100號"
+        }
+      },
+      "Telephone": "02-22559610"
+    },
+    {
+      "StationID": "54380127-S01",
+      "StationName": {
+        "Zh_tw": "金門環保公園低碳教育館"
+      },
+      "Description": "充電車位4，充電樁2，CCS1+CCS2",
+      "OperatorID": "54380127",
+      "OperationType": 1,
+      "PositionLat": 24.43691,
+      "PositionLon": 118.36924,
+      "Spaces": 4,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/尖峰15元/16:00-22:00，計度/離峰8元/22:00-16:00",
+      "Floors": "一樓",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "金門尚義機場"
+        }
+      },
+      "Telephone": "0277337046"
+    },
+    {
+      "StationID": "54380127-S02",
+      "StationName": {
+        "Zh_tw": "金門縣環境保護局"
+      },
+      "Description": "充電車位4，充電樁2，CCS1+CCS2",
+      "OperatorID": "54380127",
+      "OperationType": 1,
+      "PositionLat": 24.43977,
+      "PositionLon": 118.36872,
+      "Spaces": 4,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "計度/尖峰15元/16:00-22:00，計度/離峰8元/22:00-16:00",
+      "Floors": "一樓",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "金門縣環保局"
+        }
+      },
+      "Telephone": "0277337046"
+    },
+    {
+      "StationID": "77355129-S01",
+      "StationName": {
+        "Zh_tw": "金城鎮公所後方停車場"
+      },
+      "Description": "充電車位8格，充電樁8座，Type1，皆為慢充充電規格",
+      "OperatorID": "77355129",
+      "OperationType": 2,
+      "PositionLat": 24.43421,
+      "PositionLon": 118.32098,
+      "Spaces": 8,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 8
+        }
+      ],
+      "ServiceTime": "00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "無",
+      "Floors": "無",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "金城鎮公所後方停車場"
+        }
+      },
+      "Telephone": "322694"
+    },
+    {
+      "StationID": "77355129-S02",
+      "StationName": {
+        "Zh_tw": "北堤停車場"
+      },
+      "Description": "充電車位10格，充電樁8座，皆為幔充充電規格。",
+      "OperatorID": "77355129",
+      "OperationType": 2,
+      "PositionLat": 24.42904,
+      "PositionLon": 118.31563,
+      "Spaces": 10,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 10
+        }
+      ],
+      "ServiceTime": "00:00~24:00",
+      "ParkingRate": "0",
+      "ChargingRate": "0",
+      "Floors": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "北堤停車場"
+        }
+      },
+      "Telephone": "322694"
+    },
+    {
+      "StationID": "77355129-S03",
+      "StationName": {
+        "Zh_tw": "鳳翔停車場"
+      },
+      "Description": "充電車位4格，充電樁4座，皆為慢充充電規格。",
+      "OperatorID": "77355129",
+      "OperationType": 2,
+      "PositionLat": 24.43862,
+      "PositionLon": 118.31657,
+      "Spaces": 4,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "00:00~24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "無",
+      "Floors": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "鳳翔停車場"
+        }
+      },
+      "Telephone": "322694"
+    },
+    {
+      "StationID": "77355129-S04",
+      "StationName": {
+        "Zh_tw": "中正國小後門停車場"
+      },
+      "Description": "充電車位2格，充電樁2座，皆為慢充充電規格。",
+      "OperatorID": "77355129",
+      "OperationType": 2,
+      "PositionLat": 24.43405,
+      "PositionLon": 118.31764,
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "00:00~24:00",
+      "ParkingRate": "0",
+      "ChargingRate": "0",
+      "Floors": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "中正國小後門停車場"
+        }
+      },
+      "Telephone": "322694"
+    },
+    {
+      "StationID": "77355129-S05",
+      "StationName": {
+        "Zh_tw": "金門高中停車場"
+      },
+      "Description": "充電車位6格，充電樁6座，皆為慢充充電規格。",
+      "OperatorID": "77355129",
+      "OperationType": 2,
+      "PositionLat": 24.43464,
+      "PositionLon": 118.31349,
+      "Spaces": 6,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "00:00~24:00",
+      "ParkingRate": "0",
+      "ChargingRate": "0",
+      "Floors": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "金門高中停車場"
+        }
+      },
+      "Telephone": "322694"
+    },
+    {
+      "StationID": "77355129-S06",
+      "StationName": {
+        "Zh_tw": "金寧轉運站"
+      },
+      "Description": "充電車位4格，充電樁4座，Type1，皆為慢充充電規格",
+      "OperatorID": "77355129",
+      "OperationType": 2,
+      "PositionLat": 24.43959,
+      "PositionLon": 118.32949,
+      "Spaces": 4,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "無",
+      "Floors": "無",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "金寧轉運站"
+        }
+      },
+      "Telephone": "322694"
+    },
+    {
+      "StationID": "77355129-S07",
+      "StationName": {
+        "Zh_tw": "金門縣地政局旁停車場"
+      },
+      "Description": "充電車位4格，充電樁4座，Type1，皆為慢充充電規格",
+      "OperatorID": "77355129",
+      "OperationType": 2,
+      "PositionLat": 24.45246,
+      "PositionLon": 118.33411,
+      "Spaces": 4,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "無",
+      "Floors": "無",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "金門縣地政局旁停車場"
+        }
+      },
+      "Telephone": "322694"
+    },
+    {
+      "StationID": "77355129-S08",
+      "StationName": {
+        "Zh_tw": "后湖海濱公園"
+      },
+      "Description": "充電車位6格，充電樁6座，Type1，皆為慢充充電規格",
+      "OperatorID": "77355129",
+      "OperationType": 2,
+      "PositionLat": 24.41689,
+      "PositionLon": 118.34431,
+      "Spaces": 6,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "無",
+      "Floors": "無",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "后湖海濱公園"
+        }
+      },
+      "Telephone": "322694"
+    },
+    {
+      "StationID": "77355129-S09",
+      "StationName": {
+        "Zh_tw": "山外停車場"
+      },
+      "Description": "充電車位10格，充電樁10座，Type1-9座，快充120KW1座",
+      "OperatorID": "77355129",
+      "OperationType": 2,
+      "PositionLat": 24.44224,
+      "PositionLon": 118.41379,
+      "Spaces": 10,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 9
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "無",
+      "Floors": "無",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "山外停車場"
+        }
+      },
+      "Telephone": "322694"
+    },
+    {
+      "StationID": "77355129-S10",
+      "StationName": {
+        "Zh_tw": "台銀前停車場"
+      },
+      "Description": "充電車位6格，充電樁6座，Type1，皆為慢充充電規格",
+      "OperatorID": "77355129",
+      "OperationType": 2,
+      "PositionLat": 24.44039,
+      "PositionLon": 118.41731,
+      "Spaces": 6,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "無",
+      "Floors": "無",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "台銀前停車場"
+        }
+      },
+      "Telephone": "322694"
+    },
+    {
+      "StationID": "77355129-S11",
+      "StationName": {
+        "Zh_tw": "金湖鎮綜合體育館"
+      },
+      "Description": "充電車位4格，充電樁4座，Type1，皆為慢充充電規格",
+      "OperatorID": "77355129",
+      "OperationType": 2,
+      "PositionLat": 24.44439,
+      "PositionLon": 118.42693,
+      "Spaces": 4,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "無",
+      "Floors": "無",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "金湖鎮綜合體育館"
+        }
+      },
+      "Telephone": "322694"
+    },
+    {
+      "StationID": "77355129-S12",
+      "StationName": {
+        "Zh_tw": "金門縣畜產試驗所"
+      },
+      "Description": "充電車位4格，充電樁4座，Type1，皆為慢充充電規格",
+      "OperatorID": "77355129",
+      "OperationType": 2,
+      "PositionLat": 24.43318,
+      "PositionLon": 118.43824,
+      "Spaces": 4,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "無",
+      "Floors": "無",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "金門縣畜產試驗所"
+        }
+      },
+      "Telephone": "322694"
+    },
+    {
+      "StationID": "77355129-S13",
+      "StationName": {
+        "Zh_tw": "金門航空站第三停車場"
+      },
+      "Description": "充電車位6格，充電樁6座，Type1，皆為慢充充電規格",
+      "OperatorID": "77355129",
+      "OperationType": 2,
+      "PositionLat": 24.43568,
+      "PositionLon": 118.3702,
+      "Spaces": 6,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "無",
+      "Floors": "無",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "金門航空站第三停車場"
+        }
+      },
+      "Telephone": "322694"
+    },
+    {
+      "StationID": "77355129-S14",
+      "StationName": {
+        "Zh_tw": "民俗文化村"
+      },
+      "Description": "充電車位2格，充電樁2座，Type1，皆為慢充充電規格",
+      "OperatorID": "77355129",
+      "OperationType": 2,
+      "PositionLat": 24.50348,
+      "PositionLon": 118.44057,
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "無",
+      "Floors": "無",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "民俗文化村"
+        }
+      },
+      "Telephone": "322694"
+    },
+    {
+      "StationID": "77355129-S15",
+      "StationName": {
+        "Zh_tw": "烈嶼鄉署醫停車場"
+      },
+      "Description": "充電車位4格，充電樁4座，Type1，皆為慢充充電規格",
+      "OperatorID": "77355129",
+      "OperationType": 2,
+      "PositionLat": 24.43078,
+      "PositionLon": 118.2422,
+      "Spaces": 4,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "無",
+      "Floors": "無",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "烈嶼鄉署醫停車場"
+        }
+      },
+      "Telephone": "322694"
+    },
+    {
+      "StationID": "77355129-S16",
+      "StationName": {
+        "Zh_tw": "鐵漢堡停車場"
+      },
+      "Description": "充電車位5格，充電樁5座，Type1-4座，快充120KW1座",
+      "OperatorID": "77355129",
+      "OperationType": 2,
+      "PositionLat": 24.44646,
+      "PositionLon": 118.25429,
+      "Spaces": 5,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "00:00-24:00",
+      "ParkingRate": "無",
+      "ChargingRate": "無",
+      "Floors": "無",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "鐵漢堡停車場"
+        }
+      },
+      "Telephone": "322694"
+    }
+  ]
+}

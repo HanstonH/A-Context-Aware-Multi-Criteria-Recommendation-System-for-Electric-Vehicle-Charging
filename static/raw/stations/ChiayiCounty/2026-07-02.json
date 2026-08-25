@@ -1,0 +1,90 @@
+{
+  "UpdateTime": "2026-07-02T14:04:58+08:00",
+  "UpdateInterval": 14400,
+  "SrcUpdateTime": "2026-07-02T14:04:58+08:00",
+  "SrcUpdateInterval": 86400,
+  "AuthorityCode": "CYQ",
+  "Stations": [
+    {
+      "StationID": "85051710-S75",
+      "StationName": {
+        "Zh_tw": "嘉義客家文化會館"
+      },
+      "Description": "○本站訂閱用戶享充電優惠：平日離峰、假日全時段皆適用-○適用星晴費率，採時間電價計費-全天候開放，停車場旁設有公共廁所",
+      "OperatorID": "85051710",
+      "OperationType": 3,
+      "PositionLat": 23.4465475,
+      "PositionLon": 120.4943672,
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "每小時20元",
+      "ChargingRate": "〇星晴費率,採時間電價計費〇離峰時段：每度6.5元<br>〇假日時段：每度8.4元<br>〇尖峰時段：每度14.9元<br>〇尖離峰時段以APP當下顯示為主<br>〇訂閱制用戶 / 車廠可享優惠<br><br>「啟動前請確認車輛已到位並完成插槍。<br>若因誤觸啟動導致非本人車輛充電，相關扣費恕不退還。」&nbsp;",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "嘉義縣",
+          "Town": "中埔鄉",
+          "Road": "金蘭村頂山門"
+        },
+        "Address": {
+          "City": "嘉義縣",
+          "Town": "中埔鄉",
+          "Road": "金蘭村頂山門",
+          "No": "29"
+        }
+      },
+      "Telephone": "05-2397565"
+    },
+    {
+      "StationID": "60242679-S0019",
+      "StationName": {
+        "Zh_tw": "阿里山遊客中心站"
+      },
+      "Description": "充電車位 3 個,充電樁 3 座,J1772*3",
+      "OperatorID": "60242679",
+      "OperationType": 2,
+      "PositionLat": 23.51095,
+      "PositionLon": 120.80349,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "場域停車費：免費;充電停車費：免費",
+      "ChargingRate": "AC:計分/固定/1.80元每分;DC:免費",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "阿里山鄉阿里山國家森林遊樂區"
+        },
+        "Address": {
+          "City": "嘉義縣",
+          "Town": "阿里山鄉",
+          "Road": "中正村東",
+          "No": "59號"
+        }
+      },
+      "Telephone": "0800-888-116"
+    }
+  ]
+}

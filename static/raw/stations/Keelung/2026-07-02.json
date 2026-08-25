@@ -1,0 +1,1978 @@
+{
+  "UpdateTime": "2026-07-02T14:44:59+08:00",
+  "UpdateInterval": 14400,
+  "SrcUpdateTime": "2026-07-02T14:44:58+08:00",
+  "SrcUpdateInterval": -1,
+  "AuthorityCode": "KEE",
+  "Stations": [
+    {
+      "StationID": "33029464-SKE080001",
+      "StationName": {
+        "Zh_tw": "基隆成功站"
+      },
+      "Description": "充電車位2格，充電樁2座",
+      "OperatorID": "33029464",
+      "OperationType": 3,
+      "PositionLat": 25.12739,
+      "PositionLon": 121.7374,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "每1小時50元",
+      "ChargingRate": "計時/每日/40元每1時",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "仁愛區",
+          "Road": "成功一路",
+          "No": "88號3F-12F"
+        }
+      },
+      "Telephone": "02-26550818"
+    },
+    {
+      "StationID": "52693448-S0011",
+      "StationName": {
+        "Zh_tw": "力揚基隆南榮"
+      },
+      "Description": "力揚基隆南榮，充電插頭J1772 (Type 1)。充電格位數3",
+      "OperatorID": "52693448",
+      "OperationType": 1,
+      "PositionLat": 25.11258,
+      "PositionLon": 121.74047,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "00:00-23:59",
+      "ParkingRate": "30",
+      "ChargingRate": "計度/固定/0元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "Keelung",
+          "Town": "Renai",
+          "Road": "Ln. 509, Nanrong Rd.,",
+          "No": "2"
+        }
+      },
+      "Telephone": "0277106666"
+    },
+    {
+      "StationID": "52693448-S0012",
+      "StationName": {
+        "Zh_tw": "力揚源遠249巷"
+      },
+      "Description": "源遠路249巷停車場，充電插頭J1772 (Type 1)。充電格位數1",
+      "OperatorID": "52693448",
+      "OperationType": 1,
+      "PositionLat": 25.09978,
+      "PositionLon": 121.75229,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "00:00-23:59",
+      "ParkingRate": "30",
+      "ChargingRate": "計度/固定/0元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "Keelung",
+          "Town": "Nuannuan",
+          "Road": "Ln. 249, Yuanyuan Rd.,",
+          "No": "68"
+        }
+      },
+      "Telephone": "02-7710-6666"
+    },
+    {
+      "StationID": "72635093-S0001",
+      "StationName": {
+        "Zh_tw": "力揚基隆崇孝"
+      },
+      "Description": "力揚基隆崇孝停車場。充電插頭J1772 (Type 1)。充電格位數2",
+      "OperatorID": "72635093",
+      "OperationType": 1,
+      "PositionLat": 25.09716,
+      "PositionLon": 121.71065,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/30元每小時",
+      "ChargingRate": "度/固定/8 元每度",
+      "Floors": "1",
+      "PhotoURLs": [
+        "https://images.app.goo.gl/Xc2p3AJG21RM9tJA9"
+      ],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "七堵區",
+          "Road": "崇孝街",
+          "No": "1號"
+        }
+      },
+      "Telephone": "02-2428-8017"
+    },
+    {
+      "StationID": "72852534-S0001",
+      "StationName": {
+        "Zh_tw": "力揚基隆信義國中"
+      },
+      "Description": "力揚基隆信義國中。充電插頭J1772 (Type 1)。充電格位數2",
+      "OperatorID": "72852534",
+      "OperationType": 1,
+      "PositionLat": 25.1298,
+      "PositionLon": 121.76863,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/30元每小時",
+      "ChargingRate": "度/固定/8 元每度",
+      "Floors": "1",
+      "PhotoURLs": [
+        "https://images.app.goo.gl/Xc2p3AJG21RM9tJA9"
+      ],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "信義區",
+          "Road": "東信路",
+          "No": "4-6號"
+        }
+      },
+      "Telephone": "02-2428-8017"
+    },
+    {
+      "StationID": "72882495-S0001",
+      "StationName": {
+        "Zh_tw": "力揚基隆義二"
+      },
+      "Description": "力揚基隆義二停車場。充電插頭J1772 (Type 1)。充電格位數1",
+      "OperatorID": "72882495",
+      "OperationType": 1,
+      "PositionLat": 25.13825,
+      "PositionLon": 121.74892,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/30元每小時",
+      "ChargingRate": "度/固定/8 元每度",
+      "Floors": "1",
+      "PhotoURLs": [
+        "https://images.app.goo.gl/Xc2p3AJG21RM9tJA9"
+      ],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "中正區",
+          "Road": "義二路",
+          "No": "266號斜對面"
+        }
+      },
+      "Telephone": "02-2428-8017"
+    },
+    {
+      "StationID": "72884374-S0001",
+      "StationName": {
+        "Zh_tw": "力揚源遠249巷"
+      },
+      "Description": "揚源遠249巷停車場。充電插頭J1772 (Type 1)。充電格位數1",
+      "OperatorID": "72884374",
+      "OperationType": 1,
+      "PositionLat": 25.13825,
+      "PositionLon": 121.74892,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/30元每小時",
+      "ChargingRate": "度/固定/8 元每度",
+      "Floors": "1",
+      "PhotoURLs": [
+        "https://images.app.goo.gl/Xc2p3AJG21RM9tJA9"
+      ],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "暖暖區",
+          "Road": "源遠路",
+          "No": "249巷189號對面"
+        }
+      },
+      "Telephone": "02-2428-8017"
+    },
+    {
+      "StationID": "80682490-S0001",
+      "StationName": {
+        "Zh_tw": "歐特儀股份有限公司福六街停車場"
+      },
+      "Description": "充電費率免費。",
+      "OperatorID": "80682490",
+      "OperationType": 1,
+      "PositionLat": 25.085137,
+      "PositionLon": 121.69925,
+      "Geometry": "POINT (25.085137223874156 121.699258061983)",
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日00:00-24:00",
+      "ParkingRate": "計時/每日/30元每小時",
+      "ChargingRate": "免費",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "七堵區",
+          "Road": "福六街",
+          "No": "131號"
+        }
+      },
+      "Telephone": "0900-219002"
+    },
+    {
+      "StationID": "80682490-S0002",
+      "StationName": {
+        "Zh_tw": "歐特儀股份有限公司中和路１６８巷停車場"
+      },
+      "Description": "充電費率免費。",
+      "OperatorID": "80682490",
+      "OperationType": 1,
+      "PositionLat": 25.15104,
+      "PositionLon": 121.71588,
+      "Geometry": "POINT (25.15104563179258 121.71588348679687)",
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日00:00-24:00",
+      "ParkingRate": "計時/每日/20元每小時",
+      "ChargingRate": "免費",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "中山區",
+          "Road": "中和路",
+          "Lane": "168",
+          "No": ""
+        }
+      },
+      "Telephone": "0900-219002"
+    },
+    {
+      "StationID": "80682490-S0003",
+      "StationName": {
+        "Zh_tw": "歐特儀股份有限公司鶯歌石溪停車場"
+      },
+      "Description": "充電費率免費。",
+      "OperatorID": "80682490",
+      "OperationType": 1,
+      "PositionLat": 25.12959,
+      "PositionLon": 121.72022,
+      "Geometry": "POINT (25.129593640471892 121.72022032099723)",
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日00:00-24:00",
+      "ParkingRate": "計時/每日/30元每小時",
+      "ChargingRate": "免費",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "安樂區",
+          "Road": "麥金路與安和二街交叉口",
+          "No": ""
+        }
+      },
+      "Telephone": "0900-219002"
+    },
+    {
+      "StationID": "80682490-S0004",
+      "StationName": {
+        "Zh_tw": "歐特儀股份有限公司光明路（停一）停車場"
+      },
+      "Description": "充電費率免費。",
+      "OperatorID": "80682490",
+      "OperationType": 1,
+      "PositionLat": 25.09818,
+      "PositionLon": 121.71686,
+      "Geometry": "POINT (25.09818953886973 121.71686145155184)",
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日00:00-24:00",
+      "ParkingRate": "計時/每日/30元每小時",
+      "ChargingRate": "免費",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "七堵區",
+          "Road": "光明路",
+          "No": "22"
+        }
+      },
+      "Telephone": "0900-219002"
+    },
+    {
+      "StationID": "80682490-S0005",
+      "StationName": {
+        "Zh_tw": "歐特儀股份有限公司光明路（停二）停車場"
+      },
+      "Description": "充電費率免費。",
+      "OperatorID": "80682490",
+      "OperationType": 1,
+      "PositionLat": 25.09667,
+      "PositionLon": 121.71528,
+      "Geometry": "POINT (25.096677684799715 121.71528266517053)",
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日00:00-24:00",
+      "ParkingRate": "計時/每日/30元每小時,平日最高120元/隔日另計,假日最高150元/隔日另計",
+      "ChargingRate": "免費",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "七堵區",
+          "Road": "光明路",
+          "No": "64"
+        }
+      },
+      "Telephone": "0900-219002"
+    },
+    {
+      "StationID": "83683732-S0001",
+      "StationName": {
+        "Zh_tw": "基隆深美電動車充電站"
+      },
+      "Description": "計時/每日/40元每小時/每日最高/250元每日",
+      "OperatorID": "83683732",
+      "OperationType": 3,
+      "PositionLat": 25.1353111002068,
+      "PositionLon": 121.782224581963,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "每小時 40 元",
+      "ChargingRate": "每度電 AC 8 元 (夏季平日)",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "基隆市",
+          "Town": "信義區",
+          "Road": "深溪路"
+        }
+      },
+      "Telephone": "0975516163"
+    },
+    {
+      "StationID": "85017137-SKEE0001",
+      "StationName": {
+        "Zh_tw": "雲樁科技基隆海科館站",
+        "En": "WinCharge Charging Station"
+      },
+      "Description": "充電費率每分鐘1元。充電插頭Type1、Type2、TPC。充電格位數4。",
+      "OperatorID": "85017137",
+      "OperationType": 1,
+      "PositionLat": 25.1401764,
+      "PositionLon": 121.7985935,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 2
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/20元每小時",
+      "ChargingRate": "計分/1元每分",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "中正區",
+          "Road": "北寧路",
+          "No": "367號"
+        }
+      },
+      "Telephone": "02-8751-1886"
+    },
+    {
+      "StationID": "85051710-S630",
+      "StationName": {
+        "Zh_tw": "基隆微風東岸"
+      },
+      "Description": "〇此為會員價格。充電前請先確認付款方式。選擇信用卡時若您尚有餘額，系統將先從餘額扣款，若仍有不足才會從您的信用卡扣款。",
+      "OperatorID": "85051710",
+      "OperationType": 3,
+      "PositionLat": 25.130367,
+      "PositionLon": 121.743735,
+      "Spaces": 14,
+      "ChargingPoints": 13,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 6
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "計時/平日/30 元每小時",
+      "ChargingRate": "計度/每度8.50元;計度/每度8.80元",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "仁愛區",
+          "Road": "仁二路",
+          "No": "236號B1"
+        }
+      },
+      "Telephone": "02-24260050"
+    },
+    {
+      "StationID": "90482725-S0079",
+      "StationName": {
+        "Zh_tw": "吉馭大武崙停車場"
+      },
+      "Description": "依站點公告",
+      "OperatorID": "90482725",
+      "OperationType": 1,
+      "PositionLat": 25.1385821744488,
+      "PositionLon": 121.71194643922787,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "依站點公告",
+      "ChargingRate": "依站點公告",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "基隆市",
+          "Town": "安樂區",
+          "Road": "基金一路"
+        }
+      },
+      "Telephone": "(06)2992-256"
+    },
+    {
+      "StationID": "90505425-S40926",
+      "StationName": {
+        "Zh_tw": "TAIL 海科館探索站(區域探索館平面停車場)"
+      },
+      "Description": "位於USPACE 區域探索館停車場",
+      "OperatorID": "90505425",
+      "OperationType": 1,
+      "PositionLat": 25.14036,
+      "PositionLon": 121.79496,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "計時/平日/20元每小時，計時/假日/50元每小時/每日最高/250元每日",
+      "ChargingRate": "計分/1元每分",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "中正區",
+          "Road": "北寧路",
+          "No": "367號"
+        }
+      },
+      "Telephone": "02-25310858"
+    },
+    {
+      "StationID": "90670753-Shfc_19",
+      "StationName": {
+        "Zh_tw": "基隆火車站南站停車場"
+      },
+      "Description": "AC*2 DC*1",
+      "OperatorID": "90670753",
+      "OperationType": 1,
+      "PositionLat": 25.131001,
+      "PositionLon": 121.73926,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "30",
+      "ChargingRate": "AC每分鐘1元，DC每度10元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "仁愛市場"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "90670753-Shfc_7",
+      "StationName": {
+        "Zh_tw": "上嘉管理顧問有限公司七堵營業所"
+      },
+      "Description": "AC*2 DC*1",
+      "OperatorID": "90670753",
+      "OperationType": 1,
+      "PositionLat": 25.09511,
+      "PositionLon": 121.71314,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "半小時15元，一小時30元，當入最高收費150元",
+      "ChargingRate": "AC每分鐘1元，DC每度10元",
+      "Floors": "B1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "基隆七堵火車站停車場"
+        }
+      },
+      "Telephone": "02-22697887"
+    },
+    {
+      "StationID": "90807408-SCSD02785",
+      "StationName": {
+        "Zh_tw": "基隆中正行政大樓停車場"
+      },
+      "Description": "停車位:3 充電樁數量:3 停車費:30元/時 費率:計度/固定/8元每度 樓層:B1",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 25.141275,
+      "PositionLon": 121.75945,
+      "Geometry": "POINT(121.75945 121.75945)",
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "30元/時",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "中正區",
+          "Road": "中正路",
+          "No": "236號B1"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03215",
+      "StationName": {
+        "Zh_tw": "力揚_基隆博愛地下停車場"
+      },
+      "Description": "停車位:6 充電樁數量:6 停車費:30元/時 費率:計度/固定/8元每度 樓層:B1",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 25.127421,
+      "PositionLon": 121.741959,
+      "Geometry": "POINT(121.741959 121.741959)",
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "30元/時",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "仁愛區",
+          "Road": "愛三路",
+          "No": "15號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03216",
+      "StationName": {
+        "Zh_tw": "力揚_基隆麥金停車場"
+      },
+      "Description": "停車位:1 充電樁數量:1 停車費:30元/時(20:00-08:00上限200元) 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 25.120751,
+      "PositionLon": 121.722027,
+      "Geometry": "POINT(121.722027 121.722027)",
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "30元/時(20:00-08:00上限200元)",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "安樂區",
+          "Road": "麥金路",
+          "No": "191-2號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "90807408-SCSD03239",
+      "StationName": {
+        "Zh_tw": "力揚_基隆正濱國小停車場"
+      },
+      "Description": "停車位:1 充電樁數量:2 停車費:30元/時 費率:計度/固定/8元每度 樓層:1F",
+      "OperatorID": "90807408",
+      "OperationType": 3,
+      "PositionLat": 25.146316,
+      "PositionLon": 121.770075,
+      "Geometry": "POINT(121.770075 121.770075)",
+      "Spaces": 1,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "30元/時",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "中正區",
+          "Road": "祥豐街",
+          "No": "216號"
+        }
+      },
+      "Telephone": "0800-885-150"
+    },
+    {
+      "StationID": "91669804-S0001",
+      "StationName": {
+        "Zh_tw": "力揚基隆中興國小"
+      },
+      "Description": "力揚基隆中興國小停車場。充電插頭J1772 (Type 1)。充電格位數6",
+      "OperatorID": "91669804",
+      "OperationType": 1,
+      "PositionLat": 25.13044,
+      "PositionLon": 121.75729,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/30元每小時",
+      "ChargingRate": "度/固定/8 元每度",
+      "Floors": "1",
+      "PhotoURLs": [
+        "https://images.app.goo.gl/Xc2p3AJG21RM9tJA9"
+      ],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "信義區",
+          "Road": "信二路",
+          "No": "40號"
+        }
+      },
+      "Telephone": "02-2428-8017"
+    },
+    {
+      "StationID": "91929793-SB029001",
+      "StationName": {
+        "Zh_tw": "基隆信義國小停車場"
+      },
+      "Description": "地下停車場附設充電樁",
+      "OperatorID": "91929793",
+      "OperationType": 1,
+      "PositionLat": 25.12758,
+      "PositionLon": 121.74728,
+      "Spaces": 18,
+      "ChargingPoints": 18,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 18
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "每小時30元",
+      "ChargingRate": "充電不額外收費",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "仁愛區",
+          "Road": "仁二路",
+          "No": "135"
+        }
+      },
+      "Telephone": "02-24257730"
+    },
+    {
+      "StationID": "95182064-SA0632011",
+      "StationName": {
+        "Zh_tw": "基隆教孝"
+      },
+      "Description": "充電車位1格，充電樁1座，位於出口旁，CCS*1",
+      "OperatorID": "95182064",
+      "OperationType": 3,
+      "PositionLat": 25.13742,
+      "PositionLon": 121.77563,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "計時/平日/30元每小時/12小時最高/90元，計時/假日/30元每小時/12小時最高150元",
+      "ChargingRate": "免費",
+      "Floors": "1",
+      "PhotoURLs": [
+        "https://photos.app.goo.gl/2uC1dkweP89K2EfWA"
+      ],
+      "Location": {
+        "CityRoad": {
+          "City": "基隆市",
+          "Town": "信義區",
+          "Road": "教孝街"
+        }
+      },
+      "Telephone": "02-2425-7730"
+    },
+    {
+      "StationID": "83058885-S156",
+      "StationName": {
+        "Zh_tw": "基隆行政中心 evbar"
+      },
+      "Description": "7x24 小時。停車費率：免費。充電樁數目：2，J1772數量：2",
+      "OperatorID": "83058885",
+      "OperationType": 1,
+      "PositionLat": 25.12539211252224,
+      "PositionLon": 121.73682253823434,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/尖峰/09:00-23:59/8.00 元每度, 計度/尖峰/06:00-11:00/8.00 元每度, 計度/尖峰/14:00-23:59/8.00 元每度, 計度/離峰/23:59-09:00/6.00 元每度, 計度/離峰/23:59-06:00/6.00 元每度, 計度/離峰/11:00-14:00/6.00 元每度, 計度/離峰/00:00-23:59/6.00 元每度, 計度/離峰/00:00-23:59/6.00 元每度, 計度/離峰/00:00-23:59/6.00 元每度, 計度/離峰/00:00-23:59/6.00 元每度",
+      "Floors": "",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "仁愛區",
+          "Road": "光一路",
+          "No": "26號"
+        }
+      },
+      "Telephone": "02-22559610"
+    },
+    {
+      "StationID": "16632376-S24279988",
+      "StationName": {
+        "Zh_tw": "長榮桂冠酒店基隆停車場"
+      },
+      "Description": "充電車位2格，充電樁2座，B4樓層30及31車位",
+      "OperatorID": "16632376",
+      "OperationType": 3,
+      "PositionLat": 25.13534,
+      "PositionLon": 121.74631,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "房客免費，平日一小時60元，假日一小時100元",
+      "ChargingRate": "一分鐘一元",
+      "Floors": "B4",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "長榮桂冠酒店基隆"
+        }
+      },
+      "Telephone": "0224279988"
+    },
+    {
+      "StationID": "28371994-S1",
+      "StationName": {
+        "Zh_tw": "基隆成功停車場"
+      },
+      "Description": "充電車格2格，充電椿2座",
+      "OperatorID": "28371994",
+      "OperationType": 1,
+      "PositionLat": 25.12739,
+      "PositionLon": 121.73735,
+      "Geometry": "POLYGON ((121.73764 25.12803, 121.73727 25.12750, 121.73755 25.12734, 121.73784 25.12772, 121.73764 25.12803))",
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "20小時",
+      "ParkingRate": "平日$10/0.5H假日$15/0.5H",
+      "ChargingRate": "無",
+      "Floors": "3F",
+      "UsageRestriction": "禁止使用副廠轉接頭",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "基隆成功市場停車場"
+        }
+      },
+      "Telephone": "0224334943"
+    },
+    {
+      "StationID": "70369154-S001",
+      "StationName": {
+        "Zh_tw": "基隆醫院停車場"
+      },
+      "Description": "充電車位1格，充電樁1支",
+      "OperatorID": "70369154",
+      "OperationType": 3,
+      "PositionLat": 25.13046,
+      "PositionLon": 121.74832,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "30元/時",
+      "ChargingRate": "無另外收費",
+      "Floors": "1樓戶外",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "信義區",
+          "Road": "信二路",
+          "No": "268號1樓"
+        }
+      },
+      "Telephone": "0224257730",
+      "Reference": {
+        "CarPark": {
+          "CarParkID": "KEE12204"
+        }
+      }
+    },
+    {
+      "StationID": "80682490-S002",
+      "StationName": {
+        "Zh_tw": "光明路停一平面停車場"
+      },
+      "Description": "本充電站提供 AC 充電服務，支援Type 1/2 充電槍。",
+      "OperatorID": "80682490",
+      "OperationType": 1,
+      "PositionLat": 25.09572,
+      "PositionLon": 121.71388,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "免費",
+      "Floors": "戶外",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "七堵區",
+          "Road": "光明路",
+          "No": "2號"
+        }
+      },
+      "Telephone": "0900219002",
+      "Reference": {
+        "CarPark": {
+          "CarParkID": "KEE12705"
+        }
+      }
+    },
+    {
+      "StationID": "80682490-S003",
+      "StationName": {
+        "Zh_tw": "光明路停二平面停車場"
+      },
+      "Description": "本充電站提供 AC 充電服務，支援Type 1/2 充電槍",
+      "OperatorID": "80682490",
+      "OperationType": 1,
+      "PositionLat": 25.09736,
+      "PositionLon": 121.71527,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "免費",
+      "Floors": "戶外",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "七堵區",
+          "Road": "光明路",
+          "No": "2號"
+        }
+      },
+      "Telephone": "0900219002",
+      "Reference": {
+        "CarPark": {
+          "CarParkID": "KEE12706"
+        }
+      }
+    },
+    {
+      "StationID": "80682490-S004",
+      "StationName": {
+        "Zh_tw": "福六街平面停車場"
+      },
+      "Description": "本充電站提供 AC 充電服務，支援Type 1/2 充電槍。",
+      "OperatorID": "80682490",
+      "OperationType": 1,
+      "PositionLat": 25.08534,
+      "PositionLon": 121.6988,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "免費",
+      "Floors": "戶外",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "七堵區",
+          "Road": "福六街",
+          "No": "131號"
+        }
+      },
+      "Telephone": "0900219002",
+      "Reference": {
+        "CarPark": {
+          "CarParkID": "KEE12707"
+        }
+      }
+    },
+    {
+      "StationID": "80682490-S005",
+      "StationName": {
+        "Zh_tw": "鶯歌石溪平面停車場"
+      },
+      "Description": "本充電站提供 AC 充電服務，支援Type 1/2 充電槍",
+      "OperatorID": "80682490",
+      "OperationType": 1,
+      "PositionLat": 25.12979,
+      "PositionLon": 121.72004,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "免費",
+      "Floors": "戶外",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "安樂區",
+          "Road": "安和二街",
+          "No": "2號"
+        }
+      },
+      "Telephone": "0900219002",
+      "Reference": {
+        "CarPark": {
+          "CarParkID": "KEE12501"
+        }
+      }
+    },
+    {
+      "StationID": "80682490-S3252045",
+      "StationName": {
+        "Zh_tw": "中和168巷平面停車場"
+      },
+      "Description": "本充電站提供 AC 充電服務，支援Type 1/2 充電槍。",
+      "OperatorID": "80682490",
+      "OperationType": 1,
+      "PositionLat": 25.14929,
+      "PositionLon": 121.71736,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24 小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "免費",
+      "Floors": "戶外",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "中山區",
+          "Road": "中和路",
+          "Lane": "168巷",
+          "Alley": "168巷",
+          "No": "2號"
+        }
+      },
+      "Telephone": "0900219002",
+      "Reference": {
+        "CarPark": {
+          "CarParkID": "KEE12401"
+        }
+      }
+    },
+    {
+      "StationID": "84136348-S004",
+      "StationName": {
+        "Zh_tw": "麥金停車場"
+      },
+      "Description": "充電樁車位1格",
+      "OperatorID": "84136348",
+      "OperationType": 3,
+      "PositionLat": 25.12098,
+      "PositionLon": 121.72128,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "30元/時",
+      "ChargingRate": "8元/度",
+      "Floors": "地面",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "安樂區",
+          "Road": "麥金路",
+          "No": "191-2號"
+        }
+      },
+      "Telephone": "0224551299"
+    },
+    {
+      "StationID": "91613078-S001",
+      "StationName": {
+        "Zh_tw": "基隆安和停車場"
+      },
+      "Description": "充電車格1格、充電樁1支，位於一樓戶外平面，屬慢充規格",
+      "OperatorID": "91613078",
+      "OperationType": 1,
+      "PositionLat": 25.12115,
+      "PositionLon": 121.7236,
+      "Geometry": "POLYGON ((121.72345 25.12121, 121.72380 25.12149, 121.72392 25.12138, 121.72355 25.12110, 121.72345 25.12121))",
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 254,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "計度/10：30至19：00/7元每度",
+      "ParkingRate": "每小時30元",
+      "ChargingRate": "計度/10：30至19：00/7元每度",
+      "Floors": "1樓戶外平面",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "安樂區",
+          "Road": "安樂路二段",
+          "No": "162號前"
+        }
+      },
+      "Telephone": "0225920055"
+    },
+    {
+      "StationID": "50965513-SPCE1103001",
+      "StationName": {
+        "Zh_tw": "臺灣礦工醫院",
+        "En": "Taiwan Miners Hospital"
+      },
+      "Description": "慢充，充電格位數1，需使用車車電充APP",
+      "OperatorID": "50965513",
+      "OperationType": 3,
+      "PositionLat": 25.1078778,
+      "PositionLon": 121.7333496,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "特定時段/平日/07:30-16:00",
+      "ParkingRate": "計次/每日/每次50元",
+      "ChargingRate": "計度/00:00-24:00/每度8元",
+      "Floors": "1",
+      "PhotoURLs": [
+        "https://chargeserver.chacha-charging.com.tw/upload/img/20250804/68906c5c27d9.png"
+      ],
+      "Location": {
+        "Address": {
+          "City": "基隆",
+          "Town": "暖暖",
+          "Road": "源遠路",
+          "No": "29號"
+        }
+      },
+      "Telephone": "(02)8912-1051"
+    },
+    {
+      "StationID": "cb15501d-063d-4894-8468-07112a0537bb",
+      "StationName": {
+        "Zh_tw": "基隆 中山站"
+      },
+      "Description": "充電車位 4 格,CCS1*2、CCS2*2,皆為快速充電規格",
+      "OperatorID": "83235398",
+      "OperationType": 3,
+      "PositionLat": 25.138627,
+      "PositionLon": 121.740587,
+      "Spaces": 4,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/非會員/11元每度,計度/會員/9.9元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "中山區",
+          "Road": "中山二路",
+          "No": "60號"
+        }
+      },
+      "Telephone": "02-27671885"
+    },
+    {
+      "StationID": "89132567-S0042",
+      "StationName": {
+        "Zh_tw": "Acon-eco基隆山海觀社區站",
+        "En": "AconElectricEnergyStation"
+      },
+      "Description": "充電格數2格，充電停車免費",
+      "OperatorID": "89132567",
+      "OperationType": 3,
+      "PositionLat": 25.13824,
+      "PositionLon": 121.79406,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/9.3 元每度",
+      "Floors": "1",
+      "UsageRestriction": "依現場告示",
+      "PhotoURLs": [
+        "https://backend.acon-eco.com/api/File?id=aefb9eef-87d7-402e-b597-e77843217c4f"
+      ],
+      "Location": {
+        "CityRoad": {
+          "City": "基隆市",
+          "Town": "中正區",
+          "Road": "觀海街7-11前"
+        }
+      },
+      "Telephone": "0800-868885"
+    },
+    {
+      "StationID": "89132567-S0043",
+      "StationName": {
+        "Zh_tw": "Acon-eco基隆百六街站",
+        "En": "AconElectricEnergyStation"
+      },
+      "Description": "充電格數2格，停車費率每小時 30 元",
+      "OperatorID": "89132567",
+      "OperationType": 3,
+      "PositionLat": 25.08498,
+      "PositionLon": 121.69539,
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "計時/每日/30 元每小時",
+      "ChargingRate": "計度/固定/7 元每度",
+      "Floors": "1",
+      "UsageRestriction": "依現場告示",
+      "PhotoURLs": [
+        "https://backend.acon-eco.com/api/File?id=a596deef-6a8a-44c6-a893-ccf410f00362"
+      ],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "七堵區",
+          "Road": "百六街",
+          "No": "90號"
+        }
+      },
+      "Telephone": "0800-868885"
+    },
+    {
+      "StationID": "89132567-S0044",
+      "StationName": {
+        "Zh_tw": "Acon-eco基隆第一特獎站",
+        "En": "AconElectricEnergyStation"
+      },
+      "Description": "充電格數2格，充電停車免費",
+      "OperatorID": "89132567",
+      "OperationType": 3,
+      "PositionLat": 25.13254,
+      "PositionLon": 121.78117,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/固定/11 元每度",
+      "Floors": "1",
+      "UsageRestriction": "依現場告示",
+      "PhotoURLs": [
+        "https://backend.acon-eco.com/api/File?id=4760f80e-faec-46af-89a9-0c00e99d7001"
+      ],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "信義區",
+          "Road": "深溪路",
+          "Lane": "55巷",
+          "Alley": "\n          ",
+          "No": "79號"
+        }
+      },
+      "Telephone": "0800-868885"
+    },
+    {
+      "StationID": "89132567-S0045",
+      "StationName": {
+        "Zh_tw": "Acon-eco基隆樂利站",
+        "En": "AconElectricEnergyStation"
+      },
+      "Description": "充電格數1格，停車費率每小時 20 元",
+      "OperatorID": "89132567",
+      "OperationType": 3,
+      "PositionLat": 25.05626,
+      "PositionLon": 121.436,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "計時/每日/20元每小時",
+      "ChargingRate": "計度/固定/8 元每度",
+      "Floors": "1",
+      "UsageRestriction": "依現場告示",
+      "PhotoURLs": [
+        "https://backend.acon-eco.com/api/File?id=077cf693-ff29-4a80-b03f-77b6bd4b0ec5"
+      ],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "安樂區",
+          "Road": "樂利三街",
+          "No": "53號"
+        }
+      },
+      "Telephone": "0800-868885"
+    },
+    {
+      "StationID": "89132567-S0053",
+      "StationName": {
+        "Zh_tw": "Acon-eco基隆百福三站",
+        "En": "AconElectricEnergyStation"
+      },
+      "Description": "充電格數1格，停車費率每小時 20 元",
+      "OperatorID": "89132567",
+      "OperationType": 3,
+      "PositionLat": 25.08431,
+      "PositionLon": 121.69833,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "計時/每日/20 元每小時",
+      "ChargingRate": "計度/固定/8 元每度",
+      "Floors": "1",
+      "UsageRestriction": "依現場告示",
+      "PhotoURLs": [
+        "建置中"
+      ],
+      "Location": {
+        "CityRoad": {
+          "City": "基隆市",
+          "Town": "七堵區",
+          "Road": "福五街3號對面停車場"
+        }
+      },
+      "Telephone": "0800-868885"
+    },
+    {
+      "StationID": "89132567-S0054",
+      "StationName": {
+        "Zh_tw": "Acon-eco基隆百福五站",
+        "En": "AconElectricEnergyStation"
+      },
+      "Description": "充電格數1格，停車費率每小時 20 元",
+      "OperatorID": "89132567",
+      "OperationType": 3,
+      "PositionLat": 25.08435,
+      "PositionLon": 121.69831,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "計時/每日/20 元每小時",
+      "ChargingRate": "計度/固定/8 元每度",
+      "Floors": "1",
+      "UsageRestriction": "依現場告示",
+      "PhotoURLs": [
+        "建置中"
+      ],
+      "Location": {
+        "CityRoad": {
+          "City": "基隆市",
+          "Town": "七堵區",
+          "Road": "福五街3號旁停車場"
+        }
+      },
+      "Telephone": "0800-868885"
+    },
+    {
+      "StationID": "89132567-S0085",
+      "StationName": {
+        "Zh_tw": "Acon-eco基隆樂建站",
+        "En": "AconElectricEnergyStation"
+      },
+      "Description": "充電格數3格，停車費率平日每小時 30 元，停車費率假日每小時 40 元",
+      "OperatorID": "89132567",
+      "OperationType": 1,
+      "PositionLat": 25.12953,
+      "PositionLon": 121.73472,
+      "Spaces": 3,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "計時/平日/30元每小時, 計時/假日/40元每小時",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1",
+      "UsageRestriction": "以現場告示",
+      "PhotoURLs": [
+        "https://backend.acon-eco.com/api/File?id=fab1e90b-b6fe-41b6-9807-1d4bfe4be50f"
+      ],
+      "Location": {
+        "CityRoad": {
+          "City": "基隆市",
+          "Town": "安樂區",
+          "Road": "\n          "
+        },
+        "Place": {
+          "POI": "旁"
+        },
+        "Address": {
+          "City": "基隆市",
+          "Town": "安樂區",
+          "Road": "樂一里樂一路",
+          "Lane": "81巷",
+          "Alley": "\n          ",
+          "No": "62-1號"
+        }
+      },
+      "Telephone": "0800-868885"
+    },
+    {
+      "StationID": "89132567-S0102",
+      "StationName": {
+        "Zh_tw": "Acon-eco基隆七堵區公所站",
+        "En": "AconElectricEnergyStation"
+      },
+      "Description": "充電格數2格，停車費率 每日/30元/每小時",
+      "OperatorID": "89132567",
+      "OperationType": 1,
+      "PositionLat": 25.09783,
+      "PositionLon": 121.71639,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "計時/每日/30元/每小時",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1",
+      "UsageRestriction": "以現場告示",
+      "PhotoURLs": [
+        "https://backend.acon-eco.com/api/File?id=5ef03fbd-a10c-451a-a367-ebbdaedb26ab"
+      ],
+      "Location": {
+        "CityRoad": {
+          "City": "基隆市",
+          "Town": "七堵區",
+          "Road": "\n          "
+        },
+        "Address": {
+          "City": "基隆市",
+          "Town": "七堵區",
+          "Road": "光明路",
+          "No": "21號"
+        }
+      },
+      "Telephone": "0800-868885"
+    },
+    {
+      "StationID": "89132567-S0117",
+      "StationName": {
+        "Zh_tw": "Acon-eco基隆和平島站1",
+        "En": "AconElectricEnergyStation"
+      },
+      "Description": "充電格數2格，停車費率 平日/50元/每次, 停車費率 假日/50元/每小時, 營業時間 08:00至18:00",
+      "OperatorID": "89132567",
+      "OperationType": 3,
+      "PositionLat": 25.1616,
+      "PositionLon": 121.76402,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/08:00–18:00",
+      "ParkingRate": "計次/平日/50元/每次, 計時/假日/50元/每小時",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1",
+      "UsageRestriction": "以現場告示",
+      "PhotoURLs": [
+        "https://backend.acon-eco.com/api/File?id=c6c409d2-bcdb-4591-8502-05fe95abfb28"
+      ],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "中正區",
+          "Road": "平一路",
+          "No": "360號"
+        }
+      },
+      "Telephone": "0800-868885"
+    },
+    {
+      "StationID": "89132567-S0118",
+      "StationName": {
+        "Zh_tw": "Acon-eco基隆和平島站2",
+        "En": "AconElectricEnergyStation"
+      },
+      "Description": "充電格數4格，停車費率 平日/50元/每次, 停車費率 假日/50元/每小時, 營業時間 08:00至18:00",
+      "OperatorID": "89132567",
+      "OperationType": 3,
+      "PositionLat": 25.1616,
+      "PositionLon": 121.76402,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/08:00–18:00",
+      "ParkingRate": "計次/平日/50元/每次, 計時/假日/50元/每小時",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1",
+      "UsageRestriction": "以現場告示",
+      "PhotoURLs": [
+        "https://backend.acon-eco.com/api/File?id=c6c409d2-bcdb-4591-8502-05fe95abfb28"
+      ],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "中正區",
+          "Road": "平一路",
+          "No": "360號"
+        }
+      },
+      "Telephone": "0800-868885"
+    },
+    {
+      "StationID": "89132567-S0142",
+      "StationName": {
+        "Zh_tw": "Acon-eco基隆叁肆行停車場站",
+        "En": "AconElectricEnergyStation"
+      },
+      "Description": "充電格數1格，停車費率 每日/50元/每小時",
+      "OperatorID": "89132567",
+      "OperationType": 3,
+      "PositionLat": 25.13357,
+      "PositionLon": 121.74438,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "計時/每日/50元/每小時",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1",
+      "UsageRestriction": "以現場告示",
+      "PhotoURLs": [
+        "https://backend.acon-eco.com/api/File?id=f3d61ee1-5d23-484a-8677-91705cfa4fc7"
+      ],
+      "Location": {
+        "Address": {
+          "City": "基隆市",
+          "Town": "中正區",
+          "Road": "中正路",
+          "No": "3號(東三四港務大樓停車場)"
+        }
+      },
+      "Telephone": "0800-868885"
+    },
+    {
+      "StationID": "89132567-S0150",
+      "StationName": {
+        "Zh_tw": "Acon-eco基隆八斗子觀光漁港C區站",
+        "En": "AconElectricEnergyStation"
+      },
+      "Description": "充電格數2格，停車費率 每日/80元/每次",
+      "OperatorID": "89132567",
+      "OperationType": 1,
+      "PositionLat": 25.14407,
+      "PositionLon": 121.78812,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "計次/每日/80元/每次",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1",
+      "UsageRestriction": "以現場告示",
+      "PhotoURLs": [
+        "https://backend.acon-eco.com/api/File?id=2693e2f4-0c23-4b06-96d2-92129becd0fa"
+      ],
+      "Location": {
+        "Place": {
+          "POI": "基隆市中正區台2線215號"
+        }
+      },
+      "Telephone": "0800-868885"
+    }
+  ]
+}

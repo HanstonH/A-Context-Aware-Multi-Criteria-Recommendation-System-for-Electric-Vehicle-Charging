@@ -1,0 +1,1887 @@
+{
+  "UpdateTime": "2026-07-02T14:25:12+08:00",
+  "UpdateInterval": 14400,
+  "SrcUpdateTime": "2026-07-02T14:25:03+08:00",
+  "SrcUpdateInterval": -1,
+  "AuthorityCode": "HUA",
+  "Stations": [
+    {
+      "StationID": "25019060-S01",
+      "StationName": {
+        "Zh_tw": "海洋公園停車場"
+      },
+      "Description": "充電車位15格，充電樁13座，J1772八座，位於1F樓層之53-61停車格，Type-2五座，位於1F樓層之62-67停車格",
+      "OperatorID": "25019060",
+      "OperationType": 3,
+      "PositionLat": 23.90127,
+      "PositionLon": 121.60333,
+      "Spaces": 13,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "計時/平假日/09:00-17:00/0.99元每分",
+      "ParkingRate": "計次/平假日/150元",
+      "ChargingRate": "計時/平假日/09:00-17:00/0.99元每分",
+      "Floors": "1F",
+      "UsageRestriction": "J1772/8格，Type-2/5格",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "遠雄海洋公園第一停車場"
+        }
+      },
+      "Telephone": "0809015525",
+      "Reference": {
+        "CarPark": {
+          "CarParkID": "A00028"
+        }
+      }
+    },
+    {
+      "StationID": "60242679-S0036",
+      "StationName": {
+        "Zh_tw": "花蓮中央停車場站"
+      },
+      "Description": "充電車位 4 個,充電樁 4 座,J1772*4",
+      "OperatorID": "60242679",
+      "OperationType": 1,
+      "PositionLat": 23.98427,
+      "PositionLon": 121.6031,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/10元每30分鐘",
+      "ChargingRate": "計分/固定/1.00元每分",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "花蓮市",
+          "Road": "中央路三段",
+          "No": "844號"
+        }
+      },
+      "Telephone": "0800888116"
+    },
+    {
+      "StationID": "60242679-S0037",
+      "StationName": {
+        "Zh_tw": "花蓮中山停車場站"
+      },
+      "Description": "充電車位 2 個,充電樁 2 座,J1772*2",
+      "OperatorID": "60242679",
+      "OperationType": 1,
+      "PositionLat": 23.98427,
+      "PositionLon": 121.6031,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/10元每30分鐘",
+      "ChargingRate": "計分/固定/1.00元每分",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "花蓮市",
+          "Road": "明智街",
+          "No": "61號"
+        }
+      },
+      "Telephone": "0800888116"
+    },
+    {
+      "StationID": "60242679-S0038",
+      "StationName": {
+        "Zh_tw": "花蓮忠孝停車場站"
+      },
+      "Description": "充電車位 1 個,充電樁 1 座,J1772*1",
+      "OperatorID": "60242679",
+      "OperationType": 1,
+      "PositionLat": 23.97388,
+      "PositionLon": 121.60631,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/10元每30分鐘",
+      "ChargingRate": "計分/固定/1.00元每分",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "花蓮市",
+          "Road": "忠孝街",
+          "No": "57號"
+        }
+      },
+      "Telephone": "0800888116"
+    },
+    {
+      "StationID": "60242679-S0039",
+      "StationName": {
+        "Zh_tw": "花蓮福廣仁愛停車場站"
+      },
+      "Description": "充電車位 2 個,充電樁 2 座,J1772*2",
+      "OperatorID": "60242679",
+      "OperationType": 1,
+      "PositionLat": 23.97788,
+      "PositionLon": 121.60231,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/10元每30分鐘/每日最高/200元每日",
+      "ChargingRate": "計分/固定/1.00元每分",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "台灣花蓮縣花蓮市仁愛街福廣仁愛停車場"
+        }
+      },
+      "Telephone": "0800888116"
+    },
+    {
+      "StationID": "60242679-S0040",
+      "StationName": {
+        "Zh_tw": "花蓮城中大樓停車場站"
+      },
+      "Description": "充電車位 2 個,充電樁 2 座,J1772*2",
+      "OperatorID": "60242679",
+      "OperationType": 1,
+      "PositionLat": 23.98525,
+      "PositionLon": 121.60533,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時/每日/10元每30分鐘/每日最高/200元每日",
+      "ChargingRate": "計分/固定/1.00元每分",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "花蓮市",
+          "Road": "明心街",
+          "No": "1-41號"
+        }
+      },
+      "Telephone": "0800888116"
+    },
+    {
+      "StationID": "86711789-S01",
+      "StationName": {
+        "Zh_tw": "尚志橋停車場"
+      },
+      "Description": "SAEJ1772 Type 1槍線、功率7KW、電流32A",
+      "OperatorID": "86711789",
+      "OperationType": 1,
+      "PositionLat": 23.98311,
+      "PositionLon": 121.60859,
+      "Geometry": "POLYGON ((121.60901 23.98312, 121.60901 23.98303, 121.60924 23.98304, 121.60922 23.98314, 121.60901 23.98312))",
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24HR",
+      "ParkingRate": "差別費率，以每半小加收10元",
+      "ChargingRate": "每半小時收10元",
+      "Floors": "平面",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "花蓮縣",
+          "Town": "花蓮市",
+          "Road": "林森路280號旁"
+        }
+      },
+      "Telephone": "038312920",
+      "Reference": {
+        "CarPark": {
+          "CarParkID": "A00063"
+        }
+      }
+    },
+    {
+      "StationID": "86711789-S02",
+      "StationName": {
+        "Zh_tw": "商校街停車場"
+      },
+      "Description": "SAEJ1772 Type 1槍線、功率7KW、電流32A",
+      "OperatorID": "86711789",
+      "OperationType": 1,
+      "PositionLat": 23.98703,
+      "PositionLon": 121.60043,
+      "Geometry": "POLYGON ((121.60036 23.98700, 121.60037 23.98698, 121.60048 23.98701, 121.60047 23.98703, 121.60036 23.98700))",
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24HR",
+      "ParkingRate": "差別費率，以每半小時加收10元",
+      "ChargingRate": "每半小時10元",
+      "Floors": "平日",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "花蓮縣",
+          "Town": "花蓮市",
+          "Road": "商校街195號旁"
+        }
+      },
+      "Telephone": "038312920",
+      "Reference": {
+        "CarPark": {
+          "CarParkID": "A00062"
+        }
+      }
+    },
+    {
+      "StationID": "86711789-S03",
+      "StationName": {
+        "Zh_tw": "富裕停車場"
+      },
+      "Description": "SAEJ1772 Type 1槍線、功率7KW、電流32A",
+      "OperatorID": "86711789",
+      "OperationType": 1,
+      "PositionLat": 23.99792,
+      "PositionLon": 121.60157,
+      "Geometry": "POLYGON ((121.60197 23.99802, 121.60201 23.99800, 121.60203 23.99804, 121.60199 23.99805, 121.60197 23.99802))",
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24HR",
+      "ParkingRate": "差別費率，以每半小時加收10元",
+      "ChargingRate": "每半小時收10元",
+      "Floors": "平面",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "花蓮縣",
+          "Town": "花蓮市",
+          "Road": "富裕十二街3號旁"
+        }
+      },
+      "Telephone": "038312920",
+      "Reference": {
+        "CarPark": {
+          "CarParkID": "A00061"
+        }
+      }
+    },
+    {
+      "StationID": "86711789-S04",
+      "StationName": {
+        "Zh_tw": "花蓮站前停車場"
+      },
+      "Description": "SAEJ1772 Type 1槍線、功率7KW、電流32A",
+      "OperatorID": "86711789",
+      "OperationType": 1,
+      "PositionLat": 23.99312,
+      "PositionLon": 121.60269,
+      "Geometry": "POLYGON ((121.60271 23.99306, 121.60276 23.99304, 121.60278 23.99309, 121.60274 23.99310, 121.60271 23.99306))",
+      "Spaces": 4,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24HR",
+      "ParkingRate": "差別費率，以每半小時加收10元",
+      "ChargingRate": "每半小時收10元",
+      "Floors": "平面",
+      "UsageRestriction": "無",
+      "PhotoURLs": [],
+      "Location": {
+        "CityRoad": {
+          "City": "花蓮縣",
+          "Town": "花蓮市",
+          "Road": "國興一街35號"
+        }
+      },
+      "Telephone": "038312920",
+      "Reference": {
+        "CarPark": {
+          "CarParkID": "A00026"
+        }
+      }
+    },
+    {
+      "StationID": "89798198-S0001",
+      "StationName": {
+        "Zh_tw": "花蓮三民停車場站"
+      },
+      "Description": "充電車位1格、充電樁1座",
+      "OperatorID": "89798198",
+      "OperationType": 3,
+      "PositionLat": 23.97688,
+      "PositionLon": 121.61153,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "00:00-23:59",
+      "ParkingRate": "單位計費  入場免費5分鐘 繳費緩衝10分鐘  平日 每30分鐘25元，當日最高80元  假日 每30分鐘25元，無上限",
+      "ChargingRate": "計度/10元每度",
+      "Floors": "B1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "花蓮市",
+          "Road": "三民街",
+          "No": "1"
+        }
+      },
+      "Telephone": "0277153105"
+    },
+    {
+      "StationID": "97054570-Sqba_1",
+      "StationName": {
+        "Zh_tw": "花蓮港行政大樓停車場"
+      },
+      "Description": "AC*6，CCS1*1，CCS2*1",
+      "OperatorID": "97054570",
+      "OperationType": 2,
+      "PositionLat": 23.98067,
+      "PositionLon": 121.62044,
+      "Spaces": 8,
+      "ChargingPoints": 8,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 12
+        },
+        {
+          "Type": 1,
+          "Power": 1,
+          "Quantity": 2
+        },
+        {
+          "Type": 2,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24H",
+      "ParkingRate": "免費",
+      "ChargingRate": "週一至週五 16-22 每度13.5 元 ， 其餘時間每度6.5元",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "花蓮市",
+          "Road": "海岸路",
+          "No": "66號"
+        }
+      },
+      "Telephone": "03-5836006"
+    },
+    {
+      "StationID": "97179430-S171",
+      "StationName": {
+        "Zh_tw": "東華大學_多容館",
+        "En": "NDHU_DuoRong"
+      },
+      "Description": "本站目前共有4樁 11kW 充電樁、4樁30kW充電樁",
+      "OperatorID": "97179430",
+      "OperationType": 3,
+      "PositionLat": 23.894965,
+      "PositionLon": 121.534537,
+      "Spaces": 8,
+      "ChargingPoints": 8,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 4
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 4
+        },
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時 /每日/20元每小時",
+      "ChargingRate": "TBD",
+      "Floors": "1F",
+      "UsageRestriction": "",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "壽豐鄉",
+          "Road": "大學路二段",
+          "No": "1號多容館"
+        }
+      },
+      "Telephone": "0809-095-665"
+    },
+    {
+      "StationID": "97179430-S167",
+      "StationName": {
+        "Zh_tw": "東華大學_集賢館",
+        "En": "NDHU_JiXian"
+      },
+      "Description": "本站目前共有3樁 30kW 充電樁",
+      "OperatorID": "97179430",
+      "OperationType": 3,
+      "PositionLat": 23.90223,
+      "PositionLon": 121.547399,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 3
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時 /每日/20元每小時",
+      "ChargingRate": "TBD",
+      "Floors": "1F",
+      "UsageRestriction": "",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "壽豐鄉",
+          "Road": "大學路二段",
+          "No": "1號集賢館"
+        }
+      },
+      "Telephone": "0809-095-665"
+    },
+    {
+      "StationID": "97179430-S168",
+      "StationName": {
+        "Zh_tw": "東華大學_東華會館",
+        "En": "NDHU_Donghua"
+      },
+      "Description": "本站目前共有3樁 11kW 充電樁、3樁30kW充電樁",
+      "OperatorID": "97179430",
+      "OperationType": 3,
+      "PositionLat": 23.895392,
+      "PositionLon": 121.548019,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 3
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時 /每日/20元每小時",
+      "ChargingRate": "TBD",
+      "Floors": "1F",
+      "UsageRestriction": "",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "壽豐鄉",
+          "Road": "大學路二段",
+          "No": "1號東華會館"
+        }
+      },
+      "Telephone": "0809-095-665"
+    },
+    {
+      "StationID": "97179430-S169",
+      "StationName": {
+        "Zh_tw": "東華大學＿行政大樓",
+        "En": "NDHU_AdBuilding"
+      },
+      "Description": "本站目前共有6樁30kW充電樁",
+      "OperatorID": "97179430",
+      "OperationType": 3,
+      "PositionLat": 23.89419,
+      "PositionLon": 121.542739,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 6
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 6
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時 /每日/20元每小時",
+      "ChargingRate": "TBD",
+      "Floors": "1F",
+      "UsageRestriction": "",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "壽豐鄉",
+          "Road": "大學路二段",
+          "No": "1號行政大樓"
+        }
+      },
+      "Telephone": "0809-095-665"
+    },
+    {
+      "StationID": "97179430-S170",
+      "StationName": {
+        "Zh_tw": "東華大學＿理工三館",
+        "En": "NDHU_Science3"
+      },
+      "Description": "本站目前共有5樁 11kW 充電樁、4樁30kW充電樁",
+      "OperatorID": "97179430",
+      "OperationType": 3,
+      "PositionLat": 23.897376,
+      "PositionLon": 121.545125,
+      "Spaces": 9,
+      "ChargingPoints": 9,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 5
+        },
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 4
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "每日/00:00-24:00",
+      "ParkingRate": "計時 /每日/20元每小時",
+      "ChargingRate": "TBD",
+      "Floors": "1F",
+      "UsageRestriction": "",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "壽豐鄉",
+          "Road": "大學路二段",
+          "No": "1號理工三館"
+        }
+      },
+      "Telephone": "0809-095-665"
+    },
+    {
+      "StationID": "89132567-S0005",
+      "StationName": {
+        "Zh_tw": "Acon-eco花蓮遠東百貨站",
+        "En": "AconElectricEnergyStation"
+      },
+      "Description": "充電格數4格，停車費率每小時 30 元",
+      "OperatorID": "89132567",
+      "OperationType": 3,
+      "PositionLat": 23.97806,
+      "PositionLon": 121.60025,
+      "Spaces": 4,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 3
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "每日/08:30-22:00",
+      "ParkingRate": "計時/每日/30 元每小時",
+      "ChargingRate": "每1度電充電費用11.5元",
+      "Floors": "B2F",
+      "UsageRestriction": "依現場告示",
+      "PhotoURLs": [
+        "https://backend.acon-eco.com/api/File?id=6430e1eb-2f65-464e-bd6a-45f2046cac69"
+      ],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "花蓮市",
+          "Road": "和平路",
+          "No": "581號"
+        }
+      },
+      "Telephone": "0800-868885"
+    },
+    {
+      "StationID": "89132567-S0083",
+      "StationName": {
+        "Zh_tw": "Acon-eco花蓮文創園區站",
+        "En": "AconElectricEnergyStation"
+      },
+      "Description": "充電格數1格，停車費率平日每小時 20 元，停車費率假日每小時 40 元",
+      "OperatorID": "89132567",
+      "OperationType": 3,
+      "PositionLat": 23.97855,
+      "PositionLon": 121.60446,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時",
+      "ParkingRate": "計時/平日/20元每小時, 計時/假日/40元每小時",
+      "ChargingRate": "計度/固定/8元每度",
+      "Floors": "1",
+      "UsageRestriction": "以現場告示",
+      "PhotoURLs": [
+        "https://backend.acon-eco.com/api/File?id=a5954e5f-a405-4e93-b402-e1241990d8e0"
+      ],
+      "Location": {
+        "CityRoad": {
+          "City": "花蓮縣",
+          "Town": "\n          ",
+          "Road": "\n          "
+        },
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "\n          ",
+          "Road": "花蓮市民國路",
+          "No": "81號"
+        }
+      },
+      "Telephone": "0800-868885"
+    },
+    {
+      "StationID": "47041994-S112",
+      "StationName": {
+        "Zh_tw": "花蓮統冠站 evbar"
+      },
+      "Description": "7x24 小時。停車費率：免費。充電樁數目：2，J1772數量：2",
+      "OperatorID": "47041994",
+      "OperationType": 3,
+      "PositionLat": 23.99269703204629,
+      "PositionLon": 121.60522740943937,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/尖峰/09:00-23:59/8.00 元每度, 計度/尖峰/06:00-11:00/8.00 元每度, 計度/尖峰/14:00-23:59/8.00 元每度, 計度/離峰/23:59-09:00/6.00 元每度, 計度/離峰/23:59-06:00/6.00 元每度, 計度/離峰/11:00-14:00/6.00 元每度, 計度/離峰/00:00-23:59/6.00 元每度, 計度/離峰/00:00-23:59/6.00 元每度, 計度/離峰/00:00-23:59/6.00 元每度, 計度/離峰/00:00-23:59/6.00 元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "花蓮市",
+          "Road": "國聯五路",
+          "No": "130號"
+        }
+      },
+      "Telephone": "02-22559610"
+    },
+    {
+      "StationID": "47041994-S113",
+      "StationName": {
+        "Zh_tw": "花蓮停三站 evbar"
+      },
+      "Description": "7x24 小時。停車費率：免費。充電樁數目：3，J1772數量：3",
+      "OperatorID": "47041994",
+      "OperationType": 3,
+      "PositionLat": 23.99294231407369,
+      "PositionLon": 121.6009558977181,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/尖峰/09:00-23:59/8.00 元每度, 計度/尖峰/06:00-11:00/8.00 元每度, 計度/尖峰/14:00-23:59/8.00 元每度, 計度/離峰/23:59-09:00/6.00 元每度, 計度/離峰/23:59-06:00/6.00 元每度, 計度/離峰/11:00-14:00/6.00 元每度, 計度/離峰/00:00-23:59/6.00 元每度, 計度/離峰/00:00-23:59/6.00 元每度, 計度/離峰/00:00-23:59/6.00 元每度, 計度/離峰/00:00-23:59/6.00 元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "花蓮市",
+          "Road": "國聯一路",
+          "No": "100號"
+        }
+      },
+      "Telephone": "02-22559610"
+    },
+    {
+      "StationID": "90444103-S155",
+      "StationName": {
+        "Zh_tw": "淞和快充 花蓮大進站 evbar"
+      },
+      "Description": "7x24 小時。停車費率：免費。充電樁數目：1，CCS1數量：1，CCS2數量：1",
+      "OperatorID": "90444103",
+      "OperationType": 1,
+      "PositionLat": 23.65372587954659,
+      "PositionLon": 121.41778692466609,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24 小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/尖峰/16:00-22:00/13.50 元每度, 計度/尖峰/15:00-21:00/13.50 元每度, 計度/離峰/23:59-16:00/6.00 元每度, 計度/離峰/22:00-23:59/6.00 元每度, 計度/離峰/23:59-15:00/6.00 元每度, 計度/離峰/21:00-23:59/6.00 元每度, 計度/離峰/00:00-23:59/6.50 元每度, 計度/離峰/00:00-23:59/6.50 元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "光復鄉",
+          "Road": "中山路一段",
+          "No": "232號"
+        }
+      },
+      "Telephone": "02-22559610"
+    },
+    {
+      "StationID": "42861108-S17316c13-298d-427f-b911-e70853588ef3",
+      "StationName": {
+        "Zh_tw": "Hualien, Hualien - Gongyuan Rd",
+        "En": "Hualien, Hualien - Gongyuan Rd"
+      },
+      "Description": "充電格位數6",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.97738,
+      "PositionLon": 121.61133,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 3
+        },
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Hualien CityGongyuan Rd"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S9b696f93-79b4-4546-a8c1-6e0ef235847e",
+      "StationName": {
+        "Zh_tw": "Hualien, Xiulin - Knlibu Road",
+        "En": "Hualien, Xiulin - Knlibu Road"
+      },
+      "Description": "充電格位數6",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.31103,
+      "PositionLon": 121.74753,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 4
+        },
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "HualienKnlibu Road "
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sa46076b8-452b-4847-aa2e-e720f193774f",
+      "StationName": {
+        "Zh_tw": "Hualien, Jian  - Huilan",
+        "En": "Hualien, Jian  - Huilan"
+      },
+      "Description": "充電格位數6",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.93858,
+      "PositionLon": 121.59453,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 3
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "HualienSection 1, Nanbin RoadNo. 505, "
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sfccc7447-880d-436d-b1c3-9d97f328ddff",
+      "StationName": {
+        "Zh_tw": "品悅文旅",
+        "En": "品悅文旅"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.97414,
+      "PositionLon": 121.60548,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "花蓮縣南京街155號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S28ba1e93-b839-4f2f-8cef-5e228829a6be",
+      "StationName": {
+        "Zh_tw": "Hualien - Silks Place Taroko",
+        "En": "Hualien - Silks Place Taroko"
+      },
+      "Description": "充電格位數3",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.18204,
+      "PositionLon": 121.49417,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "HualienTianxiang Rd.No.18"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sc5470c63-d905-4c4a-b62e-c14110c0eb16",
+      "StationName": {
+        "Zh_tw": "Yu Hotspring",
+        "En": "Yu Hotspring"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.28066,
+      "PositionLon": 121.34015,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Hualien吳江村安通58之9號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S6acc01d5-929a-4e1a-832f-2e9bb35e4f4e",
+      "StationName": {
+        "Zh_tw": "夏洛克民宿",
+        "En": "夏洛克民宿"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.94633,
+      "PositionLon": 121.54162,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "花蓮縣干城二街125巷12號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S358c0e2d-e7e3-4827-8609-3e16f69ec98c",
+      "StationName": {
+        "Zh_tw": "山灣水月特色民宿",
+        "En": "山灣水月特色民宿"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.28346,
+      "PositionLon": 121.34353,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "花蓮縣樂合里溫泉41-8號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sa96bc49a-5554-481e-834b-51351b8df9e9",
+      "StationName": {
+        "Zh_tw": "Hualien - Kindness Hotel Hualien",
+        "En": "Hualien - Kindness Hotel Hualien"
+      },
+      "Description": "充電格位數4",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.99142,
+      "PositionLon": 121.60512,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 4
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "HualienGuolian 5th Rd.101"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S7dbf3978-a7cd-43d6-b829-caf4eba10752",
+      "StationName": {
+        "Zh_tw": "Promisedland Resort & Lagoon",
+        "En": "Promisedland Resort & Lagoon"
+      },
+      "Description": "充電格位數5",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.8652,
+      "PositionLon": 121.52788,
+      "Spaces": 5,
+      "ChargingPoints": 5,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 3
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Hualien理想路1號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sbf14243e-6d2d-49ce-b0a6-6fae906c234b",
+      "StationName": {
+        "Zh_tw": "Giethoorn Guest House",
+        "En": "Giethoorn Guest House"
+      },
+      "Description": "充電格位數1",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.88311,
+      "PositionLon": 121.60104,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Hualien福德51號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S4121cd08-c07a-4449-8fae-a0f9bdeaad4a",
+      "StationName": {
+        "Zh_tw": "波西米亞民宿",
+        "En": "波西米亞民宿"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.96454,
+      "PositionLon": 121.59974,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "花蓮縣東海一街168號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S3b56d812-15b5-4dc9-afb2-043cab867fe1",
+      "StationName": {
+        "Zh_tw": "花蓮梯田山民宿",
+        "En": "花蓮梯田山民宿"
+      },
+      "Description": "充電格位數4",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.86076,
+      "PositionLon": 121.47971,
+      "Spaces": 4,
+      "ChargingPoints": 4,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 2
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "花蓮縣山邊路二段83巷12號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sadcd9f3e-5bd3-4c5e-8be7-5213ba740c9d",
+      "StationName": {
+        "Zh_tw": "山鄰山林青年文旅",
+        "En": "山鄰山林青年文旅"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.3329,
+      "PositionLon": 121.31267,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "花蓮縣大同路228號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S79edc22e-79de-4a4c-a218-47ee087d9b5f",
+      "StationName": {
+        "Zh_tw": "歐客莊園",
+        "En": "歐客莊園"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.99604,
+      "PositionLon": 121.5755,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "花蓮縣建興街122號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S6f09d2d1-2cd7-46b5-aff0-b477d6b69ff9",
+      "StationName": {
+        "Zh_tw": "Hualien Boutique Ocean Inn",
+        "En": "Hualien Boutique Ocean Inn"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.61933,
+      "PositionLon": 121.52895,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Hualien富光5號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sa26bb0d5-bb05-4546-941f-41a6cb19c812",
+      "StationName": {
+        "Zh_tw": "花蓮森林中民宿",
+        "En": "花蓮森林中民宿"
+      },
+      "Description": "充電格位數2",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.94141,
+      "PositionLon": 121.59386,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "花蓮縣知卡宣大道一段36號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S8967b976-7a46-43ab-94e1-4fd561793b4a",
+      "StationName": {
+        "Zh_tw": "Hualien, Xincheng - Xinxing Road",
+        "En": "Hualien, Xincheng - Xinxing Road"
+      },
+      "Description": "充電格位數6",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 24.13119,
+      "PositionLon": 121.63793,
+      "Spaces": 6,
+      "ChargingPoints": 6,
+      "Connectors": [
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 4
+        },
+        {
+          "Type": 4,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "HualienXinxing Road"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-Sd80fa906-3b83-4382-8e47-61e68bf030c0",
+      "StationName": {
+        "Zh_tw": "遠雄海洋公園",
+        "En": "遠雄海洋公園"
+      },
+      "Description": "充電格位數3",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.90127,
+      "PositionLon": 121.60354,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 3
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "花蓮縣鹽寮村福德189號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "42861108-S943bb071-85ca-4769-a41b-884a79ba03dc",
+      "StationName": {
+        "Zh_tw": "Grand Cosmos Resort Ruisui",
+        "En": "Grand Cosmos Resort Ruisui"
+      },
+      "Description": "充電格位數3",
+      "OperatorID": "42861108",
+      "OperationType": 3,
+      "PositionLat": 23.49354,
+      "PositionLon": 121.35482,
+      "Spaces": 3,
+      "ChargingPoints": 3,
+      "Connectors": [
+        {
+          "Type": 6,
+          "Power": 1,
+          "Quantity": 1
+        },
+        {
+          "Type": 4,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "費用詳情請查詢TESLA站點",
+      "ChargingRate": "費用詳情請查詢TESLA站點",
+      "Floors": "1F",
+      "PhotoURLs": [],
+      "Location": {
+        "Place": {
+          "POI": "Hualien溫泉路二段368號"
+        }
+      },
+      "Telephone": "0809007518"
+    },
+    {
+      "StationID": "50965513-SPBP4501002",
+      "StationName": {
+        "Zh_tw": "停好停滿停車場中華國小站",
+        "En": " Park in the full parking"
+      },
+      "Description": "掃碼充電，下載車車電充APP或直接使用訪客式網頁(不需下載APP)充電\r\n站點：停好停滿停車場中華國小站\r\n地點：花蓮縣花蓮市國盛三街2號對面\r\n充電資訊：AC 7KW\r\n充電槍數：J1772 二槍\r\n車位類型：室外停車位\r\n停車收費：\r\n平日$15/半小時(當日上限$100)\r\n假日$15/半小時(當日上限$180)",
+      "OperatorID": "50965513",
+      "OperationType": 3,
+      "PositionLat": 23.99363,
+      "PositionLon": 121.60681,
+      "Spaces": 2,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "24小時/每日/00:00-24:00",
+      "ParkingRate": "計時/每日/每小時30元",
+      "ChargingRate": "計度/00:00-24:00/每度7.9元",
+      "Floors": "1",
+      "PhotoURLs": [
+        "https://chargeserver.chacha-charging.com.tw/upload/img/20250114/6785cbe77a90.png"
+      ],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "花蓮市",
+          "Road": "富國段",
+          "No": "151地號"
+        }
+      },
+      "Telephone": "0988-098129"
+    },
+    {
+      "StationID": "50965513-SPCT4501001",
+      "StationName": {
+        "Zh_tw": "花蓮吉安站前停車場",
+        "En": "Hualien Ji-an Station Parking Lot"
+      },
+      "Description": "慢充，充電格位數1，需使用車車電充APP",
+      "OperatorID": "50965513",
+      "OperationType": 3,
+      "PositionLat": 23.968918,
+      "PositionLon": 121.5825751,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "24小時/每日/00:00-24:00",
+      "ParkingRate": "計時/每日/每小時20元",
+      "ChargingRate": "計度/00:00-24:00/每度8元",
+      "Floors": "1",
+      "PhotoURLs": [
+        "https://chargeserver.chacha-charging.com.tw/upload/img/20260626/6a3e1d9c2d82.jpg"
+      ],
+      "Location": {
+        "Address": {
+          "City": "花蓮",
+          "Town": "吉安",
+          "Road": "南昌北路",
+          "No": "85號"
+        }
+      },
+      "Telephone": "無"
+    },
+    {
+      "StationID": "90148497-S1036",
+      "StationName": {
+        "Zh_tw": "花蓮壽豐站"
+      },
+      "Description": "服務時間：0:00~24:00 / 停車費率：無收費 / 充電費率：夏季時間電價\n16:00~22:00 尖峰$13/度\n22:00~16:00  離峰$9/度\n非夏季時間電價\n15:00~21:00 尖峰$13/度\n21:00~15:00 離峰$9/度\n周末(六、日)\n24H均一價$9/度",
+      "OperatorID": "90148497",
+      "OperationType": 1,
+      "PositionLat": 23.868845,
+      "PositionLon": 121.510804,
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "0:00~24:00",
+      "ParkingRate": "無收費",
+      "ChargingRate": "夏季時間電價\n16:00~22:00 尖峰$13/度\n22:00~16:00  離峰$9/度\n非夏季時間電價\n15:00~21:00 尖峰$13/度\n21:00~15:00 離峰$9/度\n周末(六、日)\n24H均一價$9/度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "壽豐鄉",
+          "Road": "壽山路",
+          "No": "5"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1037",
+      "StationName": {
+        "Zh_tw": "花蓮三民站"
+      },
+      "Description": "服務時間：0:00~24:00 / 停車費率：無收費 / 充電費率：夏季時間電價\n16:00~22:00 尖峰$13/度\n22:00~16:00  離峰$9/度\n非夏季時間電價\n15:00~21:00 尖峰$13/度\n21:00~15:00 離峰$9/度\n周末(六、日)\n24H均一價$9/度",
+      "OperatorID": "90148497",
+      "OperationType": 1,
+      "PositionLat": 23.424534,
+      "PositionLon": 121.345401,
+      "Spaces": 2,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 1
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "0:00~24:00",
+      "ParkingRate": "無收費",
+      "ChargingRate": "夏季時間電價\n16:00~22:00 尖峰$13/度\n22:00~16:00  離峰$9/度\n非夏季時間電價\n15:00~21:00 尖峰$13/度\n21:00~15:00 離峰$9/度\n周末(六、日)\n24H均一價$9/度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "玉里鎮",
+          "Road": "三民里三民",
+          "No": "10"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1038",
+      "StationName": {
+        "Zh_tw": "花蓮東里站"
+      },
+      "Description": "服務時間：0:00~24:00 / 停車費率：無收費 / 充電費率：均一價\n$8/度",
+      "OperatorID": "90148497",
+      "OperationType": 1,
+      "PositionLat": 23.27233,
+      "PositionLon": 121.304162,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "0:00~24:00",
+      "ParkingRate": "無收費",
+      "ChargingRate": "均一價\n$8/度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "富里鄉",
+          "Road": "東里村大莊路",
+          "No": "15-6"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1039",
+      "StationName": {
+        "Zh_tw": "花蓮富里站"
+      },
+      "Description": "服務時間：0:00~24:00 / 停車費率：無收費 / 充電費率：均一價\n$8/度",
+      "OperatorID": "90148497",
+      "OperationType": 1,
+      "PositionLat": 23.179131,
+      "PositionLon": 121.24869,
+      "Spaces": 1,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 5,
+          "Power": 1,
+          "Quantity": 1
+        }
+      ],
+      "ServiceTime": "0:00~24:00",
+      "ParkingRate": "無收費",
+      "ChargingRate": "均一價\n$8/度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "富里鄉",
+          "Road": "富里村車站街",
+          "No": "56"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "90148497-S1041",
+      "StationName": {
+        "Zh_tw": "花蓮林榮新光站"
+      },
+      "Description": "服務時間：0:00~24:00 / 停車費率：無收費 / 充電費率：夏季時間電價\n16:00~22:00 尖峰$13/度\n22:00~16:00  離峰$9/度\n非夏季時間電價\n15:00~21:00 尖峰$13/度\n21:00~15:00 離峰$9/度\n周末(六、日)\n24H均一價$9/度",
+      "OperatorID": "90148497",
+      "OperationType": 1,
+      "PositionLat": 23.802571,
+      "PositionLon": 121.461561,
+      "Spaces": 4,
+      "ChargingPoints": 2,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "0:00~24:00",
+      "ParkingRate": "無收費",
+      "ChargingRate": "夏季時間電價\n16:00~22:00 尖峰$13/度\n22:00~16:00  離峰$9/度\n非夏季時間電價\n15:00~21:00 尖峰$13/度\n21:00~15:00 離峰$9/度\n周末(六、日)\n24H均一價$9/度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "鳳林鎮",
+          "Road": "兆豐路",
+          "No": "800"
+        }
+      },
+      "Telephone": "(02)28328057"
+    },
+    {
+      "StationID": "095bd0c0-dcc3-4ed5-8cbe-4d07f0881f74",
+      "StationName": {
+        "Zh_tw": "花蓮 中山站"
+      },
+      "Description": "充電車位 4 格,CCS1*2、CCS2*2,皆為快速充電規格",
+      "OperatorID": "83235398",
+      "OperationType": 3,
+      "PositionLat": 23.996573,
+      "PositionLon": 121.593974,
+      "Spaces": 4,
+      "ChargingPoints": 1,
+      "Connectors": [
+        {
+          "Type": 1,
+          "Power": 2,
+          "Quantity": 2
+        },
+        {
+          "Type": 2,
+          "Power": 2,
+          "Quantity": 2
+        }
+      ],
+      "ServiceTime": "7x24小時",
+      "ParkingRate": "免費",
+      "ChargingRate": "計度/非會員/11元每度,計度/會員/9.9元每度",
+      "Floors": "1",
+      "PhotoURLs": [],
+      "Location": {
+        "Address": {
+          "City": "花蓮縣",
+          "Town": "花蓮市",
+          "Road": "中山路一段",
+          "No": "11-1號"
+        }
+      },
+      "Telephone": "02-27671885"
+    }
+  ]
+}
