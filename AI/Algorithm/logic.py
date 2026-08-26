@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import os
 import sys
+from pathlib import Path
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -40,6 +41,29 @@ _RATE_PER_KWH = 2
 
 _EARTH_RADIUS_M = 6_371_000.0
 _FAILED_DISTANCE_M = 999_999  # penalty when the routing API fails
+
+def load_all_stations_from_snapshot(city: str) -> pd.DataFrame:
+    """Return every station for a city from the local snapshot (no ranking).
+
+    Used to plot all pins on the map. Availability is synthesized since the
+    snapshot has no live status.
+    """
+    snapshot_path = (
+        Path(__file__).parent.parent.parent
+        / "static" / "processed" / "stations_master.parquet"
+    )
+    df = pd.read_parquet(snapshot_path)
+    df = df[df["city"] == city].copy()
+    df = df[["StationID", "station_name", "lat", "lon",
+             "spaces", "charging_points", "cost"]]
+    df = df.dropna(subset=["StationID", "lat", "lon"]).drop_duplicates("StationID")
+    df["total_connectors"] = df["charging_points"].fillna(0).astype(int)
+    df["available_points"] = (df["total_connectors"] * 0.7).round().astype(int)
+    if df["cost"].isna().all():
+        df["cost"] = 0.0
+    else:
+        df["cost"] = df["cost"].fillna(df["cost"].median())
+    return df.reset_index(drop=True)
 
 
 def haversine_metres(lat1: float, lon1: float, lat2, lon2):
@@ -288,6 +312,7 @@ class Calculation_Model:
         range_safety_factor: float = 0.8,
         max_candidates: int = 10,
         tdx_client: Optional[TDXClient] = None,
+        use_snapshot: bool = False,
     ):
         self.user_location = (float(user_location[0]), float(user_location[1]))
         # Stored as 0-100 for human readability; converted to 0-1 when calling
@@ -298,6 +323,7 @@ class Calculation_Model:
         self.full_range_km = full_range_km
         self.range_safety_factor = range_safety_factor
         self.max_candidates = max_candidates
+        self.use_snapshot = use_snapshot
 
         self._tdx = tdx_client or TDXClient(
             os.getenv("TDX_CLIENT_ID"),
@@ -345,6 +371,32 @@ class Calculation_Model:
         df = df.dropna(subset=["StationID", "lat", "lon"]).drop_duplicates("StationID")
         df = self._attach_availability(df, live)
         df = self._attach_costs(df, rates)
+        return df.reset_index(drop=True)
+
+    
+    def build_station_dataframe_from_snapshot(self) -> pd.DataFrame:
+        """Load stations from the local static snapshot instead of live TDX.
+
+        Offline/demo mode. Availability is synthesized because the snapshot
+        has no live ConnectorLiveStatus data.
+        """
+        snapshot_path = (
+            Path(__file__).parent.parent.parent
+            / "static" / "processed" / "stations_master.parquet"
+        )
+        df = pd.read_parquet(snapshot_path)
+        df = df[df["city"] == self.city].copy()
+        df = df[["StationID", "station_name", "lat", "lon",
+                 "spaces", "charging_points", "cost"]]
+        df = df.dropna(subset=["StationID", "lat", "lon"]).drop_duplicates("StationID")
+
+        df["total_connectors"] = df["charging_points"].fillna(0).astype(int)
+        df["available_points"] = (df["total_connectors"] * 0.7).round().astype(int)
+
+        if df["cost"].isna().all():
+            df["cost"] = 0.0
+        else:
+            df["cost"] = df["cost"].fillna(df["cost"].median())
         return df.reset_index(drop=True)
 
     @staticmethod
@@ -599,7 +651,12 @@ class Calculation_Model:
             f"cost={context.w_cost} pots={context.w_pots}"
         )
 
-        all_stations = self.build_station_dataframe()
+        all_stations = (
+            self.build_station_dataframe_from_snapshot()
+            if self.use_snapshot
+            else self.build_station_dataframe()
+        )
+
         print(f"  {len(all_stations)} stations fetched from TDX.")
 
         candidates = self.select_candidates(all_stations)

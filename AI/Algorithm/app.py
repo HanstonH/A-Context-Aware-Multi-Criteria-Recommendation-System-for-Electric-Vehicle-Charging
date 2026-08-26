@@ -11,7 +11,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 from API import TDXClient, TDX_CITIES
-from logic import Calculation_Model
+from logic import Calculation_Model, load_all_stations_from_snapshot
 
 app = FastAPI(title="EV Charging Recommender")
 
@@ -34,6 +34,7 @@ class RecommendRequest(BaseModel):
     full_range_km: float = 300.0
     range_safety_factor: float = 0.8
     max_candidates: int = 10
+    use_snapshot: bool = True
 
 
 @app.get("/health")
@@ -58,8 +59,22 @@ def recommend(req: RecommendRequest):
             range_safety_factor=req.range_safety_factor,
             max_candidates=req.max_candidates,
             tdx_client=tdx_client,  # shared, token-cached client
+            use_snapshot=req.use_snapshot,
         )
         df = model.recommend()
         return {"recommendations": df.to_dict(orient="records")}
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc))
+
+@app.get("/stations/{city}")
+def stations(city: str):
+    if city not in TDX_CITIES:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Unknown city '{city}'. Valid: {', '.join(TDX_CITIES)}",
+        )
+    try:
+        df = load_all_stations_from_snapshot(city)
+        return {"stations": df.to_dict(orient="records")}
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc))
