@@ -1,5 +1,7 @@
 """FastAPI wrapper around Calculation_Model so Node.js can call /recommend."""
+from get_POI import Get_POI
 from pathlib import Path
+from get_Distance_EV import get_route_points
 from dotenv import load_dotenv
 
 load_dotenv(Path(__file__).parent / ".env")  # explicit path, launch-dir independent
@@ -88,3 +90,21 @@ def pois(lat: float = Query(ge=-90, le=90), lng: float = Query(ge=-180, le=180))
     if data is None:
         raise HTTPException(status_code=502, detail="Places API request failed")
     return {"pois": Calculation_Model.parse_nearby_pois(data)}
+
+@app.get("/route")
+def route(
+    from_lat: float = Query(ge=-90, le=90),
+    from_lng: float = Query(ge=-180, le=180),
+    to_lat: float = Query(ge=-90, le=90),
+    to_lng: float = Query(ge=-180, le=180),
+):
+    """Driving route points from user to a station, for drawing on the frontend map."""
+    try:
+        points = get_route_points((from_lat, from_lng), (to_lat, to_lng))
+        if points is None:
+            raise HTTPException(status_code=404, detail="No route found")
+        return {"route": points}
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc))
