@@ -11,10 +11,13 @@ const stationRoutes = require('./src/routes/stationRoutes')
 
 const recommendRoutes = require('./src/routes/recommendRoutes')
 
+const poiRoutes = require('./src/routes/poiRoutes')
+
 // Middleware
 app.use(cors())
 app.use(express.json())
 app.use('/api/stations', stationRoutes)
+app.use('/api/pois', poiRoutes)
 
 // Routes
 app.use('/api/auth', authRoutes)

@@ -9,11 +9,13 @@ Flow:
 3. Pick the 10 closest candidates (straight-line prefilter to limit API calls).
 4. Enrich each candidate with:
    - Road distance  (Google Routes API)
-   - POI score      (Google Places API New)
    - Cost           (TDX charging rates)
    - Live connector counts (TDX ConnectorLiveStatus)
 5. Rank candidates with the TOPSIS algorithm using exponential context-aware weights
    derived from battery level (survival growth + comfort decay curves).
+6. Attach the nearby POIs (Google Places API New) to each ranked station so the
+   map can show them around the station. POIs are display-only and do not
+   affect the ranking.
 '''
 from __future__ import annotations
 
@@ -87,13 +89,12 @@ _W_BASE_POTS = 0.15
 _W_SURVIVAL_AMP_POTS = 0.30
 _K_SURVIVAL = 7.0
 
-# Comfort decay parameters (cost & POI increase as battery rises).
+# Comfort decay parameters (cost increases as battery rises).
 _W_MAX_COST = 0.40
-_W_MAX_POI = 0.35
 _K_COMFORT = 4.0
 
 # Hardcoded urgency override — already sums to 1.0.
-_URGENCY_WEIGHTS = [0.55, 0.05, 0.05, 0.35]  # [w_distance, w_poi, w_cost, w_pots]
+_URGENCY_WEIGHTS = [0.60, 0.05, 0.35]  # [w_distance, w_cost, w_pots]
 
 
 @dataclass(frozen=True)
@@ -101,21 +102,20 @@ class WeightVector:
     """Criterion weights for TOPSIS; must sum to 1.0.
 
     Column order matches the TOPSIS decision matrix:
-        [distance, poi, cost, pots]
+        [distance, cost, pots]
     """
     w_distance: float
-    w_poi: float
     w_cost: float
     w_pots: float
 
     def __post_init__(self):
-        total = self.w_distance + self.w_poi + self.w_cost + self.w_pots
+        total = self.w_distance + self.w_cost + self.w_pots
         if not np.isclose(total, 1.0, atol=1e-6):
             raise ValueError(f"Weights must sum to 1.0, got {total:.6f}")
 
     def as_array(self) -> np.ndarray:
-        """Return weights as a 1-D numpy array [w_distance, w_poi, w_cost, w_pots]."""
-        return np.array([self.w_distance, self.w_poi, self.w_cost, self.w_pots])
+        """Return weights as a 1-D numpy array [w_distance, w_cost, w_pots]."""
+        return np.array([self.w_distance, self.w_cost, self.w_pots])
 
 
 def get_exponential_weights(
@@ -134,14 +134,13 @@ def get_exponential_weights(
     Returns
     -------
     list[float]
-        Strictly normalised ``[w_distance, w_poi, w_cost, w_pots]`` summing to 1.0.
+        Strictly normalised ``[w_distance, w_cost, w_pots]`` summing to 1.0.
 
     Formulas (B = clamped battery fraction)
     ---------------------------------------
     w_dist_raw  = W_base_dist  + A      * exp(-k_survival * B)
     w_pots_raw  = W_base_pots  + B_amp  * exp(-k_survival * B)
     w_cost_raw  = W_max_cost   * (1 - exp(-k_comfort * B))
-    w_poi_raw   = W_max_poi    * (1 - exp(-k_comfort * B))
     """
     if is_available_now:
         return list(_URGENCY_WEIGHTS)
@@ -154,9 +153,8 @@ def get_exponential_weights(
     w_dist_raw = _W_BASE_DIST + _W_SURVIVAL_AMP_DIST * survival_decay
     w_pots_raw = _W_BASE_POTS + _W_SURVIVAL_AMP_POTS * survival_decay
     w_cost_raw = _W_MAX_COST * comfort_growth
-    w_poi_raw  = _W_MAX_POI  * comfort_growth
 
-    raw = np.array([w_dist_raw, w_poi_raw, w_cost_raw, w_pots_raw], dtype=float)
+    raw = np.array([w_dist_raw, w_cost_raw, w_pots_raw], dtype=float)
     total = raw.sum()
     if total <= 0.0:
         raise ValueError("Exponential weight raw sum is zero; cannot normalise.")
@@ -168,16 +166,16 @@ def get_dynamic_weights(battery_percentage: float, is_available_now: bool) -> We
 
     Delegates to ``get_exponential_weights`` and wraps the result.
     """
-    w_dist, w_poi, w_cost, w_pots = get_exponential_weights(
+    w_dist, w_cost, w_pots = get_exponential_weights(
         battery_percentage, is_available_now
     )
-    return WeightVector(w_distance=w_dist, w_poi=w_poi, w_cost=w_cost, w_pots=w_pots)
+    return WeightVector(w_distance=w_dist, w_cost=w_cost, w_pots=w_pots)
 
 
-# TOPSIS column order: [distance, poi, cost, pots]
+# TOPSIS column order: [distance, cost, pots]
 # True  = cost criterion (lower is better) → PIS = min, NIS = max
 # False = benefit criterion (higher is better) → PIS = max, NIS = min
-_IS_COST_CRITERION = np.array([True, False, True, False])
+_IS_COST_CRITERION = np.array([True, True, False])
 
 # Distance added to stations with zero available pots when the user is urgent,
 # making them sort last without hard-removing them (edge case: all stations full).
@@ -201,7 +199,6 @@ def topsis_rank(
         Up to 10 station dicts, each with:
           ``id``             – string identifier
           ``distance``       – metres from user (minimise)
-          ``poi_count``      – nearby POI count (maximise)
           ``cost``           – charging fee per kWh (minimise)
           ``available_pots`` – idle connector count right now (maximise)
     battery_percentage:
@@ -218,7 +215,7 @@ def topsis_rank(
         return []
 
     weights = get_dynamic_weights(battery_percentage, is_available_now)
-    w = weights.as_array()  # shape (4,)
+    w = weights.as_array()  # shape (3,)
 
     # ------------------------------------------------------------------
     # Pre-filtering guardrail: add a massive distance penalty to any station
@@ -232,42 +229,41 @@ def topsis_rank(
                 s["distance"] = float(s.get("distance", 0)) + _OCCUPIED_PENALTY
 
     # ------------------------------------------------------------------
-    # Step 1 — Decision matrix X  (n × 4)
-    # Column order: [distance, poi_count, cost, available_pots]
+    # Step 1 — Decision matrix X  (n × 3)
+    # Column order: [distance, cost, available_pots]
     # ------------------------------------------------------------------
     X = np.array(
         [
             [
                 float(s.get("distance", 0)),
-                float(s.get("poi_count", 0)),
                 float(s.get("cost", 0)),
                 float(s.get("available_pots", 0)),
             ]
             for s in working
         ],
         dtype=float,
-    )  # (n, 4)
+    )  # (n, 3)
 
     # ------------------------------------------------------------------
     # Step 2 — Vector normalisation:  r_ij = x_ij / ||x_j||
     # Guard against all-zero columns (constant criterion).
     # ------------------------------------------------------------------
-    col_norms = np.sqrt((X ** 2).sum(axis=0))          # (4,)
+    col_norms = np.sqrt((X ** 2).sum(axis=0))          # (3,)
     col_norms = np.where(col_norms == 0.0, 1.0, col_norms)
-    R = X / col_norms                                   # (n, 4)
+    R = X / col_norms                                   # (n, 3)
 
     # ------------------------------------------------------------------
     # Step 3 — Weighted normalised matrix  V = R ⊙ w
     # ------------------------------------------------------------------
-    V = R * w                                           # (n, 4)
+    V = R * w                                           # (n, 3)
 
     # ------------------------------------------------------------------
     # Step 4 — Ideal (PIS / A+) and Anti-Ideal (NIS / A-) solutions
     # Cost criteria  [distance, cost]:  PIS = col_min,  NIS = col_max
-    # Benefit criteria [poi, pots]:     PIS = col_max,  NIS = col_min
+    # Benefit criteria [pots]:          PIS = col_max,  NIS = col_min
     # ------------------------------------------------------------------
-    PIS = np.where(_IS_COST_CRITERION, V.min(axis=0), V.max(axis=0))  # (4,)
-    NIS = np.where(_IS_COST_CRITERION, V.max(axis=0), V.min(axis=0))  # (4,)
+    PIS = np.where(_IS_COST_CRITERION, V.min(axis=0), V.max(axis=0))  # (3,)
+    NIS = np.where(_IS_COST_CRITERION, V.max(axis=0), V.min(axis=0))  # (3,)
 
     # ------------------------------------------------------------------
     # Step 5 — Euclidean distances to PIS and NIS for each station
@@ -499,56 +495,64 @@ class Calculation_Model:
         return df
 
     # ------------------------------------------------------------------
-    # Step 4b: POI around each station (Google Places)
+    # Step 6: POIs around each station (Google Places) — display only
     # ------------------------------------------------------------------
     def get_POI(self, latitude, longitude):
         """Raw nearby-POI JSON for one coordinate (max 20 places)."""
         return Get_POI().call_API(latitude, longitude)
 
     @staticmethod
-    def calculate_poi_score(row):
-        rating = row["rating"]
-        reviews = row["userRatingCount"]
-        distance = row["distanceMeters"]
-        return (rating * np.log10(reviews + 1)) / (1 + distance / 100)
+    def parse_nearby_pois(data: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Flatten a Places searchNearby response into simple map markers.
 
-    def _places_dataframe(self, data: Optional[Dict[str, Any]]) -> pd.DataFrame:
-        if not data or "places" not in data:
-            return pd.DataFrame()
+        Each POI keeps only what the map needs (name, position, type, rating,
+        walking distance from the station), sorted nearest first.
+        """
+        if not data or not data.get("places"):
+            return []
 
-        place_list = pd.json_normalize(data, record_path=["places"])
-
-        if "routingSummaries" in data:
-            place_distance = pd.json_normalize(data["routingSummaries"], record_path=["legs"])
-            place = pd.concat([place_list, place_distance], axis=1)
-        else:
-            place = place_list
-            place["distanceMeters"] = 500
-
-        place["rating"] = place.get("rating", pd.Series(dtype=float)).fillna(0)
-        place["userRatingCount"] = place.get("userRatingCount", pd.Series(dtype=float)).fillna(0)
-        place["poi_score"] = place.apply(self.calculate_poi_score, axis=1)
-        return place
-
-    def POI_score(self, data) -> float:
-        place = self._places_dataframe(data)
-        return 0.0 if place.empty else float(place["poi_score"].sum())
-
-    def process_all_stations(self, df: pd.DataFrame) -> pd.DataFrame:
-        """Fetch POI data and add ``poi_sum`` / ``poi_count`` per station."""
-        def row_pipeline(row):
-            raw_json = self.get_POI(row["lat"], row["lon"])
-            place = self._places_dataframe(raw_json)
-            return pd.Series(
+        summaries = data.get("routingSummaries") or []
+        pois = []
+        for i, place in enumerate(data["places"]):
+            location = place.get("location") or {}
+            if location.get("latitude") is None or location.get("longitude") is None:
+                continue
+            legs = (summaries[i].get("legs") if i < len(summaries) else None) or [{}]
+            pois.append(
                 {
-                    "poi_sum": self.POI_score(raw_json),
-                    "poi_count": len(place),
+                    "id": place.get("id"),
+                    "name": (place.get("displayName") or {}).get("text"),
+                    "type": place.get("primaryType"),
+                    "lat": location["latitude"],
+                    "lon": location["longitude"],
+                    "address": place.get("formattedAddress"),
+                    "rating": place.get("rating"),
+                    "review_count": place.get("userRatingCount"),
+                    "walk_distance_m": legs[0].get("distanceMeters"),
+                    "open_now": (place.get("currentOpeningHours") or {}).get("openNow"),
+                    "maps_uri": place.get("googleMapsUri"),
                 }
             )
 
-        print("Fetching POI data and calculating scores... this may take a moment.")
-        poi_cols = df.apply(row_pipeline, axis=1)
-        return pd.concat([df, poi_cols], axis=1)
+        pois.sort(
+            key=lambda p: p["walk_distance_m"] if p["walk_distance_m"] is not None else float("inf")
+        )
+        return pois
+
+    def nearby_pois(self, latitude: float, longitude: float) -> List[Dict[str, Any]]:
+        """POIs within walking distance of one station."""
+        return self.parse_nearby_pois(self.get_POI(latitude, longitude))
+
+    def attach_nearby_pois(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Add ``nearby_pois`` (list of POI dicts) and ``poi_count`` per station.
+
+        Informational only — these columns are not used for ranking.
+        """
+        print("Fetching nearby POIs for the map... this may take a moment.")
+        df = df.copy()
+        df["nearby_pois"] = [self.nearby_pois(row["lat"], row["lon"]) for _, row in df.iterrows()]
+        df["poi_count"] = df["nearby_pois"].apply(len)
+        return df
 
     # ------------------------------------------------------------------
     # Step 5a: weighted-sum score (auxiliary breakdown columns)
@@ -581,25 +585,22 @@ class Calculation_Model:
         Uses the current dynamic weights — not hardcoded 0.25.
         """
         stations_df = stations_df.copy()
-        required = ["poi_sum", "distance", "cost", "available_points"]
+        required = ["distance", "cost", "available_points"]
         missing = [c for c in required if c not in stations_df.columns]
         if missing:
             raise ValueError(f"total_score() missing required columns: {missing}")
 
         w = self.weights
-        stations_df["n_poi"]   = self._normalize_higher_is_better(stations_df["poi_sum"])
         stations_df["n_avail"] = self._normalize_higher_is_better(stations_df["available_points"])
         stations_df["n_dist"]  = self._normalize_lower_is_better(stations_df["distance"])
         stations_df["n_cost"]  = self._normalize_lower_is_better(stations_df["cost"])
 
-        stations_df["contrib_poi"]   = w.w_poi      * stations_df["n_poi"]
         stations_df["contrib_dist"]  = w.w_distance * stations_df["n_dist"]
         stations_df["contrib_cost"]  = w.w_cost     * stations_df["n_cost"]
         stations_df["contrib_avail"] = w.w_pots     * stations_df["n_avail"]
 
         stations_df["total_score"] = (
-            stations_df["contrib_poi"]
-            + stations_df["contrib_dist"]
+            stations_df["contrib_dist"]
             + stations_df["contrib_cost"]
             + stations_df["contrib_avail"]
         )
@@ -616,7 +617,6 @@ class Calculation_Model:
             {
                 "id":             row.get("StationID", str(i)),
                 "distance":       float(row.get("distance", _FAILED_DISTANCE_M)),
-                "poi_count":      float(row.get("poi_count", 0)),
                 "cost":           float(row.get("cost", 0)),
                 "available_pots": float(row.get("available_points", 0)),
             }
@@ -640,15 +640,16 @@ class Calculation_Model:
         """Run the complete recommendation pipeline.
 
         Returns a DataFrame ranked best-first by ``topsis_score``.
-        Also includes ``total_score`` and normalised / contribution columns.
+        Also includes ``total_score``, normalised / contribution columns and
+        the display-only ``nearby_pois`` list for each station.
         """
         context = self.weights
         state = _context_state_label(self.battery_fraction, self.is_available_now)
         print(
             f"[{self.city}] battery {self.battery_percent:.0f}% → "
             f"{self.reachable_metres / 1000:.1f} km range | "
-            f"state={state} | weights dist={context.w_distance} poi={context.w_poi} "
-            f"cost={context.w_cost} pots={context.w_pots}"
+            f"state={state} | weights dist={context.w_distance:.3f} "
+            f"cost={context.w_cost:.3f} pots={context.w_pots:.3f}"
         )
 
         all_stations = (
@@ -663,14 +664,15 @@ class Calculation_Model:
         print(f"  {len(candidates)} candidates selected (reachable + available).")
 
         candidates = self.process_distances(candidates)
-        candidates = self.process_all_stations(candidates)
 
         candidates = self.total_score(candidates)
 
         # TOPSIS score — primary sort key.
         candidates = self.apply_topsis(candidates)
+        ranked = candidates.sort_values("topsis_score", ascending=False).reset_index(drop=True)
 
-        return candidates.sort_values("topsis_score", ascending=False).reset_index(drop=True)
+        # POIs are shown on the map around each station; they do not affect ranking.
+        return self.attach_nearby_pois(ranked)
 
 
 # =============================================================================
@@ -721,7 +723,6 @@ def print_recommendation_report(
         )
         weights_line = (
             f"Weights  dist={weights.w_distance:.2f}  "
-            f"poi={weights.w_poi:.2f}  "
             f"cost={weights.w_cost:.2f}  "
             f"pots={weights.w_pots:.2f}"
         )
@@ -813,7 +814,7 @@ def print_recommendation_report(
         f"State: {state}  |  Range: {reachable_km:.1f} km"
     )
     print(
-        f"  Weights  dist={weights.w_distance:.2f}  poi={weights.w_poi:.2f}  "
+        f"  Weights  dist={weights.w_distance:.2f}  "
         f"cost={weights.w_cost:.2f}  pots={weights.w_pots:.2f}"
     )
     print("-" * width)
@@ -855,10 +856,10 @@ def main():
 
     # # --- Quick TOPSIS self-test (no API calls) --------------------------------
     # sample_stations = [
-    #     {"id": "A", "distance": 500,  "poi_count": 8,  "cost": 9.0,  "available_pots": 2},
-    #     {"id": "B", "distance": 1200, "poi_count": 15, "cost": 7.5,  "available_pots": 5},
-    #     {"id": "C", "distance": 300,  "poi_count": 2,  "cost": 10.0, "available_pots": 0},
-    #     {"id": "D", "distance": 800,  "poi_count": 10, "cost": 8.0,  "available_pots": 3},
+    #     {"id": "A", "distance": 500,  "cost": 9.0,  "available_pots": 2},
+    #     {"id": "B", "distance": 1200, "cost": 7.5,  "available_pots": 5},
+    #     {"id": "C", "distance": 300,  "cost": 10.0, "available_pots": 0},
+    #     {"id": "D", "distance": 800,  "cost": 8.0,  "available_pots": 3},
     # ]
     # print("=== TOPSIS self-test (critical state, urgent) ===")
     # for s in topsis_rank(sample_stations, battery_percentage=0.15, is_available_now=True):
@@ -866,7 +867,7 @@ def main():
 
     # print("\n=== TOPSIS self-test (comfort state) ===")
     # for s in topsis_rank(sample_stations, battery_percentage=0.80, is_available_now=False):
-    #     print(f"  {s['id']}  topsis_score={s['topsis_score']:.4f}  poi={s['poi_count']}  cost={s['cost']}")
+    #     print(f"  {s['id']}  topsis_score={s['topsis_score']:.4f}  cost={s['cost']}")
 
     # --- Full live pipeline ---------------------------------------------------
     print("\n=== Full pipeline (Taipei, 35% battery) ===")
