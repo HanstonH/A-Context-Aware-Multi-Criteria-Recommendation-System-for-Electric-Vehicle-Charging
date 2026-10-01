@@ -70,6 +70,23 @@ function Read-SqlFile([string]$sqlite, [string]$path) {
     & $sqlite $DbPath ".read $posix"
 }
 
+function Flush-Sql([string]$sqlite, [System.Collections.Generic.List[string]]$lines) {
+    if ($lines.Count -eq 0) { return }
+    $sqlOut = Join-Path $SqliteDir "seed.sql"
+    Write-Utf8 $sqlOut ($lines -join "`n")
+    Read-SqlFile $sqlite $sqlOut
+    $lines.Clear()
+}
+
+$TdxCities = @(
+    "Taipei", "NewTaipei", "Taoyuan", "Taichung", "Tainan", "Kaohsiung",
+    "Keelung", "Hsinchu", "HsinchuCounty", "MiaoliCounty", "ChanghuaCounty",
+    "NantouCounty", "YunlinCounty", "ChiayiCounty", "Chiayi", "PingtungCounty",
+    "YilanCounty", "HualienCounty", "TaitungCounty", "KinmenCounty",
+    "PenghuCounty"
+)
+$SnapshotDate = "2026-07-02"
+
 $sqlite = Get-Sqlite3
 New-Item -ItemType Directory -Force -Path $SqliteDir | Out-Null
 if (Test-Path $DbPath) { Remove-Item $DbPath }
@@ -115,23 +132,64 @@ VALUES ($(Sql-Literal $id), 'project', $(Sql-Literal $_.'Station Name'), $(Sql-L
         $lines.Add("INSERT INTO station_prices (station_id, price_ntd_per_kwh, price_tier, source) VALUES ($(Sql-Literal $id), $(Sql-Num $price.median_unit_price_per_kwh), $(Sql-Num $price.price_tier), 'project');")
     }
 }
+Flush-Sql $sqlite $lines
 
-foreach ($citySpec in @(
-        @{ City = "Taipei"; Spec = "origin/main:static/raw/stations/Taipei/2026-07-02.json" },
-        @{ City = "NewTaipei"; Spec = "origin/main:static/raw/stations/NewTaipei/2026-07-02.json" }
-    )) {
-    Write-Host "Loading TDX stations $($citySpec.City)..."
-    $body = Git-ShowJson $citySpec.Spec
+foreach ($city in $TdxCities) {
+    Write-Host "Loading TDX stations $city..."
+    try {
+        $body = Git-ShowJson "origin/main:static/raw/stations/$city/$SnapshotDate.json"
+    } catch {
+        Write-Host "  skip stations $city"
+        continue
+    }
     foreach ($s in @($body.Stations)) {
         if (-not $s.StationID -or $null -eq $s.PositionLat -or $null -eq $s.PositionLon) { continue }
         $name = $null
         if ($s.StationName) { $name = $s.StationName.Zh_tw }
         $lines.Add(@"
 INSERT OR IGNORE INTO stations (station_id, source, name, latitude, longitude, city, spaces, charging_points)
-VALUES ($(Sql-Literal $s.StationID), 'tdx', $(Sql-Literal $name), $(Sql-Num $s.PositionLat), $(Sql-Num $s.PositionLon), $(Sql-Literal $citySpec.City), $(Sql-Num $s.Spaces), $(Sql-Num $s.ChargingPoints));
+VALUES ($(Sql-Literal $s.StationID), 'tdx', $(Sql-Literal $name), $(Sql-Num $s.PositionLat), $(Sql-Num $s.PositionLon), $(Sql-Literal $city), $(Sql-Num $s.Spaces), $(Sql-Num $s.ChargingPoints));
 "@)
     }
+    Flush-Sql $sqlite $lines
 }
+
+$parkingByStation = @{}
+foreach ($city in $TdxCities) {
+    Write-Host "Loading TDX parking rates $city..."
+    try {
+        $body = Git-ShowJson "origin/main:static/raw/parking_rates/$city/$SnapshotDate.json"
+    } catch {
+        Write-Host "  skip parking $city"
+        continue
+    }
+    $fetched = $body.UpdateTime
+    foreach ($rec in @($body.ParkingRates)) {
+        foreach ($rate in @($rec.Rates)) {
+            $lines.Add(@"
+INSERT INTO parking_rates (station_id, city, rate_type, pricing_type, day_type, rate_price, max_price, fetched_at)
+VALUES ($(Sql-Literal $rec.StationID), $(Sql-Literal $city), $(Sql-Num $rate.RateType), $(Sql-Num $rate.PricingType), $(Sql-Num $rate.DayType), $(Sql-Num $rate.RatePrice), $(Sql-Num $rate.MaxPrice), $(Sql-Literal $fetched));
+"@)
+            if ($rec.StationID -and $null -ne $rate.RatePrice) {
+                if (-not $parkingByStation.ContainsKey($rec.StationID)) {
+                    $parkingByStation[$rec.StationID] = New-Object System.Collections.Generic.List[double]
+                }
+                $parkingByStation[$rec.StationID].Add([double]$rate.RatePrice)
+            }
+        }
+    }
+    Flush-Sql $sqlite $lines
+}
+
+foreach ($sid in $parkingByStation.Keys) {
+    $sorted = @($parkingByStation[$sid] | Sort-Object)
+    if ($sorted.Count -eq 0) { continue }
+    $mid = [int][Math]::Floor($sorted.Count / 2)
+    $median = if ($sorted.Count % 2 -eq 1) { $sorted[$mid] } else { ($sorted[$mid - 1] + $sorted[$mid]) / 2 }
+    $lines.Add("UPDATE station_prices SET parking_cost = $(Sql-Num $median) WHERE station_id = $(Sql-Literal $sid) AND source = 'tdx';")
+    $lines.Add("INSERT OR IGNORE INTO station_prices (station_id, parking_cost, source) SELECT $(Sql-Literal $sid), $(Sql-Num $median), 'tdx' WHERE EXISTS (SELECT 1 FROM stations WHERE station_id = $(Sql-Literal $sid));")
+}
+Flush-Sql $sqlite $lines
 
 Write-Host "Loading TDX Taipei charging rates..."
 $rates = Git-ShowJson "origin/main:static/raw/charging_rates/Taipei/2026-07-02.json"
@@ -172,12 +230,12 @@ VALUES (1, $(Sql-Literal $_.'MAC Address'), $(Sql-Literal $_.'Station Name'), $(
 
 $sqlOut = Join-Path $SqliteDir "seed.sql"
 Write-Utf8 $sqlOut ($lines -join "`n")
-Write-Host "Applying seed SQL ($($lines.Count) statements)..."
-Read-SqlFile $sqlite $sqlOut
+Write-Host "Applying remaining seed SQL ($($lines.Count) statements)..."
+Flush-Sql $sqlite $lines
 
 Write-Host ""
 Write-Host "Created $DbPath"
-@("users", "user_vehicles", "stations", "station_prices", "charging_rates", "recommendation_requests", "recommendation_results") | ForEach-Object {
+@("users", "user_vehicles", "stations", "station_prices", "charging_rates", "parking_rates", "recommendation_requests", "recommendation_results") | ForEach-Object {
     $n = & $sqlite $DbPath "SELECT COUNT(*) FROM $_;"
     Write-Host ("  {0}: {1}" -f $_, $n)
 }

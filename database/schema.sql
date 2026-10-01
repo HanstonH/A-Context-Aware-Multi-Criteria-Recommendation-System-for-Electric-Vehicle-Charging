@@ -70,6 +70,21 @@ CREATE TABLE IF NOT EXISTS charging_rates (
 
 CREATE INDEX IF NOT EXISTS idx_charging_rates_station ON charging_rates(station_id);
 
+CREATE TABLE IF NOT EXISTS parking_rates (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    station_id TEXT,
+    city TEXT,
+    rate_type INTEGER,
+    pricing_type INTEGER,
+    day_type INTEGER,
+    rate_price REAL,
+    max_price REAL,
+    fetched_at TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_parking_rates_station ON parking_rates(station_id);
+CREATE INDEX IF NOT EXISTS idx_parking_rates_city ON parking_rates(city);
+
 CREATE TABLE IF NOT EXISTS recommendation_requests (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,

@@ -20,11 +20,15 @@ PRICES_CSV = ROOT / "AI" / "data" / "unit_price_by_station_taiwan.csv"
 MANIFEST_PATH = ROOT / "Simulation" / "charging_station_manifest.json"
 RECS_CSV = ROOT / "AI" / "Algorithm" / "final_recommendations_summary.csv"
 
-TDX_STATION_BLOBS = (
-    ("Taipei", "origin/main:static/raw/stations/Taipei/2026-07-02.json"),
-    ("NewTaipei", "origin/main:static/raw/stations/NewTaipei/2026-07-02.json"),
+TDX_CITIES = (
+    "Taipei", "NewTaipei", "Taoyuan", "Taichung", "Tainan", "Kaohsiung",
+    "Keelung", "Hsinchu", "HsinchuCounty", "MiaoliCounty", "ChanghuaCounty",
+    "NantouCounty", "YunlinCounty", "ChiayiCounty", "Chiayi", "PingtungCounty",
+    "YilanCounty", "HualienCounty", "TaitungCounty", "KinmenCounty",
+    "PenghuCounty",
 )
-TDX_RATE_BLOB = "origin/main:static/raw/charging_rates/Taipei/2026-07-02.json"
+TDX_SNAPSHOT_DATE = "2026-07-02"
+TDX_RATE_BLOB = f"origin/main:static/raw/charging_rates/Taipei/{TDX_SNAPSHOT_DATE}.json"
 
 DEMO_EMAIL = "demo@ev.local"
 DEMO_PASSWORD = "demo123"
@@ -121,7 +125,8 @@ def seed_project_stations(conn: sqlite3.Connection) -> None:
 
 def seed_tdx_stations(conn: sqlite3.Connection) -> int:
     count = 0
-    for city, spec in TDX_STATION_BLOBS:
+    for city in TDX_CITIES:
+        spec = f"origin/main:static/raw/stations/{city}/{TDX_SNAPSHOT_DATE}.json"
         try:
             body = _git_show_json(spec)
         except (subprocess.CalledProcessError, json.JSONDecodeError) as exc:
@@ -156,6 +161,72 @@ def seed_tdx_stations(conn: sqlite3.Connection) -> int:
                     count += 1
             except sqlite3.IntegrityError:
                 continue
+    return count
+
+
+def seed_tdx_parking(conn: sqlite3.Connection) -> int:
+    count = 0
+    parking_by_station: dict[str, list[float]] = {}
+    for city in TDX_CITIES:
+        spec = f"origin/main:static/raw/parking_rates/{city}/{TDX_SNAPSHOT_DATE}.json"
+        try:
+            body = _git_show_json(spec)
+        except (subprocess.CalledProcessError, json.JSONDecodeError) as exc:
+            print(f"skip TDX parking {city}: {exc}")
+            continue
+        fetched_at = body.get("UpdateTime")
+        for record in body.get("ParkingRates") or []:
+            station_id = record.get("StationID")
+            for rate in record.get("Rates") or []:
+                conn.execute(
+                    """
+                    INSERT INTO parking_rates (
+                        station_id, city, rate_type, pricing_type, day_type,
+                        rate_price, max_price, fetched_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        station_id,
+                        city,
+                        rate.get("RateType"),
+                        rate.get("PricingType"),
+                        rate.get("DayType"),
+                        rate.get("RatePrice"),
+                        rate.get("MaxPrice"),
+                        fetched_at,
+                    ),
+                )
+                count += 1
+                price = rate.get("RatePrice")
+                if station_id and price is not None:
+                    parking_by_station.setdefault(station_id, []).append(float(price))
+
+    for station_id, prices in parking_by_station.items():
+        median = _median(prices)
+        if median is None:
+            continue
+        exists = conn.execute(
+            "SELECT 1 FROM stations WHERE station_id = ?", (station_id,)
+        ).fetchone()
+        if not exists:
+            continue
+        updated = conn.execute(
+            """
+            UPDATE station_prices
+            SET parking_cost = ?
+            WHERE station_id = ? AND source = 'tdx'
+            """,
+            (median, station_id),
+        ).rowcount
+        if not updated:
+            conn.execute(
+                """
+                INSERT OR IGNORE INTO station_prices (
+                    station_id, parking_cost, source
+                ) VALUES (?, ?, 'tdx')
+                """,
+                (station_id, median),
+            )
     return count
 
 
@@ -283,6 +354,7 @@ def main() -> None:
         user_id = seed_users(conn)
         seed_project_stations(conn)
         tdx_n = seed_tdx_stations(conn)
+        parking_n = seed_tdx_parking(conn)
         rate_n = seed_tdx_rates(conn)
         seed_tdx_price_summary(conn)
         seed_recommendations(conn, user_id)
@@ -295,12 +367,14 @@ def main() -> None:
                 "stations",
                 "station_prices",
                 "charging_rates",
+                "parking_rates",
                 "recommendation_requests",
                 "recommendation_results",
             )
         }
         print(f"Created {DB_PATH}")
         print(f"TDX stations inserted: {tdx_n}")
+        print(f"TDX parking rows inserted: {parking_n}")
         print(f"TDX rate rows inserted: {rate_n}")
         for table, n in counts.items():
             print(f"  {table}: {n}")
