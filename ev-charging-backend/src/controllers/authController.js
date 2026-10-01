@@ -1,22 +1,28 @@
-const supabase = require('../config/supabase')
+const db = require('../config/db')
 const bcrypt = require('bcrypt')
 
 // Register
 const register = async (req, res) => {
   const { email, password, name, phone } = req.body
-
+  if (!email || !password) {
+    return res.status(400).json({ error: 'Email and password are required' })
+  }
   try {
     const hashedPassword = await bcrypt.hash(password, 10)
+    const info = db
+      .prepare('INSERT INTO users (email, password_hash, name, phone) VALUES (?, ?, ?, ?)')
+      .run(email, hashedPassword, name, phone)
 
-    const { data, error } = await supabase
-      .from('users')
-      .insert([{ email, password: hashedPassword, name, phone }])
-      .select()
+    const user = db
+      .prepare('SELECT id, email, name, phone, created_at FROM users WHERE id = ?')
+      .get(info.lastInsertRowid)
 
-    if (error) return res.status(400).json({ error: error.message })
-
-    res.status(201).json({ message: 'User registered successfully', user: data[0] })
+    res.status(201).json({ message: 'User registered successfully', user })
   } catch (err) {
+    if (err.code === 'SQLITE_CONSTRAINT_UNIQUE') {
+      return res.status(400).json({ error: 'Email already registered' })
+    }
+    console.error(err.message)
     res.status(500).json({ error: 'Server error' })
   }
 }
@@ -24,23 +30,17 @@ const register = async (req, res) => {
 // Login
 const login = async (req, res) => {
   const { email, password } = req.body
-
   try {
-    const { data, error } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', email)
-      .single()
+    const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email)
+    if (!user) return res.status(404).json({ error: 'User not found' })
 
-    if (error || !data) return res.status(404).json({ error: 'User not found' })
-
-    const validPassword = await bcrypt.compare(password, data.password)
+    const validPassword = await bcrypt.compare(password, user.password_hash)
     if (!validPassword) return res.status(401).json({ error: 'Invalid password' })
 
-    const { password: _, ...userWithoutPassword } = data
-
+    const { password_hash: _, ...userWithoutPassword } = user
     res.status(200).json({ message: 'Login successful', user: userWithoutPassword })
   } catch (err) {
+    console.error(err.message)
     res.status(500).json({ error: 'Server error' })
   }
 }
