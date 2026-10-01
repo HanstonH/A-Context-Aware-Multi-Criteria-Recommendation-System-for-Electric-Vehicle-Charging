@@ -4,6 +4,8 @@ import { useState } from "react"
 import { Map, Mail, Lock, Eye, EyeOff, ArrowRight, HelpCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { aura } from "@/lib/aura-styles"
+import { cn } from "@/lib/utils"
 
 interface LoginScreenProps {
   onLogin: () => void
@@ -33,14 +35,14 @@ export function LoginScreen({ onLogin, onRegister }: LoginScreenProps) {
 
       <div className="w-full max-w-md space-y-8 relative z-10">
         {/* Card Container */}
-        <div className="bg-card rounded-3xl p-8 border border-border shadow-xl">
+        <div className={cn("rounded-3xl p-8 shadow-2xl", aura.glassCard)}>
           {/* Logo */}
           <div className="flex flex-col items-center space-y-4 mb-8">
-            <div className="w-20 h-20 rounded-2xl bg-primary/20 flex items-center justify-center">
-              <Map className="w-10 h-10 text-primary" />
+            <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center shadow-lg shadow-emerald-600/30">
+              <Map className="w-10 h-10 text-white" />
             </div>
             <div className="text-center">
-              <h1 className="text-2xl font-bold text-foreground">MapExplore</h1>
+              <h1 className="text-2xl font-bold text-foreground tracking-tight">MapExplore</h1>
               <p className="text-muted-foreground mt-1">探索世界的每一處細節</p>
             </div>
           </div>
@@ -87,7 +89,7 @@ export function LoginScreen({ onLogin, onRegister }: LoginScreenProps) {
 
             <Button
               onClick={onLogin}
-              className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-medium text-base"
+              className={cn("w-full h-12 rounded-xl font-semibold text-base", aura.btnPrimary)}
             >
               登入 <ArrowRight className="w-4 h-4 ml-2" />
             </Button>

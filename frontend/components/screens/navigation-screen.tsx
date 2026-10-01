@@ -43,7 +43,7 @@ export function NavigationScreen({
           <span className="font-semibold text-foreground">MapExplore</span>
         </div>
         <Avatar className="w-10 h-10 border-2 border-primary">
-          <AvatarImage src="/avatar.jpg" />
+          <AvatarImage src="/placeholder.svg" alt="使用者頭像" />
           <AvatarFallback className="bg-primary text-primary-foreground">ME</AvatarFallback>
         </Avatar>
       </div>
