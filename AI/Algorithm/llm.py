@@ -181,10 +181,12 @@ def generate_draft_v1(payload: Dict[str, Any]) -> str:
         "Station recommendation data (JSON):\n"
         f"{_payload_to_json(payload)}\n\n"
         "The recommended_station has the highest multi-criteria score "
-        "(distance, cost, waiting time, nearby POIs). "
+        "(distance, cost, availability). Nearby POIs are listed for context "
+        "only and do not affect the score. "
         "Write concise sentences explaining why the driver should "
         "pick recommended_station. Mention the strongest trade-offs supported "
-        "by the data only. Mentioned top 3 ranked nearby POIs if they have ratings. "
+        "by the data only. Optionally mention up to 3 nearby POIs the driver "
+        "could visit while charging. "
     )
     return _call_gemini(
         system_instruction=_DRAFT_V1_SYSTEM,
@@ -344,15 +346,13 @@ def _demo_station_payload() -> Dict[str, Any]:
             "distance_metres": 420.0,
             "waiting_time_seconds": 0.0,
             "cost_per_kwh": 0.0,
-            "poi_sum": 18.4,
-            "poi_count": 3,
+            "poi_count": 2,
             "nearby_pois": [
                 {
                     "name": "Blue Bottle Coffee",
                     "rating": 4.6,
                     "review_count": 312,
                     "distance_metres": 95,
-                    "poi_score": 7.2,
                     "open_now": True,
                 },
                 {
@@ -360,27 +360,24 @@ def _demo_station_payload() -> Dict[str, Any]:
                     "rating": 4.4,
                     "review_count": 890,
                     "distance_metres": 280,
-                    "poi_score": 5.1,
                     "open_now": True,
                 },
             ],
             "scores": {
                 "total_score": 0.91,
                 "normalized": {
-                    "poi": 0.88,
                     "distance": 0.95,
                     "waiting": 1.0,
                     "cost": 1.0,
                 },
                 "weighted_contributions": {
-                    "poi": 0.22,
-                    "distance": 0.24,
-                    "waiting": 0.25,
-                    "cost": 0.25,
+                    "distance": 0.32,
+                    "waiting": 0.33,
+                    "cost": 0.33,
                 },
             },
             "explanation": {
-                "summary": "Total score 0.910 (POI 0.88, distance 0.95, wait 1.00, cost 1.00).",
+                "summary": "Total score 0.980 (distance 0.95, wait 1.00, cost 1.00).",
                 "reasons": [
                     "Strong travel distance compared to other options.",
                     "Strong queue wait compared to other options.",

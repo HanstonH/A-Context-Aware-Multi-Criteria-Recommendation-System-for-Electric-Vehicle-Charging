@@ -7,11 +7,12 @@ load_dotenv(Path(__file__).parent / ".env")  # explicit path, launch-dir indepen
 import os
 from typing import Optional
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from pydantic import BaseModel, Field
 
 from API import TDXClient, TDX_CITIES
 from logic import Calculation_Model, load_all_stations_from_snapshot
+from get_POI import Get_POI
 
 app = FastAPI(title="EV Charging Recommender")
 
@@ -78,3 +79,12 @@ def stations(city: str):
         return {"stations": df.to_dict(orient="records")}
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc))
+
+
+@app.get("/pois")
+def pois(lat: float = Query(ge=-90, le=90), lng: float = Query(ge=-180, le=180)):
+    """Nearby POIs around a station, for drawing on the map (not used in ranking)."""
+    data = Get_POI().call_API(lat, lng)
+    if data is None:
+        raise HTTPException(status_code=502, detail="Places API request failed")
+    return {"pois": Calculation_Model.parse_nearby_pois(data)}
