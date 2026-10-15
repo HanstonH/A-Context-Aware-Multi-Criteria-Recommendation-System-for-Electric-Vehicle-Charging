@@ -12,7 +12,7 @@ from datetime import datetime
 from pathlib import Path
 
 # ── SUMO / TraCI ─────────────────────────────────────────────────────────────
-sumo_path = r"C:\Users\USER\Downloads\sumo-win64extra-1.26.0\sumo-1.26.0"
+sumo_path = r"C:\Program Files (x86)\Eclipse\Sumo"
 os.environ["SUMO_HOME"] = sumo_path
 sys.path.append(os.path.join(sumo_path, "tools"))
 
