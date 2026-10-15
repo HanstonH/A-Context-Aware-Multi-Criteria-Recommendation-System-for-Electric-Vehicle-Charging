@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "MapExplore",
+    "slug": "mapexplore",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "MapExplore 需要你的位置，才能把地圖移到你附近並顯示充電站。",
+        "NSMotionUsageDescription": "MapExplore 需要指南針方向，讓地圖上的箭頭朝向你面向的方位。"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
