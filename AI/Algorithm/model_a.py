@@ -57,9 +57,10 @@ class ModelAService:
         lstm_path = MODEL_A_DIR / self._LSTM_PKL
         if lstm_path.exists():
             try:
+                import keras  # noqa: F401
                 self.lstm_model = joblib.load(str(lstm_path))
-            except Exception as exc:
-                print(f"[Model A] LSTM load failed: {exc}")
+            except Exception:
+                pass  # sklearn ensemble works without LSTM
 
     @property
     def loaded(self) -> bool:

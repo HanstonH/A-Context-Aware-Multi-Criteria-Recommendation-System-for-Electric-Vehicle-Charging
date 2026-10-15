@@ -2,7 +2,7 @@
     <!-- Define an Electric Vehicle Type with Battery Capacity (60kWh) -->
     <vType id="EV_Task" accel="2.0" decel="4.5" sigma="0.5" length="5.0" minGap="2.5" maxSpeed="16.67" color="green">
         <device.battery.explicit value="true"/>
-        <param key="maximumBatteryCapacity" value="60000"/>
+        <param key="device.battery.capacity" value="60000"/>
         <param key="device.battery.chargeLevel" value="5000"/> <!-- Initial battery level (Low to trigger recommendation) -->
         <param key="stoppingThreshold" value="0.1"/>
     </vType>

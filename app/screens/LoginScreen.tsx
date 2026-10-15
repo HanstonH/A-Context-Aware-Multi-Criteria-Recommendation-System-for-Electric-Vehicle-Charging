@@ -1,8 +1,10 @@
 import { useState } from "react";
 import {
+  Keyboard,
   KeyboardAvoidingView,
   Platform,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -19,54 +21,67 @@ export default function LoginScreen({ onLogin }: Props) {
   const [email, setEmail] = useState("demo@ev.local");
   const [password, setPassword] = useState("demo123");
 
+  const enter = () => {
+    Keyboard.dismiss();
+    onLogin();
+  };
+
   return (
     <KeyboardAvoidingView
       style={styles.wrap}
       behavior={Platform.OS === "ios" ? "padding" : undefined}
     >
-      <Text style={styles.brand}>MapExplore</Text>
-      <Text style={styles.tagline}>{t.tagline}</Text>
+      <ScrollView
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={styles.inner}
+      >
+        <Text style={styles.brand}>MapExplore</Text>
+        <Text style={styles.tagline}>{t.tagline}</Text>
 
-      <Text style={styles.label}>{t.email}</Text>
-      <TextInput
-        style={styles.input}
-        autoCapitalize="none"
-        keyboardType="email-address"
-        value={email}
-        onChangeText={setEmail}
-        placeholder="you@example.com"
-      />
+        <Text style={styles.label}>{t.email}</Text>
+        <TextInput
+          style={styles.input}
+          autoCapitalize="none"
+          keyboardType="email-address"
+          value={email}
+          onChangeText={setEmail}
+          placeholder="you@example.com"
+        />
 
-      <Text style={styles.label}>{t.password}</Text>
-      <TextInput
-        style={styles.input}
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-        placeholder={t.password}
-      />
-      <Text style={styles.forgot}>{t.forgot}</Text>
+        <Text style={styles.label}>{t.password}</Text>
+        <TextInput
+          style={styles.input}
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+          placeholder={t.password}
+        />
+        <Text style={styles.forgot}>{t.forgot}</Text>
 
-      <Pressable style={styles.primary} onPress={onLogin}>
-        <Text style={styles.primaryText}>{t.login}</Text>
-      </Pressable>
-
-      <Text style={styles.or}>{t.orLogin}</Text>
-      <View style={styles.row}>
-        <Pressable style={styles.outline}>
-          <Text>Google</Text>
+        <Pressable style={styles.primary} onPress={enter}>
+          <Text style={styles.primaryText}>{t.login}</Text>
         </Pressable>
-        <Pressable style={styles.outline}>
-          <Text>Apple</Text>
+
+        <Text style={styles.or}>{t.orLogin}</Text>
+        <View style={styles.row}>
+          <Pressable style={styles.outline} onPress={enter}>
+            <Text>Google</Text>
+          </Pressable>
+          <Pressable style={styles.outline} onPress={enter}>
+            <Text>Apple</Text>
+          </Pressable>
+        </View>
+        <Pressable onPress={enter}>
+          <Text style={styles.footer}>{t.noAccount}</Text>
         </Pressable>
-      </View>
-      <Text style={styles.footer}>{t.noAccount}</Text>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: "#fff", padding: 28, justifyContent: "center" },
+  wrap: { flex: 1, backgroundColor: "#fff" },
+  inner: { flexGrow: 1, padding: 28, justifyContent: "center" },
   brand: { fontSize: 32, fontWeight: "700", color: "#111", textAlign: "center" },
   tagline: { color: "#6b7280", textAlign: "center", marginBottom: 32, marginTop: 8 },
   label: { color: "#374151", marginBottom: 6, marginTop: 10 },

@@ -1,18 +1,21 @@
 <configuration>
     <input>
-        <net-file value="paloalto.net.xml"/>
-        <route-files value="paloalto.rou.xml"/>
+        <net-file value="taipei.net.xml"/>
+        <route-files value="taipei.rou.xml"/>
         <additional-files value="my_config.additional.xml,charging_stations.add.xml"/>
     </input>
 
     <output>
-        <battery-output value="user_data_log.xml"/>
+        <battery-output value="output/battery_log.xml"/>
         <battery-output.precision value="2"/>
+        <tripinfo-output value="output/tripinfo.xml"/>
+        <summary-output value="output/summary.xml"/>
+        <statistic-output value="output/statistics.xml"/>
     </output>
 
     <time>
         <begin value="0"/>
-        <end value="1000"/>
+        <end value="3600"/>
     </time>
 
     <processing>

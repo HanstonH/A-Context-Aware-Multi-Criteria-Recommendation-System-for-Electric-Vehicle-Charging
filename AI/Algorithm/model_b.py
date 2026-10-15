@@ -56,10 +56,10 @@ class ModelBService:
         pkl_path = MODEL_B_DIR / self._LSTM_PKL
         if keras_path.exists():
             try:
-                import tensorflow as tf
+                import tensorflow as tf  # noqa: F401
                 self.lstm_model = tf.keras.models.load_model(str(keras_path))
-            except Exception as exc:
-                print(f"[Model B] LSTM Keras load failed: {exc}")
+            except Exception:
+                pass  # tree regressors still used for Model B
         elif pkl_path.exists():
             try:
                 self.lstm_model = joblib.load(str(pkl_path))

@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import MapView, { Marker, Polyline, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
-import { Magnetometer } from "expo-sensors";
 import stations from "../assets/stations.json";
 import { useI18n, type Lang } from "../i18n";
 
@@ -26,6 +25,7 @@ type Station = {
 
 type SavedPlace = { label: string; latitude: number; longitude: number };
 type Coord = { latitude: number; longitude: number };
+type OriginPlace = Coord & { label: string; kind: "gps" | "home" | "work" | "map" | "station" };
 type NavStep = {
   road: string;
   type: string;
@@ -102,9 +102,17 @@ function bearingDeg(from: Coord, to: Coord) {
   return ((Math.atan2(y, x) * 180) / Math.PI + 360) % 360;
 }
 
-function nearestOnLine(line: Coord[], pos: Coord): { point: Coord; index: number; bearing: number } {
+function nearestOnLine(
+  line: Coord[],
+  pos: Coord
+): { point: Coord; index: number; bearing: number; distM: number } {
   if (line.length === 1) {
-    return { point: line[0], index: 0, bearing: 0 };
+    return {
+      point: line[0],
+      index: 0,
+      bearing: 0,
+      distM: haversineKm(pos.latitude, pos.longitude, line[0].latitude, line[0].longitude) * 1000,
+    };
   }
   let bestD = Number.POSITIVE_INFINITY;
   let best = line[0];
@@ -134,7 +142,14 @@ function nearestOnLine(line: Coord[], pos: Coord): { point: Coord; index: number
     }
   }
   const nxt = line[Math.min(bestI + 1, line.length - 1)];
-  return { point: best, index: bestI, bearing: bearingDeg(best, nxt) };
+  return { point: best, index: bestI, bearing: bearingDeg(best, nxt), distM: bestD * 1000 };
+}
+
+function splitRoute(line: Coord[], pos: Coord) {
+  const snap = nearestOnLine(line, pos);
+  const done = line.slice(0, snap.index + 1).concat(snap.point);
+  const remain = [snap.point].concat(line.slice(snap.index + 1));
+  return { done, remain };
 }
 
 function nearestIndex(line: Coord[], pos: Coord) {
@@ -185,6 +200,45 @@ function nationwideHits(q: string, from: Coord): Station[] {
     .sort((a, b) => a.d - b.d)
     .slice(0, 40)
     .map((x) => x.s);
+}
+
+type Suggest = {
+  id: string;
+  label: string;
+  sub: string;
+  latitude: number;
+  longitude: number;
+};
+
+async function searchTyped(q: string, from: Coord): Promise<Suggest[]> {
+  const local = nationwideHits(q, from)
+    .slice(0, 6)
+    .map((s) => ({
+      id: s.id,
+      label: s.name || s.id,
+      sub: s.city || "",
+      latitude: s.lat,
+      longitude: s.lng,
+    }));
+  let remote: Suggest[] = [];
+  try {
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=jsonv2&limit=6&countrycodes=tw&q=${encodeURIComponent(q)}`,
+      { headers: { "Accept-Language": "zh-TW" } }
+    );
+    const data = await res.json();
+    remote = (Array.isArray(data) ? data : []).map((p: { place_id?: number; name?: string; display_name: string; lat: string; lon: string }, i: number) => ({
+      id: `osm-${p.place_id ?? i}`,
+      label: p.name || p.display_name.split(",")[0],
+      sub: p.display_name,
+      latitude: Number(p.lat),
+      longitude: Number(p.lon),
+    }));
+  } catch {
+    /* nominatim optional */
+  }
+  const seen = new Set(local.map((x) => x.label));
+  return [...local, ...remote.filter((r) => !seen.has(r.label))].slice(0, 10);
 }
 
 function nearbyStations(lat: number, lng: number, km = KM): Station[] {
@@ -264,9 +318,12 @@ export default function MapScreen({ onLogout }: Props) {
   const headingLiveRef = useRef(0);
   const lastCamRef = useRef(0);
   const coordRef = useRef(FALLBACK);
-  const magRef = useRef<ReturnType<typeof Magnetometer.addListener> | null>(null);
+  const magRef = useRef<{ remove: () => void } | null>(null);
   const magOkRef = useRef(false);
   const compassOkRef = useRef(false);
+  const destRef = useRef<Station | null>(null);
+  const routingRef = useRef(false);
+  const lastRerouteRef = useRef(0);
 
   const [coord, setCoord] = useState(FALLBACK);
   const [heading, setHeading] = useState(0);
@@ -283,6 +340,7 @@ export default function MapScreen({ onLogout }: Props) {
   const [work, setWork] = useState<SavedPlace | null>(null);
   const [picked, setPicked] = useState<Station[]>([]);
   const [dest, setDest] = useState<Station | null>(null);
+  destRef.current = dest;
   const [status, setStatus] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [routeLine, setRouteLine] = useState<Coord[]>([]);
@@ -296,6 +354,14 @@ export default function MapScreen({ onLogout }: Props) {
   const [remainM, setRemainM] = useState(0);
   const [remainS, setRemainS] = useState(0);
   const [snapPos, setSnapPos] = useState<Coord | null>(null);
+  const [origin, setOrigin] = useState<OriginPlace | null>(null);
+  const [pickMode, setPickMode] = useState<"origin" | "dest" | null>(null);
+  const [previewing, setPreviewing] = useState(false);
+  const [tripOpen, setTripOpen] = useState(false);
+  const [activeField, setActiveField] = useState<"origin" | "dest">("origin");
+  const [originQuery, setOriginQuery] = useState("");
+  const [destQuery, setDestQuery] = useState("");
+  const [suggests, setSuggests] = useState<Suggest[]>([]);
 
   const goTo = (latitude: number, longitude: number, delta = 0.08) => {
     mapRef.current?.animateToRegion({
@@ -332,23 +398,125 @@ export default function MapScreen({ onLogout }: Props) {
     setHeading(next);
   };
 
+  const fetchAndApplyRoute = async (
+    from: Coord,
+    to: { lat: number; lng: number; name?: string | null },
+    opts?: { silent?: boolean; preview?: boolean }
+  ) => {
+    if (routingRef.current) return;
+    routingRef.current = true;
+    if (!opts?.silent) {
+      setRouting(true);
+      setStatus(t.routingLong);
+    } else {
+      setStatus(t.rerouting);
+    }
+    try {
+      const url =
+        `https://router.project-osrm.org/route/v1/driving/` +
+        `${from.longitude},${from.latitude};${to.lng},${to.lat}` +
+        `?overview=full&geometries=geojson&steps=true&radiuses=300;300`;
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data.code !== "Ok" || !data.routes?.[0]) {
+        throw new Error(data.message || "no route");
+      }
+      const route = data.routes[0];
+      const line = (route.geometry.coordinates as [number, number][]).map(([lng, lat]) => ({
+        latitude: lat,
+        longitude: lng,
+      }));
+      const parsed: NavStep[] = [];
+      let cum = 0;
+      for (const leg of route.legs || []) {
+        for (const step of leg.steps || []) {
+          cum += step.distance || 0;
+          const loc = step.maneuver?.location as [number, number] | undefined;
+          parsed.push({
+            road: step.name || t.road,
+            type: step.maneuver?.type || "continue",
+            modifier: step.maneuver?.modifier || "",
+            distanceM: step.distance || 0,
+            durationS: step.duration || 0,
+            cumEndM: cum,
+            location: loc ? { latitude: loc[1], longitude: loc[0] } : line[0],
+          });
+        }
+      }
+      const strSteps = parsed.map((s) => `${s.type} ${s.modifier} ${s.road}`.trim());
+      lineRef.current = line;
+      stepsRef.current = parsed;
+      totalMRef.current = route.distance || 1;
+      totalSRef.current = route.duration || 1;
+      setRouteLine(line);
+      setNavSteps(parsed);
+      setStepIndex(0);
+      setRemainM(route.distance || 0);
+      setRemainS(route.duration || 0);
+      setRouteMeta({
+        km: (route.distance / 1000).toFixed(1),
+        min: Math.max(1, Math.round(route.duration / 60)).toString(),
+        steps: strSteps.slice(0, 12),
+      });
+      setMenuOpen(false);
+      if (!opts?.preview) setTripOpen(false);
+      const snap = nearestOnLine(line, from);
+      const puck = snap.distM > 12 ? from : snap.point;
+      setSnapPos(puck);
+      if (!compassOkRef.current) applyHeading(snap.bearing);
+      setStatus(t.inAppNav(Math.round(route.duration / 60), (route.distance / 1000).toFixed(1)));
+      if (opts?.preview) {
+        navigatingRef.current = false;
+        setNavigating(false);
+        setPreviewing(true);
+        mapRef.current?.fitToCoordinates(line, {
+          edgePadding: { top: 80, right: 40, bottom: 180, left: 40 },
+          animated: true,
+        });
+      } else {
+        navigatingRef.current = true;
+        setPreviewing(false);
+        setNavigating(true);
+        followUser(puck, true);
+      }
+    } catch {
+      if (!opts?.silent) {
+        Alert.alert(t.routeFailTitle, t.routeFailBody);
+        setStatus(t.routeFailStatus);
+      }
+    } finally {
+      routingRef.current = false;
+      setRouting(false);
+    }
+  };
+
   const updateProgress = (pos: Coord) => {
     const line = lineRef.current;
     const steps = stepsRef.current;
     if (line.length < 2) return;
-    const idx = nearestIndex(line, pos);
-    const along = alongMeters(line, idx);
-    const leftM = Math.max(0, totalMRef.current - along);
-    const ratio = leftM / Math.max(1, totalMRef.current);
-    setRemainM(leftM);
-    setRemainS(Math.max(30, totalSRef.current * ratio));
-    let si = steps.findIndex((s) => s.cumEndM > along + 8);
-    if (si < 0) si = Math.max(0, steps.length - 1);
-    setStepIndex(si);
     const snap = nearestOnLine(line, pos);
-    setSnapPos(snap.point);
-    if (!magOkRef.current) applyHeading(snap.bearing);
-    followUser(snap.point);
+    const puck = snap.distM > 12 ? pos : snap.point;
+    setSnapPos(puck);
+    followUser(puck);
+    if (snap.distM <= 28) {
+      const idx = nearestIndex(line, pos);
+      const along = alongMeters(line, idx);
+      const leftM = Math.max(0, totalMRef.current - along);
+      const ratio = leftM / Math.max(1, totalMRef.current);
+      setRemainM(leftM);
+      setRemainS(Math.max(30, totalSRef.current * ratio));
+      let si = steps.findIndex((s) => s.cumEndM > along + 8);
+      if (si < 0) si = Math.max(0, steps.length - 1);
+      setStepIndex(si);
+      if (!compassOkRef.current && !magOkRef.current) applyHeading(snap.bearing);
+      return;
+    }
+    const d = destRef.current;
+    const now = Date.now();
+    if (d && now - lastRerouteRef.current > 4000) {
+      lastRerouteRef.current = now;
+      void fetchAndApplyRoute(pos, d, { silent: true });
+    }
   };
 
   const locate = async (silent = false) => {
@@ -383,9 +551,10 @@ export default function MapScreen({ onLogout }: Props) {
           return;
         }
         try {
-          await Magnetometer.requestPermissionsAsync?.();
+          const sensors = await import("expo-sensors");
+          await sensors.Magnetometer.requestPermissionsAsync?.();
         } catch {
-          /* older Expo */
+          /* sensors optional */
         }
         const pos = await Location.getCurrentPositionAsync({
           accuracy: Location.Accuracy.BestForNavigation,
@@ -423,16 +592,21 @@ export default function MapScreen({ onLogout }: Props) {
         } catch {
           /* fallback magnetometer */
         }
-        const magOk = await Magnetometer.isAvailableAsync();
-        if (magOk) {
-          Magnetometer.setUpdateInterval(120);
-          magRef.current = Magnetometer.addListener(({ x, y }) => {
-            if (compassOkRef.current) return;
-            magOkRef.current = true;
-            let deg = (Math.atan2(-x, y) * 180) / Math.PI;
-            if (deg < 0) deg += 360;
-            applyHeading(deg);
-          });
+        try {
+          const sensors = await import("expo-sensors");
+          const magOk = await sensors.Magnetometer.isAvailableAsync();
+          if (magOk) {
+            sensors.Magnetometer.setUpdateInterval(120);
+            magRef.current = sensors.Magnetometer.addListener(({ x, y }) => {
+              if (compassOkRef.current) return;
+              magOkRef.current = true;
+              let deg = (Math.atan2(-x, y) * 180) / Math.PI;
+              if (deg < 0) deg += 360;
+              applyHeading(deg);
+            });
+          }
+        } catch {
+          /* compass fallback only */
         }
       } catch {
         setGpsError(t.gpsFail);
@@ -447,10 +621,25 @@ export default function MapScreen({ onLogout }: Props) {
     };
   }, []);
 
+  useEffect(() => {
+    if (!tripOpen) return;
+    const q = (activeField === "origin" ? originQuery : destQuery).trim();
+    if (q.length < 2 || q === t.yourLocation || q === t.home || q === t.work) {
+      setSuggests([]);
+      return;
+    }
+    const handle = setTimeout(() => {
+      searchTyped(q, coordRef.current).then(setSuggests);
+    }, 350);
+    return () => clearTimeout(handle);
+  }, [originQuery, destQuery, activeField, tripOpen, t.yourLocation, t.home, t.work]);
+
   const endNavigation = () => {
     navigatingRef.current = false;
     setNavigating(false);
+    setPreviewing(false);
     setSnapPos(null);
+    setRouteLine([]);
     goTo(coord.latitude, coord.longitude, 0.02);
   };
 
@@ -552,73 +741,96 @@ export default function MapScreen({ onLogout }: Props) {
     Alert.alert(kind === "home" ? t.savedHome : t.savedWork, t.savedPlaceBody);
   };
 
-  const startInAppRoute = async (to: { lat: number; lng: number; name?: string | null }) => {
-    setRouting(true);
-    setStatus(t.routingLong);
-    try {
-      const url =
-        `https://router.project-osrm.org/route/v1/driving/` +
-        `${coord.longitude},${coord.latitude};${to.lng},${to.lat}` +
-        `?overview=full&geometries=geojson&steps=true&radiuses=300;300`;
-      const res = await fetch(url);
-      const data = await res.json();
-      if (data.code !== "Ok" || !data.routes?.[0]) {
-        throw new Error(data.message || "no route");
-      }
-      const route = data.routes[0];
-      const line = (route.geometry.coordinates as [number, number][]).map(([lng, lat]) => ({
-        latitude: lat,
-        longitude: lng,
-      }));
-      const parsed: NavStep[] = [];
-      let cum = 0;
-      for (const leg of route.legs || []) {
-        for (const step of leg.steps || []) {
-          cum += step.distance || 0;
-          const loc = step.maneuver?.location as [number, number] | undefined;
-          parsed.push({
-            road: step.name || t.road,
-            type: step.maneuver?.type || "continue",
-            modifier: step.maneuver?.modifier || "",
-            distanceM: step.distance || 0,
-            durationS: step.duration || 0,
-            cumEndM: cum,
-            location: loc
-              ? { latitude: loc[1], longitude: loc[0] }
-              : line[0],
-          });
-        }
-      }
-      const strSteps = parsed.map((s) => `${s.type} ${s.modifier} ${s.road}`.trim());
-      lineRef.current = line;
-      stepsRef.current = parsed;
-      totalMRef.current = route.distance || 1;
-      totalSRef.current = route.duration || 1;
-      setRouteLine(line);
-      setNavSteps(parsed);
-      setStepIndex(0);
-      setRemainM(route.distance || 0);
-      setRemainS(route.duration || 0);
-      setRouteMeta({
-        km: (route.distance / 1000).toFixed(1),
-        min: Math.max(1, Math.round(route.duration / 60)).toString(),
-        steps: strSteps.slice(0, 12),
+  const originCoord = (): Coord => {
+    if (!origin || origin.kind === "gps") return coordRef.current;
+    return { latitude: origin.latitude, longitude: origin.longitude };
+  };
+
+  const startInAppRoute = (to: { lat: number; lng: number; name?: string | null }) =>
+    fetchAndApplyRoute(originCoord(), to);
+
+  const previewTrip = () => {
+    if (!dest) {
+      Alert.alert(t.chooseDest, t.typeDest);
+      return;
+    }
+    fetchAndApplyRoute(originCoord(), dest, { preview: true });
+  };
+
+  const applySuggest = (item: Suggest) => {
+    if (activeField === "origin") {
+      setOrigin({
+        latitude: item.latitude,
+        longitude: item.longitude,
+        label: item.label,
+        kind: "map",
       });
-      setMenuOpen(false);
-      navigatingRef.current = true;
-      const snap = nearestOnLine(line, coord);
-      setSnapPos(snap.point);
-      applyHeading(snap.bearing);
-      setNavigating(true);
-      setStatus(t.inAppNav(Math.round(route.duration / 60), (route.distance / 1000).toFixed(1)));
-      followUser(snap.point, true);
-    } catch {
-      Alert.alert(t.routeFailTitle, t.routeFailBody);
-      setStatus(t.routeFailStatus);
-    } finally {
-      setRouting(false);
+      setOriginQuery(item.label);
+      setActiveField("dest");
+      if (dest) {
+        fetchAndApplyRoute(
+          { latitude: item.latitude, longitude: item.longitude },
+          dest,
+          { preview: true }
+        );
+      }
+    } else {
+      const s: Station = {
+        id: item.id,
+        name: item.label,
+        lat: item.latitude,
+        lng: item.longitude,
+        city: item.sub,
+        source: "search",
+      };
+      setDest(s);
+      setDestQuery(item.label);
+      fetchAndApplyRoute(originCoord(), s, { preview: true });
+    }
+    setSuggests([]);
+  };
+
+  const swapTrip = () => {
+    const prevO = origin;
+    const prevD = dest;
+    const oq = originQuery;
+    setOriginQuery(destQuery);
+    setDestQuery(oq);
+    if (prevD) {
+      setOrigin({
+        latitude: prevD.lat,
+        longitude: prevD.lng,
+        label: prevD.name || prevD.id,
+        kind: "station",
+      });
+    }
+    if (prevO) {
+      setDest({
+        id: "swap-dest",
+        name: prevO.label,
+        lat: prevO.latitude,
+        lng: prevO.longitude,
+        city: null,
+        source: "search",
+      });
+    }
+    if (prevO && prevD) {
+      fetchAndApplyRoute(
+        { latitude: prevD.lat, longitude: prevD.lng },
+        { lat: prevO.latitude, lng: prevO.longitude, name: prevO.label },
+        { preview: true }
+      );
     }
   };
+
+  const placeFromMap = (lat: number, lng: number): Station => ({
+    id: `map-${lat.toFixed(5)}-${lng.toFixed(5)}`,
+    name: t.pickedOnMap,
+    lat,
+    lng,
+    city: null,
+    source: "map",
+  });
 
   const search = () => {
     const rangeKm = SAFETY * ((CAPACITY_KWH * 1000 * battery) / 100) / WH_PER_KM;
@@ -677,6 +889,9 @@ export default function MapScreen({ onLogout }: Props) {
   const distToTurnM = curStep ? Math.max(0, curStep.cumEndM - (totalMRef.current - remainM)) : remainM;
   const distToTurn =
     distToTurnM >= 1000 ? `${(distToTurnM / 1000).toFixed(1)} ${t.kmLabel}` : `${Math.round(distToTurnM)} m`;
+  const routeParts =
+    navigating && routeLine.length > 1 ? splitRoute(routeLine, snapPos || coord) : null;
+  const originText = !origin || origin.kind === "gps" ? t.yourLocation : origin.label;
 
   if (tab === "settings") {
     return (
@@ -708,6 +923,23 @@ export default function MapScreen({ onLogout }: Props) {
           showsCompass
           rotateEnabled
           pitchEnabled
+          onLongPress={(e) => {
+            const { latitude, longitude } = e.nativeEvent.coordinate;
+            if (pickMode === "origin") {
+              setOrigin({ latitude, longitude, label: t.pickedOnMap, kind: "map" });
+              setPickMode(null);
+              setTripOpen(true);
+              setStatus(`${t.originLabel}：${t.pickedOnMap}`);
+              return;
+            }
+            if (pickMode === "dest") {
+              const s = placeFromMap(latitude, longitude);
+              setDest(s);
+              setPickMode(null);
+              setTripOpen(true);
+              setStatus(t.destStatus(s.name || s.id));
+            }
+          }}
           initialRegion={{
             ...FALLBACK,
             latitudeDelta: 0.08,
@@ -732,20 +964,36 @@ export default function MapScreen({ onLogout }: Props) {
           {!navigating && work ? (
             <Marker coordinate={work} title={t.work} pinColor="purple" />
           ) : null}
-          {routeLine.length > 1 ? (
+          {origin && origin.kind !== "gps" ? (
+            <Marker
+              coordinate={{ latitude: origin.latitude, longitude: origin.longitude }}
+              title={origin.label}
+              pinColor="navy"
+            />
+          ) : null}
+          {routeParts ? (
+            <>
+              {routeParts.done.length > 1 ? (
+                <Polyline coordinates={routeParts.done} strokeColor="#94A3B8" strokeWidth={6} />
+              ) : null}
+              {routeParts.remain.length > 1 ? (
+                <Polyline coordinates={routeParts.remain} strokeColor="#4FC3F7" strokeWidth={8} />
+              ) : null}
+            </>
+          ) : routeLine.length > 1 ? (
             <Polyline
               coordinates={routeLine}
-              strokeColor={navigating ? "#4FC3F7" : "#16a34a"}
-              strokeWidth={navigating ? 8 : 5}
+              strokeColor={previewing ? "#2563eb" : "#16a34a"}
+              strokeWidth={previewing ? 6 : 5}
             />
           ) : dest ? (
             <Polyline
-              coordinates={[coord, { latitude: dest.lat, longitude: dest.lng }]}
+              coordinates={[originCoord(), { latitude: dest.lat, longitude: dest.lng }]}
               strokeColor="#86efac"
               strokeWidth={3}
             />
           ) : null}
-          {dest && navigating ? (
+          {dest && (navigating || previewing) ? (
             <Marker
               coordinate={{ latitude: dest.lat, longitude: dest.lng }}
               title={dest.name || dest.id}
@@ -759,12 +1007,29 @@ export default function MapScreen({ onLogout }: Props) {
                 key={s.id}
                 coordinate={{ latitude: s.lat, longitude: s.lng }}
                 title={s.name || s.id}
-                description={t.tapToSetDest}
+                description={pickMode === "origin" ? t.tapMapForStart : t.tapToSetDest}
                 pinColor={highlight ? "green" : "orange"}
                 onPress={() => {
+                  if (pickMode === "origin") {
+                    setOrigin({
+                      latitude: s.lat,
+                      longitude: s.lng,
+                      label: s.name || s.id,
+                      kind: "station",
+                    });
+                    setPickMode(null);
+                    setTripOpen(true);
+                    setStatus(`${t.originLabel}：${s.name || s.id}`);
+                    return;
+                  }
                   setDest(s);
                   setStatus(t.destStatus(s.name || s.id));
-                  setMenuOpen(true);
+                  if (pickMode === "dest") {
+                    setPickMode(null);
+                    setTripOpen(true);
+                  } else {
+                    setMenuOpen(true);
+                  }
                 }}
               />
             );
@@ -819,6 +1084,11 @@ export default function MapScreen({ onLogout }: Props) {
           <>
             <View style={styles.topFloat}>
               <Text style={styles.logo}>MapExplore</Text>
+              {pickMode ? (
+                <Text style={styles.pickHint}>
+                  {pickMode === "origin" ? t.tapMapForStart : t.tapMapForDest}
+                </Text>
+              ) : null}
             </View>
             <View style={styles.floatCol}>
               <Pressable style={styles.menuFab} onPress={() => setMenuOpen(true)}>
@@ -832,7 +1102,33 @@ export default function MapScreen({ onLogout }: Props) {
         )}
       </View>
 
-      {!navigating && !menuOpen && dest ? (
+      {!navigating && !menuOpen && previewing && dest ? (
+        <View style={styles.previewBar}>
+          <View>
+            <Text style={styles.etaMin}>
+              {routeMeta ? `${routeMeta.min} ${t.minLabel}` : t.previewTrip}
+            </Text>
+            <Text style={styles.previewSub}>
+              {originText} → {dest.name || t.chargerDefault}
+              {routeMeta ? ` · ${routeMeta.km} km` : ""}
+            </Text>
+          </View>
+          <View style={{ gap: 8 }}>
+            <Pressable
+              style={styles.navBtn}
+              onPress={() => startInAppRoute(dest)}
+              disabled={routing}
+            >
+              <Text style={styles.goText}>{t.startFromHere}</Text>
+            </Pressable>
+            <Pressable onPress={endNavigation}>
+              <Text style={styles.sheetClose}>{t.closePreview}</Text>
+            </Pressable>
+          </View>
+        </View>
+      ) : null}
+
+      {!navigating && !menuOpen && !tripOpen && !previewing && dest ? (
         <Pressable
           style={styles.slimNav}
           onPress={() => startInAppRoute(dest)}
@@ -844,7 +1140,7 @@ export default function MapScreen({ onLogout }: Props) {
         </Pressable>
       ) : null}
 
-      {!navigating && menuOpen ? (
+      {!navigating && !tripOpen && menuOpen ? (
         <View style={styles.sheet}>
           <Pressable style={styles.sheetHandle} onPress={() => setMenuOpen(false)}>
             <View style={styles.handleBar} />
@@ -903,6 +1199,20 @@ export default function MapScreen({ onLogout }: Props) {
               <Chip label={t.food} active={chip === "food"} onPress={() => onChip("food")} />
             </ScrollView>
             <View style={styles.panel}>
+              <Pressable
+                style={styles.planBtn}
+                onPress={() => {
+                  setMenuOpen(false);
+                  setTripOpen(true);
+                  setActiveField("origin");
+                  setOrigin({ ...coord, label: t.yourLocation, kind: "gps" });
+                  setOriginQuery(t.yourLocation);
+                  setDestQuery(dest?.name || "");
+                  setSuggests([]);
+                }}
+              >
+                <Text style={styles.goText}>{t.planTrip}</Text>
+              </Pressable>
               <Text style={styles.panelKicker}>{t.nearbyRec}</Text>
               <Text style={styles.panelTitle}>{t.smartSearch}</Text>
               <View style={styles.langRow}>
@@ -981,6 +1291,110 @@ export default function MapScreen({ onLogout }: Props) {
         </View>
       ) : null}
 
+      {!navigating && tripOpen ? (
+        <View style={styles.tripCard} pointerEvents="box-none">
+          <View style={styles.tripBox}>
+            <TextInput
+              style={styles.tripInput}
+              placeholder={t.typeStart}
+              placeholderTextColor="#9ca3af"
+              value={originQuery}
+              onFocus={() => setActiveField("origin")}
+              onChangeText={(txt) => {
+                setOriginQuery(txt);
+                setActiveField("origin");
+              }}
+            />
+            <View style={styles.tripDivider} />
+            <TextInput
+              style={styles.tripInput}
+              placeholder={t.typeDest}
+              placeholderTextColor="#9ca3af"
+              value={destQuery}
+              onFocus={() => setActiveField("dest")}
+              onChangeText={(txt) => {
+                setDestQuery(txt);
+                setActiveField("dest");
+              }}
+            />
+            <View style={styles.tripActions}>
+              <Pressable onPress={swapTrip}>
+                <Text style={styles.sheetClose}>{t.swap}</Text>
+              </Pressable>
+              <Pressable
+                onPress={() => {
+                  setTripOpen(false);
+                  setSuggests([]);
+                  setPickMode(null);
+                }}
+              >
+                <Text style={styles.sheetClose}>{t.closePreview}</Text>
+              </Pressable>
+            </View>
+          </View>
+          {activeField === "origin" ? (
+            <View style={styles.suggestList}>
+              <Pressable
+                style={styles.hitRow}
+                onPress={() => {
+                  setOrigin({ ...coord, label: t.yourLocation, kind: "gps" });
+                  setOriginQuery(t.yourLocation);
+                  setActiveField("dest");
+                  setSuggests([]);
+                  if (dest) fetchAndApplyRoute(coord, dest, { preview: true });
+                }}
+              >
+                <Text style={styles.hitName}>{t.yourLocation}</Text>
+              </Pressable>
+              {home ? (
+                <Pressable
+                  style={styles.hitRow}
+                  onPress={() => {
+                    setOrigin({ ...home, label: t.home, kind: "home" });
+                    setOriginQuery(t.home);
+                    setActiveField("dest");
+                    setSuggests([]);
+                    if (dest) fetchAndApplyRoute(home, dest, { preview: true });
+                  }}
+                >
+                  <Text style={styles.hitName}>{t.home}</Text>
+                </Pressable>
+              ) : null}
+              {work ? (
+                <Pressable
+                  style={styles.hitRow}
+                  onPress={() => {
+                    setOrigin({ ...work, label: t.work, kind: "work" });
+                    setOriginQuery(t.work);
+                    setActiveField("dest");
+                    setSuggests([]);
+                    if (dest) fetchAndApplyRoute(work, dest, { preview: true });
+                  }}
+                >
+                  <Text style={styles.hitName}>{t.work}</Text>
+                </Pressable>
+              ) : null}
+            </View>
+          ) : null}
+          {suggests.length ? (
+            <ScrollView style={styles.suggestScroll} keyboardShouldPersistTaps="handled">
+              {suggests.map((item) => (
+                <Pressable key={item.id} style={styles.hitRow} onPress={() => applySuggest(item)}>
+                  <Text style={styles.hitName} numberOfLines={1}>
+                    {item.label}
+                  </Text>
+                  {item.sub ? (
+                    <Text style={styles.hint} numberOfLines={2}>
+                      {item.sub}
+                    </Text>
+                  ) : null}
+                </Pressable>
+              ))}
+            </ScrollView>
+          ) : null}
+        </View>
+      ) : null}
+
       {!gpsReady ? <Text style={styles.loading}>{t.locating}</Text> : null}
     </View>
   );
@@ -1052,11 +1466,89 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 52,
     left: 16,
+    right: 16,
     backgroundColor: "rgba(255,255,255,0.92)",
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 16,
   },
+  pickHint: { color: "#166534", fontSize: 12, marginTop: 4, fontWeight: "600" },
+  planBtn: {
+    backgroundColor: "#0f766e",
+    borderRadius: 20,
+    paddingVertical: 12,
+    alignItems: "center",
+    marginBottom: 12,
+  },
+  tripTitle: { fontWeight: "800", fontSize: 18, marginHorizontal: 16, marginBottom: 8 },
+  tripCard: {
+    position: "absolute",
+    top: 48,
+    left: 12,
+    right: 12,
+    maxHeight: "58%",
+  },
+  tripBox: {
+    backgroundColor: "#1f2937",
+    borderRadius: 18,
+    paddingHorizontal: 14,
+    paddingTop: 10,
+    paddingBottom: 8,
+  },
+  tripInput: {
+    color: "#fff",
+    fontSize: 16,
+    paddingVertical: 10,
+  },
+  tripDivider: { height: 1, backgroundColor: "#374151" },
+  tripActions: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingTop: 6,
+    paddingBottom: 4,
+  },
+  suggestList: {
+    backgroundColor: "#fff",
+    borderRadius: 14,
+    marginTop: 8,
+    overflow: "hidden",
+  },
+  suggestScroll: {
+    backgroundColor: "#fff",
+    borderRadius: 14,
+    marginTop: 8,
+    maxHeight: 220,
+  },
+  tripRow: {
+    marginHorizontal: 16,
+    marginBottom: 8,
+    backgroundColor: "#111",
+    borderRadius: 12,
+    padding: 12,
+  },
+  placeRow: { flexDirection: "row", gap: 8, paddingHorizontal: 16, marginTop: 8 },
+  placeChip: {
+    flex: 1,
+    backgroundColor: "#f3f4f6",
+    borderRadius: 16,
+    paddingVertical: 12,
+    alignItems: "center",
+  },
+  previewBar: {
+    position: "absolute",
+    left: 12,
+    right: 12,
+    bottom: 24,
+    backgroundColor: "#111827",
+    borderRadius: 22,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 12,
+  },
+  previewSub: { color: "#d1d5db", marginTop: 4, flexShrink: 1 },
   menuFab: {
     backgroundColor: "#16a34a",
     borderRadius: 22,

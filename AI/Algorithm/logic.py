@@ -724,7 +724,7 @@ class EVBatteryState:
 
         return cls(
             remaining_wh=remaining,
-            maximum_wh=_f("maximumBatteryCapacity", DEFAULT_MAX_BATTERY_WH) or DEFAULT_MAX_BATTERY_WH,
+            maximum_wh=_f("device.battery.capacity", DEFAULT_MAX_BATTERY_WH) or DEFAULT_MAX_BATTERY_WH,
             stopping_threshold_wh=kwargs.pop(
                 "stopping_threshold_wh",
                 _f("stoppingThreshold", DEFAULT_STOPPING_THRESHOLD_WH) or DEFAULT_STOPPING_THRESHOLD_WH,

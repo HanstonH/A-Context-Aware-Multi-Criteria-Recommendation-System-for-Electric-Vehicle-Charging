@@ -47,6 +47,57 @@ LOW_BATTERY_WH = 12_000
 DEFAULT_MAX_STATIONS = 10
 
 
+def estimate_taiwan_wait_seconds(
+    row,
+    *,
+    at_time: datetime | None = None,
+) -> float:
+    """Heuristic queue wait (seconds) when ML is unavailable or predicts zero."""
+    at_time = at_time or datetime.now()
+    hour = at_time.hour
+    if 8 <= hour <= 10 or 17 <= hour <= 19:
+        base = 720.0
+    elif 11 <= hour <= 16:
+        base = 480.0
+    else:
+        base = 240.0
+    mac = str(row.get("MAC Address", row.get("mac", "")))
+    jitter = (hash(mac) % 120) - 60
+    return max(90.0, base + jitter)
+
+
+def apply_wait_times(
+    stations,
+    model: Calculation_Model,
+    *,
+    at_time: datetime | None = None,
+):
+    """ML wait times with Taiwan heuristic floor so ranking uses realistic queues."""
+    at_time = at_time or datetime.now()
+    out = stations.copy()
+    waits: list[float] = []
+    ml_ok = False
+    for _, row in out.iterrows():
+        wait = estimate_taiwan_wait_seconds(row, at_time=at_time)
+        try:
+            ml_wait = float(
+                model.predict_waiting_time(
+                    row.to_dict(), at_time=at_time, return_minutes=False
+                )
+            )
+            wait = max(ml_wait, wait * 0.4)
+            ml_ok = True
+        except Exception:
+            pass
+        waits.append(wait)
+    out["waiting_time"] = waits
+    if ml_ok:
+        print("(Wait-time: ML + Taiwan heuristic floor)")
+    else:
+        print("(Wait-time: Taiwan heuristic — ML models skipped)")
+    return out
+
+
 def get_current_ev_status(
     xml_file: str | Path,
     *,
@@ -193,11 +244,13 @@ def rank_stations_algorithm(
         stations = apply_offline_proxies(model, stations)
 
     try:
-        stations = model.process_waiting_times(stations)
+        stations = apply_wait_times(stations, model)
     except Exception as exc:
-        print(f"(Wait-time ML skipped: {exc}; using 0s wait for ranking)")
+        print(f"(Wait-time fallback: {exc}; using heuristic only)")
         stations = stations.copy()
-        stations["waiting_time"] = 0.0
+        stations["waiting_time"] = stations.apply(
+            lambda r: estimate_taiwan_wait_seconds(r), axis=1
+        )
 
     ranked = model.total_score(
         stations,
@@ -270,8 +323,10 @@ def main() -> None:
         )
         return
 
-    sumo_log = _SIM_DIR / "user_data_log.xml"
-    net_file = _SIM_DIR / "paloalto.net.xml"
+    sumo_log = _SIM_DIR / "output" / "battery_log.xml"
+    if not sumo_log.is_file():
+        sumo_log = _SIM_DIR / "user_data_log.xml"
+    net_file = _SIM_DIR / "taipei.net.xml"
     print("--- Offline ranking from battery log ---\n")
 
     ev_status = get_current_ev_status(sumo_log)

@@ -15,21 +15,22 @@ DATA_DIR = BASE_DIR / "data"
 MODEL_A_DIR = BASE_DIR / "model"                           # availability classifiers
 MODEL_B_DIR = BASE_DIR / "model_B"                         # duration regressors
 PREPROCESSOR_PATH = BASE_DIR / "preprocessor_pipeline.joblib"
-RAW_DATA_PATH = DATA_DIR / "ChargePointData2011-2020-ManullyPreCleaned3.csv"
+RAW_DATA_PATH = DATA_DIR / "taiwan_ev_stations.csv"
 CLEANED_DATA_PATH = DATA_DIR / "Final_Cleaned_Dataset.csv"
 
 # ── API Keys ─────────────────────────────────────────────────────────────────
 GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY", "")
 
-# ── Palo Alto Bounding Box ───────────────────────────────────────────────────
-PALO_ALTO_BOUNDS = {
-    "lat_min": 37.3685,
-    "lat_max": 37.4725,
-    "lon_min": -122.1900,
-    "lon_max": -122.0950,
+# ── Taipei metro (SUMO simulation region) ────────────────────────────────────
+REGION_BOUNDS = {
+    "lat_min": 24.98,
+    "lat_max": 25.08,
+    "lon_min": 121.48,
+    "lon_max": 121.60,
 }
-
-PALO_ALTO_CENTER = (37.4419, -122.1430)
+REGION_CENTER = (25.0330, 121.5654)
+PALO_ALTO_BOUNDS = REGION_BOUNDS
+PALO_ALTO_CENTER = REGION_CENTER
 
 # ── Feature Schema (matches training pipeline) ──────────────────────────────
 FEATURE_COLUMNS = [
