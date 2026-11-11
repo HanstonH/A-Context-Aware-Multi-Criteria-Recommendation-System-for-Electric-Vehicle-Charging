@@ -42,7 +42,8 @@ _RATE_FREE = 1
 _RATE_PER_KWH = 2
 
 _EARTH_RADIUS_M = 6_371_000.0
-_FAILED_DISTANCE_M = 999_999  # penalty when the routing API fails
+# Road distance ≈ straight line × this, used when the routing API fails.
+_ROAD_DETOUR_FACTOR = 1.3
 
 def load_all_stations_from_snapshot(city: str) -> pd.DataFrame:
     """Return every station for a city from the local snapshot (no ranking).
@@ -177,9 +178,13 @@ def get_dynamic_weights(battery_percentage: float, is_available_now: bool) -> We
 # False = benefit criterion (higher is better) → PIS = max, NIS = min
 _IS_COST_CRITERION = np.array([True, True, False])
 
-# Distance added to stations with zero available pots when the user is urgent,
-# making them sort last without hard-removing them (edge case: all stations full).
-_OCCUPIED_PENALTY = 1e9
+# When the user is urgent, stations with zero available pots get their distance
+# set to this multiple of the farthest candidate, making them sort last without
+# hard-removing them (edge case: all stations full). It must stay on the scale
+# of real distances: a huge constant (e.g. +1e9 m) dominates the column norm in
+# vector normalisation and erases the distance differences between the
+# available stations.
+_OCCUPIED_DISTANCE_FACTOR = 2.0
 
 
 # =============================================================================
@@ -218,15 +223,17 @@ def topsis_rank(
     w = weights.as_array()  # shape (3,)
 
     # ------------------------------------------------------------------
-    # Pre-filtering guardrail: add a massive distance penalty to any station
-    # with zero available pots when the user is urgent, ensuring they rank
-    # last.  We penalise rather than drop so the user always gets N results.
+    # Pre-filtering guardrail: push any station with zero available pots past
+    # the farthest candidate when the user is urgent, so it ranks last.
+    # We penalise rather than drop so the user always gets N results.
     # ------------------------------------------------------------------
     working: List[Dict[str, Any]] = [dict(s) for s in stations]
     if is_available_now:
+        farthest = max(float(s.get("distance", 0)) for s in working)
+        penalised_distance = _OCCUPIED_DISTANCE_FACTOR * max(farthest, 1.0)
         for s in working:
             if s.get("available_pots", 0) == 0:
-                s["distance"] = float(s.get("distance", 0)) + _OCCUPIED_PENALTY
+                s["distance"] = penalised_distance
 
     # ------------------------------------------------------------------
     # Step 1 — Decision matrix X  (n × 3)
@@ -414,9 +421,12 @@ class Calculation_Model:
 
     @staticmethod
     def _station_cost_from_rates(rate_records: List[Dict[str, Any]]) -> pd.DataFrame:
-        """Collapse TDX rate records to a single median price per station.
+        """Collapse TDX rate records to a single median NT$/kWh price per station.
 
-        Prefers per-kWh rates (RateType 2); free stations count as 0.
+        Only per-kWh rates (RateType 2) are used; free stations count as 0.
+        Per-minute / per-hour prices are a different unit and cannot be ranked
+        against NT$/kWh, so stations with only those rates are left out and
+        get the median cost in ``_attach_costs``.
         """
         rows = []
         for record in rate_records:
@@ -425,17 +435,15 @@ class Calculation_Model:
                 rate_type = rate.get("RateType")
                 price = rate.get("RatePrice")
                 if rate_type == _RATE_FREE:
-                    rows.append((station_id, 0.0, True))
-                elif price is not None:
-                    rows.append((station_id, float(price), rate_type == _RATE_PER_KWH))
+                    rows.append((station_id, 0.0))
+                elif rate_type == _RATE_PER_KWH and price is not None:
+                    rows.append((station_id, float(price)))
 
         if not rows:
             return pd.DataFrame(columns=["StationID", "cost"])
 
-        rates_df = pd.DataFrame(rows, columns=["StationID", "price", "preferred"])
-        preferred = rates_df[rates_df["preferred"]].groupby("StationID")["price"].median()
-        fallback = rates_df.groupby("StationID")["price"].median()
-        return preferred.combine_first(fallback).rename("cost").reset_index()
+        rates_df = pd.DataFrame(rows, columns=["StationID", "price"])
+        return rates_df.groupby("StationID")["price"].median().rename("cost").reset_index()
 
     def _attach_costs(self, df: pd.DataFrame, rate_records: List[Dict[str, Any]]) -> pd.DataFrame:
         cost_table = self._station_cost_from_rates(rate_records)
@@ -479,16 +487,21 @@ class Calculation_Model:
         """Add a road ``distance`` (metres) column for every candidate."""
         def get_row_dist(row):
             dest = (row["lat"], row["lon"])
+            if "straight_line_m" in row and pd.notna(row["straight_line_m"]):
+                straight_line = float(row["straight_line_m"])
+            else:
+                straight_line = float(haversine_metres(*self.user_location, *dest))
+
             result = get_distance_ev(dest, self.user_location)
             if result and result.get("routes"):
-                route = result["routes"][0]
-                distance = route.get("distanceMeters")
+                distance = result["routes"][0].get("distanceMeters")
                 if distance is not None:
                     return distance
                 # Degenerate ~0 s trip: Routes API omits distanceMeters.
-                if "straight_line_m" in row and pd.notna(row["straight_line_m"]):
-                    return float(row["straight_line_m"])
-            return _FAILED_DISTANCE_M
+                return straight_line
+            # Routing failed: estimate the road distance from the straight line.
+            # A huge sentinel here would dominate TOPSIS's distance column norm.
+            return straight_line * _ROAD_DETOUR_FACTOR
 
         df = df.copy()
         df["distance"] = df.apply(get_row_dist, axis=1)
@@ -558,26 +571,29 @@ class Calculation_Model:
     # Step 5a: weighted-sum score (auxiliary breakdown columns)
     # ------------------------------------------------------------------
     @staticmethod
-    def _normalize_higher_is_better(series: pd.Series) -> pd.Series:
-        values = pd.to_numeric(series, errors="coerce")
-        min_value = values.min()
-        max_value = values.max()
-        if pd.isna(max_value) or max_value <= 0:
-            return pd.Series(0.0, index=series.index)
-        if max_value == min_value:
-            # No spread across candidates — neutral score, not "best for everyone".
-            return pd.Series(0.5, index=series.index)
-        return values.fillna(0.0) / max_value
+    def _min_max_normalize(series: pd.Series, *, higher_is_better: bool) -> pd.Series:
+        """Min-max scale to [0, 1] where 1 is the best candidate.
 
-    @staticmethod
-    def _normalize_lower_is_better(series: pd.Series) -> pd.Series:
+        Every criterion uses the same scheme so the ``contrib_*`` columns are
+        comparable. Missing values score 0.
+        """
         values = pd.to_numeric(series, errors="coerce")
         lo, hi = values.min(), values.max()
         if pd.isna(lo) or pd.isna(hi):
             return pd.Series(0.0, index=series.index)
         if hi == lo:
-            return pd.Series(1.0, index=series.index)
-        return ((hi - values) / (hi - lo)).fillna(0.0)
+            # No spread across candidates — neutral score, not "best for everyone".
+            return pd.Series(0.5, index=series.index)
+        scaled = (values - lo) / (hi - lo) if higher_is_better else (hi - values) / (hi - lo)
+        return scaled.fillna(0.0)
+
+    @classmethod
+    def _normalize_higher_is_better(cls, series: pd.Series) -> pd.Series:
+        return cls._min_max_normalize(series, higher_is_better=True)
+
+    @classmethod
+    def _normalize_lower_is_better(cls, series: pd.Series) -> pd.Series:
+        return cls._min_max_normalize(series, higher_is_better=False)
 
     def total_score(self, stations_df: pd.DataFrame) -> pd.DataFrame:
         """Add normalised columns and weighted-sum ``total_score``.
@@ -613,10 +629,12 @@ class Calculation_Model:
     def apply_topsis(self, candidates_df: pd.DataFrame) -> pd.DataFrame:
         """Convert the enriched candidates DataFrame, run TOPSIS, and merge
         ``topsis_score`` back as the primary ranking column."""
+        # Key by row position rather than StationID, so the mapping back works
+        # whatever the id dtype (str vs int) and even if ids are missing.
         station_dicts = [
             {
-                "id":             row.get("StationID", str(i)),
-                "distance":       float(row.get("distance", _FAILED_DISTANCE_M)),
+                "id":             i,
+                "distance":       float(row["distance"]),
                 "cost":           float(row.get("cost", 0)),
                 "available_pots": float(row.get("available_points", 0)),
             }
@@ -625,12 +643,9 @@ class Calculation_Model:
 
         ranked_dicts = topsis_rank(station_dicts, self.battery_fraction, self.is_available_now)
 
-        # Map topsis_score back to the DataFrame by station id.
         score_map = {s["id"]: s["topsis_score"] for s in ranked_dicts}
         df = candidates_df.copy()
-        df["topsis_score"] = df.apply(
-            lambda row: score_map.get(str(row.get("StationID", "")), 0.0), axis=1
-        )
+        df["topsis_score"] = [score_map[i] for i in range(len(df))]
         return df
 
     # ------------------------------------------------------------------
