@@ -12,7 +12,9 @@ import {
 import MapView, { Marker, Polyline, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 import stations from "../assets/stations.json";
+import type { ChatHit } from "../chatbot";
 import { useI18n, type Lang } from "../i18n";
+import ChatPanel from "./ChatPanel";
 
 type Station = {
   id: string;
@@ -305,6 +307,49 @@ function formatArrival(remainS: number, lang: Lang) {
 
 type Props = { onLogout: () => void };
 
+function BatterySlider({
+  value,
+  onChange,
+  onDragStart,
+  onDragEnd,
+}: {
+  value: number;
+  onChange: (next: number) => void;
+  onDragStart?: () => void;
+  onDragEnd?: () => void;
+}) {
+  const widthRef = useRef(1);
+
+  const setFromX = (x: number) => {
+    const pct = Math.round(Math.min(100, Math.max(0, (x / widthRef.current) * 100)));
+    onChange(pct);
+  };
+
+  return (
+    <View
+      style={styles.sliderHit}
+      onLayout={(e) => {
+        widthRef.current = Math.max(1, e.nativeEvent.layout.width);
+      }}
+      onStartShouldSetResponder={() => true}
+      onMoveShouldSetResponder={() => true}
+      onResponderTerminationRequest={() => false}
+      onResponderGrant={(e) => {
+        onDragStart?.();
+        setFromX(e.nativeEvent.locationX);
+      }}
+      onResponderMove={(e) => setFromX(e.nativeEvent.locationX)}
+      onResponderRelease={() => onDragEnd?.()}
+      onResponderTerminate={() => onDragEnd?.()}
+    >
+      <View style={styles.sliderTrack}>
+        <View style={[styles.sliderFill, { width: `${value}%` }]} />
+      </View>
+      <View pointerEvents="none" style={[styles.sliderThumb, { left: `${value}%` }]} />
+    </View>
+  );
+}
+
 export default function MapScreen({ onLogout }: Props) {
   const { t, lang, setLang } = useI18n();
   const mapRef = useRef<MapView>(null);
@@ -330,6 +375,7 @@ export default function MapScreen({ onLogout }: Props) {
   const [gpsReady, setGpsReady] = useState(false);
   const [gpsError, setGpsError] = useState<string | null>(null);
   const [battery, setBattery] = useState(80);
+  const [menuScroll, setMenuScroll] = useState(true);
   const [query, setQuery] = useState("");
   const [focus, setFocus] = useState<Coord | null>(null);
   const [searchHits, setSearchHits] = useState<Station[]>([]);
@@ -343,6 +389,7 @@ export default function MapScreen({ onLogout }: Props) {
   destRef.current = dest;
   const [status, setStatus] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
   const [routeLine, setRouteLine] = useState<Coord[]>([]);
   const [routeMeta, setRouteMeta] = useState<{ km: string; min: string; steps: string[] } | null>(
     null
@@ -643,6 +690,16 @@ export default function MapScreen({ onLogout }: Props) {
     goTo(coord.latitude, coord.longitude, 0.02);
   };
 
+  const unlockStation = (closeMenu = false) => {
+    setDest(null);
+    setPreviewing(false);
+    setRouteLine([]);
+    setRouteMeta(null);
+    setSnapPos(null);
+    if (closeMenu) setMenuOpen(false);
+    setStatus(t.stationUnlocked);
+  };
+
   const pinOrigin = focus || coord;
   const pins = useMemo(
     () => nearbyStations(pinOrigin.latitude, pinOrigin.longitude, focus ? 18 : KM),
@@ -821,6 +878,38 @@ export default function MapScreen({ onLogout }: Props) {
         { preview: true }
       );
     }
+  };
+
+  const openChat = () => {
+    setMenuOpen(false);
+    setTripOpen(false);
+    setChatOpen(true);
+  };
+
+  const stationFromHit = (hit: ChatHit): Station => ({
+    id: hit.id,
+    name: hit.name,
+    lat: hit.lat,
+    lng: hit.lng,
+    city: hit.city,
+    source: hit.source,
+  });
+
+  const pickFromChat = (hit: ChatHit) => {
+    const station = stationFromHit(hit);
+    setDest(station);
+    setStatus(t.destStatus(station.name || station.id));
+    setChatOpen(false);
+    setMenuOpen(false);
+    goTo(station.lat, station.lng, 0.04);
+  };
+
+  const navFromChat = (hit: ChatHit) => {
+    const station = stationFromHit(hit);
+    setDest(station);
+    setChatOpen(false);
+    setMenuOpen(false);
+    startInAppRoute(station);
   };
 
   const placeFromMap = (lat: number, lng: number): Station => ({
@@ -1004,10 +1093,16 @@ export default function MapScreen({ onLogout }: Props) {
             const highlight = dest?.id === s.id || picked.some((p) => p.id === s.id);
             return (
               <Marker
-                key={s.id}
+                key={dest?.id === s.id ? `${s.id}-on` : s.id}
                 coordinate={{ latitude: s.lat, longitude: s.lng }}
                 title={s.name || s.id}
-                description={pickMode === "origin" ? t.tapMapForStart : t.tapToSetDest}
+                description={
+                  dest?.id === s.id
+                    ? t.tapAgainToUnlock
+                    : pickMode === "origin"
+                      ? t.tapMapForStart
+                      : t.tapToSetDest
+                }
                 pinColor={highlight ? "green" : "orange"}
                 onPress={() => {
                   if (pickMode === "origin") {
@@ -1020,6 +1115,10 @@ export default function MapScreen({ onLogout }: Props) {
                     setPickMode(null);
                     setTripOpen(true);
                     setStatus(`${t.originLabel}：${s.name || s.id}`);
+                    return;
+                  }
+                  if (dest?.id === s.id) {
+                    unlockStation(true);
                     return;
                   }
                   setDest(s);
@@ -1094,6 +1193,9 @@ export default function MapScreen({ onLogout }: Props) {
               <Pressable style={styles.menuFab} onPress={() => setMenuOpen(true)}>
                 <Text style={styles.menuFabTxt}>{t.features}</Text>
               </Pressable>
+              <Pressable style={[styles.menuFab, styles.chatFab]} onPress={openChat}>
+                <Text style={styles.menuFabTxt}>{t.chatFab}</Text>
+              </Pressable>
               <Pressable style={styles.floatBtn} onPress={() => locate(false)}>
                 <Text style={styles.floatTxt}>{t.locate}</Text>
               </Pressable>
@@ -1102,7 +1204,7 @@ export default function MapScreen({ onLogout }: Props) {
         )}
       </View>
 
-      {!navigating && !menuOpen && previewing && dest ? (
+      {!navigating && !menuOpen && !chatOpen && previewing && dest ? (
         <View style={styles.previewBar}>
           <View>
             <Text style={styles.etaMin}>
@@ -1128,7 +1230,7 @@ export default function MapScreen({ onLogout }: Props) {
         </View>
       ) : null}
 
-      {!navigating && !menuOpen && !tripOpen && !previewing && dest ? (
+      {!navigating && !menuOpen && !chatOpen && !tripOpen && !previewing && dest ? (
         <Pressable
           style={styles.slimNav}
           onPress={() => startInAppRoute(dest)}
@@ -1146,7 +1248,7 @@ export default function MapScreen({ onLogout }: Props) {
             <View style={styles.handleBar} />
             <Text style={styles.sheetClose}>{t.collapseMenu}</Text>
           </Pressable>
-          <ScrollView keyboardShouldPersistTaps="handled">
+          <ScrollView keyboardShouldPersistTaps="handled" scrollEnabled={menuScroll}>
             <View style={styles.searchRow}>
               <TextInput
                 style={[styles.search, { flex: 1, marginHorizontal: 0 }]}
@@ -1213,6 +1315,9 @@ export default function MapScreen({ onLogout }: Props) {
               >
                 <Text style={styles.goText}>{t.planTrip}</Text>
               </Pressable>
+              <Pressable style={styles.chatMenuBtn} onPress={openChat}>
+                <Text style={styles.chatMenuTxt}>{t.askCharger}</Text>
+              </Pressable>
               <Text style={styles.panelKicker}>{t.nearbyRec}</Text>
               <Text style={styles.panelTitle}>{t.smartSearch}</Text>
               <View style={styles.langRow}>
@@ -1222,17 +1327,12 @@ export default function MapScreen({ onLogout }: Props) {
               </View>
               <Text style={styles.muted}>{t.batteryLeft}</Text>
               <Text style={styles.battery}>{battery}%</Text>
-              <View style={styles.battRow}>
-                {[20, 50, 80, 100].map((v) => (
-                  <Pressable
-                    key={v}
-                    style={[styles.battBtn, battery === v && styles.battOn]}
-                    onPress={() => setBattery(v)}
-                  >
-                    <Text style={battery === v ? styles.battOnText : undefined}>{v}%</Text>
-                  </Pressable>
-                ))}
-              </View>
+              <BatterySlider
+                value={battery}
+                onChange={setBattery}
+                onDragStart={() => setMenuScroll(false)}
+                onDragEnd={() => setMenuScroll(true)}
+              />
               {searchHits.length ? (
                 <View style={styles.hitList}>
                   {searchHits.slice(0, 8).map((s) => (
@@ -1240,7 +1340,12 @@ export default function MapScreen({ onLogout }: Props) {
                       key={s.id}
                       style={[styles.hitRow, dest?.id === s.id && styles.hitOn]}
                       onPress={() => {
+                        if (dest?.id === s.id) {
+                          unlockStation();
+                          return;
+                        }
                         setDest(s);
+                        setStatus(t.destStatus(s.name || s.id));
                         goTo(s.lat, s.lng, 0.04);
                       }}
                     >
@@ -1396,6 +1501,27 @@ export default function MapScreen({ onLogout }: Props) {
       ) : null}
 
       {!gpsReady ? <Text style={styles.loading}>{t.locating}</Text> : null}
+      <ChatPanel
+        open={chatOpen && !navigating}
+        latitude={coord.latitude}
+        longitude={coord.longitude}
+        battery={battery}
+        dest={
+          dest
+            ? {
+                id: dest.id,
+                name: dest.name,
+                lat: dest.lat,
+                lng: dest.lng,
+                city: dest.city,
+                source: dest.source,
+              }
+            : null
+        }
+        onClose={() => setChatOpen(false)}
+        onPick={pickFromChat}
+        onNavigate={navFromChat}
+      />
     </View>
   );
 }
@@ -1557,6 +1683,16 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   menuFabTxt: { color: "#fff", fontWeight: "800", fontSize: 16 },
+  chatFab: { backgroundColor: "#2563eb" },
+  chatMenuBtn: {
+    borderWidth: 1.5,
+    borderColor: "#2563eb",
+    borderRadius: 20,
+    paddingVertical: 12,
+    alignItems: "center",
+    marginBottom: 12,
+  },
+  chatMenuTxt: { color: "#2563eb", fontWeight: "800" },
   sheet: {
     position: "absolute",
     left: 0,
@@ -1603,16 +1739,20 @@ const styles = StyleSheet.create({
   panelTitle: { fontWeight: "700", marginBottom: 4 },
   muted: { color: "#6b7280", fontSize: 12 },
   battery: { fontSize: 22, fontWeight: "700", color: "#16a34a" },
-  battRow: { flexDirection: "row", gap: 8, marginVertical: 8 },
-  battBtn: {
-    borderWidth: 1,
-    borderColor: "#d1d5db",
-    borderRadius: 16,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
+  sliderHit: { height: 36, justifyContent: "center", marginTop: 6, marginBottom: 12 },
+  sliderTrack: { height: 8, borderRadius: 4, backgroundColor: "#e5e7eb", overflow: "hidden" },
+  sliderFill: { height: 8, borderRadius: 4, backgroundColor: "#16a34a" },
+  sliderThumb: {
+    position: "absolute",
+    width: 22,
+    height: 22,
+    marginLeft: -11,
+    top: 7,
+    borderRadius: 11,
+    backgroundColor: "#16a34a",
+    borderWidth: 2,
+    borderColor: "#fff",
   },
-  battOn: { backgroundColor: "#16a34a", borderColor: "#16a34a" },
-  battOnText: { color: "#fff", fontWeight: "700" },
   go: {
     backgroundColor: "#16a34a",
     borderRadius: 20,
