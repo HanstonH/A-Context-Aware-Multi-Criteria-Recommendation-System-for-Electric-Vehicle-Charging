@@ -19,6 +19,8 @@ STATIONS_CSV = ROOT / "AI" / "data" / "taiwan_ev_stations.csv"
 PRICES_CSV = ROOT / "AI" / "data" / "unit_price_by_station_taiwan.csv"
 MANIFEST_PATH = ROOT / "Simulation" / "charging_station_manifest.json"
 RECS_CSV = ROOT / "AI" / "Algorithm" / "final_recommendations_summary.csv"
+TELEMETRY_CSV = ROOT / "Simulation" / "output" / "telemetry.csv"
+SIM_SUMMARY_JSON = ROOT / "Simulation" / "output" / "sim_summary.json"
 
 TDX_CITIES = (
     "Taipei", "NewTaipei", "Taoyuan", "Taichung", "Tainan", "Kaohsiung",
@@ -348,6 +350,88 @@ def seed_recommendations(conn: sqlite3.Connection, user_id: int) -> None:
             )
 
 
+def _opt_float(value: str | None) -> float | None:
+    if value is None or value == "":
+        return None
+    return float(value)
+
+
+def _opt_int(value: str | None) -> int | None:
+    if value is None or value == "":
+        return None
+    return int(float(value))
+
+
+def seed_sumo_telemetry(conn: sqlite3.Connection) -> int:
+    if not TELEMETRY_CSV.is_file():
+        print("skip SUMO telemetry: Simulation/output/telemetry.csv not found")
+        return 0
+
+    summary: dict = {}
+    if SIM_SUMMARY_JSON.is_file():
+        summary = json.loads(SIM_SUMMARY_JSON.read_text(encoding="utf-8"))
+
+    cur = conn.execute(
+        """
+        INSERT INTO simulation_runs (
+            exported_at, tracked_vehicle, simulation_end_s, steps_run,
+            sample_every_steps, row_count, recommended_station, events_json
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            summary.get("exported_at"),
+            summary.get("tracked_vehicle", "MCU_EV_TEST_01"),
+            summary.get("simulation_end_s"),
+            summary.get("steps_run"),
+            summary.get("sample_every_steps"),
+            summary.get("row_count"),
+            summary.get("recommended_station"),
+            json.dumps(summary.get("events") or [], ensure_ascii=False),
+        ),
+    )
+    run_id = cur.lastrowid
+    n = 0
+    with TELEMETRY_CSV.open(encoding="utf-8", newline="") as f:
+        for row in csv.DictReader(f):
+            conn.execute(
+                """
+                INSERT INTO simulation_telemetry (
+                    run_id, time_s, vehicle_id, lat, lon, x, y,
+                    speed_mps, acceleration_mps2, edge_id, lane_id,
+                    remaining_wh, max_wh, soc_percent, charging,
+                    charging_station_id, total_energy_consumed_wh,
+                    total_energy_regenerated_wh, energy_charged_wh,
+                    distance_m, is_tracked
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    run_id,
+                    _opt_float(row.get("time_s")),
+                    row.get("vehicle_id"),
+                    _opt_float(row.get("lat")),
+                    _opt_float(row.get("lon")),
+                    _opt_float(row.get("x")),
+                    _opt_float(row.get("y")),
+                    _opt_float(row.get("speed_mps")),
+                    _opt_float(row.get("acceleration_mps2")),
+                    row.get("edge_id"),
+                    row.get("lane_id"),
+                    _opt_float(row.get("remaining_wh")),
+                    _opt_float(row.get("max_wh")),
+                    _opt_float(row.get("soc_percent")),
+                    _opt_int(row.get("charging")),
+                    row.get("charging_station_id") or None,
+                    _opt_float(row.get("total_energy_consumed_wh")),
+                    _opt_float(row.get("total_energy_regenerated_wh")),
+                    _opt_float(row.get("energy_charged_wh")),
+                    _opt_float(row.get("distance_m")),
+                    _opt_int(row.get("is_tracked")),
+                ),
+            )
+            n += 1
+    return n
+
+
 def main() -> None:
     conn = _connect()
     try:
@@ -358,6 +442,7 @@ def main() -> None:
         rate_n = seed_tdx_rates(conn)
         seed_tdx_price_summary(conn)
         seed_recommendations(conn, user_id)
+        telem_n = seed_sumo_telemetry(conn)
         conn.commit()
         counts = {
             table: conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
@@ -370,12 +455,15 @@ def main() -> None:
                 "parking_rates",
                 "recommendation_requests",
                 "recommendation_results",
+                "simulation_runs",
+                "simulation_telemetry",
             )
         }
         print(f"Created {DB_PATH}")
         print(f"TDX stations inserted: {tdx_n}")
         print(f"TDX parking rows inserted: {parking_n}")
         print(f"TDX rate rows inserted: {rate_n}")
+        print(f"SUMO telemetry rows inserted: {telem_n}")
         for table, n in counts.items():
             print(f"  {table}: {n}")
         print(f"Demo login: {DEMO_EMAIL} / {DEMO_PASSWORD}")

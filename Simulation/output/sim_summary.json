@@ -1,0 +1,27 @@
+{
+  "exported_at": "2026-07-05T11:52:37.527453+00:00",
+  "telemetry_csv": "C:\\Users\\USER\\Desktop\\MCU_EV_Project_V2\\Simulation\\output\\telemetry.csv",
+  "sample_every_steps": 5,
+  "row_count": 9262,
+  "tracked_vehicle": "MCU_EV_TEST_01",
+  "events": [
+    {
+      "time_s": 10.0,
+      "type": "low_battery",
+      "vehicle": "MCU_EV_TEST_01",
+      "remaining_wh": 4862.06,
+      "lat": 25.0345564313395,
+      "lon": 121.54903883346174
+    },
+    {
+      "time_s": 10.0,
+      "type": "charging_stop_queued",
+      "vehicle": "MCU_EV_TEST_01",
+      "station": "臺北花博超級充電站",
+      "mac": "TW41020FE720E8"
+    }
+  ],
+  "simulation_end_s": 2400.0,
+  "steps_run": 2400,
+  "recommended_station": "充電站 53"
+}

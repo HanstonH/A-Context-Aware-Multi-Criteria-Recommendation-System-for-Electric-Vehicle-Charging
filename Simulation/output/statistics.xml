@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-07-05T20:20:26.457686+08:00 by Eclipse SUMO GUI 1.26.0
+<sumoConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="C:\Users\USER\Desktop\MCU_EV_Project_V2\Simulation\taipei.net.xml"/>
+        <route-files value="C:\Users\USER\Desktop\MCU_EV_Project_V2\Simulation\taipei.rou.xml"/>
+        <additional-files value="C:\Users\USER\Desktop\MCU_EV_Project_V2\Simulation\my_config.additional.xml,C:\Users\USER\Desktop\MCU_EV_Project_V2\Simulation\charging_stations.add.xml"/>
+    </input>
+
+    <output>
+        <battery-output value="C:\Users\USER\Desktop\MCU_EV_Project_V2\Simulation\output/battery_log.xml"/>
+        <battery-output.precision value="2"/>
+        <summary-output value="C:\Users\USER\Desktop\MCU_EV_Project_V2\Simulation\output/summary.xml"/>
+        <tripinfo-output value="C:\Users\USER\Desktop\MCU_EV_Project_V2\Simulation\output/tripinfo.xml"/>
+        <statistic-output value="C:\Users\USER\Desktop\MCU_EV_Project_V2\Simulation\output/statistics.xml"/>
+    </output>
+
+    <time>
+        <begin value="0"/>
+        <end value="3600"/>
+    </time>
+
+    <processing>
+        <ignore-route-errors value="true"/>
+    </processing>
+
+    <traci_server>
+        <remote-port value="50187"/>
+    </traci_server>
+
+    <gui_only>
+        <gui-settings-file value="C:\Users\USER\Desktop\MCU_EV_Project_V2\Simulation\taiwan_gui.settings.xml"/>
+        <delay value="80"/>
+    </gui_only>
+
+</sumoConfiguration>
