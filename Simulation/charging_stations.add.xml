@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
-    <poi id="chg_TW7D458E7A0EB9_0" x="1161.83" y="-3247.18" color="0,200,80,255" type="charging_station" layer="202" width="60.0" height="60.0" />
-    <poi id="chg_TW41020FE720E8_1" x="-488.80" y="4936.82" color="0,200,80,255" type="charging_station" layer="202" width="60.0" height="60.0" />
-    <chargingStation id="cs_TW41020FE720E8" lane="48776360_0" startPos="774.78" endPos="786.78" power="150000" efficiency="0.9" chargeInTransit="false" />
-    <poi id="chg_TWBBF2C1303F22_2" x="2238.86" y="-269.25" color="0,200,80,255" type="charging_station" layer="202" width="60.0" height="60.0" />
-    <chargingStation id="cs_TWBBF2C1303F22" lane="48768070#0_0" startPos="339.63" endPos="351.63" power="150000" efficiency="0.9" chargeInTransit="false" />
-    <poi id="chg_TWC5CE594C7B70_3" x="4698.36" y="-2949.36" color="0,200,80,255" type="charging_station" layer="202" width="60.0" height="60.0" />
-</additional>

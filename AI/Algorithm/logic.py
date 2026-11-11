@@ -1,1139 +1,896 @@
 '''
-Make a model that chooses based on 
-1. Distance, done
-Distance logic that needs to follow the road (not just a straight line from A to B) 
+EV charging-station recommender (Taiwan / TDX data).
 
-2. Waiting time (How many people are using) done
-use a machine learning model to predict whether it will be vacant when you get there. 
-Then use that value to the algorithm
-
-3. Cost (how expensive the station is)
-
-4. POI score (make own logic), done
+Flow:
+1. Given the user's battery percentage and urgency, derive how far they can still
+   drive and what the user context is (critical / normal / comfort).
+2. Fetch all stations in the city (TDX), keep only stations that are reachable
+   AND have at least one connector available right now.
+3. Pick the 10 closest candidates (straight-line prefilter to limit API calls).
+4. Enrich each candidate with:
+   - Road distance  (Google Routes API)
+   - Cost           (TDX charging rates)
+   - Live connector counts (TDX ConnectorLiveStatus)
+5. Rank candidates with the TOPSIS algorithm using exponential context-aware weights
+   derived from battery level (survival growth + comfort decay curves).
+6. Attach the nearby POIs (Google Places API New) to each ranked station so the
+   map can show them around the station. POIs are display-only and do not
+   affect the ranking.
 '''
 from __future__ import annotations
 
+import os
 import sys
-from dataclasses import asdict, dataclass
-from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Union
+from dataclasses import dataclass
+from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
-from pandas.tseries.holiday import USFederalHolidayCalendar
+from dotenv import load_dotenv
 
+from API import TDXClient
 from get_Distance_EV import get_distance_ev
 from get_POI import Get_POI
 
-_ALGORITHM_DIR = Path(__file__).resolve().parent
-if str(_ALGORITHM_DIR) not in sys.path:
-    sys.path.insert(0, str(_ALGORITHM_DIR))
+load_dotenv()
 
-from config import (  # noqa: E402
-    DEFAULT_MAX_BATTERY_WH,
-    DEFAULT_STOPPING_THRESHOLD_WH,
-    DEFAULT_WH_PER_KM,
-    FEATURE_COLUMNS,
-    MODEL_A_DIR,
-    PALO_ALTO_BOUNDS,
-    PALO_ALTO_CENTER,
-    PLUG_TYPE_MAP,
-    RANGE_SAFETY_FACTOR,
-    RAW_DATA_PATH,
-    UNIT_PRICE_PATH,
-)
-from model_a import ModelAService  # noqa: E402
-from model_b import ModelBService  # noqa: E402
-from preprocessing import InferencePreprocessor  # noqa: E402
+# TDX ConnectorStatus: 1 = available (idle), 2 = occupied/charging, 3 = fault.
+_CONNECTOR_AVAILABLE = 1
+# TDX RateType: 1 = free, 2 = per kWh, 3 = per minute, 4 = per hour.
+_RATE_FREE = 1
+_RATE_PER_KWH = 2
 
-_HOLIDAY_CAL = USFederalHolidayCalendar()
-_CLOUD_FRACTION_SCALE = 100.0
-_LIGHT_PRECIP_MM = 2.5
-_COMFORT_TEMP_C = 22.5
+_EARTH_RADIUS_M = 6_371_000.0
+_FAILED_DISTANCE_M = 999_999  # penalty when the routing API fails
 
-WaitInput = Union[Dict[str, Any], pd.Series, pd.DataFrame]
+def load_all_stations_from_snapshot(city: str) -> pd.DataFrame:
+    """Return every station for a city from the local snapshot (no ranking).
 
+    Used to plot all pins on the map. Availability is synthesized since the
+    snapshot has no live status.
+    """
+    snapshot_path = (
+        Path(__file__).parent.parent.parent
+        / "static" / "processed" / "stations_master.parquet"
+    )
+    df = pd.read_parquet(snapshot_path)
+    df = df[df["city"] == city].copy()
+    df = df[["StationID", "station_name", "lat", "lon",
+             "spaces", "charging_points", "cost"]]
+    df = df.dropna(subset=["StationID", "lat", "lon"]).drop_duplicates("StationID")
+    df["total_connectors"] = df["charging_points"].fillna(0).astype(int)
+    df["available_points"] = (df["total_connectors"] * 0.7).round().astype(int)
+    if df["cost"].isna().all():
+        df["cost"] = 0.0
+    else:
+        df["cost"] = df["cost"].fillna(df["cost"].median())
+    return df.reset_index(drop=True)
+
+
+def haversine_metres(lat1: float, lon1: float, lat2, lon2):
+    """Straight-line distance in metres. lat2/lon2 may be arrays (vectorized)."""
+    lat1, lon1 = np.radians(lat1), np.radians(lon1)
+    lat2, lon2 = np.radians(np.asarray(lat2, dtype=float)), np.radians(np.asarray(lon2, dtype=float))
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    a = np.sin(dlat / 2) ** 2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon / 2) ** 2
+    return 2 * _EARTH_RADIUS_M * np.arcsin(np.sqrt(a))
+
+
+# =============================================================================
+# Part A: Exponential Context-Aware Weight Engine
+# =============================================================================
+
+# Survival growth parameters (distance & available pots increase as battery drops).
+_W_BASE_DIST = 0.10
+_W_SURVIVAL_AMP_DIST = 0.60
+_W_BASE_POTS = 0.15
+_W_SURVIVAL_AMP_POTS = 0.30
+_K_SURVIVAL = 7.0
+
+# Comfort decay parameters (cost increases as battery rises).
+_W_MAX_COST = 0.40
+_K_COMFORT = 4.0
+
+# Hardcoded urgency override — already sums to 1.0.
+_URGENCY_WEIGHTS = [0.60, 0.05, 0.35]  # [w_distance, w_cost, w_pots]
+
+
+@dataclass(frozen=True)
+class WeightVector:
+    """Criterion weights for TOPSIS; must sum to 1.0.
+
+    Column order matches the TOPSIS decision matrix:
+        [distance, cost, pots]
+    """
+    w_distance: float
+    w_cost: float
+    w_pots: float
+
+    def __post_init__(self):
+        total = self.w_distance + self.w_cost + self.w_pots
+        if not np.isclose(total, 1.0, atol=1e-6):
+            raise ValueError(f"Weights must sum to 1.0, got {total:.6f}")
+
+    def as_array(self) -> np.ndarray:
+        """Return weights as a 1-D numpy array [w_distance, w_cost, w_pots]."""
+        return np.array([self.w_distance, self.w_cost, self.w_pots])
+
+
+def get_exponential_weights(
+    battery_percentage: float,
+    is_available_now: bool,
+) -> List[float]:
+    """Compute TOPSIS weight vector via independent exponential growth/decay curves.
+
+    Parameters
+    ----------
+    battery_percentage:
+        Remaining battery as a fraction in [0.0, 1.0] (clamped if out of range).
+    is_available_now:
+        When True, bypass exponential math and return the hardcoded urgency vector.
+
+    Returns
+    -------
+    list[float]
+        Strictly normalised ``[w_distance, w_cost, w_pots]`` summing to 1.0.
+
+    Formulas (B = clamped battery fraction)
+    ---------------------------------------
+    w_dist_raw  = W_base_dist  + A      * exp(-k_survival * B)
+    w_pots_raw  = W_base_pots  + B_amp  * exp(-k_survival * B)
+    w_cost_raw  = W_max_cost   * (1 - exp(-k_comfort * B))
+    """
+    if is_available_now:
+        return list(_URGENCY_WEIGHTS)
+
+    B = float(np.clip(battery_percentage, 0.0, 1.0))
+
+    survival_decay = np.exp(-_K_SURVIVAL * B)
+    comfort_growth = 1.0 - np.exp(-_K_COMFORT * B)
+
+    w_dist_raw = _W_BASE_DIST + _W_SURVIVAL_AMP_DIST * survival_decay
+    w_pots_raw = _W_BASE_POTS + _W_SURVIVAL_AMP_POTS * survival_decay
+    w_cost_raw = _W_MAX_COST * comfort_growth
+
+    raw = np.array([w_dist_raw, w_cost_raw, w_pots_raw], dtype=float)
+    total = raw.sum()
+    if total <= 0.0:
+        raise ValueError("Exponential weight raw sum is zero; cannot normalise.")
+    return (raw / total).tolist()
+
+
+def get_dynamic_weights(battery_percentage: float, is_available_now: bool) -> WeightVector:
+    """Return context-aware weights as a ``WeightVector`` for TOPSIS.
+
+    Delegates to ``get_exponential_weights`` and wraps the result.
+    """
+    w_dist, w_cost, w_pots = get_exponential_weights(
+        battery_percentage, is_available_now
+    )
+    return WeightVector(w_distance=w_dist, w_cost=w_cost, w_pots=w_pots)
+
+
+# TOPSIS column order: [distance, cost, pots]
+# True  = cost criterion (lower is better) → PIS = min, NIS = max
+# False = benefit criterion (higher is better) → PIS = max, NIS = min
+_IS_COST_CRITERION = np.array([True, True, False])
+
+# Distance added to stations with zero available pots when the user is urgent,
+# making them sort last without hard-removing them (edge case: all stations full).
+_OCCUPIED_PENALTY = 1e9
+
+
+# =============================================================================
+# Part B: Pure Vectorized TOPSIS Algorithm
+# =============================================================================
+
+def topsis_rank(
+    stations: List[Dict[str, Any]],
+    battery_percentage: float,
+    is_available_now: bool,
+) -> List[Dict[str, Any]]:
+    """Rank EV station candidates using TOPSIS with context-aware weights.
+
+    Parameters
+    ----------
+    stations:
+        Up to 10 station dicts, each with:
+          ``id``             – string identifier
+          ``distance``       – metres from user (minimise)
+          ``cost``           – charging fee per kWh (minimise)
+          ``available_pots`` – idle connector count right now (maximise)
+    battery_percentage:
+        Remaining battery as a fraction [0.0, 1.0].
+    is_available_now:
+        True when the user cannot wait and needs an immediate slot.
+
+    Returns
+    -------
+    The input list sorted best-first, each dict extended with ``topsis_score``
+    (the TOPSIS closeness coefficient C_i ∈ [0, 1]).
+    """
+    if not stations:
+        return []
+
+    weights = get_dynamic_weights(battery_percentage, is_available_now)
+    w = weights.as_array()  # shape (3,)
+
+    # ------------------------------------------------------------------
+    # Pre-filtering guardrail: add a massive distance penalty to any station
+    # with zero available pots when the user is urgent, ensuring they rank
+    # last.  We penalise rather than drop so the user always gets N results.
+    # ------------------------------------------------------------------
+    working: List[Dict[str, Any]] = [dict(s) for s in stations]
+    if is_available_now:
+        for s in working:
+            if s.get("available_pots", 0) == 0:
+                s["distance"] = float(s.get("distance", 0)) + _OCCUPIED_PENALTY
+
+    # ------------------------------------------------------------------
+    # Step 1 — Decision matrix X  (n × 3)
+    # Column order: [distance, cost, available_pots]
+    # ------------------------------------------------------------------
+    X = np.array(
+        [
+            [
+                float(s.get("distance", 0)),
+                float(s.get("cost", 0)),
+                float(s.get("available_pots", 0)),
+            ]
+            for s in working
+        ],
+        dtype=float,
+    )  # (n, 3)
+
+    # ------------------------------------------------------------------
+    # Step 2 — Vector normalisation:  r_ij = x_ij / ||x_j||
+    # Guard against all-zero columns (constant criterion).
+    # ------------------------------------------------------------------
+    col_norms = np.sqrt((X ** 2).sum(axis=0))          # (3,)
+    col_norms = np.where(col_norms == 0.0, 1.0, col_norms)
+    R = X / col_norms                                   # (n, 3)
+
+    # ------------------------------------------------------------------
+    # Step 3 — Weighted normalised matrix  V = R ⊙ w
+    # ------------------------------------------------------------------
+    V = R * w                                           # (n, 3)
+
+    # ------------------------------------------------------------------
+    # Step 4 — Ideal (PIS / A+) and Anti-Ideal (NIS / A-) solutions
+    # Cost criteria  [distance, cost]:  PIS = col_min,  NIS = col_max
+    # Benefit criteria [pots]:          PIS = col_max,  NIS = col_min
+    # ------------------------------------------------------------------
+    PIS = np.where(_IS_COST_CRITERION, V.min(axis=0), V.max(axis=0))  # (3,)
+    NIS = np.where(_IS_COST_CRITERION, V.max(axis=0), V.min(axis=0))  # (3,)
+
+    # ------------------------------------------------------------------
+    # Step 5 — Euclidean distances to PIS and NIS for each station
+    # ------------------------------------------------------------------
+    S_pos = np.sqrt(((V - PIS) ** 2).sum(axis=1))      # (n,)
+    S_neg = np.sqrt(((V - NIS) ** 2).sum(axis=1))      # (n,)
+
+    # ------------------------------------------------------------------
+    # Step 6 — Closeness coefficient  C_i = S_neg / (S_pos + S_neg)
+    # When all stations are identical the denominator is 0; return 0.5 uniformly.
+    # ------------------------------------------------------------------
+    denom = S_pos + S_neg
+    with np.errstate(invalid="ignore", divide="ignore"):
+        C = np.where(denom == 0.0, 0.5, S_neg / denom)   # (n,)
+
+    # ------------------------------------------------------------------
+    # Step 7 — Attach score to original dicts (not penalised copies) and sort.
+    # ------------------------------------------------------------------
+    scored = [
+        {**original, "topsis_score": float(round(score, 6))}
+        for original, score in zip(stations, C)
+    ]
+    scored.sort(key=lambda s: s["topsis_score"], reverse=True)
+    return scored
+
+
+# =============================================================================
+# Calculation_Model — full TDX pipeline
+# =============================================================================
 
 class Calculation_Model:
+    """Scores candidate EV stations using TOPSIS with context-aware weights."""
 
-    def __init__(self, user_location):
-        self.w_poi = 0.25
-        self.w_cost = 0.25
-        self.w_dist = 0.25
-        self.w_wait = 0.25
-        self.user_location = user_location
-        self._preprocessor: Optional[InferencePreprocessor] = None
-        self._model_a: Optional[ModelAService] = None
-        self._model_b: Optional[ModelBService] = None
-
-    def _ensure_wait_models(self) -> None:
-        """Lazy-load Model A, Model B, and the inference preprocessor."""
-        if self._preprocessor is None:
-            self._preprocessor = InferencePreprocessor()
-            self._model_a = ModelAService()
-            self._model_b = ModelBService()
-
-    @staticmethod
-    def _encode_plug_type(value: Any) -> int:
-        if isinstance(value, (int, np.integer)) and not isinstance(value, bool):
-            return int(value)
-        if isinstance(value, float) and value in (0.0, 1.0):
-            return int(value)
-        key = str(value).strip()
-        if key in PLUG_TYPE_MAP:
-            return PLUG_TYPE_MAP[key]
-        raise ValueError(
-            f"Unknown plug type {value!r}. Use 0/1 or one of {list(PLUG_TYPE_MAP)}."
-        )
-
-    @classmethod
-    def _add_time_features(cls, row: Dict[str, Any], dt: datetime) -> None:
-        hour = dt.hour
-        month = dt.month
-        dow = dt.weekday()
-        holidays = _HOLIDAY_CAL.holidays(start=str(dt.year), end=str(dt.year))
-        row.setdefault("Minute", dt.minute)
-        row.setdefault("Hour", hour)
-        row.setdefault("DayOfWeek", dow)
-        row.setdefault("Month", month)
-        row.setdefault("IsWeekend", int(dow >= 5))
-        row.setdefault("IsHoliday", int(pd.Timestamp(dt.date()) in holidays))
-        row.setdefault("Hour_Sin", np.sin(2 * np.pi * hour / 24))
-        row.setdefault("Hour_Cos", np.cos(2 * np.pi * hour / 24))
-        row.setdefault("Month_Sin", np.sin(2 * np.pi * month / 12))
-        row.setdefault("Month_Cos", np.cos(2 * np.pi * month / 12))
-
-    @staticmethod
-    def _holiday_proximity(dt: datetime) -> tuple[int, int]:
-        session_day = np.datetime64(pd.Timestamp(dt.date()), "D")
-        start = pd.Timestamp(dt.date()) - pd.Timedelta(days=400)
-        end = pd.Timestamp(dt.date()) + pd.Timedelta(days=400)
-        holidays = (
-            pd.DatetimeIndex(_HOLIDAY_CAL.holidays(start=start, end=end))
-            .normalize()
-            .unique()
-            .values
-            .astype("datetime64[D]")
-        )
-
-        next_idx = np.searchsorted(holidays, session_day, side="right")
-        prev_idx = next_idx - 1
-
-        days_until = int((holidays[next_idx] - session_day).astype(int)) if next_idx < len(holidays) else 0
-        days_since = int((session_day - holidays[prev_idx]).astype(int)) if prev_idx >= 0 else 0
-        return days_until, days_since
-
-    @staticmethod
-    def _parasitic_load_probability(temp: float, precip: float) -> int:
-        if temp <= 0 and precip > 0:
-            return 3
-        if temp < 5 or temp > 30:
-            return 2
-        if (5 <= temp < 15) or (0 < precip <= _LIGHT_PRECIP_MM):
-            return 1
-        if 15 <= temp <= 25 and precip <= 0:
-            return 0
-        return 1
-
-    @classmethod
-    def _add_engineered_model_features(cls, row: Dict[str, Any], dt: datetime) -> None:
-        days_until, days_since = cls._holiday_proximity(dt)
-        row.setdefault("Days_Until_Next_Holiday", days_until)
-        row.setdefault("Days_Since_Last_Holiday", days_since)
-
-        temp = float(row.get("temp", _COMFORT_TEMP_C) or _COMFORT_TEMP_C)
-        precip = float(row.get("precip", 0.0) or 0.0)
-        clouds = float(row.get("clouds", 0.0) or 0.0)
-        clouds_frac = clouds / _CLOUD_FRACTION_SCALE if clouds > 1.0 else clouds
-
-        row.setdefault("Thermal_Deviation_Index", abs(temp - _COMFORT_TEMP_C))
-        row.setdefault("Is_Freezing_Penalty", int(temp <= 0))
-        row.setdefault("Extreme_Heat_Throttle_Risk", int(temp >= 35))
-        row.setdefault("Solar_Irradiance_Proxy", int(temp > 30 and clouds_frac < 0.2))
-        row.setdefault("Parasitic_Load_Probability_Index", cls._parasitic_load_probability(temp, precip))
-
-    @classmethod
-    def _feature_row_from_input(
-        cls,
-        data: WaitInput,
+    def __init__(
+        self,
+        user_location: Tuple[float, float],
+        battery_percent: float,
         *,
-        at_time: Optional[datetime] = None,
-    ) -> pd.DataFrame:
-        """Normalize dict / Series / single-row DataFrame to one model-ready row."""
-        if isinstance(data, pd.DataFrame):
-            if len(data) != 1:
-                raise ValueError("Expected a single-row DataFrame.")
-            row = data.iloc[0].to_dict()
-        elif isinstance(data, pd.Series):
-            row = data.to_dict()
-        elif isinstance(data, dict):
-            row = dict(data)
+        is_available_now: bool = False,
+        city: str = "Taipei",
+        full_range_km: float = 300.0,
+        range_safety_factor: float = 0.8,
+        max_candidates: int = 10,
+        tdx_client: Optional[TDXClient] = None,
+        use_snapshot: bool = False,
+    ):
+        self.user_location = (float(user_location[0]), float(user_location[1]))
+        # Stored as 0-100 for human readability; converted to 0-1 when calling
+        # the weight engine.
+        self.battery_percent = float(battery_percent)
+        self.is_available_now = is_available_now
+        self.city = city
+        self.full_range_km = full_range_km
+        self.range_safety_factor = range_safety_factor
+        self.max_candidates = max_candidates
+        self.use_snapshot = use_snapshot
+
+        self._tdx = tdx_client or TDXClient(
+            os.getenv("TDX_CLIENT_ID"),
+            os.getenv("TDX_CLIENT_SECRET"),
+        )
+
+    # ------------------------------------------------------------------
+    # Convenience properties
+    # ------------------------------------------------------------------
+    @property
+    def battery_fraction(self) -> float:
+        """Battery level in [0.0, 1.0] for use with the weight engine."""
+        return max(self.battery_percent, 0.0) / 100.0
+
+    @property
+    def weights(self) -> WeightVector:
+        """Current context-aware weight vector."""
+        return get_dynamic_weights(self.battery_fraction, self.is_available_now)
+
+    @property
+    def reachable_metres(self) -> float:
+        """Estimated remaining driving range in metres."""
+        return self.battery_fraction * self.full_range_km * 1000.0 * self.range_safety_factor
+
+    # ------------------------------------------------------------------
+    # Step 1-2: fetch TDX data and build the station table
+    # ------------------------------------------------------------------
+    def build_station_dataframe(self) -> pd.DataFrame:
+        """Fetch stations + live status + charging rates and merge into one table."""
+        stations = self._tdx.get_ev_stations(self.city)
+        live = self._tdx.get_ev_connector_live_status(self.city)
+        rates = self._tdx.get_ev_charging_rate(self.city)
+
+        df = pd.DataFrame(
+            {
+                "StationID": s.get("StationID"),
+                "station_name": (s.get("StationName") or {}).get("Zh_tw"),
+                "lat": s.get("PositionLat"),
+                "lon": s.get("PositionLon"),
+                "spaces": s.get("Spaces"),
+                "charging_points": s.get("ChargingPoints"),
+            }
+            for s in stations
+        )
+        df = df.dropna(subset=["StationID", "lat", "lon"]).drop_duplicates("StationID")
+        df = self._attach_availability(df, live)
+        df = self._attach_costs(df, rates)
+        return df.reset_index(drop=True)
+
+    
+    def build_station_dataframe_from_snapshot(self) -> pd.DataFrame:
+        """Load stations from the local static snapshot instead of live TDX.
+
+        Offline/demo mode. Availability is synthesized because the snapshot
+        has no live ConnectorLiveStatus data.
+        """
+        snapshot_path = (
+            Path(__file__).parent.parent.parent
+            / "static" / "processed" / "stations_master.parquet"
+        )
+        df = pd.read_parquet(snapshot_path)
+        df = df[df["city"] == self.city].copy()
+        df = df[["StationID", "station_name", "lat", "lon",
+                 "spaces", "charging_points", "cost"]]
+        df = df.dropna(subset=["StationID", "lat", "lon"]).drop_duplicates("StationID")
+
+        df["total_connectors"] = df["charging_points"].fillna(0).astype(int)
+        df["available_points"] = (df["total_connectors"] * 0.7).round().astype(int)
+
+        if df["cost"].isna().all():
+            df["cost"] = 0.0
         else:
-            raise TypeError("data must be a dict, pandas Series, or single-row DataFrame.")
+            df["cost"] = df["cost"].fillna(df["cost"].median())
+        return df.reset_index(drop=True)
 
-        if "Plug Type Encoded" not in row and "Plug Type" in row:
-            row["Plug Type Encoded"] = cls._encode_plug_type(row.pop("Plug Type"))
+    @staticmethod
+    def _attach_availability(df: pd.DataFrame, live_statuses: List[Dict[str, Any]]) -> pd.DataFrame:
+        if live_statuses:
+            live = pd.DataFrame(live_statuses)
+            grouped = live.groupby("StationID")["ConnectorStatus"].agg(
+                available_points=lambda s: int((s == _CONNECTOR_AVAILABLE).sum()),
+                total_connectors="size",
+            )
+            df = df.merge(grouped, on="StationID", how="left")
+        else:
+            df["available_points"] = np.nan
+            df["total_connectors"] = np.nan
 
-        dt = at_time or datetime.now()
-        if any(k not in row for k in ("Hour", "Minute", "DayOfWeek", "Month")):
-            cls._add_time_features(row, dt)
+        df["available_points"] = df["available_points"].fillna(0).astype(int)
+        df["total_connectors"] = df["total_connectors"].fillna(0).astype(int)
+        return df
 
-        if "fee" not in row:
-            row["fee"] = row.get("cost", 0.0)
+    @staticmethod
+    def _station_cost_from_rates(rate_records: List[Dict[str, Any]]) -> pd.DataFrame:
+        """Collapse TDX rate records to a single median price per station.
 
-        cls._add_engineered_model_features(row, dt)
+        Prefers per-kWh rates (RateType 2); free stations count as 0.
+        """
+        rows = []
+        for record in rate_records:
+            station_id = record.get("StationID")
+            for rate in record.get("Rates") or []:
+                rate_type = rate.get("RateType")
+                price = rate.get("RatePrice")
+                if rate_type == _RATE_FREE:
+                    rows.append((station_id, 0.0, True))
+                elif price is not None:
+                    rows.append((station_id, float(price), rate_type == _RATE_PER_KWH))
 
-        missing = [c for c in FEATURE_COLUMNS if c not in row]
-        if missing:
+        if not rows:
+            return pd.DataFrame(columns=["StationID", "cost"])
+
+        rates_df = pd.DataFrame(rows, columns=["StationID", "price", "preferred"])
+        preferred = rates_df[rates_df["preferred"]].groupby("StationID")["price"].median()
+        fallback = rates_df.groupby("StationID")["price"].median()
+        return preferred.combine_first(fallback).rename("cost").reset_index()
+
+    def _attach_costs(self, df: pd.DataFrame, rate_records: List[Dict[str, Any]]) -> pd.DataFrame:
+        cost_table = self._station_cost_from_rates(rate_records)
+        df = df.merge(cost_table, on="StationID", how="left")
+        median_cost = df["cost"].median()
+        df["cost"] = df["cost"].fillna(0.0 if pd.isna(median_cost) else median_cost)
+        return df
+
+    # ------------------------------------------------------------------
+    # Step 3: vicinity search → candidate selection
+    # ------------------------------------------------------------------
+    def select_candidates(self, stations_df: pd.DataFrame) -> pd.DataFrame:
+        """Return up to max_candidates reachable + available stations."""
+        df = stations_df.copy()
+        df["straight_line_m"] = haversine_metres(
+            self.user_location[0], self.user_location[1], df["lat"], df["lon"]
+        )
+
+        reachable = df["straight_line_m"] <= self.reachable_metres
+        available = df["available_points"] >= 1
+        candidates = df[reachable & available]
+
+        if candidates.empty:
+            candidates = df[reachable]  # fallback: all reachable even if busy
+        if candidates.empty:
             raise ValueError(
-                f"Missing required feature columns: {missing}. "
-                f"Expected schema: {FEATURE_COLUMNS}"
+                f"No station reachable within {self.reachable_metres / 1000:.1f} km "
+                f"(battery {self.battery_percent:.0f}%)."
             )
 
-        return pd.DataFrame([{c: row[c] for c in FEATURE_COLUMNS}], columns=FEATURE_COLUMNS)
+        return (
+            candidates.sort_values("straight_line_m")
+            .head(self.max_candidates)
+            .reset_index(drop=True)
+        )
 
+    # ------------------------------------------------------------------
+    # Step 4a: road distance (Google Routes)
+    # ------------------------------------------------------------------
+    def process_distances(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Add a road ``distance`` (metres) column for every candidate."""
+        def get_row_dist(row):
+            dest = (row["lat"], row["lon"])
+            result = get_distance_ev(dest, self.user_location)
+            if result and result.get("routes"):
+                route = result["routes"][0]
+                distance = route.get("distanceMeters")
+                if distance is not None:
+                    return distance
+                # Degenerate ~0 s trip: Routes API omits distanceMeters.
+                if "straight_line_m" in row and pd.notna(row["straight_line_m"]):
+                    return float(row["straight_line_m"])
+            return _FAILED_DISTANCE_M
+
+        df = df.copy()
+        df["distance"] = df.apply(get_row_dist, axis=1)
+        return df
+
+    # ------------------------------------------------------------------
+    # Step 6: POIs around each station (Google Places) — display only
+    # ------------------------------------------------------------------
+    def get_POI(self, latitude, longitude):
+        """Raw nearby-POI JSON for one coordinate (max 20 places)."""
+        return Get_POI().call_API(latitude, longitude)
+
+    @staticmethod
+    def parse_nearby_pois(data: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Flatten a Places searchNearby response into simple map markers.
+
+        Each POI keeps only what the map needs (name, position, type, rating,
+        walking distance from the station), sorted nearest first.
+        """
+        if not data or not data.get("places"):
+            return []
+
+        summaries = data.get("routingSummaries") or []
+        pois = []
+        for i, place in enumerate(data["places"]):
+            location = place.get("location") or {}
+            if location.get("latitude") is None or location.get("longitude") is None:
+                continue
+            legs = (summaries[i].get("legs") if i < len(summaries) else None) or [{}]
+            pois.append(
+                {
+                    "id": place.get("id"),
+                    "name": (place.get("displayName") or {}).get("text"),
+                    "type": place.get("primaryType"),
+                    "lat": location["latitude"],
+                    "lon": location["longitude"],
+                    "address": place.get("formattedAddress"),
+                    "rating": place.get("rating"),
+                    "review_count": place.get("userRatingCount"),
+                    "walk_distance_m": legs[0].get("distanceMeters"),
+                    "open_now": (place.get("currentOpeningHours") or {}).get("openNow"),
+                    "maps_uri": place.get("googleMapsUri"),
+                }
+            )
+
+        pois.sort(
+            key=lambda p: p["walk_distance_m"] if p["walk_distance_m"] is not None else float("inf")
+        )
+        return pois
+
+    def nearby_pois(self, latitude: float, longitude: float) -> List[Dict[str, Any]]:
+        """POIs within walking distance of one station."""
+        return self.parse_nearby_pois(self.get_POI(latitude, longitude))
+
+    def attach_nearby_pois(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Add ``nearby_pois`` (list of POI dicts) and ``poi_count`` per station.
+
+        Informational only — these columns are not used for ranking.
+        """
+        print("Fetching nearby POIs for the map... this may take a moment.")
+        df = df.copy()
+        df["nearby_pois"] = [self.nearby_pois(row["lat"], row["lon"]) for _, row in df.iterrows()]
+        df["poi_count"] = df["nearby_pois"].apply(len)
+        return df
+
+    # ------------------------------------------------------------------
+    # Step 5a: weighted-sum score (auxiliary breakdown columns)
+    # ------------------------------------------------------------------
     @staticmethod
     def _normalize_higher_is_better(series: pd.Series) -> pd.Series:
         values = pd.to_numeric(series, errors="coerce")
+        min_value = values.min()
         max_value = values.max()
         if pd.isna(max_value) or max_value <= 0:
             return pd.Series(0.0, index=series.index)
+        if max_value == min_value:
+            # No spread across candidates — neutral score, not "best for everyone".
+            return pd.Series(0.5, index=series.index)
         return values.fillna(0.0) / max_value
 
     @staticmethod
     def _normalize_lower_is_better(series: pd.Series) -> pd.Series:
         values = pd.to_numeric(series, errors="coerce")
-        min_value = values.min()
-        max_value = values.max()
-        if pd.isna(min_value) or pd.isna(max_value):
+        lo, hi = values.min(), values.max()
+        if pd.isna(lo) or pd.isna(hi):
             return pd.Series(0.0, index=series.index)
-        if max_value == min_value:
+        if hi == lo:
             return pd.Series(1.0, index=series.index)
-        return ((max_value - values) / (max_value - min_value)).fillna(0.0)
+        return ((hi - values) / (hi - lo)).fillna(0.0)
 
-    @staticmethod
-    def _ensure_cost_column(stations_df: pd.DataFrame) -> pd.DataFrame:
-        if "cost" in stations_df.columns:
-            return stations_df
+    def total_score(self, stations_df: pd.DataFrame) -> pd.DataFrame:
+        """Add normalised columns and weighted-sum ``total_score``.
 
-        for column in ("median_unit_price_per_kwh", "price_tier", "fee", "price"):
-            if column in stations_df.columns:
-                stations_df["cost"] = stations_df[column]
-                return stations_df
-
-        raise ValueError(
-            "total_score() requires a cost column. Add `cost`, `median_unit_price_per_kwh`, "
-            "`price_tier`, `fee`, or `price` to the station DataFrame."
-        )
-
-    def total_score(self, stations_df, *, include_llm_context: bool = False):
+        Uses the current dynamic weights — not hardcoded 0.25.
         """
-        Calculates the final recommendation score using weighted sum normalization.
-        Expects columns: ['poi_sum', 'distance', 'waiting_time', 'cost'].
-        `waiting_time` should be in seconds; lower values are better.
-
-        When ``include_llm_context`` is True, adds ``rank``, weighted ``contrib_*``
-        columns, ``score_explanation``, and ``llm_context`` (JSON-serializable dict per row)
-        for use with ``llm.generate_ev_explanation``.
-        """
-        stations_df = self._ensure_cost_column(stations_df.copy())
-
-        required_columns = ["poi_sum", "distance", "waiting_time", "cost"]
-        missing = [column for column in required_columns if column not in stations_df.columns]
+        stations_df = stations_df.copy()
+        required = ["distance", "cost", "available_points"]
+        missing = [c for c in required if c not in stations_df.columns]
         if missing:
             raise ValueError(f"total_score() missing required columns: {missing}")
 
-        # Benefit: higher POI score is better.
-        stations_df['n_poi'] = self._normalize_higher_is_better(stations_df['poi_sum'])
+        w = self.weights
+        stations_df["n_avail"] = self._normalize_higher_is_better(stations_df["available_points"])
+        stations_df["n_dist"]  = self._normalize_lower_is_better(stations_df["distance"])
+        stations_df["n_cost"]  = self._normalize_lower_is_better(stations_df["cost"])
 
-        # Costs: lower distance, waiting time, and price are better.
-        stations_df['n_dist'] = self._normalize_lower_is_better(stations_df['distance'])
-        stations_df['n_wait'] = self._normalize_lower_is_better(stations_df['waiting_time'])
-        stations_df['n_cost'] = self._normalize_lower_is_better(stations_df['cost'])
+        stations_df["contrib_dist"]  = w.w_distance * stations_df["n_dist"]
+        stations_df["contrib_cost"]  = w.w_cost     * stations_df["n_cost"]
+        stations_df["contrib_avail"] = w.w_pots     * stations_df["n_avail"]
 
-        stations_df['contrib_poi'] = self.w_poi * stations_df['n_poi']
-        stations_df['contrib_dist'] = self.w_dist * stations_df['n_dist']
-        stations_df['contrib_wait'] = self.w_wait * stations_df['n_wait']
-        stations_df['contrib_cost'] = self.w_cost * stations_df['n_cost']
-
-        stations_df['total_score'] = (
-            stations_df['contrib_poi']
-            + stations_df['contrib_dist']
-            + stations_df['contrib_wait']
-            + stations_df['contrib_cost']
+        stations_df["total_score"] = (
+            stations_df["contrib_dist"]
+            + stations_df["contrib_cost"]
+            + stations_df["contrib_avail"]
         )
 
-        ranked = stations_df.sort_values(by='total_score', ascending=False)
-        if include_llm_context:
-            ranked = self.attach_llm_context(ranked)
-        return ranked
-
-    @staticmethod
-    def explain_score_row(row: pd.Series) -> Dict[str, Any]:
-        """Human-readable score breakdown for one ranked station."""
-        def fmt_distance(metres: float) -> str:
-            if metres >= 1000:
-                return f"{metres / 1000:.1f} km"
-            return f"{int(metres)} m"
-
-        def fmt_wait(seconds: float) -> str:
-            if seconds <= 0:
-                return "likely available when you arrive (no queue wait predicted)"
-            if seconds < 60:
-                return f"about {int(seconds)} s predicted queue wait"
-            return f"about {seconds / 60:.1f} min predicted queue wait"
-
-        factors = [
-            ("poi", "nearby places (POI)", row.get("poi_sum"), row["n_poi"], row.get("contrib_poi")),
-            ("distance", "travel distance", row.get("distance"), row["n_dist"], row.get("contrib_dist")),
-            ("wait", "queue wait", row.get("waiting_time"), row["n_wait"], row.get("contrib_wait")),
-            ("cost", "charging cost", row.get("cost"), row["n_cost"], row.get("contrib_cost")),
-        ]
-        breakdown: Dict[str, Any] = {}
-        reasons: List[str] = []
-        for key, label, raw, normalized, contribution in factors:
-            breakdown[key] = {
-                "label": label,
-                "raw_value": raw,
-                "normalized_score": float(normalized),
-                "weight": 0.25,
-                "contribution_to_total": float(contribution) if contribution is not None else None,
-            }
-            if float(normalized) >= 0.75:
-                reasons.append(f"Strong {label} compared to other options.")
-
-        poi_nearby = row.get("poi_nearby") or []
-        if isinstance(poi_nearby, list) and poi_nearby:
-            top = poi_nearby[0]
-            reasons.insert(
-                0,
-                f"Nearby: {top.get('name', 'a place')} "
-                f"({top.get('distance_metres', '?')} m, rating {top.get('rating', '?')}).",
-            )
-
-        return {
-            "summary": (
-                f"Total score {row['total_score']:.3f} "
-                f"(POI {row['n_poi']:.2f}, distance {row['n_dist']:.2f}, "
-                f"wait {row['n_wait']:.2f}, cost {row['n_cost']:.2f})."
-            ),
-            "reasons": reasons[:5],
-            "breakdown": breakdown,
-            "distance_text": fmt_distance(float(row.get("distance") or 0)),
-            "wait_text": fmt_wait(float(row.get("waiting_time") or 0)),
-            "cost_text": f"${float(row.get('cost') or 0):.2f} per kWh (median for this station)",
-        }
-
-    def build_llm_station_record(
-        self,
-        row: pd.Series,
-        *,
-        user_location: Optional[tuple[float, float]] = None,
-    ) -> Dict[str, Any]:
-        """Structured per-station payload for the LLM."""
-        user_loc = user_location or self.user_location
-        poi_nearby = row.get("poi_nearby")
-        if poi_nearby is None or (isinstance(poi_nearby, float) and pd.isna(poi_nearby)):
-            poi_nearby = []
-
-        explanation = row.get("score_explanation")
-        if explanation is None or (isinstance(explanation, float) and pd.isna(explanation)):
-            explanation = self.explain_score_row(row)
-
-        return {
-            "rank": int(row.get("rank", 0)) if pd.notna(row.get("rank")) else None,
-            "station_name": row.get("Station Name") or row.get("station_name"),
-            "mac_address": row.get("MAC Address") or row.get("mac_address"),
-            "plug_type": row.get("Plug Type") or row.get("plug_type"),
-            "coordinates": {
-                "latitude": float(row["lat"]) if "lat" in row and pd.notna(row["lat"]) else None,
-                "longitude": float(row["lon"]) if "lon" in row and pd.notna(row["lon"]) else None,
-            },
-            "user_location": {
-                "latitude": float(user_loc[0]),
-                "longitude": float(user_loc[1]),
-            },
-            "distance_metres": float(row["distance"]) if pd.notna(row.get("distance")) else None,
-            "waiting_time_seconds": float(row["waiting_time"]) if pd.notna(row.get("waiting_time")) else None,
-            "cost_per_kwh": float(row["cost"]) if pd.notna(row.get("cost")) else None,
-            "poi_sum": float(row["poi_sum"]) if pd.notna(row.get("poi_sum")) else None,
-            "poi_count": int(row.get("poi_count") or len(poi_nearby)),
-            "nearby_pois": poi_nearby,
-            "scores": {
-                "total_score": float(row["total_score"]),
-                "normalized": {
-                    "poi": float(row["n_poi"]),
-                    "distance": float(row["n_dist"]),
-                    "waiting": float(row["n_wait"]),
-                    "cost": float(row["n_cost"]),
-                },
-                "weighted_contributions": {
-                    "poi": float(row.get("contrib_poi", 0)),
-                    "distance": float(row.get("contrib_dist", 0)),
-                    "waiting": float(row.get("contrib_wait", 0)),
-                    "cost": float(row.get("contrib_cost", 0)),
-                },
-            },
-            "explanation": explanation,
-        }
-
-    def attach_llm_context(self, ranked_df: pd.DataFrame) -> pd.DataFrame:
-        """Add ``rank``, ``score_explanation``, and ``llm_context`` columns."""
-        out = ranked_df.copy()
-        out["rank"] = np.arange(1, len(out) + 1)
-        user_loc = (float(self.user_location[0]), float(self.user_location[1]))
-        out["score_explanation"] = out.apply(self.explain_score_row, axis=1)
-        out["llm_context"] = out.apply(
-            lambda row: self.build_llm_station_record(row, user_location=user_loc),
-            axis=1,
-        )
-        return out
-
-    def get_POI(self, latitude, longitude):
-    # Returns JSON file of POI around as well as data of it (max 20 top POI)
-        POI = Get_POI()
-        return POI.call_API(latitude, longitude)
-
-    def get_distance_score(self, destination_location, user_location):
-        return get_distance_ev(destination_location, user_location)
-    
-    def _places_dataframe(self, data: Optional[Dict[str, Any]]) -> pd.DataFrame:
-        """Normalize Google Places nearby-search JSON into a scored places table."""
-        if not data or "places" not in data:
-            return pd.DataFrame()
-
-        place_list = pd.json_normalize(data, record_path=["places"])
-
-        if "routingSummaries" in data:
-            place_distance = pd.json_normalize(data["routingSummaries"], record_path=["legs"])
-            place = pd.concat([place_list, place_distance], axis=1)
-        else:
-            place = place_list
-            place["distanceMeters"] = 500
-
-        place["rating"] = place["rating"].fillna(0)
-        place["userRatingCount"] = place["userRatingCount"].fillna(0)
-        place["poi_score"] = place.apply(self.calculate_poi_score, axis=1)
-        return place
-
-    @staticmethod
-    def _place_display_name(row: pd.Series) -> str:
-        display = row.get("displayName")
-        if isinstance(display, dict):
-            return str(display.get("text") or "Unknown place")
-        if display is not None and not (isinstance(display, float) and pd.isna(display)):
-            return str(display)
-        return "Unknown place"
-
-    def summarize_poi_places(self, data: Optional[Dict[str, Any]], *, top_n: int = 8) -> List[Dict[str, Any]]:
-        """Top nearby POIs as compact dicts for LLM / UI consumption."""
-        place = self._places_dataframe(data)
-        if place.empty:
-            return []
-
-        ranked = place.sort_values("poi_score", ascending=False).head(top_n)
-        summaries: List[Dict[str, Any]] = []
-        for _, row in ranked.iterrows():
-            opening = row.get("currentOpeningHours")
-            open_now = None
-            if isinstance(opening, dict):
-                open_now = opening.get("openNow")
-
-            summaries.append(
-                {
-                    "name": self._place_display_name(row),
-                    "rating": float(row["rating"]),
-                    "review_count": int(row["userRatingCount"]),
-                    "distance_metres": float(row["distanceMeters"]),
-                    "address": row.get("formattedAddress"),
-                    "poi_score": round(float(row["poi_score"]), 3),
-                    "open_now": open_now,
-                    "google_maps_uri": row.get("googleMapsUri"),
-                }
-            )
-        return summaries
-
-    def POI_score(self, data, coordinate_key=None):
-        place = self._places_dataframe(data)
-        if place.empty:
-            return 0
-        return float(place["poi_score"].sum())
-    
-    # Helper function
-    def calculate_poi_score(self, row):
-        rating = row['rating']
-        reviews = row['userRatingCount']
-        distance = row['distanceMeters']
-        
-        # We add 1 to reviews to avoid log(0)
-        score = (rating * np.log10(reviews + 1))/ (1 + distance/100)
-        return score
-
-    def process_all_stations(self, df):
-        """
-        Iterates through the dataframe, fetches POI data, 
-        and calculates the POI sum for each row.
-        """
-        # 1. Create a unique key for each station based on coordinates
-        # This matches the 'coordinate_key' used in your JSON data
-        df['coord_key'] = df.apply(lambda row: f"{row['lat']},{row['lon']}", axis=1)
-        
-        def row_pipeline(row):
-            raw_json = self.get_POI(row["lat"], row["lon"])
-            nearby = self.summarize_poi_places(raw_json)
-            poi_sum = sum(p["poi_score"] for p in nearby) if nearby else 0.0
-            return pd.Series(
-                {
-                    "poi_sum": poi_sum,
-                    "poi_nearby": nearby,
-                    "poi_count": len(nearby),
-                }
-            )
-
-        # 2. Apply the pipeline to every row
-        print("Fetching POI data and calculating scores... this may take a moment.")
-        poi_cols = df.apply(row_pipeline, axis=1)
-        df = pd.concat([df, poi_cols], axis=1)
-
-        return df
-        
-    def process_distances(self, df):
-        """
-        Applies the external distance function to every row in the dataframe.
-        """
-        def get_row_dist(row):
-            dest = (row['lat'], row['lon'])
-            # Call the imported function
-            result = get_distance_ev(dest, self.user_location)
-            
-            # Extract just the meters from the JSON result
-            if result and 'routes' in result:
-                return result['routes'][0]['distanceMeters']
-            return 999999 # Penalty for failed API call
-            
-        df['distance'] = df.apply(get_row_dist, axis=1)
-        return df
-
-    def predict_waiting_time(
-        self,
-        data: WaitInput,
-        *,
-        at_time: Optional[datetime] = None,
-        return_minutes: bool = True,
-        return_details: bool = False,
-    ) -> Union[float, Dict[str, Any]]:
-        """
-        Predict waiting time for one station using Model A (``model/``) and Model B (``model_B/``).
-
-        Model A classifies availability. If the station is predicted **available**, waiting
-        time is 0. If **occupied**, Model B predicts session duration in seconds (ensemble
-        average of regressors).
-
-        Parameters
-        ----------
-        data : dict, Series, or single-row DataFrame
-            Must include training features, e.g. ``MAC Address``, weather (``temp``,
-            ``precip``, ``clouds``), and ``Plug Type Encoded`` (or ``Plug Type`` as
-            ``J1772`` / ``NEMA 5-20R``). Time fields are filled from ``at_time`` when
-            omitted.
-        at_time : datetime, optional
-            Timestamp for cyclical / calendar features when not provided in ``data``.
-        return_minutes : bool
-            If True (default), return waiting time in **minutes**.
-            If False, return seconds.
-        return_details : bool
-            If True, return a dict with availability consensus, per-model outputs, and
-            wait time.
-
-        Returns
-        -------
-        float or dict
-            Waiting time in minutes (default) or seconds, or a details dict when
-            ``return_details=True``.
-        """
-        self._ensure_wait_models()
-        raw_df = self._feature_row_from_input(data, at_time=at_time)
-
-        if not self._model_a.loaded:
-            raise RuntimeError(
-                f"No Model A (availability) artifacts found in {MODEL_A_DIR}. "
-                "Train with Time Series Forecast.ipynb and save classifiers to model/."
-            )
-
-        features_a = self._preprocessor.transform(raw_df, model_type="availability")
-        consensus = self._model_a.predict_consensus(features_a)
-        available = consensus.available if consensus else True
-
-        wait_secs = 0.0
-        duration_preds = []
-        if not available:
-            if not self._model_b.loaded:
-                raise RuntimeError(
-                    "Station predicted occupied but no Model B artifacts found in model_B/."
-                )
-            features_b = self._preprocessor.transform(raw_df, model_type="duration")
-            duration_preds = self._model_b.predict(features_b)
-            ensemble = self._model_b.predict_ensemble(features_b)
-            if ensemble:
-                wait_secs = ensemble.duration_secs
-
-        wait_mins = round(wait_secs / 60, 1)
-        value = wait_mins if return_minutes else wait_secs
-
-        if not return_details:
-            return value
-
-        return {
-            "waiting_time": value,
-            "waiting_time_secs": wait_secs,
-            "waiting_time_mins": wait_mins,
-            "available": available,
-            "status": "Available" if available else "Occupied",
-            "availability_consensus": asdict(consensus) if consensus else None,
-            "duration_predictions": [asdict(p) for p in duration_preds],
-        }
-
-    def process_waiting_times(
-        self,
-        df: pd.DataFrame,
-        *,
-        feature_columns: Optional[list] = None,
-        at_time: Optional[datetime] = None,
-    ) -> pd.DataFrame:
-        """Add ``waiting_time`` (seconds) column by applying ``predict_waiting_time`` to each row."""
-        if feature_columns is not None:
-            missing = [c for c in feature_columns if c not in df.columns]
-            if missing:
-                raise ValueError(f"DataFrame missing columns for wait prediction: {missing}")
-
-        def _row_wait(row: pd.Series) -> float:
-            payload = row.to_dict()
-            if feature_columns is not None:
-                payload = {c: row[c] for c in feature_columns}
-            return self.predict_waiting_time(payload, at_time=at_time, return_minutes=False)
-
-        df = df.copy()
-        df["waiting_time"] = df.apply(_row_wait, axis=1)
-        return df
-
-
-def load_unit_prices_by_station(
-    price_path: Union[str, Path] = UNIT_PRICE_PATH,
-) -> pd.DataFrame:
-    """
-    Load per-station unit prices from ``unit_price_by_station_palo_alto.csv``.
-
-    Returns a DataFrame indexed by ``Station Name`` with
-    ``median_unit_price_per_kwh`` and ``price_tier``.
-    """
-    path = Path(price_path)
-    if not path.is_file():
-        raise FileNotFoundError(f"Unit price file not found: {path}")
-
-    prices = pd.read_csv(path)
-    if "Station Name" not in prices.columns or "median_unit_price_per_kwh" not in prices.columns:
-        raise ValueError(
-            "Unit price CSV must include 'Station Name' and 'median_unit_price_per_kwh'."
-        )
-
-    prices["Station Name"] = prices["Station Name"].astype(str).str.strip()
-    prices["median_unit_price_per_kwh"] = pd.to_numeric(
-        prices["median_unit_price_per_kwh"], errors="coerce"
-    ).fillna(0.0)
-
-    keep = ["Station Name", "median_unit_price_per_kwh"]
-    if "price_tier" in prices.columns:
-        keep.append("price_tier")
-
-    return prices[keep].drop_duplicates("Station Name", keep="first").set_index("Station Name")
-
-
-def attach_station_costs(
-    stations_df: pd.DataFrame,
-    *,
-    price_path: Union[str, Path] = UNIT_PRICE_PATH,
-    station_name_col: str = "Station Name",
-) -> pd.DataFrame:
-    """Merge ``cost`` (and optional ``price_tier``) from the unit-price CSV by station name."""
-    if station_name_col not in stations_df.columns:
-        raise ValueError(f"stations_df missing column: {station_name_col}")
-
-    out = stations_df.copy()
-    price_table = load_unit_prices_by_station(price_path)
-
-    out["cost"] = out[station_name_col].astype(str).str.strip().map(
-        price_table["median_unit_price_per_kwh"]
-    )
-    out["median_unit_price_per_kwh"] = out["cost"]
-
-    if "price_tier" in price_table.columns:
-        out["price_tier"] = out[station_name_col].astype(str).str.strip().map(price_table["price_tier"])
-
-    # Stations missing from the price file: keep existing cost or default to 0
-    if "cost" in stations_df.columns:
-        out["cost"] = out["cost"].fillna(stations_df["cost"])
-    out["cost"] = out["cost"].fillna(0.0)
-    out["median_unit_price_per_kwh"] = out["cost"]
-
-    return out
-
-
-@dataclass
-class EVBatteryState:
-    """
-    Inputs for estimating how far the simulated EV can drive before SUMO shuts it down.
-
-    Populate from SUMO ``battery-output`` XML and/or TraCI (see ``from_sumo_export``).
-    """
-
-    remaining_wh: float
-    maximum_wh: float = DEFAULT_MAX_BATTERY_WH
-    stopping_threshold_wh: float = DEFAULT_STOPPING_THRESHOLD_WH
-    # Optional telemetry for live Wh/m calibration (recent trip segment)
-    total_energy_consumed_wh: float | None = None
-    total_energy_regenerated_wh: float | None = None
-    distance_travelled_m: float | None = None
-    avg_speed_mps: float | None = None
-    wh_per_metre: float | None = None  # manual override
-
-    @property
-    def soc_percent(self) -> float:
-        if self.maximum_wh <= 0:
-            return 0.0
-        return 100.0 * self.remaining_wh / self.maximum_wh
-
-    @property
-    def usable_wh(self) -> float:
-        """Energy available above SUMO ``stoppingThreshold`` (Wh)."""
-        return max(0.0, self.remaining_wh - self.stopping_threshold_wh)
-
-    @classmethod
-    def from_sumo_export(cls, attrs: Dict[str, Any], **kwargs: Any) -> "EVBatteryState":
-        """Build from one ``<vehicle>`` row in ``user_data_log.xml`` or TraCI-derived dict."""
-
-        def _f(key: str, default: float | None = None) -> float | None:
-            raw = attrs.get(key)
-            if raw is None or raw == "NULL":
-                return default
-            return float(raw)
-
-        remaining = _f("actualBatteryCapacity") or _f("device.battery.chargeLevel")
-        if remaining is None:
-            raise ValueError("SUMO export missing actualBatteryCapacity / chargeLevel")
-
-        return cls(
-            remaining_wh=remaining,
-            maximum_wh=_f("device.battery.capacity", DEFAULT_MAX_BATTERY_WH) or DEFAULT_MAX_BATTERY_WH,
-            stopping_threshold_wh=kwargs.pop(
-                "stopping_threshold_wh",
-                _f("stoppingThreshold", DEFAULT_STOPPING_THRESHOLD_WH) or DEFAULT_STOPPING_THRESHOLD_WH,
-            ),
-            total_energy_consumed_wh=_f("totalEnergyConsumed"),
-            total_energy_regenerated_wh=_f("totalEnergyRegenerated"),
-            distance_travelled_m=kwargs.pop("distance_travelled_m", None),
-            avg_speed_mps=_f("speed"),
-            **kwargs,
-        )
-
-    @classmethod
-    def from_user_input(
-        cls,
-        battery_pct: float,
-        *,
-        capacity_kwh: float | None = None,
-        wh_per_km: float | None = None,
-        maximum_wh: float | None = None,
-        stopping_threshold_wh: float | None = None,
-    ) -> "EVBatteryState":
-        """
-        Build battery state from user search inputs (location search, not SUMO).
-
-        ``battery_pct`` is required (0–100). Capacity and drainage use config
-        defaults when omitted (60 kWh pack, 180 Wh/km).
-        """
-        pct = float(battery_pct)
-        if not 0.0 <= pct <= 100.0:
-            raise ValueError("battery_pct must be between 0 and 100")
-
-        max_wh = (
-            float(maximum_wh)
-            if maximum_wh is not None
-            else (float(capacity_kwh) * 1000.0 if capacity_kwh is not None else DEFAULT_MAX_BATTERY_WH)
-        )
-        if max_wh <= 0:
-            raise ValueError("battery capacity must be positive")
-
-        remaining_wh = max_wh * (pct / 100.0)
-        state = cls(
-            remaining_wh=remaining_wh,
-            maximum_wh=max_wh,
-            stopping_threshold_wh=(
-                float(stopping_threshold_wh)
-                if stopping_threshold_wh is not None
-                else DEFAULT_STOPPING_THRESHOLD_WH
-            ),
-        )
-        if wh_per_km is not None:
-            drainage = float(wh_per_km)
-            if drainage <= 0:
-                raise ValueError("wh_per_km must be positive when provided")
-            state.wh_per_metre = drainage / 1000.0
-        return state
-
-
-def parse_user_battery(
-    data: Dict[str, Any],
-    *,
-    required: bool = True,
-) -> Optional[EVBatteryState]:
-    """
-    Parse ``battery_pct`` (+ optional ``wh_per_km``, ``capacity_kwh``) from a request dict.
-
-    Returns ``None`` when ``required`` is False and ``battery_pct`` is absent.
-    """
-    if "battery_pct" not in data or data.get("battery_pct") is None or data.get("battery_pct") == "":
-        if required:
-            raise ValueError("battery_pct is required (0–100).")
-        return None
-    kwargs: Dict[str, Any] = {"battery_pct": data["battery_pct"]}
-    if data.get("wh_per_km") is not None and data.get("wh_per_km") != "":
-        kwargs["wh_per_km"] = data["wh_per_km"]
-    if data.get("capacity_kwh") is not None and data.get("capacity_kwh") != "":
-        kwargs["capacity_kwh"] = data["capacity_kwh"]
-    return EVBatteryState.from_user_input(**kwargs)
-
-
-def estimate_wh_per_metre(state: EVBatteryState) -> float:
-    """
-    Effective energy per metre.
-
-    Uses recent SUMO telemetry when enough distance was driven; otherwise
-    ``DEFAULT_WH_PER_KM`` from config.
-    """
-    if state.wh_per_metre is not None and state.wh_per_metre > 0:
-        return state.wh_per_metre
-
-    if (
-        state.distance_travelled_m
-        and state.distance_travelled_m >= 100.0
-        and state.total_energy_consumed_wh is not None
-        and state.total_energy_regenerated_wh is not None
-    ):
-        net_wh = state.total_energy_consumed_wh - state.total_energy_regenerated_wh
-        if net_wh > 0:
-            return net_wh / state.distance_travelled_m
-
-    return DEFAULT_WH_PER_KM / 1000.0
-
-
-def estimate_max_drivable_distance_m(
-    state: EVBatteryState,
-    *,
-    safety_factor: float = RANGE_SAFETY_FACTOR,
-) -> float:
-    """
-    Maximum road distance (m) before battery hits SUMO shutdown threshold.
-
-    ``max_range_m ≈ safety_factor × usable_wh / wh_per_m``
-    """
-    wh_per_m = estimate_wh_per_metre(state)
-    if wh_per_m <= 0 or state.usable_wh <= 0:
-        return 0.0
-    return safety_factor * state.usable_wh / wh_per_m
-
-
-def describe_ev_range(state: EVBatteryState) -> Dict[str, float]:
-    """Human-readable range summary for logging / UI."""
-    wh_per_m = estimate_wh_per_metre(state)
-    max_m = estimate_max_drivable_distance_m(state)
-    return {
-        "soc_percent": round(state.soc_percent, 2),
-        "remaining_wh": state.remaining_wh,
-        "usable_wh": state.usable_wh,
-        "wh_per_km": round(wh_per_m * 1000.0, 2),
-        "max_drivable_km": round(max_m / 1000.0, 3),
-        "max_drivable_m": round(max_m, 1),
-        "stopping_threshold_wh": state.stopping_threshold_wh,
-    }
-
-
-def filter_stations_within_range(
-    stations_df: pd.DataFrame,
-    user_location: tuple[float, float],
-    max_range_m: float,
-    *,
-    lat_col: str = "lat",
-    lon_col: str = "lon",
-) -> pd.DataFrame:
-    """Drop stations farther than ``max_range_m`` (straight-line haversine)."""
-    if max_range_m <= 0 or stations_df.empty:
-        return stations_df.iloc[0:0].copy()
-
-    user_lat, user_lon = user_location
-    out = stations_df.copy()
-    out["_range_m"] = out.apply(
-        lambda r: _haversine_metres(user_lat, user_lon, float(r[lat_col]), float(r[lon_col])),
-        axis=1,
-    )
-    return (
-        out[out["_range_m"] <= max_range_m]
-        .drop(columns="_range_m")
-        .reset_index(drop=True)
-    )
-
-
-def _haversine_metres(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
-    r = 6_371_000
-    phi1, phi2 = np.radians(lat1), np.radians(lat2)
-    dphi = np.radians(lat2 - lat1)
-    dlam = np.radians(lon2 - lon1)
-    a = np.sin(dphi / 2) ** 2 + np.cos(phi1) * np.cos(phi2) * np.sin(dlam / 2) ** 2
-    return float(2 * r * np.arctan2(np.sqrt(a), np.sqrt(1 - a)))
-
-
-def _within_palo_alto(lat: float, lon: float) -> bool:
-    b = PALO_ALTO_BOUNDS
-    return b["lat_min"] <= lat <= b["lat_max"] and b["lon_min"] <= lon <= b["lon_max"]
-
-
-def build_palo_alto_station_dataset(
-    user_location: tuple[float, float],
-    *,
-    raw_path: Union[str, Path] = RAW_DATA_PATH,
-    max_stations: int = 12,
-    at_time: Optional[datetime] = None,
-    ev_battery: Optional[EVBatteryState] = None,
-    apply_range_filter: bool = True,
-) -> pd.DataFrame:
-    """
-    Build a ranked candidate set of Palo Alto chargers for ``Calculation_Model``.
-
-    Stations are filtered to the Palo Alto bounding box, sorted by straight-line
-    distance from ``user_location``, and limited to ``max_stations`` rows to
-    keep Google API usage reasonable.
-
-    If ``ev_battery`` is set and ``apply_range_filter`` is True, only stations
-    within ``estimate_max_drivable_distance_m(ev_battery)`` are kept.
-    """
-    columns = [
-        "Station Name",
-        "MAC Address",
-        "Address 1",
-        "Latitude",
-        "Longitude",
-        "Plug Type",
-    ]
-    raw = pd.read_csv(raw_path, usecols=columns, low_memory=False)
-    raw = raw.dropna(subset=["Station Name", "MAC Address", "Latitude", "Longitude", "Plug Type"])
-    raw = raw[raw["Plug Type"].isin(PLUG_TYPE_MAP)]
-
-    stations = (
-        raw.groupby("MAC Address", as_index=False)
-        .agg(
+        return stations_df
+
+    # ------------------------------------------------------------------
+    # Step 5b: TOPSIS ranking — primary sort key
+    # ------------------------------------------------------------------
+    def apply_topsis(self, candidates_df: pd.DataFrame) -> pd.DataFrame:
+        """Convert the enriched candidates DataFrame, run TOPSIS, and merge
+        ``topsis_score`` back as the primary ranking column."""
+        station_dicts = [
             {
-                "Station Name": "first",
-                "Address 1": "first",
-                "Latitude": "first",
-                "Longitude": "first",
-                "Plug Type": "first",
+                "id":             row.get("StationID", str(i)),
+                "distance":       float(row.get("distance", _FAILED_DISTANCE_M)),
+                "cost":           float(row.get("cost", 0)),
+                "available_pots": float(row.get("available_points", 0)),
             }
+            for i, (_, row) in enumerate(candidates_df.iterrows())
+        ]
+
+        ranked_dicts = topsis_rank(station_dicts, self.battery_fraction, self.is_available_now)
+
+        # Map topsis_score back to the DataFrame by station id.
+        score_map = {s["id"]: s["topsis_score"] for s in ranked_dicts}
+        df = candidates_df.copy()
+        df["topsis_score"] = df.apply(
+            lambda row: score_map.get(str(row.get("StationID", "")), 0.0), axis=1
         )
-        .rename(columns={"Latitude": "lat", "Longitude": "lon"})
-    )
-    stations = stations[
-        stations.apply(lambda r: _within_palo_alto(float(r["lat"]), float(r["lon"])), axis=1)
-    ].copy()
-    if stations.empty:
-        raise ValueError("No Palo Alto stations found in ChargePoint data.")
+        return df
 
-    user_lat, user_lon = user_location
-    stations["_straight_m"] = stations.apply(
-        lambda r: _haversine_metres(user_lat, user_lon, float(r["lat"]), float(r["lon"])),
-        axis=1,
-    )
+    # ------------------------------------------------------------------
+    # Full pipeline
+    # ------------------------------------------------------------------
+    def recommend(self) -> pd.DataFrame:
+        """Run the complete recommendation pipeline.
 
-    if ev_battery is not None and apply_range_filter:
-        max_range_m = estimate_max_drivable_distance_m(ev_battery)
-        before = len(stations)
-        stations = stations[stations["_straight_m"] <= max_range_m].copy()
-        if stations.empty:
-            raise ValueError(
-                f"No stations within drivable range ({max_range_m / 1000:.2f} km from "
-                f"{describe_ev_range(ev_battery)['soc_percent']:.1f}% SoC)."
-            )
-        if before > len(stations):
-            print(
-                f"(Range filter: {before - len(stations)} station(s) removed — "
-                f"max ~{max_range_m / 1000:.2f} km at {describe_ev_range(ev_battery)['wh_per_km']:.0f} Wh/km)"
-            )
+        Returns a DataFrame ranked best-first by ``topsis_score``.
+        Also includes ``total_score``, normalised / contribution columns and
+        the display-only ``nearby_pois`` list for each station.
+        """
+        context = self.weights
+        state = _context_state_label(self.battery_fraction, self.is_available_now)
+        print(
+            f"[{self.city}] battery {self.battery_percent:.0f}% → "
+            f"{self.reachable_metres / 1000:.1f} km range | "
+            f"state={state} | weights dist={context.w_distance:.3f} "
+            f"cost={context.w_cost:.3f} pots={context.w_pots:.3f}"
+        )
 
-    stations = (
-        stations.sort_values("_straight_m")
-        .drop(columns="_straight_m")
-        .head(max_stations)
-        .reset_index(drop=True)
-    )
+        all_stations = (
+            self.build_station_dataframe_from_snapshot()
+            if self.use_snapshot
+            else self.build_station_dataframe()
+        )
 
-    stations = attach_station_costs(stations)
-    stations["fee"] = stations["cost"]
-    stations["Plug Type Encoded"] = stations["Plug Type"].apply(Calculation_Model._encode_plug_type)
+        print(f"  {len(all_stations)} stations fetched from TDX.")
 
-    stations["temp"] = 16.2
-    stations["precip"] = 0.0
-    stations["clouds"] = 56.0
+        candidates = self.select_candidates(all_stations)
+        print(f"  {len(candidates)} candidates selected (reachable + available).")
 
-    feature_time: Dict[str, Any] = {}
-    Calculation_Model._add_time_features(feature_time, at_time or datetime.now())
-    for column, value in feature_time.items():
-        stations[column] = value
+        candidates = self.process_distances(candidates)
 
-    return stations
+        candidates = self.total_score(candidates)
+
+        # TOPSIS score — primary sort key.
+        candidates = self.apply_topsis(candidates)
+        ranked = candidates.sort_values("topsis_score", ascending=False).reset_index(drop=True)
+
+        # POIs are shown on the map around each station; they do not affect ranking.
+        return self.attach_nearby_pois(ranked)
 
 
-def build_chargepoint_test_dataset(
-    raw_path: Union[str, Path] = RAW_DATA_PATH,
+# =============================================================================
+# Terminal reporting
+# =============================================================================
+
+def _format_distance(metres: float) -> str:
+    if metres >= 1000:
+        return f"{metres / 1000:.2f} km"
+    return f"{int(round(metres))} m"
+
+
+def _context_state_label(battery_fraction: float, is_available_now: bool) -> str:
+    if is_available_now:
+        return "URGENT"
+    if battery_fraction < 0.20:
+        return "LOW BATTERY"
+    if battery_fraction < 0.50:
+        return "MID BATTERY"
+    return "HIGH BATTERY"
+
+
+def print_recommendation_report(
+    ranked_df: pd.DataFrame,
     *,
-    sample_size: int = 4,
-    at_time: Optional[datetime] = None,
-) -> tuple[tuple[float, float], pd.DataFrame]:
-    """
-    Build a small station-level test set from the raw ChargePoint sessions.
+    city: str,
+    battery_percent: float,
+    is_available_now: bool,
+    weights: WeightVector,
+    reachable_km: float,
+) -> None:
+    """Pretty-print the ranked recommendation table to the terminal."""
+    try:
+        from rich import box
+        from rich.console import Console
+        from rich.panel import Panel
+        from rich.table import Table
+        from rich.text import Text
 
-    The raw dataset has session rows, so this function collapses it to unique
-    stations, attaches cost from ``unit_price_by_station_palo_alto.csv``, and adds
-    the feature columns needed by the wait-time models.
-    """
-    columns = [
-        "Station Name",
-        "MAC Address",
-        "Start Date",
-        "Energy (kWh)",
-        "Plug Type",
-        "Latitude",
-        "Longitude",
-        "Fee",
-    ]
-    raw = pd.read_csv(raw_path, usecols=columns)
-    raw = raw.dropna(subset=["Station Name", "MAC Address", "Latitude", "Longitude", "Plug Type"])
-    raw = raw[raw["Plug Type"].isin(PLUG_TYPE_MAP)]
+        console = Console()
+        state = _context_state_label(battery_percent / 100.0, is_available_now)
 
-    raw["Start Date"] = pd.to_datetime(raw["Start Date"], errors="coerce")
+        header = Text.assemble(
+            ("City: ", "dim"), (city, "bold cyan"), "  |  ",
+            ("Battery: ", "dim"), (f"{battery_percent:.0f}%", "bold yellow"), "  |  ",
+            ("State: ", "dim"), (state, "bold magenta"), "  |  ",
+            ("Range: ", "dim"), (f"{reachable_km:.1f} km", "bold green"),
+        )
+        weights_line = (
+            f"Weights  dist={weights.w_distance:.2f}  "
+            f"cost={weights.w_cost:.2f}  "
+            f"pots={weights.w_pots:.2f}"
+        )
+        console.print(Panel(header, subtitle=weights_line, border_style="blue"))
 
-    stations = (
-        raw.sort_values("Start Date")
-        .drop_duplicates("Station Name", keep="last")
-        .rename(columns={"Latitude": "lat", "Longitude": "lon"})
+        table = Table(
+            box=box.ROUNDED,
+            show_header=True,
+            header_style="bold white on dark_blue",
+            row_styles=["", "dim"],
+            expand=True,
+            title="Ranked EV Charging Stations",
+            title_style="bold",
+        )
+        table.add_column("#", justify="right", style="cyan", width=4)
+        table.add_column("Station", style="bold", min_width=24, max_width=32, overflow="ellipsis")
+        table.add_column("Distance", justify="right", style="green")
+        table.add_column("POI", justify="right", style="magenta")
+        table.add_column("Cost", justify="right", style="yellow")
+        table.add_column("Avail", justify="center", style="blue")
+        table.add_column("TOPSIS", justify="right", style="bold")
+        table.add_column("Score", justify="right", style="dim")
+
+        for rank, (_, row) in enumerate(ranked_df.iterrows(), start=1):
+            name = str(row.get("station_name") or row.get("StationID") or "—")
+            if len(name) > 32:
+                name = name[:29] + "..."
+            avail = f"{int(row.get('available_points') or 0)}/{int(row.get('total_connectors') or 0)}"
+            topsis = float(row.get("topsis_score") or 0)
+            total = float(row.get("total_score") or 0)
+
+            rank_cell = f"#{rank}"
+            if rank == 1:
+                rank_cell = "[bold gold1]★ #1[/]"
+                name = f"[bold gold1]{name}[/]"
+            elif rank == 2:
+                rank_cell = "[bold] #2[/]"
+            elif rank == 3:
+                rank_cell = "[bold] #3[/]"
+
+            table.add_row(
+                rank_cell,
+                name,
+                _format_distance(float(row.get("distance") or 0)),
+                str(int(row.get("poi_count") or 0)),
+                f"NT${float(row.get('cost') or 0):.2f}",
+                avail,
+                f"{topsis:.4f}",
+                f"{total:.3f}",
+            )
+
+        console.print(table)
+
+        if not ranked_df.empty:
+            best = ranked_df.iloc[0]
+            console.print(
+                Panel(
+                    Text.assemble(
+                        ("Recommended: ", "bold"),
+                        (str(best.get("station_name") or "—"), "bold green"),
+                        "\n",
+                        ("TOPSIS ", "dim"),
+                        (f"{float(best.get('topsis_score') or 0):.4f}", "bold cyan"),
+                        ("  ·  ", "dim"),
+                        ("Distance ", "dim"),
+                        (_format_distance(float(best.get("distance") or 0)), "bold"),
+                        ("  ·  ", "dim"),
+                        ("Available ", "dim"),
+                        (f"{int(best.get('available_points') or 0)} plug(s)", "bold"),
+                    ),
+                    title="Best Pick",
+                    border_style="green",
+                )
+            )
+        return
+
+    except ImportError:
+        pass
+
+    # Stdlib fallback when rich is not installed.
+    state = _context_state_label(battery_percent / 100.0, is_available_now)
+    width = 88
+    print()
+    print("=" * width)
+    print("  EV CHARGING STATION RECOMMENDATIONS".center(width))
+    print("=" * width)
+    print(
+        f"  City: {city}  |  Battery: {battery_percent:.0f}%  |  "
+        f"State: {state}  |  Range: {reachable_km:.1f} km"
     )
-    stations = attach_station_costs(stations)
-    stations["fee"] = stations["cost"]
-    stations["Plug Type Encoded"] = stations["Plug Type"].apply(Calculation_Model._encode_plug_type)
+    print(
+        f"  Weights  dist={weights.w_distance:.2f}  "
+        f"cost={weights.w_cost:.2f}  pots={weights.w_pots:.2f}"
+    )
+    print("-" * width)
+    print(
+        f"{'#':>3}  {'Station':<28} {'Distance':>10} {'POI':>4} "
+        f"{'Cost':>8} {'Avail':>7} {'TOPSIS':>8} {'Score':>7}"
+    )
+    print("-" * width)
 
-    stations = stations.head(sample_size + 1).copy()
-    if len(stations) < 2:
-        raise ValueError("Need at least two valid ChargePoint stations to run the test pipeline.")
+    for rank, (_, row) in enumerate(ranked_df.iterrows(), start=1):
+        name = str(row.get("station_name") or row.get("StationID") or "—")
+        if len(name) > 28:
+            name = name[:25] + "..."
+        marker = "★" if rank == 1 else " "
+        avail = f"{int(row.get('available_points') or 0)}/{int(row.get('total_connectors') or 0)}"
+        print(
+            f"{marker}{rank:>2}  {name:<28} "
+            f"{_format_distance(float(row.get('distance') or 0)):>10} "
+            f"{int(row.get('poi_count') or 0):>4} "
+            f"{'NT$' + format(float(row.get('cost') or 0), '.2f'):>8} "
+            f"{avail:>7} "
+            f"{float(row.get('topsis_score') or 0):>8.4f} "
+            f"{float(row.get('total_score') or 0):>7.3f}"
+        )
 
-    user_row = stations.iloc[0]
-    candidates = stations.iloc[1:].head(sample_size).copy()
-    current_user_pos = (float(user_row["lat"]), float(user_row["lon"]))
-
-    # The raw ChargePoint file has no weather columns, so use stable defaults
-    # to exercise the inference pipeline.
-    candidates["temp"] = 16.2
-    candidates["precip"] = 0.0
-    candidates["clouds"] = 56
-
-    feature_time = {}
-    Calculation_Model._add_time_features(feature_time, at_time or datetime.now())
-    for column, value in feature_time.items():
-        candidates[column] = value
-
-    return current_user_pos, candidates
+    print("=" * width)
+    if not ranked_df.empty:
+        best = ranked_df.iloc[0]
+        print(
+            f"  Best pick: {best.get('station_name')}  "
+            f"(TOPSIS {float(best.get('topsis_score') or 0):.4f})"
+        )
+    print()
 
 
 def main():
-    import argparse
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
 
-    parser = argparse.ArgumentParser(
-        description="Rank Palo Alto EV stations (distance, POI, wait, cost) with optional battery range filter.",
-    )
-    parser.add_argument("--lat", type=float, default=PALO_ALTO_CENTER[0], help="User latitude")
-    parser.add_argument("--lon", type=float, default=PALO_ALTO_CENTER[1], help="User longitude")
-    parser.add_argument(
-        "--battery-pct",
-        type=float,
-        required=True,
-        help="State of charge 0–100 (required for user search)",
-    )
-    parser.add_argument(
-        "--wh-per-km",
-        type=float,
-        default=None,
-        help=f"Energy use Wh/km (default {DEFAULT_WH_PER_KM})",
-    )
-    parser.add_argument(
-        "--capacity-kwh",
-        type=float,
-        default=None,
-        help=f"Pack size kWh (default {DEFAULT_MAX_BATTERY_WH / 1000:.0f})",
-    )
-    parser.add_argument("--max-stations", type=int, default=12, help="Max candidates after range filter")
-    args = parser.parse_args()
+    # # --- Quick TOPSIS self-test (no API calls) --------------------------------
+    # sample_stations = [
+    #     {"id": "A", "distance": 500,  "cost": 9.0,  "available_pots": 2},
+    #     {"id": "B", "distance": 1200, "cost": 7.5,  "available_pots": 5},
+    #     {"id": "C", "distance": 300,  "cost": 10.0, "available_pots": 0},
+    #     {"id": "D", "distance": 800,  "cost": 8.0,  "available_pots": 3},
+    # ]
+    # print("=== TOPSIS self-test (critical state, urgent) ===")
+    # for s in topsis_rank(sample_stations, battery_percentage=0.15, is_available_now=True):
+    #     print(f"  {s['id']}  topsis_score={s['topsis_score']:.4f}  pots={s['available_pots']}")
 
-    current_user_pos = (args.lat, args.lon)
-    ev_battery = EVBatteryState.from_user_input(
-        args.battery_pct,
-        wh_per_km=args.wh_per_km,
-        capacity_kwh=args.capacity_kwh,
-    )
-    print(f"User location: {current_user_pos}")
-    print("EV range estimate:", describe_ev_range(ev_battery))
+    # print("\n=== TOPSIS self-test (comfort state) ===")
+    # for s in topsis_rank(sample_stations, battery_percentage=0.80, is_available_now=False):
+    #     print(f"  {s['id']}  topsis_score={s['topsis_score']:.4f}  cost={s['cost']}")
 
-    EV_station_dataset = build_palo_alto_station_dataset(
+    # --- Full live pipeline ---------------------------------------------------
+    print("\n=== Full pipeline (Taipei, 35% battery) ===")
+    current_user_pos = (25.0478, 121.5170)
+    battery_percent = 35.0
+
+    model = Calculation_Model(
         current_user_pos,
-        max_stations=args.max_stations,
-        ev_battery=ev_battery,
+        battery_percent,
+        is_available_now=False,
+        city="Taipei",
     )
+    final_ranked_df = model.recommend()
+    final_ranked_df.to_csv("final_recommendations_summary.csv", index=False)
 
-    model = Calculation_Model(current_user_pos)
-
-    EV_station_dataset = model.process_distances(EV_station_dataset)
-    EV_station_dataset = model.process_all_stations(EV_station_dataset)
-    EV_station_dataset = model.process_waiting_times(EV_station_dataset)
-
-    final_ranked_df = model.total_score(EV_station_dataset, include_llm_context=True)
-    export_cols = [
-        c
-        for c in final_ranked_df.columns
-        if c not in ("poi_nearby", "score_explanation", "llm_context")
-    ]
-    final_ranked_df[export_cols].to_csv("final_recommendations_summary.csv", index=False)
-    print(
-        final_ranked_df[
-            [
-                "Station Name",
-                "distance",
-                "poi_sum",
-                "waiting_time",
-                "cost",
-                "total_score",
-            ]
-        ]
+    print_recommendation_report(
+        final_ranked_df,
+        city=model.city,
+        battery_percent=model.battery_percent,
+        is_available_now=model.is_available_now,
+        weights=model.weights,
+        reachable_km=model.reachable_metres / 1000.0,
     )
-
-    print()
-    from llm import print_reflection_report, run_reflection_pipeline
-
-    top_context = final_ranked_df.iloc[0]["llm_context"]
-    alternatives = final_ranked_df.iloc[1:4]["llm_context"].tolist()
-    reflection = run_reflection_pipeline(
-        {"recommended": top_context, "alternatives": alternatives}
-    )
-    print_reflection_report(reflection)
-
-
-
-
 
 
 if __name__ == "__main__":
