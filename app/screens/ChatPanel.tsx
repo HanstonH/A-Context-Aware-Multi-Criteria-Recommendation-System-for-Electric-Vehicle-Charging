@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ComponentRef } from "react";
+import { useEffect, useMemo, useRef, useState, type ComponentRef } from "react";
 import {
   Keyboard,
   Platform,
@@ -18,6 +18,7 @@ import {
   type ChatPlace,
 } from "../chatbot";
 import { useI18n } from "../i18n";
+import { colors, useTheme } from "../theme";
 
 type Msg = { id: string; role: "user" | "bot"; text: string; hits: ChatHit[] };
 
@@ -43,6 +44,8 @@ export default function ChatPanel({
   onNavigate,
 }: Props) {
   const { t, lang } = useI18n();
+  const { dark } = useTheme();
+  const styles = useMemo(() => makeStyles(dark), [dark]);
   const scrollRef = useRef<ComponentRef<typeof ScrollView>>(null);
   const [draft, setDraft] = useState("");
   const [kb, setKb] = useState(0);
@@ -159,7 +162,7 @@ export default function ChatPanel({
         <TextInput
           style={styles.input}
           placeholder={t.chatPlaceholder}
-          placeholderTextColor="#9ca3af"
+          placeholderTextColor={colors(dark).muted}
           value={draft}
           onChangeText={setDraft}
           returnKeyType="send"
@@ -173,14 +176,16 @@ export default function ChatPanel({
   );
 }
 
-const styles = StyleSheet.create({
+function makeStyles(dark: boolean) {
+  const p = colors(dark);
+  return StyleSheet.create({
   sheet: {
     position: "absolute",
     left: 0,
     right: 0,
     bottom: 0,
     height: "78%",
-    backgroundColor: "#fff",
+    backgroundColor: p.sheet,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     paddingBottom: 16,
@@ -196,47 +201,48 @@ const styles = StyleSheet.create({
     width: 42,
     height: 5,
     borderRadius: 3,
-    backgroundColor: "#d1d5db",
+    backgroundColor: p.handle,
     marginBottom: 8,
   },
   titleRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
-  title: { fontSize: 18, fontWeight: "800", color: "#111" },
+  title: { fontSize: 18, fontWeight: "800", color: p.text },
   close: { color: "#16a34a", fontWeight: "700" },
   chips: { paddingHorizontal: 16, paddingVertical: 10, gap: 8 },
-  chip: { backgroundColor: "#eff6ff", borderRadius: 16, paddingHorizontal: 12, paddingVertical: 8 },
-  chipTxt: { color: "#1d4ed8", fontWeight: "700", fontSize: 13 },
+  chip: { backgroundColor: p.card, borderRadius: 16, paddingHorizontal: 12, paddingVertical: 8 },
+  chipTxt: { color: p.greenText, fontWeight: "700", fontSize: 13 },
   thread: { flex: 1 },
   threadContent: { paddingHorizontal: 16, paddingBottom: 8, gap: 10 },
   userWrap: { alignItems: "flex-end" },
   botWrap: { alignItems: "flex-start", gap: 8 },
-  userBubble: { maxWidth: "86%", backgroundColor: "#2563eb", borderRadius: 16, paddingHorizontal: 12, paddingVertical: 10 },
-  botBubble: { maxWidth: "92%", backgroundColor: "#f3f4f6", borderRadius: 16, paddingHorizontal: 12, paddingVertical: 10 },
+  userBubble: { maxWidth: "86%", backgroundColor: "#16a34a", borderRadius: 16, paddingHorizontal: 12, paddingVertical: 10 },
+  botBubble: { maxWidth: "92%", backgroundColor: p.card, borderRadius: 16, paddingHorizontal: 12, paddingVertical: 10 },
   userTxt: { color: "#fff", lineHeight: 20 },
-  botTxt: { color: "#111", lineHeight: 20 },
-  card: { width: "100%", backgroundColor: "#f8fafc", borderRadius: 14, padding: 12, borderWidth: 1, borderColor: "#e5e7eb" },
-  cardName: { fontWeight: "700", color: "#111" },
-  cardMeta: { color: "#6b7280", marginTop: 2, marginBottom: 8 },
+  botTxt: { color: p.text, lineHeight: 20 },
+  card: { width: "100%", backgroundColor: p.card, borderRadius: 14, padding: 12, borderWidth: 1, borderColor: p.border },
+  cardName: { fontWeight: "700", color: p.text },
+  cardMeta: { color: p.muted, marginTop: 2, marginBottom: 8 },
   cardActions: { flexDirection: "row", gap: 8 },
   ghostBtn: {
     flex: 1,
     borderWidth: 1,
-    borderColor: "#2563eb",
+    borderColor: "#16a34a",
     borderRadius: 12,
     paddingVertical: 8,
     alignItems: "center",
   },
-  ghostTxt: { color: "#2563eb", fontWeight: "700", fontSize: 13 },
-  navBtn: { flex: 1, backgroundColor: "#2563eb", borderRadius: 12, paddingVertical: 8, alignItems: "center" },
+  ghostTxt: { color: "#16a34a", fontWeight: "700", fontSize: 13 },
+  navBtn: { flex: 1, backgroundColor: "#16a34a", borderRadius: 12, paddingVertical: 8, alignItems: "center" },
   navTxt: { color: "#fff", fontWeight: "700", fontSize: 13 },
   composer: { flexDirection: "row", gap: 8, paddingHorizontal: 16, paddingTop: 8 },
   input: {
     flex: 1,
-    backgroundColor: "#f3f4f6",
+    backgroundColor: p.card,
     borderRadius: 14,
     paddingHorizontal: 12,
     paddingVertical: 10,
-    color: "#111",
+    color: p.text,
   },
   send: { backgroundColor: "#16a34a", borderRadius: 14, paddingHorizontal: 14, justifyContent: "center" },
   sendOff: { opacity: 0.45 },
-});
+  });
+}
