@@ -179,7 +179,12 @@ def get_distance_ev(destination_location, user_location):
         "units": "METRIC"
     }
     
-    response = requests.post(BASE_URL, json=payload, headers=headers)
+    try:
+        # Without a timeout one stuck request would hang the whole recommendation.
+        response = requests.post(BASE_URL, json=payload, headers=headers, timeout=10)
+    except requests.RequestException as exc:
+        print(f"Routes API request failed: {exc}")
+        return None
 
     if response.status_code == 200:
         results = response.json()
