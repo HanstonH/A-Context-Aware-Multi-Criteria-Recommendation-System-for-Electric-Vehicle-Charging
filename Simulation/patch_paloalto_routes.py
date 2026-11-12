@@ -7,7 +7,7 @@ DST = Path("paloalto.rou.xml")
 
 VTYPE = """    <vType id="EV_Car" vClass="passenger" accel="2.6" decel="4.5" sigma="0.5" length="5" minGap="2.5" maxSpeed="33.33" carFollowModel="IDM">
         <param key="has.battery.device" value="true"/>
-        <param key="maximumBatteryCapacity" value="60000"/>
+        <param key="device.battery.capacity" value="60000"/>
         <param key="device.battery.chargeLevel" value="5000"/>
         <param key="stoppingPowerConsumption" value="500"/>
     </vType>"""

@@ -1,0 +1,9 @@
+# Only the backend and the station database go into the image.
+*
+!backend/
+!database/ev_charging.db
+backend/.venv
+backend/.env
+backend/tests
+**/__pycache__
+**/.pytest_cache
