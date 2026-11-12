@@ -2,3 +2,8 @@
 *.db-wal
 *.db-shm
 _tmp/
+
+# Accounts database (backend/auth.py), created at runtime. Never commit: it holds password hashes.
+users.db
+users.db-*
+.auth_secret_key

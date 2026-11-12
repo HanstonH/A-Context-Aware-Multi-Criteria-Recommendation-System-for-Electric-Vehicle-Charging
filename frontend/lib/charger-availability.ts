@@ -179,7 +179,7 @@ function clampCount(value: number, max: number): number {
   return Math.max(0, Math.min(max, Math.round(value)))
 }
 
-/** 解析 Supabase `port_availability`（JSON 物件或陣列） */
+/** 解析 `port_availability`（JSON 物件或陣列） */
 export function parsePortAvailability(
   raw: unknown,
   fallbackTotal: number,

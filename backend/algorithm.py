@@ -1,16 +1,23 @@
-"""Charger ranking: range filter first, then a weighted score of distance, wait and cost.
+"""Charger ranking: range filter first, then context-aware TOPSIS over distance, wait and cost.
 
-This follows AI/Algorithm/logic.py (``filter_stations_within_range`` and
-``Calculation_Model.total_score``) without its heavy imports:
+This follows AI/Algorithm/logic.py (``get_exponential_weights`` and ``topsis_rank``)
+without its numpy/pandas imports:
 
 * range = 0.85 × usable Wh ÷ Wh per km
-* each factor is min-max normalized with "lower is better"
-  (all-equal values score 1.0, exactly like ``_normalize_lower_is_better``)
-* total = Σ weight × normalized score
+* weights depend on the battery level (exponential curves): low battery puts
+  weight on distance and on getting a charger; high battery shifts it to price.
+  "Need a charger now" mode uses a fixed urgency vector.
+* ``total_score`` is the TOPSIS closeness coefficient C ∈ [0, 1]: how close the
+  station is to an ideal one (shortest, no wait, cheapest) relative to the worst.
+* ``normalized`` (min-max, "lower is better", all-equal = 1.0) and
+  ``contributions`` (weight × normalized) are kept as an explanation of the score.
 
-Differences, on purpose:
-* POI is not used (its weight is shared by the other three).
-* Waiting time is a placeholder (see wait_model.py), so it can't change the order.
+Differences from logic.py, on purpose:
+* logic.py's third criterion is "available connectors" (more is better); here it is
+  predicted waiting time (less is better). Both answer "will I get a charger?", so
+  waiting time gets that weight. It is a placeholder (see wait_model.py) that is the
+  same for every station, so it can't change the order until the real model lands.
+* POI is not used.
 * Stations with no price get the median price of the other candidates, so a
   missing price neither helps nor hurts. logic.py filled them with 0, which
   made unknown prices look cheapest.
@@ -18,6 +25,7 @@ Differences, on purpose:
 
 from __future__ import annotations
 
+import math
 import statistics
 from datetime import datetime, timedelta, timezone
 
@@ -55,6 +63,63 @@ def _lower_is_better(values: list[float]) -> list[float]:
     return [(hi - v) / (hi - lo) for v in values]
 
 
+# ── Context-aware weights (same curves and constants as AI/Algorithm/logic.py) ──
+# Survival: distance and charger availability matter more as the battery drops.
+_W_BASE_DIST = 0.10
+_W_SURVIVAL_AMP_DIST = 0.60
+_W_BASE_WAIT = 0.15  # logic.py: _W_BASE_POTS
+_W_SURVIVAL_AMP_WAIT = 0.30  # logic.py: _W_SURVIVAL_AMP_POTS
+_K_SURVIVAL = 7.0
+# Comfort: price matters more as the battery rises.
+_W_MAX_COST = 0.40
+_K_COMFORT = 4.0
+# "Need a charger now": [distance, cost, wait] in logic.py order [dist, cost, pots].
+_URGENCY_WEIGHTS = {"distance": 0.60, "cost": 0.05, "wait": 0.35}
+# When urgent, a station known to be busy gets this × the farthest distance, so it
+# ranks last without being dropped (same as logic.py's _OCCUPIED_DISTANCE_FACTOR).
+_OCCUPIED_DISTANCE_FACTOR = 2.0
+
+
+def context_weights(battery_pct: float, available_now: bool = False) -> dict[str, float]:
+    """Criterion weights for the current context; they always sum to 1."""
+    if available_now:
+        return dict(_URGENCY_WEIGHTS)
+    b = max(0.0, min(1.0, float(battery_pct) / 100))
+    survival = math.exp(-_K_SURVIVAL * b)
+    comfort = 1.0 - math.exp(-_K_COMFORT * b)
+    raw = {
+        "distance": _W_BASE_DIST + _W_SURVIVAL_AMP_DIST * survival,
+        "wait": _W_BASE_WAIT + _W_SURVIVAL_AMP_WAIT * survival,
+        "cost": _W_MAX_COST * comfort,
+    }
+    total = sum(raw.values())
+    return {k: v / total for k, v in raw.items()}
+
+
+def topsis_scores(rows: list[list[float]], weights: list[float]) -> list[float]:
+    """TOPSIS closeness coefficient per row, for criteria that are all "lower is better".
+
+    Vector-normalize each column, weight it, then score each row by its distance to the
+    worst value per column relative to its distances to the best and the worst. An
+    all-zero column (e.g. the placeholder wait) scores the same for everyone and so
+    has no effect. Identical rows score 0.5.
+    """
+    if not rows:
+        return []
+    cols = range(len(weights))
+    norms = [math.sqrt(sum(r[j] ** 2 for r in rows)) or 1.0 for j in cols]
+    v = [[r[j] / norms[j] * weights[j] for j in cols] for r in rows]
+    best = [min(r[j] for r in v) for j in cols]
+    worst = [max(r[j] for r in v) for j in cols]
+    scores = []
+    for r in v:
+        d_best = math.sqrt(sum((r[j] - best[j]) ** 2 for j in cols))
+        d_worst = math.sqrt(sum((r[j] - worst[j]) ** 2 for j in cols))
+        denom = d_best + d_worst
+        scores.append(0.5 if denom == 0 else d_worst / denom)
+    return scores
+
+
 def recommend(
     lat: float,
     lng: float,
@@ -66,6 +131,7 @@ def recommend(
     limit: int = 5,
     include_ids: tuple[str, ...] = (),
     lang: str = "en",
+    available_now: bool = False,
 ) -> dict:
     rng = estimate_range(battery_pct, capacity_kwh, wh_per_km)
     range_km = rng["max_range_km"]
@@ -78,10 +144,12 @@ def recommend(
         if s and sid not in pooled_ids:
             pool.append((s, haversine_km(lat, lng, s.lat, s.lng)))
 
-    weights = {"distance": config.WEIGHT_DISTANCE, "wait": config.WEIGHT_WAIT, "cost": config.WEIGHT_COST}
+    weights = context_weights(battery_pct, available_now)
     base = {
         "range": rng,
-        "weights": weights,
+        "method": "topsis",
+        "available_now": available_now,
+        "weights": {k: round(v, 4) for k, v in weights.items()},
         "search_radius_km": round(radius, 1),
         "city": city.code if city else None,
     }
@@ -132,15 +200,26 @@ def recommend(
     n_wait = _lower_is_better([r["wait"].seconds for r in rows])
     n_cost = _lower_is_better(costs)
 
+    # TOPSIS decides the order. When urgent, stations known to be busy are scored
+    # as if they were twice as far as the farthest candidate (ranked last, not dropped).
+    topsis_dist = [r["distance_m"] for r in rows]
+    if available_now:
+        far = _OCCUPIED_DISTANCE_FACTOR * max(max(topsis_dist), 1.0)
+        topsis_dist = [far if r["wait"].available is False else d for r, d in zip(rows, topsis_dist)]
+    closeness = topsis_scores(
+        [[d, r["wait"].seconds, c] for r, d, c in zip(rows, topsis_dist, costs)],
+        [weights["distance"], weights["wait"], weights["cost"]],
+    )
+
     results = []
-    for r, nd, nw, nc, cost in zip(rows, n_dist, n_wait, n_cost, costs):
+    for r, nd, nw, nc, cost, total in zip(rows, n_dist, n_wait, n_cost, costs, closeness):
         s: Station = r["station"]
+        # Explanation only: how much each factor favours this station (weight × min-max score).
         contrib = {
             "distance": weights["distance"] * nd,
             "wait": weights["wait"] * nw,
             "cost": weights["cost"] * nc,
         }
-        total = sum(contrib.values())
         reasons = []
         if nd >= 0.75:
             reasons.append("shorter drive than most options")

@@ -1,6 +1,5 @@
 import type { LucideIcon } from "lucide-react"
 import { Home, Building2, Utensils, Zap } from "lucide-react"
-import { getSupabaseClient } from "@/lib/supabase/client"
 import { TAIWAN_BOUNDS, NEARBY_SEARCH_RADIUS_KM } from "@/lib/map-constants"
 import { haversineKm, type GeoPoint } from "@/lib/map-coords"
 import {
@@ -48,8 +47,8 @@ export interface Location {
   recommendDistanceKm?: number
 }
 
-/** Supabase `public.stations` 實際欄位（全小寫 snake_case） */
-export interface SupabaseStationRow {
+/** 後端站點列（全小寫 snake_case），轉成 Location 前的中間格式 */
+export interface StationRow {
   id?: string | number | null
   station_name?: string | null
   city?: string | null
@@ -64,9 +63,6 @@ export interface SupabaseStationRow {
   [key: string]: unknown
 }
 
-/** @deprecated 請改用 SupabaseStationRow */
-export type SupabaseLocationRow = SupabaseStationRow
-
 export interface MapBounds {
   north: number
   south: number
@@ -76,7 +72,7 @@ export interface MapBounds {
 
 const DEFAULT_MAP_BOUNDS: MapBounds = TAIWAN_BOUNDS
 
-/** 本地示範用地標（非 Supabase） */
+/** 本地示範用地標 */
 export const staticDemoLocations: Location[] = [
   {
     id: 1,
@@ -157,8 +153,8 @@ function parseChargerType(chargingRate?: string | null): ChargerPowerType {
   return "AC"
 }
 
-/** 將 Supabase `stations` 列轉為前端 Location */
-export function mapSupabaseRowToLocation(row: SupabaseStationRow): Location | null {
+/** 將後端站點列轉為前端 Location */
+export function mapStationRowToLocation(row: StationRow): Location | null {
   const rec = row as Record<string, unknown>
   const station_name = firstString(
     col(rec, "station_name", "Station Name", "name")
@@ -247,32 +243,6 @@ export function stationSchemaCardProps(
   }
 }
 
-/**
- * 從 Supabase `stations` 讀取充電樁（欄位名與資料庫完全一致，含空格與大小寫）。
- */
-export async function fetchLocationsFromSupabase(): Promise<Location[]> {
-  const client = getSupabaseClient()
-  const { data, error } = await client
-    .from("stations")
-    .select("*")
-    .range(0, 4000)
-
-  console.log("抓到的站點總數：", data?.length, "錯誤訊息：", error)
-
-  if (error) {
-    console.error("[Supabase] fetch stations failed:", error.message)
-    throw new Error(`無法讀取充電樁資料：${error.message}`)
-  }
-
-  const chargers: Location[] = []
-  for (const row of (data ?? []) as SupabaseStationRow[]) {
-    const mapped = mapSupabaseRowToLocation(row)
-    if (mapped) chargers.push(mapped)
-  }
-  console.log("對應後可顯示站點數：", chargers.length)
-  return chargers
-}
-
 /** 本地模擬空槍數量變動（不寫回資料庫，方便測試燈號） */
 export function simulateLocationAvailability(locations: Location[]): Location[] {
   const eligibleIndexes = locations
@@ -336,7 +306,7 @@ export function simulateLocationAvailability(locations: Location[]): Location[] 
   })
 }
 
-/** 合併靜態示範地標 + Supabase 充電樁 */
+/** 合併靜態示範地標 + 後端充電樁 */
 export function mergeAllLocations(evChargers: Location[]): Location[] {
   return [...staticDemoLocations, ...evChargers]
 }

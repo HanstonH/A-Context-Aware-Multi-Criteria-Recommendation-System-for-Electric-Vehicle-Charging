@@ -35,8 +35,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="zh-TW" className="bg-background">
-      <body className="font-sans antialiased">
+    // suppressHydrationWarning: browser extensions (Grammarly, dark-mode, translators)
+    // add attributes to <html>/<body> before React loads. This ignores attribute
+    // differences on these two tags only; mismatches inside the page still warn.
+    <html lang="zh-TW" className="bg-background" suppressHydrationWarning>
+      <body className="font-sans antialiased" suppressHydrationWarning>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

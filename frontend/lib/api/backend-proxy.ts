@@ -1,13 +1,10 @@
-import {
-  EXPRESS_API_URL,
-  EXPRESS_BACKEND_URL,
-  EXPRESS_STATIONS_PATHS,
-  FASTAPI_RECOMMEND_PATHS,
-  FASTAPI_URL,
-} from "@/lib/api/config"
+import { BACKEND_API_KEY, BACKEND_URL } from "@/lib/api/config"
 import { ApiError, fetchJson } from "@/lib/api/http"
 
-const pathCache: { stations?: string; recommend?: string } = {}
+/**
+ * Server-side calls from the Next.js API routes to the shared Flask backend
+ * (backend/, the same one the phone app uses).
+ */
 
 export interface RecommendPayload {
   lat: number
@@ -27,107 +24,69 @@ export interface RecommendPayload {
   }>
 }
 
-function joinUrl(base: string, path: string): string {
-  const normalizedBase = (base || "").replace(/\/$/, "")
-  const normalizedPath = path.startsWith("/") ? path : `/${path}`
-  return `${normalizedBase}${normalizedPath}`
+const STATIONS_PATH = "/api/stations"
+const RECOMMEND_PATH = "/api/recommend"
+// The backend returns at most 20; the web map highlights the top 10.
+const RECOMMEND_LIMIT = 10
+
+function backendHeaders(clientIp?: string | null): Record<string, string> {
+  const headers: Record<string, string> = {}
+  if (BACKEND_API_KEY) headers["X-API-Key"] = BACKEND_API_KEY
+  // The backend rate-limits per IP. Without this every web user would share the
+  // Next.js server's IP and one busy minute would block everyone.
+  if (clientIp) headers["X-Forwarded-For"] = clientIp
+  return headers
 }
 
-export async function fetchExpressStationsRaw(): Promise<{ data: unknown; path: string }> {
-  const expressBase = EXPRESS_API_URL || EXPRESS_BACKEND_URL || "http://localhost:5000"
-  const paths = pathCache.stations
-    ? [pathCache.stations, ...EXPRESS_STATIONS_PATHS.filter((p) => p !== pathCache.stations)]
-    : EXPRESS_STATIONS_PATHS
-
-  const errors: string[] = []
-  for (const path of paths) {
-    try {
-      const data = await fetchJson(joinUrl(expressBase, path), { method: "GET", cache: "no-store" }, 30000)
-      pathCache.stations = path
-      return { data, path }
-    } catch (error) {
-      const message = error instanceof ApiError ? error.message : String(error)
-      errors.push(`${path} → ${message}`)
-    }
-  }
-
-  throw new ApiError(
-    `無法從 Express (${expressBase}) 取得充電站列表。請確認服務已啟動。${errors[0] ? ` 最後錯誤：${errors[0]}` : ""}`,
-    502
-  )
+/** First address in the incoming X-Forwarded-For (the browser), if any. */
+export function clientIpFrom(request: Request): string | null {
+  const fwd = request.headers.get("x-forwarded-for")
+  return fwd ? fwd.split(",")[0].trim() || null : null
 }
 
-function recommendBodies(payload: RecommendPayload): unknown[] {
-  const { lat, lng, batteryPercent, departureTime, destination, stations, isAvailableNow } = payload
-  const shared = {
-    lat,
-    lng,
-    battery_percent: batteryPercent,
-    departure_time: departureTime,
-    destination,
-    is_available_now: Boolean(isAvailableNow),
-    stations,
-  }
-  return [
-    shared,
-    {
-      latitude: lat,
-      longitude: lng,
-      battery: batteryPercent,
-      departure_time: departureTime,
-      destination,
-      stations,
-    },
-    {
-      current_location: { lat, lng },
-      soc: batteryPercent,
-      departure_time: departureTime,
-      destination,
-    },
-    {
-      user_lat: lat,
-      user_lng: lng,
-      remaining_battery: batteryPercent,
-      destination,
-    },
-  ]
-}
-
-export async function fetchFastApiRecommendationsRaw(
-  payload: RecommendPayload
+export async function fetchBackendStationsRaw(
+  clientIp?: string | null
 ): Promise<{ data: unknown; path: string }> {
-  const fastapiBase = FASTAPI_URL || "http://127.0.0.1:8000"
-  const paths = pathCache.recommend
-    ? [pathCache.recommend, ...FASTAPI_RECOMMEND_PATHS.filter((p) => p !== pathCache.recommend)]
-    : FASTAPI_RECOMMEND_PATHS
-
-  const bodies = recommendBodies(payload)
-  const errors: string[] = []
-
-  for (const path of paths) {
-    for (const body of bodies) {
-      try {
-        const data = await fetchJson(
-          joinUrl(fastapiBase, path),
-          {
-            method: "POST",
-            body: JSON.stringify(body),
-          },
-          30000
-        )
-        pathCache.recommend = path
-        return { data, path }
-      } catch (error) {
-        const status = error instanceof ApiError ? error.status : 0
-        const message = error instanceof ApiError ? error.message : String(error)
-        errors.push(`${path} → ${message}`)
-        if (status === 404) break
-      }
-    }
+  try {
+    const data = await fetchJson(
+      `${BACKEND_URL}${STATIONS_PATH}`,
+      { method: "GET", cache: "no-store", headers: backendHeaders(clientIp) },
+      30000
+    )
+    return { data, path: STATIONS_PATH }
+  } catch (error) {
+    const message = error instanceof ApiError ? error.message : String(error)
+    const status = error instanceof ApiError && error.status >= 400 ? error.status : 502
+    throw new ApiError(`無法從後端 (${BACKEND_URL}) 取得充電站列表：${message}`, status)
   }
+}
 
-  throw new ApiError(
-    `無法從 FastAPI (${fastapiBase}) 取得推薦。請確認服務已啟動。${errors[0] ? ` 最後錯誤：${errors[0]}` : ""}`,
-    502
-  )
+export async function fetchBackendRecommendationsRaw(
+  payload: RecommendPayload,
+  clientIp?: string | null
+): Promise<{ data: unknown; path: string }> {
+  try {
+    const data = await fetchJson(
+      `${BACKEND_URL}${RECOMMEND_PATH}`,
+      {
+        method: "POST",
+        headers: backendHeaders(clientIp),
+        body: JSON.stringify({
+          lat: payload.lat,
+          lng: payload.lng,
+          battery_pct: payload.batteryPercent,
+          available_now: Boolean(payload.isAvailableNow),
+          limit: RECOMMEND_LIMIT,
+          lang: "zh",
+        }),
+      },
+      // One OSRM table call plus scoring; normally well under a few seconds.
+      20000
+    )
+    return { data, path: RECOMMEND_PATH }
+  } catch (error) {
+    const message = error instanceof ApiError ? error.message : String(error)
+    const status = error instanceof ApiError && error.status >= 400 ? error.status : 502
+    throw new ApiError(`無法從後端 (${BACKEND_URL}) 取得推薦：${message}`, status)
+  }
 }

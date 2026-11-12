@@ -15,6 +15,7 @@ from werkzeug.exceptions import HTTPException
 
 from . import config
 from .algorithm import estimate_range, recommend
+from . import auth
 from .assistant import AssistantUnavailable, ChatContext, chat, explain
 from .data import store
 from .geo import resolve_city
@@ -144,11 +145,55 @@ def health():
     )
 
 
+# ── Accounts ─────────────────────────────────────────────────────────────────
+
+
+@app.errorhandler(auth.AuthError)
+def _auth_error(exc):
+    return jsonify({"ok": False, "error": str(exc)}), exc.status
+
+
+def _bearer_token() -> str:
+    header = request.headers.get("Authorization", "")
+    return header[7:].strip() if header.lower().startswith("bearer ") else ""
+
+
+@app.post("/api/auth/register")
+@guarded("auth", config.RATE_LIMIT_AUTH_PER_MIN)
+def register_route():
+    data = _body()
+    result = auth.register(data.get("email"), data.get("password"), data.get("name"))
+    return jsonify({"ok": True, **result}), 201
+
+
+@app.post("/api/auth/login")
+@guarded("auth", config.RATE_LIMIT_AUTH_PER_MIN)
+def login_route():
+    data = _body()
+    return jsonify({"ok": True, **auth.login(data.get("email"), data.get("password"))})
+
+
+@app.get("/api/auth/me")
+@guarded("api", config.RATE_LIMIT_PER_MIN)
+def me_route():
+    user = auth.user_from_token(_bearer_token())
+    if not user:
+        return jsonify({"ok": False, "error": "not logged in"}), 401
+    return jsonify({"ok": True, "user": user})
+
+
 @app.post("/api/range")
 @guarded("api", config.RATE_LIMIT_PER_MIN)
 def range_estimate():
     ctx = _context({"lat": 0, "lng": 0, **_body()})
     return jsonify({"ok": True, "range": estimate_range(ctx.battery_pct, ctx.capacity_kwh, ctx.wh_per_km)})
+
+
+@app.get("/api/stations")
+@guarded("api", config.RATE_LIMIT_PER_MIN)
+def stations():
+    """Every station (about 3,000), for drawing all pins on the web map."""
+    return jsonify({"ok": True, "stations": [s.listing() for s in store().stations]})
 
 
 @app.get("/api/stations/<station_id>")
@@ -171,6 +216,8 @@ def recommend_route():
         if not city:
             raise BadRequest("Unknown city.")
     limit = int(_num(data, "limit", lo=1, hi=20, default=5))
+    # "Need a charger now": weights favour distance and availability over price.
+    available_now = data.get("available_now") is True
     rec = recommend(
         ctx.lat,
         ctx.lng,
@@ -180,6 +227,7 @@ def recommend_route():
         city=city,
         limit=limit,
         lang=ctx.lang,
+        available_now=available_now,
     )
     rec.pop("all_results", None)
     return jsonify(rec)

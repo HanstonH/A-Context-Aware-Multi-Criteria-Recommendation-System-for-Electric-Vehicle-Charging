@@ -128,8 +128,10 @@ def make_tools(ctx: ChatContext) -> list:
     def recommend_stations(battery_pct: float = -1, city: str = "", limit: int = 5) -> dict:
         """Run the project's recommendation algorithm and return the best chargers to go to now.
 
-        It keeps only stations the car can reach on its battery, then ranks them by a
-        weighted score of road distance, predicted waiting time and charging price.
+        It keeps only stations the car can reach on its battery, then ranks them with
+        TOPSIS over road distance, predicted waiting time and charging price. The weights
+        depend on the battery: low battery favours close stations, high battery favours
+        cheap ones. The weights used are returned in "weights".
         Use this whenever the user asks what to choose, what is best, or for a recommendation.
 
         Args:

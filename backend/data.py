@@ -52,6 +52,21 @@ class Station:
         return out
 
 
+    def listing(self) -> dict:
+        """Map-pin form for the web frontend's all-stations list."""
+        return {
+            "id": self.id,
+            "name": self.name or self.id,
+            "city": self.city,
+            "lat": self.lat,
+            "lng": self.lng,
+            "address": self.address,
+            "spaces": self.spaces,
+            "charging_points": self.charging_points,
+            "price_ntd_per_kwh": self.price_ntd_per_kwh,
+        }
+
+
 def _connect(path: Path) -> sqlite3.Connection:
     if not path.is_file():
         raise FileNotFoundError(f"Station database not found: {path}")

@@ -1,4 +1,4 @@
-import { mapSupabaseRowToLocation, type Location, type SupabaseStationRow } from "@/lib/locations"
+import { mapStationRowToLocation, type Location, type StationRow } from "@/lib/locations"
 import { parseNumeric } from "@/lib/charger-availability"
 import { extractArray } from "@/lib/api/http"
 
@@ -76,8 +76,8 @@ export function mapApiStationToLocation(raw: unknown): Location | null {
   ])
   if (!name || lat == null || lng == null) return null
 
-  const row: SupabaseStationRow = {
-    id: pickString(rec, ["id", "station_id", "_id", "uuid"]) ?? `${name}-${lat}-${lng}`,
+  const row: StationRow = {
+    id: pickString(rec, ["id", "StationID", "station_id", "_id", "uuid"]) ?? `${name}-${lat}-${lng}`,
     station_name: name,
     latitude: lat,
     longitude: lng,
@@ -90,7 +90,7 @@ export function mapApiStationToLocation(raw: unknown): Location | null {
     parking_rate: pickString(rec, ["parking_rate"]),
   }
 
-  return mapSupabaseRowToLocation(row)
+  return mapStationRowToLocation(row)
 }
 
 export function mapApiStationsToLocations(data: unknown): Location[] {
@@ -131,7 +131,9 @@ function mapRecommendItem(raw: unknown, index: number): RecommendItem | null {
     pickString(merged, ["Station Name", "name", "station_name", "title"])
   if (!id && lat == null && resolvedLng == null) return null
 
-  const distanceKmExplicit = pickNumber(merged, ["distance_km", "distanceKm"])
+  const distanceM = pickNumber(merged, ["distance_m"])
+  const distanceKmExplicit =
+    pickNumber(merged, ["distance_km", "distanceKm"]) ?? (distanceM != null ? distanceM / 1000 : undefined)
   const distanceRaw = pickNumber(merged, ["distance", "straight_line_m", "km"])
   const distanceKm =
     distanceKmExplicit ??
@@ -142,7 +144,11 @@ function mapRecommendItem(raw: unknown, index: number): RecommendItem | null {
     name: pickString(merged, ["Station Name", "name", "station_name", "title", "station"]),
     rank: pickNumber(merged, ["rank", "order", "priority"]) ?? index + 1,
     score: pickNumber(merged, ["topsis_score", "total_score", "score", "rating", "confidence", "probability"]),
-    reason: pickString(merged, ["reason", "explanation", "why", "message", "note"]),
+    reason:
+      pickString(merged, ["reason", "explanation", "why", "message", "note"]) ??
+      (Array.isArray(merged.reasons) && merged.reasons.length > 0
+        ? merged.reasons.filter((r): r is string => typeof r === "string").join("、")
+        : undefined),
     distanceKm,
     lat,
     lng: resolvedLng,
