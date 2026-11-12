@@ -52,8 +52,17 @@ GEMINI_STT_MODELS = _models("GEMINI_STT_MODELS", "gemini-3.5-flash-lite,gemini-2
 GEMINI_TTS_MODELS = _models("GEMINI_TTS_MODELS", "gemini-3.8-flash-tts,gemini-3.8-flash-lite-tts")
 # One of Gemini's 30 prebuilt voices, e.g. Kore, Puck, Aoede, Charon, Leda.
 GEMINI_TTS_VOICE = os.getenv("GEMINI_TTS_VOICE", "Kore")
+# Spoken answers favour speed: flash-lite answers in a few seconds and has the most free quota.
+GEMINI_VOICE_MODELS = _models("GEMINI_VOICE_MODELS", "gemini-3.5-flash-lite,gemini-3.5-flash,gemini-2.5-flash")
+# Fewer tool rounds for spoken answers; each round is another model request (1-10 s on the free tier).
+GEMINI_VOICE_MAX_TOOL_CALLS = _int("GEMINI_VOICE_MAX_TOOL_CALLS", 3)
 # Thinking level for spoken answers on Gemini 3 models ("" = model default). Lower is faster.
 GEMINI_VOICE_THINKING = os.getenv("GEMINI_VOICE_THINKING", "low")
+# After a model says it is out of quota (429), skip it for this many seconds instead of
+# waiting on a failed request every time. Busy models (5xx) are skipped for 30 seconds.
+GEMINI_COOLDOWN_S = _float("GEMINI_COOLDOWN_S", 300.0)
+# How long /api/speech waits for a part's audio before the app falls back to the phone's voice.
+SPEECH_WAIT_S = _float("SPEECH_WAIT_S", 25.0)
 VOICE_MAX_UPLOAD_MB =_float("VOICE_MAX_UPLOAD_MB", 4.0)
 RATE_LIMIT_SPEECH_PER_MIN = _int("RATE_LIMIT_SPEECH_PER_MIN", 40)  # GET /api/speech/<id>
 

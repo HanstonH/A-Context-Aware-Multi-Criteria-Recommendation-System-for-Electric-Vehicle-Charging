@@ -4,6 +4,9 @@ from __future__ import annotations
 
 import json
 import logging
+import re
+import threading
+import time
 from dataclasses import dataclass, field
 from datetime import datetime
 
@@ -19,10 +22,53 @@ from .routing import road_distances
 log = logging.getLogger(__name__)
 
 RETRYABLE = {429, 500, 502, 503, 504, 404}
+BUSY = {500, 502, 503, 504}  # temporary: the model is overloaded, not out of quota
+BUSY_RETRY_DELAY_S = 1.5
 
 
 class AssistantUnavailable(RuntimeError):
     """Gemini is not configured or every model failed."""
+
+
+# ── Model cool-down ──────────────────────────────────────────────────────────
+# A model that is out of free quota keeps answering 429 for hours. Remember that, so
+# each request goes straight to a model that works instead of waiting on failures first.
+_cooling: dict[str, float] = {}
+_cooling_lock = threading.Lock()
+
+
+def usable(models: list[str], *, all_if_none: bool = True) -> list[str]:
+    """The models not cooling down, in order (all of them if every one is, unless told not to)."""
+    now = time.monotonic()
+    with _cooling_lock:
+        ready = [m for m in models if _cooling.get(m, 0.0) <= now]
+    return ready if ready or not all_if_none else list(models)
+
+
+def cool_down(model: str, code: int | None) -> None:
+    """Skip a model for a while after it failed with this HTTP status."""
+    seconds = config.GEMINI_COOLDOWN_S if code == 429 else 30.0 if code in (500, 502, 503, 504) else 0.0
+    if seconds:
+        with _cooling_lock:
+            _cooling[model] = time.monotonic() + seconds
+
+
+# ── Reply language ───────────────────────────────────────────────────────────
+_CJK = re.compile(r"[㐀-鿿豈-﫿]")
+_LATIN_WORD = re.compile(r"[A-Za-z]+")
+
+
+def message_lang(text: str, fallback: str) -> str:
+    """'zh' or 'en': the language the user actually wrote or spoke, else the app's language.
+
+    Each Chinese character counts against one English word, so "去 Tesla 充電" is Chinese
+    and "Take me to 台北101" is English.
+    """
+    cjk = len(_CJK.findall(text))
+    words = len(_LATIN_WORD.findall(text))
+    if not cjk and not words:
+        return fallback
+    return "zh" if cjk >= words else "en"
 
 
 @dataclass
@@ -35,6 +81,7 @@ class ChatContext:
     wh_per_km: float = config.DEFAULT_WH_PER_KM
     dest_id: str | None = None
     voice: bool = False  # the reply will be read aloud to someone driving
+    prefetched: dict | None = None  # recommend_stations result fetched before the question was known
     seen: dict[str, dict] = field(default_factory=dict)  # every station a tool returned
     last_list: list[dict] = field(default_factory=list)  # stations from the latest tool call
 
@@ -70,6 +117,29 @@ def _for_llm(row: dict) -> dict:
     row["normalized"] = {k: v for k, v in row.get("normalized", {}).items() if k != "wait"}
     row["contributions"] = {k: v for k, v in row.get("contributions", {}).items() if k != "wait"}
     return row
+
+
+def recommendations(ctx: ChatContext, battery_pct: float = -1, city=None, limit: int = 5) -> dict:
+    """What the recommend_stations tool returns (also prefetched for voice questions)."""
+    pct = ctx.battery_pct if battery_pct is None or battery_pct < 0 else battery_pct
+    rec = recommend(
+        ctx.lat,
+        ctx.lng,
+        pct,
+        capacity_kwh=ctx.capacity_kwh,
+        wh_per_km=ctx.wh_per_km,
+        city=city,
+        limit=max(1, min(10, int(limit))),
+        lang=ctx.lang,
+    )
+    ctx.remember(rec["results"])
+    rec.pop("all_results", None)
+    rec["results"] = [_for_llm(r) for r in rec["results"]]
+    rec["notes"] = [
+        "waiting time is a placeholder (model not finished): do not claim a charger is free or busy",
+        f"charging prices are known for {rec.get('prices_known', 0)} of the scored stations; unknown prices use the median",
+    ]
+    return rec
 
 
 def _hit(item: dict) -> dict:
@@ -140,25 +210,7 @@ def make_tools(ctx: ChatContext) -> list:
         c = resolve_city(city) if city else None
         if city and not c:
             return {"error": f"Unknown city '{city}'."}
-        pct = ctx.battery_pct if battery_pct is None or battery_pct < 0 else battery_pct
-        rec = recommend(
-            ctx.lat,
-            ctx.lng,
-            pct,
-            capacity_kwh=ctx.capacity_kwh,
-            wh_per_km=ctx.wh_per_km,
-            city=c,
-            limit=max(1, min(10, int(limit))),
-            lang=ctx.lang,
-        )
-        ctx.remember(rec["results"])
-        rec.pop("all_results", None)
-        rec["results"] = [_for_llm(r) for r in rec["results"]]
-        rec["notes"] = [
-            "waiting time is a placeholder (model not finished): do not claim a charger is free or busy",
-            f"charging prices are known for {rec.get('prices_known', 0)} of the scored stations; unknown prices use the median",
-        ]
-        return rec
+        return recommendations(ctx, battery_pct, c, limit)
 
     def station_details(station_id: str) -> dict:
         """Full details for one station: address, operator, plug type, charging and parking prices, and road distance and drive time from the user.
@@ -224,6 +276,13 @@ Voice mode (this answer is spoken aloud to someone who is driving):
         if ctx.voice
         else ""
     )
+    if ctx.voice and ctx.prefetched:
+        # Saves a whole model round trip for the most common spoken question.
+        voice_rules += f"""
+- Already fetched for you: recommend_stations for the current battery level (best first):
+{json.dumps(ctx.prefetched, ensure_ascii=False, default=str)}
+  For "where can I charge", "nearest", "best" or "recommend" questions, answer from this directly without calling a tool.
+  Call tools only for anything else (a city, a station's details, a different battery level)."""
     return f"""You are the charger assistant inside MapExplore, an EV charging app for Taiwan.
 
 User context:
@@ -232,7 +291,7 @@ User context:
 - {dest_line}
 
 Rules:
-- Reply in {lang} unless the user clearly writes in another language.
+- Reply in {lang}, the language of the user's latest message, even if earlier messages used another language.
 - Get every station fact (names, counts, distances, prices) from the tools. Never invent stations or numbers.
 - For "which one / best / recommend" questions, call recommend_stations and explain the top choice using its score breakdown.
 - When the user says "this one" or "here", they mean the selected destination.
@@ -245,23 +304,54 @@ Rules:
 
 
 def _generate(
-    contents, cfg: types.GenerateContentConfig, thinking: str | None = None
+    contents,
+    cfg: types.GenerateContentConfig,
+    thinking: str | None = None,
+    models: list[str] | None = None,
 ) -> tuple[types.GenerateContentResponse, str]:
     client = _get_client()
-    last: Exception | None = None
-    for model in config.GEMINI_MODELS:
+
+    def call(model: str) -> types.GenerateContentResponse:
         model_cfg = cfg
         if thinking and model.startswith("gemini-3"):  # thinking levels are a Gemini 3 feature
             model_cfg = cfg.model_copy(update={"thinking_config": types.ThinkingConfig(thinking_level=thinking)})
+        return client.models.generate_content(model=model, contents=contents, config=model_cfg)
+
+    return try_models(models or config.GEMINI_MODELS, call, "Gemini")
+
+
+def try_models(models: list[str], call, what: str):
+    """(call(model), model) for the first model that works, trying them in order.
+
+    Out-of-quota models (429) are skipped for a while. A model that was only busy (5xx,
+    "high demand") gets one more try after a short pause, since these spikes are brief.
+    """
+    last: Exception | None = None
+    busy: list[str] = []
+    for model in usable(models):
         try:
-            return client.models.generate_content(model=model, contents=contents, config=model_cfg), model
+            return call(model), model
         except errors.APIError as exc:
+            if exc.code not in RETRYABLE:
+                raise
             last = exc
-            if getattr(exc, "code", None) in RETRYABLE:
-                log.warning("Gemini model %s failed (%s), trying next", model, exc.code)
-                continue
-            raise
-    raise AssistantUnavailable(f"All Gemini models failed: {last}")
+            log.warning("%s model %s failed (%s), trying next", what, model, exc.code)
+            if exc.code in BUSY:
+                busy.append(model)
+            else:
+                cool_down(model, exc.code)
+    if busy:
+        time.sleep(BUSY_RETRY_DELAY_S)
+        for model in busy:
+            try:
+                return call(model), model
+            except errors.APIError as exc:
+                if exc.code not in RETRYABLE:
+                    raise
+                last = exc
+                log.warning("%s model %s still busy (%s)", what, model, exc.code)
+                cool_down(model, exc.code)
+    raise AssistantUnavailable(f"All {what} models failed: {last}")
 
 
 def _tools_used(resp: types.GenerateContentResponse) -> list[str]:
@@ -280,6 +370,8 @@ def _pick_cards(reply: str, ctx: ChatContext) -> list[dict]:
 
 
 def chat(message: str, history: list[dict], ctx: ChatContext) -> dict:
+    """Answer one message. Sets ctx.lang to the language the message is in."""
+    ctx.lang = message_lang(message, ctx.lang)
     contents = []
     for turn in history[-12:]:
         text = str(turn.get("text") or "").strip()
@@ -293,11 +385,16 @@ def chat(message: str, history: list[dict], ctx: ChatContext) -> dict:
         system_instruction=_system_prompt(ctx),
         tools=make_tools(ctx),
         automatic_function_calling=types.AutomaticFunctionCallingConfig(
-            maximum_remote_calls=config.GEMINI_MAX_TOOL_CALLS
+            maximum_remote_calls=config.GEMINI_VOICE_MAX_TOOL_CALLS if ctx.voice else config.GEMINI_MAX_TOOL_CALLS
         ),
         temperature=0.3,
     )
-    resp, model = _generate(contents, cfg, thinking=config.GEMINI_VOICE_THINKING if ctx.voice else None)
+    if ctx.voice:
+        resp, model = _generate(
+            contents, cfg, thinking=config.GEMINI_VOICE_THINKING, models=config.GEMINI_VOICE_MODELS
+        )
+    else:
+        resp, model = _generate(contents, cfg)
     reply = (resp.text or "").strip()
     if not reply:
         reply = (
@@ -305,7 +402,13 @@ def chat(message: str, history: list[dict], ctx: ChatContext) -> dict:
             if ctx.lang == "zh"
             else "Sorry, I couldn't put an answer together. Please try asking another way."
         )
-    return {"reply": reply, "stations": _pick_cards(reply, ctx), "model": model, "tools_used": _tools_used(resp)}
+    return {
+        "reply": reply,
+        "lang": ctx.lang,
+        "stations": _pick_cards(reply, ctx),
+        "model": model,
+        "tools_used": _tools_used(resp),
+    }
 
 
 # ── Explanation for one recommended station ─────────────────────────────────

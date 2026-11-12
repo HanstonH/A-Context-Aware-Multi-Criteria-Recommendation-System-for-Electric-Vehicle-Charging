@@ -123,21 +123,27 @@ export type VoiceResponse = {
   heard: boolean; // false when the recording had no clear speech
   transcript: string;
   reply: string;
+  lang?: Lang; // language of the reply: the one the driver spoke, not necessarily the app's
+  spoken?: string; // the reply rewritten for reading aloud ("NT$5/kWh" -> "新台幣5每度")
   stations: ApiStation[];
-  speech: SpeechPart[]; // download each url in order and play it
+  speech: SpeechPart[]; // Gemini voice only: download each url in order and play it
 };
 
-/** Send a recorded question (local file uri, m4a); the server transcribes and answers it. */
+/**
+ * Send a recorded question (local file uri, m4a); the server transcribes and answers it.
+ * speech "device": the phone reads the reply, so the server skips Gemini text-to-speech.
+ */
 export function voice(
   where: Where,
   audioUri: string,
   history: ChatTurn[],
-  destId?: string | null
+  destId: string | null | undefined,
+  speech: "gemini" | "device"
 ): Promise<VoiceResponse> {
   const form = new FormData();
   // Expo SDK 58's fetch (expo/fetch) rejects React Native's { uri, name, type } parts;
   // an expo-file-system File works because it exposes its bytes like a Blob.
   form.append("audio", new File(audioUri));
-  form.append("data", JSON.stringify({ ...where, history, dest_id: destId ?? undefined }));
+  form.append("data", JSON.stringify({ ...where, history, dest_id: destId ?? undefined, speech }));
   return request<VoiceResponse>("/api/voice", form, 60000);
 }

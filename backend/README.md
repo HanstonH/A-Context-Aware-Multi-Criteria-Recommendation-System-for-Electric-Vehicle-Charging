@@ -18,10 +18,12 @@ Deployed on Railway: project `mapexplore-backend`, service `backend`.
 ## Voice (`voice.py`)
 
 1. **Speech to text:** Gemini (`GEMINI_STT_MODELS`, default `gemini-3.5-flash-lite`) transcribes the recording, in Traditional Chinese or English.
-2. **Answer:** the same assistant and tools as `/api/chat`, told that the answer will be spoken to a driver (1–3 short sentences, low thinking level).
+2. **Answer:** the same assistant and tools as `/api/chat`, told that the answer will be spoken to a driver (1–3 short sentences, low thinking level). Voice tries the fastest model first (`GEMINI_VOICE_MODELS`, default `gemini-3.5-flash-lite`) and allows at most 3 tool rounds. While the speech is being transcribed, the server already ranks stations for the current battery and puts the top 3 in the prompt, so "where can I charge?" needs no tool round trip. The reply is in the language the driver spoke, whatever the app's language is (`lang` in the response).
 3. **Text to speech:** the reply is split into a short first part and the rest, and both are synthesized in the background with `gemini-3.8-flash-tts` (voice `GEMINI_TTS_VOICE`, default Kore) through the Interactions API. The app plays part 1 while part 2 downloads. If a part fails, the app reads it with the phone's own voice.
 
-Measured on Railway: the text answer arrives about 6 s after the recording is sent, and the first audio about 11–12 s after.
+Measured locally (2026-11-12, English question with the app in Chinese): the text answer arrives about 4.5 s after the recording is sent, and the first Gemini audio about 11 s after.
+
+A model that answers 429 (out of free quota) is skipped for `GEMINI_COOLDOWN_S` (300 s), and a busy one (5xx) for 30 s, so requests don't wait on failures first. Speech requests don't use the SDK's automatic retries, and `/api/speech` gives up after `SPEECH_WAIT_S` (25 s), so the app switches to the phone's voice quickly when Gemini's voice is out of quota.
 
 ## How ranking works (`algorithm.py`)
 

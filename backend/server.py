@@ -8,6 +8,8 @@ import logging
 import threading
 import time
 from collections import defaultdict, deque
+from concurrent.futures import ThreadPoolExecutor
+from dataclasses import replace
 from functools import wraps
 
 from flask import Flask, Response, jsonify, request
@@ -15,10 +17,10 @@ from werkzeug.exceptions import HTTPException
 
 from . import config
 from .algorithm import estimate_range, recommend
-from .assistant import AssistantUnavailable, ChatContext, chat, explain
+from .assistant import AssistantUnavailable, ChatContext, chat, explain, recommendations
 from .data import store
 from .geo import resolve_city
-from .voice import SpeechFailed, audio_mime, get_speech, start_speech, transcribe
+from .voice import SpeechFailed, audio_mime, get_speech, speakable, start_speech, transcribe
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("backend")
@@ -209,6 +211,9 @@ def _history(data: dict) -> list[dict]:
     return [h for h in history if isinstance(h, dict)]
 
 
+_prefetch_pool = ThreadPoolExecutor(max_workers=4, thread_name_prefix="prefetch")
+
+
 @app.post("/api/voice")
 @guarded("ai", config.RATE_LIMIT_AI_PER_MIN)
 def voice_route():
@@ -233,18 +238,33 @@ def voice_route():
     if len(audio) < 1000:
         raise BadRequest("The recording is empty.")
 
+    # Most spoken questions are "where should I charge?". Rank stations while the speech is
+    # being transcribed (it takes longer), so Gemini can usually answer without a tool round trip.
+    side = replace(ctx, seen={}, last_list=[])
+    prefetch = _prefetch_pool.submit(recommendations, side, -1, None, 3)
     try:
         transcript = transcribe(audio, mime, ctx.lang)
         if not transcript:
             sorry = "抱歉，我沒聽清楚，請再說一次。" if ctx.lang == "zh" else "Sorry, I didn't catch that. Please say it again."
-            return jsonify({"ok": True, "heard": False, "transcript": "", "reply": sorry, "stations": [], "speech": []})
+            return jsonify(
+                {"ok": True, "heard": False, "transcript": "", "reply": sorry, "lang": ctx.lang, "stations": [], "speech": []}
+            )
+        try:
+            ctx.prefetched = prefetch.result(timeout=5)
+            ctx.remember(side.last_list)
+        except Exception as exc:  # noqa: BLE001 - the tools can still fetch it
+            log.warning("Voice prefetch failed: %s", exc)
         result = chat(transcript, history, ctx)
     except AssistantUnavailable as exc:
         log.warning("Voice unavailable: %s", exc)
         return jsonify({"ok": False, "error": "assistant unavailable"}), 503
 
-    speech = [{**part, "url": f"/api/speech/{part['id']}"} for part in start_speech(result["reply"], ctx.lang)]
-    return jsonify({"ok": True, "heard": True, "transcript": transcript, **result, "speech": speech})
+    # "device": the app reads the reply with the phone's voice, so skip Gemini TTS (and its quota).
+    speech = []
+    if data.get("speech", "gemini") != "device":
+        speech = [{**part, "url": f"/api/speech/{part['id']}"} for part in start_speech(result["reply"], ctx.lang)]
+    spoken = speakable(result["reply"], ctx.lang)
+    return jsonify({"ok": True, "heard": True, "transcript": transcript, **result, "spoken": spoken, "speech": speech})
 
 
 @app.get("/api/speech/<speech_id>")

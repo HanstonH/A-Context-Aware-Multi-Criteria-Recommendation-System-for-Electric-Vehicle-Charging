@@ -35,6 +35,7 @@ import {
   recordingMode,
   SilenceDetector,
   Speaker,
+  USE_GEMINI_VOICE,
 } from "../voice";
 
 type Msg = {
@@ -255,7 +256,8 @@ export default function ChatPanel({
         { lat: w.latitude, lng: w.longitude, battery_pct: w.battery, lang: w.lang },
         uri,
         historyNow(),
-        w.destId
+        w.destId,
+        USE_GEMINI_VOICE ? "gemini" : "device"
       );
       if (turn !== turnRef.current) return;
       if (!res.heard) {
@@ -273,7 +275,10 @@ export default function ChatPanel({
         { id: `${stamp}-vb`, role: "bot", text: res.reply, hits: res.stations.map(toHit) },
       ]);
       setVoice({ phase: "speaking", followUp: false, caption: res.reply });
-      const finished = await speakerRef.current!.play(res.speech, w.lang);
+      const replyLang = res.lang ?? w.lang;
+      const finished = res.speech.length
+        ? await speakerRef.current!.play(res.speech, replyLang)
+        : await speakerRef.current!.say(res.spoken || res.reply, replyLang);
       if (turn !== turnRef.current) return;
       if (finished) void voiceFns.current.startListening(true);
       else goIdle();
