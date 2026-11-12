@@ -1,5 +1,5 @@
 const axios = require('axios')
-const FASTAPI_URL = process.env.FASTAPI_URL || 'http://localhost:8000'
+const { FASTAPI_URL } = require('../config/constants')
 // POIs around a station, for display on the map only (not part of the ranking).
 const getPois = async (req, res) => {
   const lat = Number(req.query.lat)

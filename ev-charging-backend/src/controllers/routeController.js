@@ -1,5 +1,5 @@
 const axios = require('axios')
-const FASTAPI_URL = process.env.FASTAPI_URL || 'http://127.0.0.1:8000'
+const { FASTAPI_URL } = require('../config/constants')
 const getRoute = async (req, res) => {
   const { from_lat, from_lng, to_lat, to_lng } = req.query
   if (from_lat == null || from_lng == null || to_lat == null || to_lng == null) {

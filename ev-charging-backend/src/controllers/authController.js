@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 
 // Register
 const register = async (req, res) => {
-  const { email, password, name, phone } = req.body
+  const { email, password, name, phone } = req.body || {}
   if (!email || !password) {
     return res.status(400).json({ error: 'Email and password are required' })
   }
@@ -29,13 +29,16 @@ const register = async (req, res) => {
 
 // Login
 const login = async (req, res) => {
-  const { email, password } = req.body
+  const { email, password } = req.body || {}
+  if (!email || !password) {
+    return res.status(400).json({ error: 'Email and password are required' })
+  }
   try {
     const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email)
-    if (!user) return res.status(404).json({ error: 'User not found' })
-
-    const validPassword = await bcrypt.compare(password, user.password_hash)
-    if (!validPassword) return res.status(401).json({ error: 'Invalid password' })
+    // Same response for an unknown email and a wrong password, so the API
+    // doesn't reveal which emails have accounts.
+    const validPassword = user && (await bcrypt.compare(password, user.password_hash))
+    if (!validPassword) return res.status(401).json({ error: 'Invalid email or password' })
 
     const { password_hash: _, ...userWithoutPassword } = user
     res.status(200).json({ message: 'Login successful', user: userWithoutPassword })
