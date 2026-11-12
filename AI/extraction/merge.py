@@ -43,7 +43,15 @@ def _latest_static_date(endpoint: str, city: str) -> str | None:
     return dates[-1] if dates else None
 
 
-def _station_cost_from_rates(rate_records: list[dict[str, Any]]) -> pd.DataFrame:
+def _station_cost_from_rates(
+    rate_records: list[dict[str, Any]], *, per_kwh_only: bool = False
+) -> pd.DataFrame:
+    """Median price per station, preferring per-kWh rates.
+
+    With ``per_kwh_only`` (charging cost), per-minute / per-hour prices are
+    dropped instead of used as a fallback, since they are a different unit
+    from NT$/kWh and would be ranked as if they were the same.
+    """
     rows: list[tuple[Any, float, bool]] = []
     for record in rate_records:
         station_id = record.get("StationID")
@@ -52,7 +60,7 @@ def _station_cost_from_rates(rate_records: list[dict[str, Any]]) -> pd.DataFrame
             price = rate.get("RatePrice")
             if rate_type == _RATE_FREE:
                 rows.append((station_id, 0.0, True))
-            elif price is not None:
+            elif price is not None and (rate_type == _RATE_PER_KWH or not per_kwh_only):
                 rows.append((station_id, float(price), rate_type == _RATE_PER_KWH))
 
     if not rows:
@@ -109,7 +117,7 @@ def merge_static_master(date_str: str | None = None) -> pd.DataFrame:
             if charge_path.is_file():
                 charge_body = _load_json(charge_path)
                 rates = _unwrap(charge_body, "ChargingRates")
-                cost_table = _station_cost_from_rates(rates)
+                cost_table = _station_cost_from_rates(rates, per_kwh_only=True)
                 df = df.merge(cost_table, on="StationID", how="left")
                 median_cost = df["cost"].median()
                 df["cost"] = df["cost"].fillna(

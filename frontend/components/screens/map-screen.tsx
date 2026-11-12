@@ -8,7 +8,7 @@ import {
   Home,
   Building2,
   Utensils,
-  Fuel,
+  Zap,
   Plus,
   Minus,
   Navigation,
@@ -29,7 +29,7 @@ const quickActions = [
   { icon: Home, label: "住家", color: "bg-primary" },
   { icon: Building2, label: "公司", color: "bg-card" },
   { icon: Utensils, label: "餐廳", color: "bg-card" },
-  { icon: Fuel, label: "加油站", color: "bg-card" },
+  { icon: Zap, label: "充電樁", color: "bg-card" },
 ]
 
 const markers = [
@@ -62,7 +62,7 @@ export function MapScreen({ onMenuClick, onSearchClick, onNavigate }: MapScreenP
           </div>
 
           <Avatar className="w-10 h-10 border-2 border-primary">
-            <AvatarImage src="/avatar.jpg" />
+            <AvatarImage src="/placeholder.svg" alt="使用者頭像" />
             <AvatarFallback className="bg-primary text-primary-foreground">ME</AvatarFallback>
           </Avatar>
         </div>

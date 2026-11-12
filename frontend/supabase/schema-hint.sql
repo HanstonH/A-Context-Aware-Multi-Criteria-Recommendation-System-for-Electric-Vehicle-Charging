@@ -1,0 +1,31 @@
+-- Supabase `public.stations` 實際結構（欄位名含空格與大小寫，查詢時必須加雙引號）
+-- 前端：
+--   supabase.from('stations').select(
+--     'id, "Station Name", "Latitude", "Longitude", "Address 1", "City", "Country",
+--     "Port Type", "Plug Type", "MAC Address", "Port Number", "EVSE ID",
+--     "State/Province", "Postal Code"'
+--   )
+
+-- create table public.stations (
+--   id bigint generated always as identity primary key,
+--   "Station Name" text not null,
+--   "Latitude" double precision not null,
+--   "Longitude" double precision not null,
+--   "Address 1" text,
+--   "City" text,
+--   "Country" text,
+--   "Port Type" text,
+--   "Plug Type" text,
+--   "MAC Address" text,
+--   "Port Number" text,
+--   "EVSE ID" text,
+--   "State/Province" text,
+--   "Postal Code" text
+-- );
+
+-- alter table public.stations enable row level security;
+
+-- create policy "Allow public read"
+--   on public.stations for select
+--   to anon
+--   using (true);

@@ -203,6 +203,19 @@ def get_distance_ev(destination_location, user_location):
         print(response.text)
         return None
 
+def get_route_points(user_location, destination_location):
+    """Return the driving route as a list of [lat, lng] points for drawing on a map.
+
+    Returns None if no route or no polyline is available.
+    """
+    results = get_distance_ev(destination_location, user_location)
+    if not results or not results.get("routes"):
+        return None
+    encoded = results["routes"][0].get("polyline", {}).get("encodedPolyline")
+    if not encoded:
+        return None
+    return [[lat, lng] for lat, lng in decode_polyline(encoded)]
+
 
 def main():
     # Example coordinates in dataset.

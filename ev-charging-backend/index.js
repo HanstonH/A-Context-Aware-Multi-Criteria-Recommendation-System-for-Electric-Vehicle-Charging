@@ -13,6 +13,9 @@ const recommendRoutes = require('./src/routes/recommendRoutes')
 
 const poiRoutes = require('./src/routes/poiRoutes')
 
+const routeRoutes = require('./src/routes/routeRoutes')
+
+
 // Middleware
 app.use(cors())
 app.use(express.json())
@@ -31,5 +34,7 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
+
+app.use('/api/route', routeRoutes)
 
 app.use('/api/recommend', recommendRoutes)
