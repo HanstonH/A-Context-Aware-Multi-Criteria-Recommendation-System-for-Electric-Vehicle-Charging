@@ -87,7 +87,7 @@ function fold(s: string) {
   return normText(s).replace(/[\s\-_.]/g, "");
 }
 
-function haversineKm(aLat: number, aLng: number, bLat: number, bLng: number) {
+export function haversineKm(aLat: number, aLng: number, bLat: number, bLng: number) {
   const R = 6371;
   const dLat = ((bLat - aLat) * Math.PI) / 180;
   const dLng = ((bLng - aLng) * Math.PI) / 180;
@@ -255,7 +255,7 @@ function helpText(lang: Lang) {
 export function welcomeText(lang: Lang) {
   return lang === "zh"
     ? "你好，我是充電站助理。可以直接問附近、縣市、站名，或依目前電量推薦。"
-    : "Hi, I can look up chargers. Ask about nearby stations, a city, a station name, or a recommendation from your battery.";
+    : "Hi! I'm the charger assistant. Ask about nearby chargers, a city, a station name, or which chargers your battery can reach.";
 }
 
 export function suggestionChips(lang: Lang) {
@@ -411,7 +411,7 @@ export function replyTo(raw: string, ctx: Ctx): ChatReply {
       text:
         lang === "zh"
           ? `10 公里內有 ${near.length} 座充電站，下面由近到遠。${extra}`
-          : `${near.length} chargers within 10 km, nearest first. ${extra}`,
+          : `${near.length} ${near.length === 1 ? "charger" : "chargers"} within 10 km, nearest first. ${extra}`,
       hits: near.slice(0, 5),
     };
   }
@@ -437,7 +437,7 @@ export function replyTo(raw: string, ctx: Ctx): ChatReply {
       text:
         lang === "zh"
           ? `${place}有 ${inCity.length} 座充電站。下面是離你較近的幾座。`
-          : `${place} has ${inCity.length} chargers. These are the closer ones.`,
+          : `${place} has ${inCity.length} ${inCity.length === 1 ? "charger" : "chargers"}. Here are the ones closest to you.`,
       hits: inCity.slice(0, 5),
     };
   }

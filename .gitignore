@@ -1,0 +1,49 @@
+# ── Secrets: never commit ─────────────────────────────────────────────────────
+# API keys live in .env files (AI/.env, backend/.env, app/.env).
+# Commit the matching .env.example with empty values instead.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p8
+*.p12
+*.jks
+*.mobileprovision
+*credentials*.json
+*service-account*.json
+
+# ── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# ── Node / Expo / Next.js ────────────────────────────────────────────────────
+node_modules/
+.expo/
+.next/
+dist/
+web-build/
+*.tsbuildinfo
+npm-debug.log*
+yarn-error.log*
+
+# ── Large or generated data ──────────────────────────────────────────────────
+# Trained models (720 MB; some files are over GitHub's 100 MB limit).
+# Share them with Git LFS or a download link instead.
+AI/Algorithm/models/
+# Extraction checkpoints and logs (rebuilt by the scheduler).
+AI/.extraction_state/
+*.log
+
+# ── OS / editors ─────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

@@ -1,0 +1,10 @@
+# What `railway up` uploads: only the backend and the station database.
+/*
+!/backend/
+!/database/
+/database/*
+!/database/ev_charging.db
+!/.dockerignore
+/backend/.venv/
+/backend/.env
+**/__pycache__/

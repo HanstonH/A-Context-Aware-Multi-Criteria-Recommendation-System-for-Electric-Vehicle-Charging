@@ -11,10 +11,12 @@ import {
 } from "react-native";
 import MapView, { Marker, Polyline, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import stations from "../assets/stations.json";
-import type { ChatHit } from "../chatbot";
+import * as api from "../api";
+import { cityLabel, type ChatHit } from "../chatbot";
 import { useI18n, type Lang } from "../i18n";
-import ChatPanel from "./ChatPanel";
+import ChatPanel, { type VoiceState } from "./ChatPanel";
 
 type Station = {
   id: string;
@@ -46,17 +48,17 @@ const CITY_PRESETS: { id: string; city: string | null; lat: number; lng: number;
   { id: "nearby", city: null, lat: 0, lng: 0, keys: [] },
   { id: "Keelung", city: "Keelung", lat: 25.1276, lng: 121.7392, keys: ["基隆", "keelung"] },
   { id: "Taipei", city: "Taipei", lat: 25.033, lng: 121.5654, keys: ["台北", "臺北", "taipei"] },
-  { id: "NewTaipei", city: "NewTaipei", lat: 25.017, lng: 121.463, keys: ["新北", "newtaipei"] },
+  { id: "NewTaipei", city: "NewTaipei", lat: 25.017, lng: 121.463, keys: ["新北", "new taipei", "newtaipei"] },
   { id: "Taoyuan", city: "Taoyuan", lat: 24.993, lng: 121.301, keys: ["桃園", "taoyuan"] },
   { id: "Hsinchu", city: "Hsinchu", lat: 24.8138, lng: 120.9675, keys: ["新竹", "hsinchu"] },
-  { id: "HsinchuCounty", city: "HsinchuCounty", lat: 24.827, lng: 121.012, keys: ["新竹縣"] },
+  { id: "HsinchuCounty", city: "HsinchuCounty", lat: 24.827, lng: 121.012, keys: ["新竹縣", "hsinchu county", "hsinchucounty"] },
   { id: "MiaoliCounty", city: "MiaoliCounty", lat: 24.5602, lng: 120.8214, keys: ["苗栗", "miaoli"] },
   { id: "Taichung", city: "Taichung", lat: 24.1477, lng: 120.6736, keys: ["台中", "臺中", "taichung"] },
   { id: "ChanghuaCounty", city: "ChanghuaCounty", lat: 24.0518, lng: 120.5161, keys: ["彰化", "changhua"] },
   { id: "NantouCounty", city: "NantouCounty", lat: 23.9609, lng: 120.9719, keys: ["南投", "nantou"] },
   { id: "YunlinCounty", city: "YunlinCounty", lat: 23.7092, lng: 120.4313, keys: ["雲林", "yunlin"] },
   { id: "Chiayi", city: "Chiayi", lat: 23.4801, lng: 120.4491, keys: ["嘉義", "chiayi"] },
-  { id: "ChiayiCounty", city: "ChiayiCounty", lat: 23.4518, lng: 120.2555, keys: ["嘉義縣"] },
+  { id: "ChiayiCounty", city: "ChiayiCounty", lat: 23.4518, lng: 120.2555, keys: ["嘉義縣", "chiayi county", "chiayicounty"] },
   { id: "Tainan", city: "Tainan", lat: 22.9999, lng: 120.227, keys: ["台南", "臺南", "tainan"] },
   { id: "Kaohsiung", city: "Kaohsiung", lat: 22.6273, lng: 120.3014, keys: ["高雄", "kaohsiung"] },
   { id: "PingtungCounty", city: "PingtungCounty", lat: 22.5519, lng: 120.5487, keys: ["屏東", "pingtung"] },
@@ -180,8 +182,19 @@ function normText(s: string) {
 }
 
 function matchPreset(q: string) {
-  const n = normText(q);
-  return CITY_PRESETS.find((p) => p.keys.some((k) => n.includes(normText(k)) || normText(k).includes(n)));
+  const n = normText(q.trim());
+  if (!n) return undefined;
+  // Prefer the longest key contained in the query, so "新竹縣" / "Hsinchu County"
+  // beat "新竹" / "Hsinchu"; fall back to a key that starts with what was typed.
+  let best: { p: (typeof CITY_PRESETS)[number]; len: number } | null = null;
+  for (const p of CITY_PRESETS) {
+    for (const k of p.keys) {
+      const nk = normText(k);
+      if (n.includes(nk) && (!best || nk.length > best.len)) best = { p, len: nk.length };
+    }
+  }
+  if (best) return best.p;
+  return CITY_PRESETS.find((p) => p.keys.some((k) => normText(k).startsWith(n)));
 }
 
 function nationwideHits(q: string, from: Coord): Station[] {
@@ -352,6 +365,7 @@ function BatterySlider({
 
 export default function MapScreen({ onLogout }: Props) {
   const { t, lang, setLang } = useI18n();
+  const insets = useSafeAreaInsets();
   const mapRef = useRef<MapView>(null);
   const watchRef = useRef<Location.LocationSubscription | null>(null);
   const headingWatchRef = useRef<Location.LocationSubscription | null>(null);
@@ -390,6 +404,10 @@ export default function MapScreen({ onLogout }: Props) {
   const [status, setStatus] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
+  // Voice lives in ChatPanel (always mounted); these drive the map's mic button and pill.
+  const [voiceTick, setVoiceTick] = useState(0);
+  const [voice, setVoice] = useState<VoiceState>({ phase: "idle", followUp: false, caption: "" });
+  const tapVoice = () => setVoiceTick((n) => n + 1);
   const [routeLine, setRouteLine] = useState<Coord[]>([]);
   const [routeMeta, setRouteMeta] = useState<{ km: string; min: string; steps: string[] } | null>(
     null
@@ -409,6 +427,23 @@ export default function MapScreen({ onLogout }: Props) {
   const [originQuery, setOriginQuery] = useState("");
   const [destQuery, setDestQuery] = useState("");
   const [suggests, setSuggests] = useState<Suggest[]>([]);
+  const [finding, setFinding] = useState(false);
+  const [server, setServer] = useState<"checking" | "ok" | "ok-no-ai" | "down" | "off">(
+    api.backendConfigured ? "checking" : "off"
+  );
+
+  useEffect(() => {
+    if (tab !== "settings" || !api.backendConfigured) return;
+    let live = true;
+    setServer("checking");
+    api
+      .health()
+      .then((h) => live && setServer(h.gemini ? "ok" : "ok-no-ai"))
+      .catch(() => live && setServer("down"));
+    return () => {
+      live = false;
+    };
+  }, [tab]);
 
   const goTo = (latitude: number, longitude: number, delta = 0.08) => {
     mapRef.current?.animateToRegion({
@@ -490,7 +525,9 @@ export default function MapScreen({ onLogout }: Props) {
           });
         }
       }
-      const strSteps = parsed.map((s) => `${s.type} ${s.modifier} ${s.road}`.trim());
+      const strSteps = parsed.map((s) =>
+        maneuverTitle(lang, s.type, s.modifier, s.road, t.road, t.arrived, t.continueStraight)
+      );
       lineRef.current = line;
       stepsRef.current = parsed;
       totalMRef.current = route.distance || 1;
@@ -758,9 +795,9 @@ export default function MapScreen({ onLogout }: Props) {
     const hits = ALL.filter((s) => s.city === preset.city).slice(0, 40);
     const near = nearbyStations(center.latitude, center.longitude, 18);
     setSearchHits(near.length ? near : hits);
-    setQuery(preset.keys[0]);
+    const label = cityLabel(preset.city, lang);
+    setQuery(label);
     goTo(center.latitude, center.longitude, 0.18);
-    const label = lang === "zh" ? preset.keys[0] : preset.id;
     setStatus(t.foundIn(near.length || hits.length, label));
     if (near[0]) setDest(near[0]);
   };
@@ -921,7 +958,88 @@ export default function MapScreen({ onLogout }: Props) {
     source: "map",
   });
 
-  const search = () => {
+  const explainStation = async (s: Station) => {
+    setStatus(t.explaining);
+    try {
+      const res = await api.explain(
+        { lat: coord.latitude, lng: coord.longitude, battery_pct: battery, lang },
+        s.id
+      );
+      Alert.alert(t.whyTitle(s.name || s.id), res.explanation, [
+        { text: t.viewMap },
+        { text: t.startNav, onPress: () => startInAppRoute(s) },
+      ]);
+      setStatus(t.pickedStatus(s.name || s.id));
+    } catch {
+      Alert.alert(t.whyTitle(s.name || s.id), t.serverOffline);
+      setStatus(t.serverOffline);
+    }
+  };
+
+  // Ranking from the backend algorithm (range filter → distance / wait / cost score).
+  const searchServer = async (): Promise<boolean> => {
+    const rec = await api.recommend(
+      { lat: coord.latitude, lng: coord.longitude, battery_pct: battery, lang },
+      { limit: 5 }
+    );
+    const rangeTxt = rec.range.max_range_km.toFixed(0);
+    if (!rec.ok || !rec.results.length) {
+      setPicked([]);
+      Alert.alert(t.noStationTitle, t.noStationBody(battery, rangeTxt));
+      setStatus(t.noStationStatus);
+      return true;
+    }
+    const ranked: Station[] = rec.results.map((r) => ({
+      id: r.id,
+      name: r.name,
+      lat: r.lat,
+      lng: r.lng,
+      city: r.city,
+      source: r.source,
+    }));
+    const best = ranked[0];
+    setPicked(ranked);
+    setChip("charger");
+    setDest(best);
+    setMenuOpen(true);
+    const lines = rec.results
+      .map((r, i) =>
+        t.recLineScored(
+          i + 1,
+          r.name,
+          (r.distance_m / 1000).toFixed(1),
+          r.cost.ntd_per_kwh != null ? String(r.cost.ntd_per_kwh) : null,
+          r.total_score.toFixed(2)
+        )
+      )
+      .join("\n");
+    Alert.alert(t.recTitle(battery), t.recBodyAi(rangeTxt, lines), [
+      { text: t.viewMap },
+      { text: t.whyBtn, onPress: () => void explainStation(best) },
+      { text: t.startNav, onPress: () => startInAppRoute(best) },
+    ]);
+    setStatus(t.pickedStatus(best.name || best.id));
+    goTo(best.lat, best.lng, 0.06);
+    return true;
+  };
+
+  const search = async () => {
+    if (finding) return;
+    if (api.backendConfigured) {
+      setFinding(true);
+      try {
+        if (await searchServer()) return;
+      } catch {
+        setStatus(t.serverOffline);
+      } finally {
+        setFinding(false);
+      }
+    }
+    searchLocal();
+  };
+
+  // On-phone fallback: nearest reachable chargers by straight-line distance.
+  const searchLocal = () => {
     const rangeKm = SAFETY * ((CAPACITY_KWH * 1000 * battery) / 100) / WH_PER_KM;
     const ranked = ALL.map((s) => ({
       s,
@@ -941,7 +1059,7 @@ export default function MapScreen({ onLogout }: Props) {
     setDest(best);
     setMenuOpen(true);
     const lines = ranked
-      .map((x, i) => `${i + 1}. ${x.s.name || x.s.id}（${x.d.toFixed(1)} km）`)
+      .map((x, i) => t.recLine(i + 1, x.s.name || x.s.id, x.d.toFixed(1)))
       .join("\n");
     Alert.alert(t.recTitle(battery), t.recBody(rangeKm.toFixed(0), lines), [
       { text: t.viewMap },
@@ -977,7 +1095,7 @@ export default function MapScreen({ onLogout }: Props) {
     : null;
   const distToTurnM = curStep ? Math.max(0, curStep.cumEndM - (totalMRef.current - remainM)) : remainM;
   const distToTurn =
-    distToTurnM >= 1000 ? `${(distToTurnM / 1000).toFixed(1)} ${t.kmLabel}` : `${Math.round(distToTurnM)} m`;
+    distToTurnM >= 1000 ? `${(distToTurnM / 1000).toFixed(1)} ${t.kmLabel}` : `${Math.round(distToTurnM)} ${t.mLabel}`;
   const routeParts =
     navigating && routeLine.length > 1 ? splitRoute(routeLine, snapPos || coord) : null;
   const originText = !origin || origin.kind === "gps" ? t.yourLocation : origin.label;
@@ -985,8 +1103,20 @@ export default function MapScreen({ onLogout }: Props) {
   if (tab === "settings") {
     return (
       <View style={styles.root}>
-        <Text style={[styles.logo, { paddingTop: 56, paddingHorizontal: 16 }]}>{t.settings}</Text>
+        <Text style={[styles.logo, { paddingTop: insets.top + 16, paddingHorizontal: 16 }]}>
+          {t.settings}
+        </Text>
         <Text style={styles.settingsBody}>{t.accountDemo}</Text>
+        <Text style={styles.settingsBody}>
+          {t.serverLabel}:{" "}
+          {server === "off"
+            ? t.serverNotSet
+            : server === "checking"
+              ? t.serverChecking
+              : server === "down"
+                ? t.serverDown
+                : t.serverOk(server === "ok")}
+        </Text>
         <Text style={styles.settingsBody}>{gpsError || status || t.locatingStatus}</Text>
         <Pressable style={styles.go} onPress={onLogout}>
           <Text style={styles.goText}>{t.logout}</Text>
@@ -1018,7 +1148,7 @@ export default function MapScreen({ onLogout }: Props) {
               setOrigin({ latitude, longitude, label: t.pickedOnMap, kind: "map" });
               setPickMode(null);
               setTripOpen(true);
-              setStatus(`${t.originLabel}：${t.pickedOnMap}`);
+              setStatus(t.originStatus(t.pickedOnMap));
               return;
             }
             if (pickMode === "dest") {
@@ -1114,7 +1244,7 @@ export default function MapScreen({ onLogout }: Props) {
                     });
                     setPickMode(null);
                     setTripOpen(true);
-                    setStatus(`${t.originLabel}：${s.name || s.id}`);
+                    setStatus(t.originStatus(s.name || s.id));
                     return;
                   }
                   if (dest?.id === s.id) {
@@ -1137,7 +1267,7 @@ export default function MapScreen({ onLogout }: Props) {
 
         {navigating ? (
           <>
-            <View style={styles.navBanner}>
+            <View style={[styles.navBanner, { top: insets.top + 8 }]}>
               <View style={styles.navBannerRow}>
                 <Text style={styles.navArrow}>{maneuverArrow(curStep?.type || "", curStep?.modifier || "")}</Text>
                 <View style={{ flex: 1 }}>
@@ -1156,7 +1286,14 @@ export default function MapScreen({ onLogout }: Props) {
               ) : null}
             </View>
 
-            <View style={styles.navSide}>
+            <View style={[styles.navSide, { bottom: insets.bottom + 120 }]}>
+              <Pressable
+                style={[styles.navMic, voice.phase !== "idle" && styles.micLive]}
+                onPress={tapVoice}
+                accessibilityLabel={t.voiceTitle}
+              >
+                <Text style={styles.navMicTxt}>{voice.phase === "idle" ? "🎤" : "■"}</Text>
+              </Pressable>
               <Pressable
                 style={styles.navSideBtn}
                 onPress={() => followUser(snapPos || coord, true)}
@@ -1165,7 +1302,7 @@ export default function MapScreen({ onLogout }: Props) {
               </Pressable>
             </View>
 
-            <View style={styles.navBar}>
+            <View style={[styles.navBar, { bottom: insets.bottom + 16 }]}>
               <View>
                 <Text style={styles.etaMin}>
                   {Math.max(1, Math.round(remainS / 60))} {t.minLabel}
@@ -1181,7 +1318,7 @@ export default function MapScreen({ onLogout }: Props) {
           </>
         ) : (
           <>
-            <View style={styles.topFloat}>
+            <View style={[styles.topFloat, { top: insets.top + 8 }]}>
               <Text style={styles.logo}>MapExplore</Text>
               {pickMode ? (
                 <Text style={styles.pickHint}>
@@ -1189,12 +1326,18 @@ export default function MapScreen({ onLogout }: Props) {
                 </Text>
               ) : null}
             </View>
-            <View style={styles.floatCol}>
+            <View style={[styles.floatCol, { bottom: insets.bottom + 24 }]}>
               <Pressable style={styles.menuFab} onPress={() => setMenuOpen(true)}>
                 <Text style={styles.menuFabTxt}>{t.features}</Text>
               </Pressable>
               <Pressable style={[styles.menuFab, styles.chatFab]} onPress={openChat}>
                 <Text style={styles.menuFabTxt}>{t.chatFab}</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.menuFab, styles.voiceFab, voice.phase !== "idle" && styles.micLive]}
+                onPress={tapVoice}
+              >
+                <Text style={styles.menuFabTxt}>{voice.phase === "idle" ? t.voiceFab : "■"}</Text>
               </Pressable>
               <Pressable style={styles.floatBtn} onPress={() => locate(false)}>
                 <Text style={styles.floatTxt}>{t.locate}</Text>
@@ -1205,19 +1348,19 @@ export default function MapScreen({ onLogout }: Props) {
       </View>
 
       {!navigating && !menuOpen && !chatOpen && previewing && dest ? (
-        <View style={styles.previewBar}>
-          <View>
+        <View style={[styles.previewBar, { bottom: insets.bottom + 16 }]}>
+          <View style={{ flex: 1 }}>
             <Text style={styles.etaMin}>
               {routeMeta ? `${routeMeta.min} ${t.minLabel}` : t.previewTrip}
             </Text>
-            <Text style={styles.previewSub}>
+            <Text style={styles.previewSub} numberOfLines={2}>
               {originText} → {dest.name || t.chargerDefault}
               {routeMeta ? ` · ${routeMeta.km} km` : ""}
             </Text>
           </View>
-          <View style={{ gap: 8 }}>
+          <View style={{ gap: 8, alignItems: "center" }}>
             <Pressable
-              style={styles.navBtn}
+              style={[styles.navBtn, styles.previewGo]}
               onPress={() => startInAppRoute(dest)}
               disabled={routing}
             >
@@ -1232,18 +1375,18 @@ export default function MapScreen({ onLogout }: Props) {
 
       {!navigating && !menuOpen && !chatOpen && !tripOpen && !previewing && dest ? (
         <Pressable
-          style={styles.slimNav}
+          style={[styles.slimNav, { bottom: insets.bottom + 20 }]}
           onPress={() => startInAppRoute(dest)}
           disabled={routing}
         >
-          <Text style={styles.goText}>
+          <Text style={styles.goText} numberOfLines={1}>
             {routing ? t.routing : t.slimNav(dest.name || t.chargerDefault)}
           </Text>
         </Pressable>
       ) : null}
 
       {!navigating && !tripOpen && menuOpen ? (
-        <View style={styles.sheet}>
+        <View style={[styles.sheet, { paddingBottom: insets.bottom + 12 }]}>
           <Pressable style={styles.sheetHandle} onPress={() => setMenuOpen(false)}>
             <View style={styles.handleBar} />
             <Text style={styles.sheetClose}>{t.collapseMenu}</Text>
@@ -1269,7 +1412,7 @@ export default function MapScreen({ onLogout }: Props) {
               contentContainerStyle={styles.chips}
             >
               {CITY_PRESETS.map((p) => {
-                const label = p.id === "nearby" ? t.regionNearby : p.keys[0];
+                const label = p.id === "nearby" ? t.regionNearby : cityLabel(p.city, lang);
                 return (
                   <Chip
                     key={p.id}
@@ -1353,14 +1496,15 @@ export default function MapScreen({ onLogout }: Props) {
                         {s.name || s.id}
                       </Text>
                       <Text style={styles.hint}>
-                        {s.city} · {haversineKm(coord.latitude, coord.longitude, s.lat, s.lng).toFixed(0)} km
+                        {cityLabel(s.city, lang)} ·{" "}
+                        {t.kmAway(haversineKm(coord.latitude, coord.longitude, s.lat, s.lng).toFixed(0))}
                       </Text>
                     </Pressable>
                   ))}
                 </View>
               ) : null}
-              <Pressable style={styles.go} onPress={search}>
-                <Text style={styles.goText}>{t.startSearch}</Text>
+              <Pressable style={[styles.go, finding && { opacity: 0.6 }]} onPress={search} disabled={finding}>
+                <Text style={styles.goText}>{finding ? t.finding : t.startSearch}</Text>
               </Pressable>
               {dest ? (
                 <Pressable
@@ -1368,7 +1512,7 @@ export default function MapScreen({ onLogout }: Props) {
                   onPress={() => startInAppRoute(dest)}
                   disabled={routing}
                 >
-                  <Text style={styles.goText}>
+                  <Text style={styles.goText} numberOfLines={1}>
                     {routing ? t.routingLong : t.navTo(dest.name || t.chargerDefault)}
                   </Text>
                 </Pressable>
@@ -1397,7 +1541,7 @@ export default function MapScreen({ onLogout }: Props) {
       ) : null}
 
       {!navigating && tripOpen ? (
-        <View style={styles.tripCard} pointerEvents="box-none">
+        <View style={[styles.tripCard, { top: insets.top + 8 }]} pointerEvents="box-none">
           <View style={styles.tripBox}>
             <TextInput
               style={styles.tripInput}
@@ -1433,7 +1577,7 @@ export default function MapScreen({ onLogout }: Props) {
                   setPickMode(null);
                 }}
               >
-                <Text style={styles.sheetClose}>{t.closePreview}</Text>
+                <Text style={styles.sheetClose}>{t.close}</Text>
               </Pressable>
             </View>
           </View>
@@ -1500,8 +1644,36 @@ export default function MapScreen({ onLogout }: Props) {
         </View>
       ) : null}
 
-      {!gpsReady ? <Text style={styles.loading}>{t.locating}</Text> : null}
+      {!gpsReady ? <Text style={[styles.loading, { top: insets.top + 56 }]}>{t.locating}</Text> : null}
+      {voice.phase !== "idle" && !(chatOpen && !navigating) ? (
+        <Pressable
+          style={[
+            styles.voicePill,
+            navigating
+              ? { bottom: insets.bottom + 110, left: 12, right: 76 }
+              : { top: insets.top + 52, left: 12, right: 12 },
+          ]}
+          onPress={tapVoice}
+        >
+          <Text style={styles.voicePillTitle}>
+            {voice.phase === "listening"
+              ? voice.followUp
+                ? t.voiceFollowUp
+                : t.voiceListening
+              : voice.phase === "thinking"
+                ? t.voiceThinking
+                : t.voiceSpeaking}
+          </Text>
+          {voice.caption ? (
+            <Text style={styles.voicePillCaption} numberOfLines={3}>
+              {voice.caption}
+            </Text>
+          ) : null}
+        </Pressable>
+      ) : null}
       <ChatPanel
+        voiceTick={voiceTick}
+        onVoice={setVoice}
         open={chatOpen && !navigating}
         latitude={coord.latitude}
         longitude={coord.longitude}
@@ -1675,6 +1847,7 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   previewSub: { color: "#d1d5db", marginTop: 4, flexShrink: 1 },
+  previewGo: { marginTop: 0, paddingHorizontal: 22 },
   menuFab: {
     backgroundColor: "#16a34a",
     borderRadius: 22,
@@ -1684,6 +1857,29 @@ const styles = StyleSheet.create({
   },
   menuFabTxt: { color: "#fff", fontWeight: "800", fontSize: 16 },
   chatFab: { backgroundColor: "#2563eb" },
+  voiceFab: { backgroundColor: "#7c3aed" },
+  micLive: { backgroundColor: "#dc2626" },
+  navMic: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: "#7c3aed",
+    alignItems: "center",
+    justifyContent: "center",
+    elevation: 6,
+  },
+  navMicTxt: { fontSize: 26, color: "#fff" },
+  voicePill: {
+    position: "absolute",
+    backgroundColor: "rgba(17,24,39,0.92)",
+    borderRadius: 16,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    elevation: 8,
+    zIndex: 40,
+  },
+  voicePillTitle: { color: "#fca5a5", fontWeight: "800", fontSize: 14 },
+  voicePillCaption: { color: "#f9fafb", marginTop: 4, lineHeight: 19 },
   chatMenuBtn: {
     borderWidth: 1.5,
     borderColor: "#2563eb",
@@ -1725,6 +1921,7 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     paddingVertical: 14,
     alignItems: "center",
+    paddingHorizontal: 16,
   },
   chips: { flexDirection: "row", gap: 8, padding: 12, paddingHorizontal: 16 },
   chip: {
@@ -1763,6 +1960,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#2563eb",
     borderRadius: 20,
     paddingVertical: 12,
+    paddingHorizontal: 16,
     alignItems: "center",
     marginTop: 8,
   },
