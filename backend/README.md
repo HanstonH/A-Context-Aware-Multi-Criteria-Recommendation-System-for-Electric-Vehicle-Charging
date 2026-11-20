@@ -11,6 +11,10 @@ Deployed on Railway: project `mapexplore-backend`, service `backend`.
 | POST | `/api/auth/register` | Create an account. Body: `email`, `password` (8–128 chars), optional `name`. Returns `user` and `token` |
 | POST | `/api/auth/login` | Body: `email`, `password`. Returns `user` and `token`. Same 401 for unknown email and wrong password |
 | GET | `/api/auth/me` | The user for `Authorization: Bearer <token>`, or 401 |
+| GET | `/api/history` | The logged-in user's recent searches, newest first. Optional `?limit=` (default 20). Needs `Authorization: Bearer <token>` |
+| POST | `/api/history` | Save a search (see *Search history* below). Returns the saved `entry`. Needs login |
+| DELETE | `/api/history` | Clear the user's history. Returns `deleted` (count). Needs login |
+| DELETE | `/api/history/<id>` | Remove one entry, or 404. Needs login |
 | GET | `/api/stations` | Every station (id, name, city, lat/lng, address, spaces, charging points, price), for the web map |
 | POST | `/api/recommend` | Ranked reachable chargers. Body: `lat`, `lng`, `battery_pct`, optional `city`, `limit`, `lang`, `capacity_kwh`, `wh_per_km`, `available_now` (true = need a charger now) |
 | POST | `/api/chat` | Gemini assistant with database tools. Body: the above plus `message`, `history` (`[{role, text}]`), `dest_id` |
@@ -51,6 +55,22 @@ Placeholders and data limits:
 - **Limits:** register and login share a stricter per-IP limit, `RATE_LIMIT_AUTH_PER_MIN` (10).
 - **Who uses it:** the web frontend keeps the token in an httpOnly cookie (`frontend/app/api/auth/*`). The phone app's login screen is not connected yet; it would send the token as `Authorization: Bearer <token>`.
 - **Not built yet:** password reset, email verification, and requiring login for the other endpoints (they stay open, guarded by the API key and rate limits).
+
+## Search history (`history.py`)
+
+Stored in the users database (table `search_history`), so it follows the account to any device.
+`POST /api/history` takes a `kind` and the fields for it:
+
+| `kind` | Required | Optional |
+|---|---|---|
+| `text` (typed in the search box) | `query` | `lat`, `lng`, `battery_pct` |
+| `destination` | `query` | `lat`, `lng`, `battery_pct` |
+| `range` (battery-range search) | `lat`, `lng`, `battery_pct` | `query` |
+| `station` (a station the user opened) | `station_id` | `query` (its name), `lat`, `lng` |
+
+- **No copies:** repeating a search moves it to the top. For `text`/`destination` the match is the same `query` (any case), for `station` the same `station_id`, and only the latest `range` is kept.
+- **Kept:** the newest `HISTORY_MAX` (50) entries per user; older ones are deleted.
+- **Deleted with the account** (foreign key with `ON DELETE CASCADE`).
 
 ## Gemini tools (`assistant.py`)
 

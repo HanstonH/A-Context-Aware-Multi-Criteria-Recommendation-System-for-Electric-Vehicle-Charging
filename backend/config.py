@@ -38,6 +38,8 @@ USERS_DB_PATH = Path(os.getenv("USERS_DB_PATH", REPO_DIR / "database" / "users.d
 SECRET_KEY = os.getenv("SECRET_KEY", "")
 AUTH_TOKEN_DAYS = _int("AUTH_TOKEN_DAYS", 30)
 RATE_LIMIT_AUTH_PER_MIN = _int("RATE_LIMIT_AUTH_PER_MIN", 10)  # register / login attempts
+# Search history (history.py): newest entries kept per user; older ones are deleted.
+HISTORY_MAX = _int("HISTORY_MAX", 50)
 
 # ── Gemini ───────────────────────────────────────────────────────────────────
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")

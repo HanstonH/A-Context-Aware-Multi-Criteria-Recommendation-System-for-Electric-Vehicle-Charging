@@ -17,7 +17,7 @@ from werkzeug.exceptions import HTTPException
 
 from . import config
 from .algorithm import estimate_range, recommend
-from . import auth
+from . import auth, history
 from .assistant import AssistantUnavailable, ChatContext, chat, explain, recommendations
 from .data import store
 from .geo import resolve_city
@@ -194,6 +194,47 @@ def me_route():
     if not user:
         return jsonify({"ok": False, "error": "not logged in"}), 401
     return jsonify({"ok": True, "user": user})
+
+
+# ── Search history (needs login) ─────────────────────────────────────────────
+
+
+def _current_user() -> dict:
+    user = auth.user_from_token(_bearer_token())
+    if not user:
+        raise auth.AuthError("not logged in", 401)
+    return user
+
+
+@app.get("/api/history")
+@guarded("api", config.RATE_LIMIT_PER_MIN)
+def history_list():
+    user = _current_user()
+    limit = int(_num(dict(request.args), "limit", lo=1, hi=200, default=20))  # recent() caps it at HISTORY_MAX
+    return jsonify({"ok": True, "history": history.recent(user["id"], limit)})
+
+
+@app.post("/api/history")
+@guarded("api", config.RATE_LIMIT_PER_MIN)
+def history_add():
+    user = _current_user()
+    return jsonify({"ok": True, "entry": history.add(user["id"], _body())}), 201
+
+
+@app.delete("/api/history")
+@guarded("api", config.RATE_LIMIT_PER_MIN)
+def history_clear():
+    user = _current_user()
+    return jsonify({"ok": True, "deleted": history.clear(user["id"])})
+
+
+@app.delete("/api/history/<int:entry_id>")
+@guarded("api", config.RATE_LIMIT_PER_MIN)
+def history_delete(entry_id: int):
+    user = _current_user()
+    if not history.delete(user["id"], entry_id):
+        return jsonify({"ok": False, "error": "history entry not found"}), 404
+    return jsonify({"ok": True})
 
 
 @app.post("/api/range")

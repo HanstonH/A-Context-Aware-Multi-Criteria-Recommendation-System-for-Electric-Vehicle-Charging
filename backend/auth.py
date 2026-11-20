@@ -38,6 +38,20 @@ CREATE TABLE IF NOT EXISTS users (
     name TEXT,
     created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
+
+-- Each user's recent searches (history.py). Deleted with the user.
+CREATE TABLE IF NOT EXISTS search_history (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    kind TEXT NOT NULL,
+    query TEXT,
+    station_id TEXT,
+    lat REAL,
+    lng REAL,
+    battery_pct REAL,
+    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_search_history_user ON search_history(user_id, id);
 """
 
 # Compared against when the email doesn't exist, so a login for an unknown email
@@ -68,6 +82,7 @@ def _connect() -> sqlite3.Connection:
             _ready.add(path)
     conn = sqlite3.connect(path, timeout=10)
     conn.row_factory = sqlite3.Row
+    conn.execute("PRAGMA foreign_keys = ON")  # so a user's history goes with the user
     return conn
 
 
