@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { fetchFastApiRecommendationsRaw, type RecommendPayload } from "@/lib/api/backend-proxy"
+import { clientIpFrom, fetchBackendRecommendationsRaw, type RecommendPayload } from "@/lib/api/backend-proxy"
 import { mapRecommendResponse } from "@/lib/api/normalize"
 import { ApiError } from "@/lib/api/http"
 import { rankStationsWithTopsis } from "@/lib/ai/recommend-stations"
@@ -72,11 +72,11 @@ export async function POST(request: Request) {
     }
 
     try {
-      const { data, path } = await fetchFastApiRecommendationsRaw(payload)
+      const { data, path } = await fetchBackendRecommendationsRaw(payload, clientIpFrom(request))
       const items = mapRecommendResponse(data)
       if (items.length > 0) {
         return NextResponse.json({
-          source: "fastapi",
+          source: "backend",
           path,
           count: items.length,
           items,

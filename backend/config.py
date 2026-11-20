@@ -30,6 +30,17 @@ def _int(name: str, default: int) -> int:
 
 DB_PATH = Path(os.getenv("DB_PATH", REPO_DIR / "database" / "ev_charging.db"))
 
+# ── Accounts (auth.py) ───────────────────────────────────────────────────────
+# Writable, unlike DB_PATH. On Railway point this at a volume (e.g. /data/users.db),
+# otherwise every redeploy deletes all accounts.
+USERS_DB_PATH = Path(os.getenv("USERS_DB_PATH", REPO_DIR / "database" / "users.db"))
+# Signs login tokens. If unset, a key is generated once and stored beside USERS_DB_PATH.
+SECRET_KEY = os.getenv("SECRET_KEY", "")
+AUTH_TOKEN_DAYS = _int("AUTH_TOKEN_DAYS", 30)
+RATE_LIMIT_AUTH_PER_MIN = _int("RATE_LIMIT_AUTH_PER_MIN", 10)  # register / login attempts
+# Search history (history.py): newest entries kept per user; older ones are deleted.
+HISTORY_MAX = _int("HISTORY_MAX", 50)
+
 # ── Gemini ───────────────────────────────────────────────────────────────────
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 # Tried in order; the next one is used when a model is busy (503) or out of quota (429).
@@ -52,8 +63,17 @@ GEMINI_STT_MODELS = _models("GEMINI_STT_MODELS", "gemini-3.5-flash-lite,gemini-2
 GEMINI_TTS_MODELS = _models("GEMINI_TTS_MODELS", "gemini-3.8-flash-tts,gemini-3.8-flash-lite-tts")
 # One of Gemini's 30 prebuilt voices, e.g. Kore, Puck, Aoede, Charon, Leda.
 GEMINI_TTS_VOICE = os.getenv("GEMINI_TTS_VOICE", "Kore")
+# Spoken answers favour speed: flash-lite answers in a few seconds and has the most free quota.
+GEMINI_VOICE_MODELS = _models("GEMINI_VOICE_MODELS", "gemini-3.5-flash-lite,gemini-3.5-flash,gemini-2.5-flash")
+# Fewer tool rounds for spoken answers; each round is another model request (1-10 s on the free tier).
+GEMINI_VOICE_MAX_TOOL_CALLS = _int("GEMINI_VOICE_MAX_TOOL_CALLS", 3)
 # Thinking level for spoken answers on Gemini 3 models ("" = model default). Lower is faster.
 GEMINI_VOICE_THINKING = os.getenv("GEMINI_VOICE_THINKING", "low")
+# After a model says it is out of quota (429), skip it for this many seconds instead of
+# waiting on a failed request every time. Busy models (5xx) are skipped for 30 seconds.
+GEMINI_COOLDOWN_S = _float("GEMINI_COOLDOWN_S", 300.0)
+# How long /api/speech waits for a part's audio before the app falls back to the phone's voice.
+SPEECH_WAIT_S = _float("SPEECH_WAIT_S", 25.0)
 VOICE_MAX_UPLOAD_MB =_float("VOICE_MAX_UPLOAD_MB", 4.0)
 RATE_LIMIT_SPEECH_PER_MIN = _int("RATE_LIMIT_SPEECH_PER_MIN", 40)  # GET /api/speech/<id>
 
@@ -62,6 +82,9 @@ RATE_LIMIT_SPEECH_PER_MIN = _int("RATE_LIMIT_SPEECH_PER_MIN", 40)  # GET /api/sp
 # the same value in the X-API-Key header. It ships inside the app, so it only
 # stops casual use of your Gemini quota; the rate limits below do the real work.
 APP_API_KEY = os.getenv("APP_API_KEY", "")
+# Shared with the web frontend's server only (never shipped in an app). With it, the
+# frontend may pass each visitor's IP in X-Client-IP so web users get separate limits.
+PROXY_SECRET = os.getenv("PROXY_SECRET", "")
 RATE_LIMIT_AI_PER_MIN = _int("RATE_LIMIT_AI_PER_MIN", 8)  # /api/chat, /api/explain
 RATE_LIMIT_PER_MIN = _int("RATE_LIMIT_PER_MIN", 60)  # everything else
 
@@ -71,11 +94,9 @@ DEFAULT_WH_PER_KM = _float("DEFAULT_WH_PER_KM", 180.0)
 RANGE_SAFETY_FACTOR = _float("RANGE_SAFETY_FACTOR", 0.85)
 STOPPING_THRESHOLD_WH = 0.1
 
-# ── Ranking (mirrors Calculation_Model.total_score in AI/Algorithm/logic.py) ─
-# POI is not used, so its 0.25 is split evenly across the other three factors.
-WEIGHT_DISTANCE = _float("WEIGHT_DISTANCE", 1 / 3)
-WEIGHT_WAIT = _float("WEIGHT_WAIT", 1 / 3)
-WEIGHT_COST = _float("WEIGHT_COST", 1 / 3)
+# ── Ranking (context-aware TOPSIS, see algorithm.py) ──────────────────────────
+# Weights are not configured here: they follow the battery level, as in
+# AI/Algorithm/logic.py (get_exponential_weights).
 CANDIDATE_LIMIT = _int("CANDIDATE_LIMIT", 25)  # nearest reachable stations that get scored
 MAX_SEARCH_RADIUS_KM = _float("MAX_SEARCH_RADIUS_KM", 40.0)  # same cap as the app
 

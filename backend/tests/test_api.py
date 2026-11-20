@@ -113,3 +113,48 @@ def test_api_key_and_rate_limit(client, monkeypatch):
         for _ in range(config.RATE_LIMIT_AI_PER_MIN + 1)
     ]
     assert statuses[-1] == 429
+
+
+# ── Context-aware TOPSIS (ported from AI/Algorithm/logic.py) ──────────────────
+
+
+@pytest.mark.parametrize("battery", [0, 5, 20, 50, 80, 100])
+def test_context_weights_sum_to_one(battery):
+    assert sum(algorithm.context_weights(battery).values()) == pytest.approx(1.0)
+
+
+def test_low_battery_favours_distance_high_battery_favours_price():
+    low, high = algorithm.context_weights(5), algorithm.context_weights(100)
+    assert low["distance"] > low["cost"] and high["cost"] > high["distance"]
+    assert low["distance"] > high["distance"] and low["wait"] > high["wait"]
+
+
+def test_available_now_uses_urgency_weights():
+    w = algorithm.context_weights(90, available_now=True)
+    assert w == {"distance": 0.60, "cost": 0.05, "wait": 0.35}
+
+
+def test_topsis_dominant_option_wins_and_constant_column_is_ignored():
+    # Row 0 is shortest and cheapest; the all-zero middle column must not matter.
+    scores = algorithm.topsis_scores([[100, 0, 5], [900, 0, 9], [500, 0, 7]], [0.5, 0.2, 0.3])
+    assert scores[0] == pytest.approx(1.0) and scores[1] == pytest.approx(0.0)
+    assert scores[0] > scores[2] > scores[1]
+    assert algorithm.topsis_scores([[1, 0, 1], [1, 0, 1]], [0.5, 0.2, 0.3]) == [0.5, 0.5]
+
+
+def test_recommend_reports_context_weights(client):
+    low = client.post("/api/recommend", json={**TAIPEI_MAIN, "battery_pct": 10}).get_json()
+    high = client.post("/api/recommend", json={**TAIPEI_MAIN, "battery_pct": 95}).get_json()
+    urgent = client.post(
+        "/api/recommend", json={**TAIPEI_MAIN, "battery_pct": 95, "available_now": True}
+    ).get_json()
+    assert low["method"] == "topsis" and low["weights"]["distance"] > high["weights"]["distance"]
+    assert urgent["available_now"] is True and urgent["weights"]["distance"] == 0.6
+    assert all(0 <= r["total_score"] <= 1 for r in low["results"])
+
+
+def test_station_list_for_web_map(client):
+    body = client.get("/api/stations").get_json()
+    assert body["ok"] and len(body["stations"]) == 3008
+    first = body["stations"][0]
+    assert {"id", "name", "lat", "lng", "city", "charging_points"} <= first.keys()

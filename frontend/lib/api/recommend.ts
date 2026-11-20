@@ -21,7 +21,7 @@ export interface RecommendRequest {
 }
 
 export interface RecommendResponse {
-  source: "fastapi"
+  source: "backend"
   path: string
   count: number
   items: RecommendItem[]
@@ -42,7 +42,7 @@ export async function fetchRecommendations(
     throw new ApiError(extractErrorMessage(data) || "取得推薦失敗")
   }
   return {
-    source: "fastapi",
+    source: "backend",
     path: typeof rec.path === "string" ? rec.path : "",
     count: typeof rec.count === "number" ? rec.count : 0,
     items: Array.isArray(rec.items) ? (rec.items as RecommendItem[]) : [],

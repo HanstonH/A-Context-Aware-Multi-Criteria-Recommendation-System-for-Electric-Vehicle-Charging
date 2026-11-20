@@ -14,6 +14,7 @@ import type { ChargingStation } from "@/lib/charging-stations"
 import { applyRecommendations } from "@/lib/api/normalize"
 import type { PlacePick } from "@/components/places-search-box"
 import { Loader2 } from "lucide-react"
+import { fetchCurrentUser, logout, userInitials, type AuthUser } from "@/lib/api/auth"
 import type { NearbyPlace } from "@/lib/nearby-places"
 import { findLocationByName } from "@/lib/locations"
 import { locationsToRankInput, nearestStationInputs } from "@/lib/ai/recommend-stations"
@@ -23,7 +24,11 @@ const GOOGLE_MAPS_API_KEY =
   process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || process.env.GOOGLE_MAPS_API_KEY || ""
 
 export default function MapExplorePage() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [user, setUser] = useState<AuthUser | null>(null)
+  // False until we've asked the server whether a session cookie is still valid.
+  const [authChecked, setAuthChecked] = useState(false)
+  // Accounts are optional in the prototype: guests get the full map.
+  const [isGuest, setIsGuest] = useState(false)
   const [selectedDestination, setSelectedDestination] = useState<string | null>(null)
   const [isNavigating, setIsNavigating] = useState(false)
   const [darkMode, setDarkMode] = useState(false)
@@ -40,7 +45,6 @@ export default function MapExplorePage() {
     isRefreshing,
     lastUpdated,
     emptyHint,
-    source,
     sourceWarning,
   } = useLocations()
   const {
@@ -117,12 +121,27 @@ export default function MapExplorePage() {
     }
   }, [darkMode])
 
-  const handleLogin = () => {
-    setIsLoggedIn(true)
+  useEffect(() => {
+    let cancelled = false
+    void fetchCurrentUser().then((current) => {
+      if (cancelled) return
+      setUser(current)
+      setAuthChecked(true)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  const handleLogin = (loggedIn: AuthUser) => {
+    setUser(loggedIn)
+    setIsGuest(false)
   }
 
   const handleLogout = () => {
-    setIsLoggedIn(false)
+    if (user) void logout()
+    setUser(null)
+    setIsGuest(false)
     setSelectedDestination(null)
     setIsNavigating(false)
     setLowBatteryMode(false)
@@ -257,15 +276,23 @@ export default function MapExplorePage() {
     locations,
   ])
 
-  if (!isLoggedIn) {
-    return <LoginScreen onLogin={handleLogin} onRegister={() => {}} />
+  if (!authChecked) {
+    return (
+      <div className="h-screen w-full flex items-center justify-center bg-background">
+        <Loader2 className="w-10 h-10 text-emerald-600 animate-spin" />
+      </div>
+    )
+  }
+
+  if (!user && !isGuest) {
+    return <LoginScreen onAuthenticated={handleLogin} onContinueAsGuest={() => setIsGuest(true)} />
   }
 
   if (isLoading) {
     return (
       <div className="h-screen w-full flex flex-col items-center justify-center gap-4 bg-background">
         <Loader2 className="w-10 h-10 text-emerald-600 animate-spin" />
-        <p className="text-muted-foreground text-sm">正在從 Supabase 載入充電站…</p>
+        <p className="text-muted-foreground text-sm">正在載入充電站…</p>
       </div>
     )
   }
@@ -275,8 +302,7 @@ export default function MapExplorePage() {
       <div className="h-screen w-full flex flex-col items-center justify-center gap-4 bg-background p-6">
         <p className="text-destructive font-medium text-center">{error}</p>
         <p className="text-sm text-muted-foreground text-center max-w-md">
-          請確認 .env.local 已設定 NEXT_PUBLIC_SUPABASE_URL、NEXT_PUBLIC_SUPABASE_ANON_KEY，
-          且資料庫存在 public.stations 資料表（含名稱與經緯度欄位）。
+          請確認後端（BACKEND_URL，預設 http://localhost:8000）已啟動。
         </p>
         <button
           type="button"
@@ -316,6 +342,8 @@ export default function MapExplorePage() {
           emptyHint={emptyHint}
           onNavigate={handleNavigate}
           onLogout={handleLogout}
+          userInitials={user ? userInitials(user) : "訪"}
+          userLabel={user ? (user.name ? `${user.name}（${user.email}）` : user.email) : "訪客（未登入）"}
           selectedDestination={selectedDestination}
           isNavigating={isNavigating}
           onStartNavigation={handleStartNavigation}
@@ -357,7 +385,7 @@ export default function MapExplorePage() {
             onSimulate={simulateAvailability}
             isRefreshing={isRefreshing}
             lastUpdated={lastUpdated}
-            dataSourceLabel={source === "express" ? "Express 充電站" : "Supabase 充電站"}
+            dataSourceLabel="充電站"
             isRecommendLoading={isRecommendLoading}
             onNearbyPlacesChange={handleNearbyPlacesChange}
             focusedNearbyPlace={focusedNearbyPlace}

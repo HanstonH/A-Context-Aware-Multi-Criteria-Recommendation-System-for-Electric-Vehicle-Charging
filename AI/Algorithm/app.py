@@ -32,7 +32,8 @@ class RecommendRequest(BaseModel):
     lat: float
     lng: float
     battery_percent: float = Field(ge=0, le=100)
-    city: str = "Taipei"
+    # None = search all of Taiwan (snapshot mode only; live TDX needs a city).
+    city: Optional[str] = None
     is_available_now: bool = False
     full_range_km: float = 300.0
     range_safety_factor: float = 0.8
@@ -47,10 +48,15 @@ def health():
 
 @app.post("/recommend")
 def recommend(req: RecommendRequest):
-    if req.city not in TDX_CITIES:
+    if req.city is not None and req.city not in TDX_CITIES:
         raise HTTPException(
             status_code=400,
             detail=f"Unknown city '{req.city}'. Valid: {', '.join(TDX_CITIES)}",
+        )
+    if req.city is None and not req.use_snapshot:
+        raise HTTPException(
+            status_code=400,
+            detail="city is required when use_snapshot is false (live TDX data is per city).",
         )
     try:
         model = Calculation_Model(
@@ -64,10 +70,22 @@ def recommend(req: RecommendRequest):
             tdx_client=tdx_client,  # shared, token-cached client
             use_snapshot=req.use_snapshot,
         )
-        df = model.recommend()
+        # POIs are fetched per station via /pois; skipping them here saves
+        # one Google Places call per candidate.
+        df = model.recommend(include_pois=False)
         return {"recommendations": df.to_dict(orient="records")}
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc))
+
+@app.get("/stations")
+def all_stations():
+    """Every station in Taiwan, for plotting all pins on the map."""
+    try:
+        df = load_all_stations_from_snapshot()
+        return {"stations": df.to_dict(orient="records")}
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc))
+
 
 @app.get("/stations/{city}")
 def stations(city: str):

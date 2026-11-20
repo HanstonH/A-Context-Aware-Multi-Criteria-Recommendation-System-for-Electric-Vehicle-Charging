@@ -40,7 +40,11 @@ class Get_POI:
             }
         }
 
-        response = requests.post(BASE_URL, json=payload, headers=headers)
+        try:
+            response = requests.post(BASE_URL, json=payload, headers=headers, timeout=10)
+        except requests.RequestException as exc:
+            print(f"Places API request failed: {exc}")
+            return None
 
         if response.status_code == 200:
             data = response.json() 

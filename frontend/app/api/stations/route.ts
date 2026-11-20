@@ -1,17 +1,17 @@
 import { NextResponse } from "next/server"
-import { fetchExpressStationsRaw } from "@/lib/api/backend-proxy"
+import { clientIpFrom, fetchBackendStationsRaw } from "@/lib/api/backend-proxy"
 import { mapApiStationsToLocations } from "@/lib/api/normalize"
 import { ApiError } from "@/lib/api/http"
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const { data, path } = await fetchExpressStationsRaw()
+    const { data, path } = await fetchBackendStationsRaw(clientIpFrom(request))
     const locations = mapApiStationsToLocations(data)
 
     if (locations.length === 0) {
       return NextResponse.json(
         {
-          error: `Express 已回應（${path}），但沒有可顯示的充電站。請確認回傳為陣列，且含 "Station Name" 與 "Latitude"/"Longitude"。`,
+          error: `後端已回應（${path}），但沒有可顯示的充電站。`,
           path,
         },
         { status: 502 }
@@ -19,7 +19,7 @@ export async function GET() {
     }
 
     return NextResponse.json({
-      source: "express",
+      source: "backend",
       path,
       count: locations.length,
       locations,

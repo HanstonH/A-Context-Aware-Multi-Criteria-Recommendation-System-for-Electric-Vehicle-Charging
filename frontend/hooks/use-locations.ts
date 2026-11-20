@@ -5,14 +5,11 @@ import {
   type Location,
   type MapBounds,
   computeMapBoundsFromChargers,
-  fetchLocationsFromSupabase,
   mergeAllLocations,
   simulateLocationAvailability,
 } from "@/lib/locations"
-import { fetchStationsFromExpress } from "@/lib/api/stations"
+import { fetchStations } from "@/lib/api/stations"
 import type { GeoPoint } from "@/lib/map-coords"
-
-export type LocationSource = "express" | "supabase"
 
 function chargerCount(items: Location[]): number {
   return items.filter((item) => item.type === "ev-charger").length
@@ -26,7 +23,6 @@ export function useLocations() {
   const [error, setError] = useState<string | null>(null)
   const [sourceWarning, setSourceWarning] = useState<string | null>(null)
   const [emptyHint, setEmptyHint] = useState<string | null>(null)
-  const [source, setSource] = useState<LocationSource>("supabase")
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null)
 
   const lastSuccessfulChargersRef = useRef<Location[]>([])
@@ -67,37 +63,26 @@ export function useLocations() {
       setSourceWarning(null)
 
       try {
-        const evChargers = await fetchLocationsFromSupabase()
+        const result = await fetchStations()
         if (seq !== requestSeqRef.current) return
-        applyStations(evChargers, center)
-        setSource("supabase")
-      } catch (supabaseError) {
-        try {
-          const result = await fetchStationsFromExpress()
-          if (seq !== requestSeqRef.current) return
-          applyStations(result.locations, center)
-          setSource("express")
-          const supabaseMessage =
-            supabaseError instanceof Error ? supabaseError.message : "Supabase 無法連線"
-          setSourceWarning(`Supabase stations 無法使用，已改用 Express 備援。${supabaseMessage}`)
-        } catch (e) {
-          if (seq !== requestSeqRef.current) return
-          const message = e instanceof Error ? e.message : "載入充電樁失敗"
-          if (lastSuccessfulChargersRef.current.length > 0) {
-            setLocations(mergeAllLocations(lastSuccessfulChargersRef.current))
-            setMapBounds(computeMapBoundsFromChargers(lastSuccessfulChargersRef.current))
-            setSourceWarning(message)
-            setEmptyHint(null)
-            return
-          }
-          if (!opts?.silent) {
-            setError(supabaseError instanceof Error ? supabaseError.message : message)
-            setEmptyHint("暫無充電站")
-            return
-          }
-          setEmptyHint("暫無充電站")
-          throw e instanceof Error ? e : new Error(message)
+        applyStations(result.locations, center)
+      } catch (e) {
+        if (seq !== requestSeqRef.current) return
+        const message = e instanceof Error ? e.message : "載入充電樁失敗"
+        if (lastSuccessfulChargersRef.current.length > 0) {
+          setLocations(mergeAllLocations(lastSuccessfulChargersRef.current))
+          setMapBounds(computeMapBoundsFromChargers(lastSuccessfulChargersRef.current))
+          setSourceWarning(message)
+          setEmptyHint(null)
+          return
         }
+        if (!opts?.silent) {
+          setError(message)
+          setEmptyHint("暫無充電站")
+          return
+        }
+        setEmptyHint("暫無充電站")
+        throw e instanceof Error ? e : new Error(message)
       } finally {
         if (seq === requestSeqRef.current) {
           setIsLoading(false)
@@ -157,7 +142,6 @@ export function useLocations() {
     sourceWarning,
     emptyHint,
     hasChargers: chargerCount(locations) > 0 || lastSuccessfulChargersRef.current.length > 0,
-    source,
     lastUpdated,
     reload,
     reloadNear,

@@ -3,13 +3,13 @@ import { ApiError, extractErrorMessage, fetchJson } from "@/lib/api/http"
 import type { Location } from "@/lib/locations"
 
 export interface StationsResponse {
-  source: "express"
+  source: "backend"
   path: string
   count: number
   locations: Location[]
 }
 
-export async function fetchStationsFromExpress(): Promise<StationsResponse> {
+export async function fetchStations(): Promise<StationsResponse> {
   const data = await fetchJson(CLIENT_STATIONS_URL, { method: "GET", cache: "no-store" })
   if (!data || typeof data !== "object") {
     throw new ApiError("充電站 API 回傳格式不正確")
@@ -20,10 +20,10 @@ export async function fetchStationsFromExpress(): Promise<StationsResponse> {
   }
   const locations = Array.isArray(rec.locations) ? (rec.locations as Location[]) : []
   if (locations.length === 0) {
-    throw new ApiError("Express 沒有回傳任何充電站")
+    throw new ApiError("後端沒有回傳任何充電站")
   }
   return {
-    source: "express",
+    source: "backend",
     path: typeof rec.path === "string" ? rec.path : "",
     count: locations.length,
     locations,

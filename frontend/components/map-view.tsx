@@ -609,7 +609,7 @@ function GoogleMapInner({
               "shadow-lg disabled:opacity-60"
             )}
             aria-label="手動刷新數據"
-            title="重新向 Supabase 撈取最新狀態"
+            title="重新向伺服器撈取最新狀態"
           >
             {isRefreshing ? (
               <Loader2 className="w-5 h-5 text-emerald-600 animate-spin" />

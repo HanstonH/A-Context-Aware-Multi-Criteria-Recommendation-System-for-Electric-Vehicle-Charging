@@ -51,6 +51,9 @@ interface SidebarProps {
   emptyHint?: string | null
   onNavigate: (destination: string) => void
   onLogout: () => void
+  /** Logged-in user, for the avatar. */
+  userInitials?: string
+  userLabel?: string
   selectedDestination: string | null
   isNavigating: boolean
   onStartNavigation: () => void
@@ -82,6 +85,8 @@ export function Sidebar({
   emptyHint,
   onNavigate,
   onLogout,
+  userInitials = "ME",
+  userLabel,
   selectedDestination,
   isNavigating,
   onStartNavigation,
@@ -181,9 +186,9 @@ export function Sidebar({
         >
           <Settings className="w-5 h-5" />
         </button>
-        <Avatar className="w-10 h-10 border-2 border-primary cursor-pointer">
+        <Avatar className="w-10 h-10 border-2 border-primary cursor-pointer" title={userLabel}>
           <AvatarImage src="/placeholder.svg" alt="使用者頭像" />
-          <AvatarFallback className="bg-primary text-primary-foreground text-sm">ME</AvatarFallback>
+          <AvatarFallback className="bg-primary text-primary-foreground text-sm">{userInitials}</AvatarFallback>
         </Avatar>
       </div>
     )
@@ -208,9 +213,9 @@ export function Sidebar({
               <span className="font-bold text-foreground text-lg tracking-tight">MapExplore</span>
             </div>
           </div>
-          <Avatar className="w-10 h-10 border-2 border-primary cursor-pointer">
+          <Avatar className="w-10 h-10 border-2 border-primary cursor-pointer" title={userLabel}>
             <AvatarImage src="/placeholder.svg" alt="使用者頭像" />
-            <AvatarFallback className="bg-primary text-primary-foreground text-sm">ME</AvatarFallback>
+            <AvatarFallback className="bg-primary text-primary-foreground text-sm">{userInitials}</AvatarFallback>
           </Avatar>
         </div>
 

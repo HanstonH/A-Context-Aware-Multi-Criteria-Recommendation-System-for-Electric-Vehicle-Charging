@@ -2,8 +2,8 @@
 export const CLIENT_STATIONS_URL = "/api/stations"
 export const CLIENT_RECOMMEND_URL = "/api/recommend"
 
-const DEFAULT_EXPRESS_URL = "http://localhost:5000"
-const DEFAULT_FASTAPI_URL = "http://127.0.0.1:8000"
+/** Flask 後端（backend/），與手機 App 共用。本機預設埠 8000。 */
+const DEFAULT_BACKEND_URL = "http://localhost:8000"
 
 function envUrl(...keys: string[]): string | undefined {
   for (const key of keys) {
@@ -15,43 +15,12 @@ function envUrl(...keys: string[]): string | undefined {
   return undefined
 }
 
-/** Express 後端。優先讀 EXPRESS_BACKEND_URL，其次相容舊名 EXPRESS_API_URL。 */
-export const EXPRESS_API_URL =
-  envUrl("EXPRESS_BACKEND_URL", "EXPRESS_API_URL") || DEFAULT_EXPRESS_URL
+/** 共用後端網址。優先讀 BACKEND_URL，其次相容舊名 EXPRESS_BACKEND_URL / EXPRESS_API_URL。 */
+export const BACKEND_URL =
+  envUrl("BACKEND_URL", "EXPRESS_BACKEND_URL", "EXPRESS_API_URL") || DEFAULT_BACKEND_URL
 
-export const EXPRESS_BACKEND_URL = EXPRESS_API_URL
+/** 後端若設定了 APP_API_KEY，這裡填同一個值（只在伺服器端使用，不會送到瀏覽器）。 */
+export const BACKEND_API_KEY = (process.env.BACKEND_API_KEY ?? "").trim()
 
-export const FASTAPI_URL = envUrl("FASTAPI_URL") || DEFAULT_FASTAPI_URL
-
-export const EXPRESS_STATIONS_PATHS = uniquePaths([
-  process.env.EXPRESS_STATIONS_PATH,
-  "/api/stations",
-  "/api/chargers",
-  "/api/charging-stations",
-  "/stations",
-  "/chargers",
-])
-
-export const FASTAPI_RECOMMEND_PATHS = uniquePaths([
-  process.env.FASTAPI_RECOMMEND_PATH,
-  "/recommend",
-  "/api/recommend",
-  "/recommendation",
-  "/predict",
-  "/ai/recommend",
-  "/stations/recommend",
-])
-
-function uniquePaths(paths: Array<string | undefined>): string[] {
-  const seen = new Set<string>()
-  const result: string[] = []
-  for (const raw of paths) {
-    const path = raw?.trim()
-    if (!path) continue
-    const normalized = path.startsWith("/") ? path : `/${path}`
-    if (seen.has(normalized)) continue
-    seen.add(normalized)
-    result.push(normalized)
-  }
-  return result
-}
+/** 與後端的 PROXY_SECRET 相同。有了它，後端才會採用我們轉送的訪客 IP（每位訪客分開限流）。 */
+export const BACKEND_PROXY_SECRET = (process.env.BACKEND_PROXY_SECRET ?? "").trim()

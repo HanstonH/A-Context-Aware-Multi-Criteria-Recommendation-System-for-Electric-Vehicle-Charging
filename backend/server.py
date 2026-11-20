@@ -8,6 +8,8 @@ import logging
 import threading
 import time
 from collections import defaultdict, deque
+from concurrent.futures import ThreadPoolExecutor
+from dataclasses import replace
 from functools import wraps
 
 from flask import Flask, Response, jsonify, request
@@ -15,10 +17,11 @@ from werkzeug.exceptions import HTTPException
 
 from . import config
 from .algorithm import estimate_range, recommend
-from .assistant import AssistantUnavailable, ChatContext, chat, explain
+from . import auth, history
+from .assistant import AssistantUnavailable, ChatContext, chat, explain, recommendations
 from .data import store
 from .geo import resolve_city
-from .voice import SpeechFailed, audio_mime, get_speech, start_speech, transcribe
+from .voice import SpeechFailed, audio_mime, get_speech, speakable, start_speech, transcribe
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("backend")
@@ -52,8 +55,20 @@ _hits_lock = threading.Lock()
 
 
 def _client_ip() -> str:
-    fwd = request.headers.get("X-Forwarded-For", "")
-    return fwd.split(",")[0].strip() if fwd else (request.remote_addr or "?")
+    """The caller's IP for rate limiting. Never taken from X-Forwarded-For, which callers can fake.
+
+    - The web frontend's server calls on behalf of its visitors: it sends the visitor's IP
+      in X-Client-IP together with PROXY_SECRET, and only then is X-Client-IP trusted.
+    - Otherwise X-Real-IP, which Railway's edge overwrites with the real connecting address.
+    - Locally (no proxy) the socket address.
+    """
+    if config.PROXY_SECRET and hmac.compare_digest(
+        request.headers.get("X-Proxy-Secret", ""), config.PROXY_SECRET
+    ):
+        visitor = request.headers.get("X-Client-IP", "").strip()
+        if visitor:
+            return visitor[:64]
+    return request.headers.get("X-Real-IP", "").strip()[:64] or request.remote_addr or "?"
 
 
 def guarded(bucket: str, per_min: int):
@@ -144,11 +159,96 @@ def health():
     )
 
 
+# ── Accounts ─────────────────────────────────────────────────────────────────
+
+
+@app.errorhandler(auth.AuthError)
+def _auth_error(exc):
+    return jsonify({"ok": False, "error": str(exc)}), exc.status
+
+
+def _bearer_token() -> str:
+    header = request.headers.get("Authorization", "")
+    return header[7:].strip() if header.lower().startswith("bearer ") else ""
+
+
+@app.post("/api/auth/register")
+@guarded("auth", config.RATE_LIMIT_AUTH_PER_MIN)
+def register_route():
+    data = _body()
+    result = auth.register(data.get("email"), data.get("password"), data.get("name"))
+    return jsonify({"ok": True, **result}), 201
+
+
+@app.post("/api/auth/login")
+@guarded("auth", config.RATE_LIMIT_AUTH_PER_MIN)
+def login_route():
+    data = _body()
+    return jsonify({"ok": True, **auth.login(data.get("email"), data.get("password"))})
+
+
+@app.get("/api/auth/me")
+@guarded("api", config.RATE_LIMIT_PER_MIN)
+def me_route():
+    user = auth.user_from_token(_bearer_token())
+    if not user:
+        return jsonify({"ok": False, "error": "not logged in"}), 401
+    return jsonify({"ok": True, "user": user})
+
+
+# ── Search history (needs login) ─────────────────────────────────────────────
+
+
+def _current_user() -> dict:
+    user = auth.user_from_token(_bearer_token())
+    if not user:
+        raise auth.AuthError("not logged in", 401)
+    return user
+
+
+@app.get("/api/history")
+@guarded("api", config.RATE_LIMIT_PER_MIN)
+def history_list():
+    user = _current_user()
+    limit = int(_num(dict(request.args), "limit", lo=1, hi=200, default=20))  # recent() caps it at HISTORY_MAX
+    return jsonify({"ok": True, "history": history.recent(user["id"], limit)})
+
+
+@app.post("/api/history")
+@guarded("api", config.RATE_LIMIT_PER_MIN)
+def history_add():
+    user = _current_user()
+    return jsonify({"ok": True, "entry": history.add(user["id"], _body())}), 201
+
+
+@app.delete("/api/history")
+@guarded("api", config.RATE_LIMIT_PER_MIN)
+def history_clear():
+    user = _current_user()
+    return jsonify({"ok": True, "deleted": history.clear(user["id"])})
+
+
+@app.delete("/api/history/<int:entry_id>")
+@guarded("api", config.RATE_LIMIT_PER_MIN)
+def history_delete(entry_id: int):
+    user = _current_user()
+    if not history.delete(user["id"], entry_id):
+        return jsonify({"ok": False, "error": "history entry not found"}), 404
+    return jsonify({"ok": True})
+
+
 @app.post("/api/range")
 @guarded("api", config.RATE_LIMIT_PER_MIN)
 def range_estimate():
     ctx = _context({"lat": 0, "lng": 0, **_body()})
     return jsonify({"ok": True, "range": estimate_range(ctx.battery_pct, ctx.capacity_kwh, ctx.wh_per_km)})
+
+
+@app.get("/api/stations")
+@guarded("api", config.RATE_LIMIT_PER_MIN)
+def stations():
+    """Every station (about 3,000), for drawing all pins on the web map."""
+    return jsonify({"ok": True, "stations": [s.listing() for s in store().stations]})
 
 
 @app.get("/api/stations/<station_id>")
@@ -171,6 +271,8 @@ def recommend_route():
         if not city:
             raise BadRequest("Unknown city.")
     limit = int(_num(data, "limit", lo=1, hi=20, default=5))
+    # "Need a charger now": weights favour distance and availability over price.
+    available_now = data.get("available_now") is True
     rec = recommend(
         ctx.lat,
         ctx.lng,
@@ -180,6 +282,7 @@ def recommend_route():
         city=city,
         limit=limit,
         lang=ctx.lang,
+        available_now=available_now,
     )
     rec.pop("all_results", None)
     return jsonify(rec)
@@ -209,6 +312,9 @@ def _history(data: dict) -> list[dict]:
     return [h for h in history if isinstance(h, dict)]
 
 
+_prefetch_pool = ThreadPoolExecutor(max_workers=4, thread_name_prefix="prefetch")
+
+
 @app.post("/api/voice")
 @guarded("ai", config.RATE_LIMIT_AI_PER_MIN)
 def voice_route():
@@ -233,18 +339,33 @@ def voice_route():
     if len(audio) < 1000:
         raise BadRequest("The recording is empty.")
 
+    # Most spoken questions are "where should I charge?". Rank stations while the speech is
+    # being transcribed (it takes longer), so Gemini can usually answer without a tool round trip.
+    side = replace(ctx, seen={}, last_list=[])
+    prefetch = _prefetch_pool.submit(recommendations, side, -1, None, 3)
     try:
         transcript = transcribe(audio, mime, ctx.lang)
         if not transcript:
             sorry = "抱歉，我沒聽清楚，請再說一次。" if ctx.lang == "zh" else "Sorry, I didn't catch that. Please say it again."
-            return jsonify({"ok": True, "heard": False, "transcript": "", "reply": sorry, "stations": [], "speech": []})
+            return jsonify(
+                {"ok": True, "heard": False, "transcript": "", "reply": sorry, "lang": ctx.lang, "stations": [], "speech": []}
+            )
+        try:
+            ctx.prefetched = prefetch.result(timeout=5)
+            ctx.remember(side.last_list)
+        except Exception as exc:  # noqa: BLE001 - the tools can still fetch it
+            log.warning("Voice prefetch failed: %s", exc)
         result = chat(transcript, history, ctx)
     except AssistantUnavailable as exc:
         log.warning("Voice unavailable: %s", exc)
         return jsonify({"ok": False, "error": "assistant unavailable"}), 503
 
-    speech = [{**part, "url": f"/api/speech/{part['id']}"} for part in start_speech(result["reply"], ctx.lang)]
-    return jsonify({"ok": True, "heard": True, "transcript": transcript, **result, "speech": speech})
+    # "device": the app reads the reply with the phone's voice, so skip Gemini TTS (and its quota).
+    speech = []
+    if data.get("speech", "gemini") != "device":
+        speech = [{**part, "url": f"/api/speech/{part['id']}"} for part in start_speech(result["reply"], ctx.lang)]
+    spoken = speakable(result["reply"], ctx.lang)
+    return jsonify({"ok": True, "heard": True, "transcript": transcript, **result, "spoken": spoken, "speech": speech})
 
 
 @app.get("/api/speech/<speech_id>")

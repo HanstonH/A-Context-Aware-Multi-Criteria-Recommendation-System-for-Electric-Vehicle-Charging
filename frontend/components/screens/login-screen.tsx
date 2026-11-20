@@ -1,21 +1,54 @@
 "use client"
 
-import { useState } from "react"
-import { Map, Mail, Lock, Eye, EyeOff, ArrowRight, HelpCircle } from "lucide-react"
+import { useState, type FormEvent } from "react"
+import { Map, Mail, Lock, Eye, EyeOff, ArrowRight, HelpCircle, User, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { aura } from "@/lib/aura-styles"
 import { cn } from "@/lib/utils"
+import { login, register, type AuthUser } from "@/lib/api/auth"
 
 interface LoginScreenProps {
-  onLogin: () => void
-  onRegister: () => void
+  onAuthenticated: (user: AuthUser) => void
+  /** Use the map without an account (prototype: accounts are optional). */
+  onContinueAsGuest: () => void
 }
 
-export function LoginScreen({ onLogin, onRegister }: LoginScreenProps) {
+const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/
+
+export function LoginScreen({ onAuthenticated, onContinueAsGuest }: LoginScreenProps) {
+  const [mode, setMode] = useState<"login" | "register">("login")
+  const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [submitting, setSubmitting] = useState(false)
+  const isRegister = mode === "register"
+
+  const switchMode = () => {
+    setMode(isRegister ? "login" : "register")
+    setError(null)
+  }
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    if (submitting) return
+    if (!EMAIL_RE.test(email.trim())) return setError("請輸入有效的電子郵件")
+    if (isRegister && password.length < 8) return setError("密碼至少需要 8 個字元")
+    if (!password) return setError("請輸入密碼")
+    setError(null)
+    setSubmitting(true)
+    try {
+      const user = isRegister
+        ? await register(email.trim(), password, name.trim())
+        : await login(email.trim(), password)
+      onAuthenticated(user)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "發生錯誤，請稍後再試")
+      setSubmitting(false)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-6">
@@ -48,13 +81,32 @@ export function LoginScreen({ onLogin, onRegister }: LoginScreenProps) {
           </div>
 
           {/* Form */}
-          <div className="space-y-5">
+          <form className="space-y-5" onSubmit={handleSubmit} noValidate>
+            {isRegister && (
+              <div className="space-y-2">
+                <label className="text-sm text-muted-foreground">名稱（選填）</label>
+                <div className="relative">
+                  <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                  <Input
+                    type="text"
+                    autoComplete="name"
+                    placeholder="你的名字"
+                    value={name}
+                    maxLength={80}
+                    onChange={(e) => setName(e.target.value)}
+                    className="pl-12 h-12 bg-background border-border rounded-xl text-foreground placeholder:text-muted-foreground"
+                  />
+                </div>
+              </div>
+            )}
+
             <div className="space-y-2">
               <label className="text-sm text-muted-foreground">電子郵件</label>
               <div className="relative">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                 <Input
                   type="email"
+                  autoComplete="email"
                   placeholder="example@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -65,13 +117,15 @@ export function LoginScreen({ onLogin, onRegister }: LoginScreenProps) {
 
             <div className="space-y-2">
               <div className="flex justify-between items-center">
-                <label className="text-sm text-muted-foreground">密碼</label>
-                <button className="text-sm text-primary hover:underline">忘記密碼</button>
+                <label className="text-sm text-muted-foreground">
+                  密碼{isRegister && <span className="ml-1 text-xs">（至少 8 個字元）</span>}
+                </label>
               </div>
               <div className="relative">
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                 <Input
                   type={showPassword ? "text" : "password"}
+                  autoComplete={isRegister ? "new-password" : "current-password"}
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -80,6 +134,7 @@ export function LoginScreen({ onLogin, onRegister }: LoginScreenProps) {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? "隱藏密碼" : "顯示密碼"}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
@@ -87,13 +142,34 @@ export function LoginScreen({ onLogin, onRegister }: LoginScreenProps) {
               </div>
             </div>
 
+            {error && (
+              <p role="alert" className="text-sm text-destructive text-center">
+                {error}
+              </p>
+            )}
+
             <Button
-              onClick={onLogin}
+              type="submit"
+              disabled={submitting}
               className={cn("w-full h-12 rounded-xl font-semibold text-base", aura.btnPrimary)}
             >
-              登入 <ArrowRight className="w-4 h-4 ml-2" />
+              {submitting ? (
+                <Loader2 className="w-5 h-5 animate-spin" />
+              ) : (
+                <>
+                  {isRegister ? "註冊並登入" : "登入"} <ArrowRight className="w-4 h-4 ml-2" />
+                </>
+              )}
             </Button>
-          </div>
+
+            <button
+              type="button"
+              onClick={onContinueAsGuest}
+              className="w-full text-sm text-muted-foreground hover:text-foreground hover:underline"
+            >
+              先不登入，直接使用地圖
+            </button>
+          </form>
 
           {/* Divider */}
           <div className="relative my-6">
@@ -144,9 +220,11 @@ export function LoginScreen({ onLogin, onRegister }: LoginScreenProps) {
             </div>
 
             <div className="text-center">
-              <span className="text-sm text-muted-foreground">尚未擁有帳號？</span>
-              <button onClick={onRegister} className="text-sm text-primary hover:underline ml-1">
-                立即註冊
+              <span className="text-sm text-muted-foreground">
+                {isRegister ? "已經有帳號了？" : "尚未擁有帳號？"}
+              </span>
+              <button type="button" onClick={switchMode} className="text-sm text-primary hover:underline ml-1">
+                {isRegister ? "登入" : "立即註冊"}
               </button>
             </div>
           </div>

@@ -21,10 +21,10 @@ from concurrent.futures import Future, ThreadPoolExecutor
 from concurrent.futures import TimeoutError as FutureTimeout
 
 from google import genai
-from google.genai import errors, types
+from google.genai import types
 
 from . import config
-from .assistant import RETRYABLE, AssistantUnavailable
+from .assistant import AssistantUnavailable, cool_down, try_models, usable
 
 log = logging.getLogger(__name__)
 
@@ -60,7 +60,12 @@ def _client(api_version: str | None = None) -> genai.Client:
     key = api_version or "default"
     with _clients_lock:
         if key not in _clients:
-            opts = {"api_version": api_version} if api_version else None
+            opts = types.HttpOptions(
+                api_version=api_version,
+                # No silent SDK retries: a rate-limited request can otherwise wait for its
+                # retry-after while the driver hears nothing. We fall over to the next model.
+                retry_options=types.HttpRetryOptions(attempts=1),
+            )
             _clients[key] = genai.Client(api_key=config.GEMINI_API_KEY, http_options=opts)
         return _clients[key]
 
@@ -95,24 +100,20 @@ def transcribe(audio: bytes, mime: str, lang: str) -> str:
         "Keep station and place names as spoken. Output only the transcript, with no quotes or notes. "
         f"If there is no intelligible speech, output exactly {NO_SPEECH}"
     )
-    client = _client()
+    client = _client("v1beta")
     contents = [types.Part.from_bytes(data=audio, mime_type=mime), prompt]
-    cfg = types.GenerateContentConfig(temperature=0)
-    last: Exception | None = None
-    for model in config.GEMINI_STT_MODELS:
-        try:
-            resp = client.models.generate_content(model=model, contents=contents, config=cfg)
-        except errors.APIError as exc:
-            last = exc
-            if getattr(exc, "code", None) in RETRYABLE:
-                log.warning("STT model %s failed (%s), trying next", model, exc.code)
-                continue
-            raise
-        text = (resp.text or "").strip().strip('"「」“”').strip()
-        if not text or NO_SPEECH in text:
-            return ""
-        return text[:2000]
-    raise AssistantUnavailable(f"All speech-to-text models failed: {last}")
+
+    def call(model: str) -> types.GenerateContentResponse:
+        cfg = types.GenerateContentConfig(temperature=0)
+        if model.startswith("gemini-3"):  # transcribing needs no reasoning
+            cfg.thinking_config = types.ThinkingConfig(thinking_level="minimal")
+        return client.models.generate_content(model=model, contents=contents, config=cfg)
+
+    resp, _ = try_models(config.GEMINI_STT_MODELS, call, "speech-to-text")
+    text = (resp.text or "").strip().strip('"「」“”').strip()
+    if not text or NO_SPEECH in text:
+        return ""
+    return text[:2000]
 
 
 # ── Text to speech ───────────────────────────────────────────────────────────
@@ -164,7 +165,11 @@ def synthesize(text: str) -> bytes:
     """WAV audio (24 kHz mono, 16-bit) for one piece of text."""
     client = _client("v1beta")
     last: Exception | None = None
-    for model in config.GEMINI_TTS_MODELS:
+    models = usable(config.GEMINI_TTS_MODELS, all_if_none=False)
+    if not models:
+        # Every voice model is out of quota: fail now so the app uses the phone's voice at once.
+        raise SpeechFailed("text-to-speech models are cooling down after quota errors")
+    for model in models:
         try:
             interaction = client.interactions.create(
                 model=model,
@@ -196,6 +201,8 @@ def synthesize(text: str) -> bytes:
         except Exception as exc:  # noqa: BLE001 - try the next model on any failure
             last = exc
             log.warning("TTS model %s failed: %s", model, str(exc)[:200])
+            # The Interactions client raises its own error types; read the HTTP status either way.
+            cool_down(model, getattr(exc, "code", None) or getattr(exc, "status_code", None))
     raise SpeechFailed(f"All text-to-speech models failed: {last}")
 
 
@@ -224,11 +231,11 @@ def start_speech(reply: str, lang: str) -> list[dict]:
     return out
 
 
-def get_speech(job_id: str, timeout_s: float = 90) -> bytes:
+def get_speech(job_id: str, timeout_s: float | None = None) -> bytes:
     """Wait for one part's audio. KeyError if unknown or expired, SpeechFailed, TimeoutError."""
     with _jobs_lock:
         _, future = _jobs[job_id]
     try:
-        return future.result(timeout=timeout_s)
+        return future.result(timeout=config.SPEECH_WAIT_S if timeout_s is None else timeout_s)
     except FutureTimeout:
         raise TimeoutError(job_id) from None

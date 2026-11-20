@@ -22,6 +22,7 @@ from __future__ import annotations
 import os
 import sys
 from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -44,9 +45,12 @@ _RATE_PER_KWH = 2
 _EARTH_RADIUS_M = 6_371_000.0
 # Road distance ≈ straight line × this, used when the routing API fails.
 _ROAD_DETOUR_FACTOR = 1.3
+# Concurrent Google Routes requests per recommendation.
+_ROUTES_MAX_WORKERS = 10
 
-def load_all_stations_from_snapshot(city: str) -> pd.DataFrame:
-    """Return every station for a city from the local snapshot (no ranking).
+def load_all_stations_from_snapshot(city: Optional[str] = None) -> pd.DataFrame:
+    """Return every station for a city (or all of Taiwan when city is None)
+    from the local snapshot (no ranking).
 
     Used to plot all pins on the map. Availability is synthesized since the
     snapshot has no live status.
@@ -56,9 +60,10 @@ def load_all_stations_from_snapshot(city: str) -> pd.DataFrame:
         / "static" / "processed" / "stations_master.parquet"
     )
     df = pd.read_parquet(snapshot_path)
-    df = df[df["city"] == city].copy()
-    df = df[["StationID", "station_name", "lat", "lon",
-             "spaces", "charging_points", "cost"]]
+    if city is not None:
+        df = df[df["city"] == city]
+    df = df[["StationID", "station_name", "city", "lat", "lon",
+             "spaces", "charging_points", "cost"]].copy()
     df = df.dropna(subset=["StationID", "lat", "lon"]).drop_duplicates("StationID")
     df["total_connectors"] = df["charging_points"].fillna(0).astype(int)
     df["available_points"] = (df["total_connectors"] * 0.7).round().astype(int)
@@ -310,7 +315,7 @@ class Calculation_Model:
         battery_percent: float,
         *,
         is_available_now: bool = False,
-        city: str = "Taipei",
+        city: Optional[str] = "Taipei",  # None = all of Taiwan (snapshot mode only)
         full_range_km: float = 300.0,
         range_safety_factor: float = 0.8,
         max_candidates: int = 10,
@@ -388,7 +393,9 @@ class Calculation_Model:
             / "static" / "processed" / "stations_master.parquet"
         )
         df = pd.read_parquet(snapshot_path)
-        df = df[df["city"] == self.city].copy()
+        if self.city is not None:
+            df = df[df["city"] == self.city]
+        df = df.copy()
         df = df[["StationID", "station_name", "lat", "lon",
                  "spaces", "charging_points", "cost"]]
         df = df.dropna(subset=["StationID", "lat", "lon"]).drop_duplicates("StationID")
@@ -504,7 +511,14 @@ class Calculation_Model:
             return straight_line * _ROAD_DETOUR_FACTOR
 
         df = df.copy()
-        df["distance"] = df.apply(get_row_dist, axis=1)
+        # One Google Routes call per candidate. Run them concurrently: they are
+        # network-bound, and sequentially 10 calls took most of a ~30 s request.
+        rows = [row for _, row in df.iterrows()]
+        if rows:
+            with ThreadPoolExecutor(max_workers=min(len(rows), _ROUTES_MAX_WORKERS)) as pool:
+                df["distance"] = list(pool.map(get_row_dist, rows))
+        else:
+            df["distance"] = pd.Series(dtype=float)
         return df
 
     # ------------------------------------------------------------------
@@ -651,17 +665,19 @@ class Calculation_Model:
     # ------------------------------------------------------------------
     # Full pipeline
     # ------------------------------------------------------------------
-    def recommend(self) -> pd.DataFrame:
+    def recommend(self, include_pois: bool = True) -> pd.DataFrame:
         """Run the complete recommendation pipeline.
 
         Returns a DataFrame ranked best-first by ``topsis_score``.
-        Also includes ``total_score``, normalised / contribution columns and
-        the display-only ``nearby_pois`` list for each station.
+        Also includes ``total_score`` and normalised / contribution columns.
+        With ``include_pois`` it adds the display-only ``nearby_pois`` list for
+        each station (one Google Places call per station). The API passes
+        False: the app loads POIs per station via ``/pois`` when needed.
         """
         context = self.weights
         state = _context_state_label(self.battery_fraction, self.is_available_now)
         print(
-            f"[{self.city}] battery {self.battery_percent:.0f}% → "
+            f"[{self.city or 'Taiwan'}] battery {self.battery_percent:.0f}% → "
             f"{self.reachable_metres / 1000:.1f} km range | "
             f"state={state} | weights dist={context.w_distance:.3f} "
             f"cost={context.w_cost:.3f} pots={context.w_pots:.3f}"
@@ -687,7 +703,7 @@ class Calculation_Model:
         ranked = candidates.sort_values("topsis_score", ascending=False).reset_index(drop=True)
 
         # POIs are shown on the map around each station; they do not affect ranking.
-        return self.attach_nearby_pois(ranked)
+        return self.attach_nearby_pois(ranked) if include_pois else ranked
 
 
 # =============================================================================
