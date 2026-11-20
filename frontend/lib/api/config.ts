@@ -21,3 +21,6 @@ export const BACKEND_URL =
 
 /** 後端若設定了 APP_API_KEY，這裡填同一個值（只在伺服器端使用，不會送到瀏覽器）。 */
 export const BACKEND_API_KEY = (process.env.BACKEND_API_KEY ?? "").trim()
+
+/** 與後端的 PROXY_SECRET 相同。有了它，後端才會採用我們轉送的訪客 IP（每位訪客分開限流）。 */
+export const BACKEND_PROXY_SECRET = (process.env.BACKEND_PROXY_SECRET ?? "").trim()

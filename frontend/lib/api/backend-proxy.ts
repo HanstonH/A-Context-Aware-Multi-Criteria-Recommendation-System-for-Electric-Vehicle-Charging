@@ -1,4 +1,4 @@
-import { BACKEND_API_KEY, BACKEND_URL } from "@/lib/api/config"
+import { BACKEND_API_KEY, BACKEND_PROXY_SECRET, BACKEND_URL } from "@/lib/api/config"
 import { ApiError, fetchJson } from "@/lib/api/http"
 
 /**
@@ -29,17 +29,32 @@ const RECOMMEND_PATH = "/api/recommend"
 // The backend returns at most 20; the web map highlights the top 10.
 const RECOMMEND_LIMIT = 10
 
+/**
+ * The backend rate-limits per IP. Without this every web user would share the
+ * Next.js server's IP and one busy minute would block everyone. The backend only
+ * trusts X-Client-IP when it comes with the shared PROXY_SECRET.
+ */
+export function addClientIp(headers: Record<string, string>, clientIp?: string | null) {
+  if (clientIp && BACKEND_PROXY_SECRET) {
+    headers["X-Client-IP"] = clientIp
+    headers["X-Proxy-Secret"] = BACKEND_PROXY_SECRET
+  }
+}
+
 function backendHeaders(clientIp?: string | null): Record<string, string> {
   const headers: Record<string, string> = {}
   if (BACKEND_API_KEY) headers["X-API-Key"] = BACKEND_API_KEY
-  // The backend rate-limits per IP. Without this every web user would share the
-  // Next.js server's IP and one busy minute would block everyone.
-  if (clientIp) headers["X-Forwarded-For"] = clientIp
+  addClientIp(headers, clientIp)
   return headers
 }
 
-/** First address in the incoming X-Forwarded-For (the browser), if any. */
+/**
+ * The visitor's IP. X-Real-IP is set by Railway's edge (a browser can't fake it);
+ * X-Forwarded-For is only a fallback for local runs.
+ */
 export function clientIpFrom(request: Request): string | null {
+  const real = request.headers.get("x-real-ip")?.trim()
+  if (real) return real
   const fwd = request.headers.get("x-forwarded-for")
   return fwd ? fwd.split(",")[0].trim() || null : null
 }

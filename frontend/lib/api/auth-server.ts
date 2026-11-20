@@ -1,6 +1,6 @@
 import type { NextRequest, NextResponse } from "next/server"
 import { BACKEND_API_KEY, BACKEND_URL } from "@/lib/api/config"
-import { clientIpFrom } from "@/lib/api/backend-proxy"
+import { addClientIp, clientIpFrom } from "@/lib/api/backend-proxy"
 
 /**
  * Server-side half of web login. The browser only ever talks to the Next.js
@@ -32,8 +32,7 @@ export async function callBackend(
   if (init.body !== undefined) headers["Content-Type"] = "application/json"
   if (BACKEND_API_KEY) headers["X-API-Key"] = BACKEND_API_KEY
   if (init.token) headers.Authorization = `Bearer ${init.token}`
-  const ip = init.request ? clientIpFrom(init.request) : null
-  if (ip) headers["X-Forwarded-For"] = ip // per-visitor rate limits on the backend
+  addClientIp(headers, init.request ? clientIpFrom(init.request) : null) // per-visitor rate limits
 
   try {
     const res = await fetch(`${BACKEND_URL}${path}`, {

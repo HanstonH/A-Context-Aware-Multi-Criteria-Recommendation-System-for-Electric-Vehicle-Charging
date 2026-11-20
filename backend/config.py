@@ -80,6 +80,9 @@ RATE_LIMIT_SPEECH_PER_MIN = _int("RATE_LIMIT_SPEECH_PER_MIN", 40)  # GET /api/sp
 # the same value in the X-API-Key header. It ships inside the app, so it only
 # stops casual use of your Gemini quota; the rate limits below do the real work.
 APP_API_KEY = os.getenv("APP_API_KEY", "")
+# Shared with the web frontend's server only (never shipped in an app). With it, the
+# frontend may pass each visitor's IP in X-Client-IP so web users get separate limits.
+PROXY_SECRET = os.getenv("PROXY_SECRET", "")
 RATE_LIMIT_AI_PER_MIN = _int("RATE_LIMIT_AI_PER_MIN", 8)  # /api/chat, /api/explain
 RATE_LIMIT_PER_MIN = _int("RATE_LIMIT_PER_MIN", 60)  # everything else
 

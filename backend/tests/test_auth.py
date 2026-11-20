@@ -93,3 +93,44 @@ def test_login_is_rate_limited(client):
         for _ in range(config.RATE_LIMIT_AUTH_PER_MIN + 1)
     ]
     assert statuses[-1] == 429 and set(statuses[:-1]) == {401}
+
+
+def _login_statuses(client, headers_for_attempt):
+    return [
+        client.post(
+            "/api/auth/login",
+            json={"email": "a@b.co", "password": "wrong-password"},
+            headers=headers_for_attempt(i),
+        ).status_code
+        for i in range(config.RATE_LIMIT_AUTH_PER_MIN + 1)
+    ]
+
+
+def test_faked_forwarded_for_does_not_dodge_the_limit(client):
+    # A new made-up X-Forwarded-For on every attempt must not reset the limit.
+    statuses = _login_statuses(client, lambda i: {"X-Forwarded-For": f"10.0.0.{i}"})
+    assert statuses[-1] == 429
+
+
+def test_client_ip_needs_the_proxy_secret(client, monkeypatch):
+    monkeypatch.setattr(config, "PROXY_SECRET", "s3cret")
+    # Without the secret, X-Client-IP is ignored.
+    statuses = _login_statuses(client, lambda i: {"X-Client-IP": f"10.0.0.{i}"})
+    assert statuses[-1] == 429
+    # With it (the web frontend's server), each visitor gets their own limit.
+    _hits.clear()
+    statuses = _login_statuses(
+        client, lambda i: {"X-Client-IP": f"10.0.0.{i}", "X-Proxy-Secret": "s3cret"}
+    )
+    assert set(statuses) == {401}
+
+
+def test_real_ip_from_railway_is_used(client):
+    one = _login_statuses(client, lambda i: {"X-Real-IP": "203.0.113.1"})
+    assert one[-1] == 429
+    other = client.post(
+        "/api/auth/login",
+        json={"email": "a@b.co", "password": "wrong-password"},
+        headers={"X-Real-IP": "203.0.113.2"},
+    )
+    assert other.status_code == 401

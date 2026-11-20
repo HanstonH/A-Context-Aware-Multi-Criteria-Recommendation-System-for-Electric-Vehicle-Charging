@@ -55,8 +55,20 @@ _hits_lock = threading.Lock()
 
 
 def _client_ip() -> str:
-    fwd = request.headers.get("X-Forwarded-For", "")
-    return fwd.split(",")[0].strip() if fwd else (request.remote_addr or "?")
+    """The caller's IP for rate limiting. Never taken from X-Forwarded-For, which callers can fake.
+
+    - The web frontend's server calls on behalf of its visitors: it sends the visitor's IP
+      in X-Client-IP together with PROXY_SECRET, and only then is X-Client-IP trusted.
+    - Otherwise X-Real-IP, which Railway's edge overwrites with the real connecting address.
+    - Locally (no proxy) the socket address.
+    """
+    if config.PROXY_SECRET and hmac.compare_digest(
+        request.headers.get("X-Proxy-Secret", ""), config.PROXY_SECRET
+    ):
+        visitor = request.headers.get("X-Client-IP", "").strip()
+        if visitor:
+            return visitor[:64]
+    return request.headers.get("X-Real-IP", "").strip()[:64] or request.remote_addr or "?"
 
 
 def guarded(bucket: str, per_min: int):
