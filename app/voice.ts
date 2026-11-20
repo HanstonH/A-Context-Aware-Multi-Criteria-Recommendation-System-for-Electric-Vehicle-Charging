@@ -1,6 +1,9 @@
 // Voice output for the assistant, plus the recording settings and silence detection
-// used by ChatPanel. Replies are spoken with Gemini's voice (WAV parts from the
-// server); if a part can't be fetched, the phone's built-in voice reads it instead.
+// used by ChatPanel. Replies are read by the phone's built-in voice: it starts at once
+// and uses no Gemini quota. Set USE_GEMINI_VOICE to true for Gemini's more natural voice
+// (WAV parts from the server, about 6 s slower; the phone voice still covers failures).
+
+export const USE_GEMINI_VOICE = false;
 
 import {
   createAudioPlayer,
@@ -15,6 +18,8 @@ import * as api from "./api";
 import type { Lang } from "./i18n";
 
 const LISTEN_CUE = require("./assets/listen.wav");
+// The server gives up on a reply part after 25 s; this also covers a stalled connection.
+const SPEECH_DOWNLOAD_MS = 30000;
 
 /** Mono AAC in an .m4a file: small uploads, and a format Gemini accepts. */
 export const RECORDING: RecordingOptions = {
@@ -64,16 +69,32 @@ export async function playListenCue() {
   }
 }
 
-/** The phone's own voice: instant, no network, used for errors and as a fallback. */
-export function sayLocally(text: string, lang: Lang): Promise<void> {
+// A run of Chinese text, e.g. a station name inside an English reply ("市民大道-公中站").
+const CJK = /[㐀-鿿豈-﫿]/;
+const CJK_RUN = /([㐀-鿿豈-﫿][㐀-鿿豈-﫿\d\-－·（）()]*)/;
+
+/** Speaks one utterance. Resolves true when it finished, false if it was stopped. */
+function speakOnce(text: string, language: string): Promise<boolean> {
   return new Promise((resolve) => {
     Speech.speak(text, {
-      language: lang === "zh" ? "zh-TW" : "en-US",
-      onDone: () => resolve(),
-      onStopped: () => resolve(),
-      onError: () => resolve(),
+      language,
+      onDone: () => resolve(true),
+      onStopped: () => resolve(false),
+      onError: () => resolve(true), // skip a part the voice can't say rather than hang
     });
   });
+}
+
+/**
+ * The phone's own voice: instant, no network and no Gemini quota. In an English reply,
+ * Chinese station names are read by the Chinese voice (the English one skips them).
+ */
+export async function sayLocally(text: string, lang: Lang): Promise<void> {
+  const parts = lang === "zh" ? [text] : text.split(CJK_RUN).filter((p) => p.trim());
+  for (const part of parts) {
+    const zh = lang === "zh" || CJK.test(part);
+    if (!(await speakOnce(part, zh ? "zh-TW" : "en-US"))) return;
+  }
 }
 
 export class Speaker {
@@ -84,13 +105,18 @@ export class Speaker {
   async play(parts: api.SpeechPart[], lang: Lang): Promise<boolean> {
     const my = ++this.token;
     await playbackMode();
-    // Start every download now, so part 2 is ready by the time part 1 ends.
+    // Start every download now, so part 2 is ready by the time part 1 ends. A part that
+    // isn't ready in time (or fails) is spoken with the phone's voice instead.
     const files = parts.map((part, i) => {
       const target = new File(Paths.cache, `reply-${Date.now()}-${i}.wav`);
-      return File.downloadFileAsync(api.absoluteUrl(part.url), target, {
+      const download = File.downloadFileAsync(api.absoluteUrl(part.url), target, {
         headers: api.authHeaders(),
         idempotent: true,
       }).catch(() => null);
+      return Promise.race([
+        download,
+        new Promise<null>((resolve) => setTimeout(() => resolve(null), SPEECH_DOWNLOAD_MS)),
+      ]);
     });
     try {
       for (let i = 0; i < parts.length; i++) {
